@@ -1,0 +1,1049 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Polymarket Data API",
+    "description": "User positions, trades, activity, holder data, open interest, leaderboards, and builder analytics. All endpoints are public \u2014 no authentication required.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Polymarket",
+      "url": "https://docs.polymarket.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://data-api.polymarket.com",
+      "description": "Production (most endpoints work at root, but /v1/ prefix is supported for all and required for leaderboard + builders)"
+    }
+  ],
+  "paths": {
+    "/positions": {
+      "get": {
+        "operationId": "getPositions",
+        "summary": "Get current positions for a user",
+        "description": "Fetches current open positions for a user, including size, average price, PnL, and market metadata.",
+        "tags": [
+          "Positions"
+        ],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Wallet address (0x...)"
+          },
+          {
+            "name": "market",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by condition ID"
+          },
+          {
+            "name": "sizeThreshold",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            },
+            "description": "Minimum position size"
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "TOKENS",
+                "CURRENT",
+                "INITIAL",
+                "CASHPNL",
+                "PERCENTPNL",
+                "TITLE",
+                "RESOLVING",
+                "PRICE"
+              ]
+            },
+            "description": "Sort field"
+          },
+          {
+            "name": "sortDirection",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ASC",
+                "DESC"
+              ]
+            },
+            "description": "Sort direction (default DESC)"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of positions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Position"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/closed-positions": {
+      "get": {
+        "operationId": "getClosedPositions",
+        "summary": "Get closed positions for a user",
+        "tags": [
+          "Positions"
+        ],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "TOKENS",
+                "CURRENT",
+                "INITIAL",
+                "CASHPNL",
+                "PERCENTPNL",
+                "TITLE"
+              ]
+            }
+          },
+          {
+            "name": "sortDirection",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ASC",
+                "DESC"
+              ]
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of closed positions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Position"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/trades": {
+      "get": {
+        "operationId": "getTrades",
+        "summary": "Get trades for a user or markets",
+        "description": "Fetches trade history with user profile metadata attached.",
+        "tags": [
+          "Trades"
+        ],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by wallet address"
+          },
+          {
+            "name": "market",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by condition ID"
+          },
+          {
+            "name": "side",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "BUY",
+                "SELL"
+              ]
+            }
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Start timestamp (seconds)"
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "End timestamp (seconds)"
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "TIMESTAMP",
+                "TOKENS",
+                "CASH"
+              ]
+            }
+          },
+          {
+            "name": "sortDirection",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ASC",
+                "DESC"
+              ]
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of trades",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Trade"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/activity": {
+      "get": {
+        "operationId": "getUserActivity",
+        "summary": "Get user activity",
+        "description": "Fetches onchain activity for a user (trades, splits, merges, redemptions, rewards, conversions).",
+        "tags": [
+          "Activity"
+        ],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "market",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "TRADE",
+                "SPLIT",
+                "MERGE",
+                "REDEEM",
+                "REWARD",
+                "CONVERSION"
+              ]
+            },
+            "description": "Comma-separated activity types"
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Start timestamp (seconds)"
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "End timestamp (seconds)"
+          },
+          {
+            "name": "side",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "BUY",
+                "SELL"
+              ]
+            }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "TIMESTAMP",
+                "TOKENS",
+                "CASH"
+              ]
+            }
+          },
+          {
+            "name": "sortDirection",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ASC",
+                "DESC"
+              ]
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of activity records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Activity"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/value": {
+      "get": {
+        "operationId": "getUserValue",
+        "summary": "Get total value of a user's positions",
+        "tags": [
+          "Positions"
+        ],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User's total position value",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "user": {
+                        "type": "string"
+                      },
+                      "value": {
+                        "type": "number"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/holders": {
+      "get": {
+        "operationId": "getTopHolders",
+        "summary": "Get top holders for a market",
+        "description": "Returns top holders grouped by token for a given market condition ID.",
+        "tags": [
+          "Market Analytics"
+        ],
+        "parameters": [
+          {
+            "name": "market",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Market condition ID (0x...)"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of token holder groups",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "token": {
+                        "type": "string",
+                        "description": "CLOB token ID"
+                      },
+                      "holders": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "proxyWallet": {
+                              "type": "string"
+                            },
+                            "bio": {
+                              "type": "string"
+                            },
+                            "asset": {
+                              "type": "string"
+                            },
+                            "pseudonym": {
+                              "type": "string"
+                            },
+                            "amount": {
+                              "type": "number"
+                            },
+                            "name": {
+                              "type": "string"
+                            },
+                            "profileImage": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/live-volume": {
+      "get": {
+        "operationId": "getLiveVolume",
+        "summary": "Get live volume for an event",
+        "description": "Returns live volume data broken down by market for a given event.",
+        "tags": [
+          "Market Analytics"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Event ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Live volume data with per-market breakdown",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "total": {
+                        "type": "number",
+                        "description": "Total volume across all markets"
+                      },
+                      "markets": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "market": {
+                              "type": "string",
+                              "description": "Condition ID"
+                            },
+                            "value": {
+                              "type": "number"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/leaderboard": {
+      "get": {
+        "operationId": "getLeaderboard",
+        "summary": "Get trader leaderboard rankings",
+        "description": "Fetches trader leaderboard with various ranking windows.",
+        "tags": [
+          "Leaderboard"
+        ],
+        "parameters": [
+          {
+            "name": "window",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "volume_24hr",
+                "volume_1wk",
+                "volume_1mo",
+                "volume_all",
+                "profit_all"
+              ]
+            },
+            "description": "Ranking window"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of leaderboard entries",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LeaderboardEntry"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/builders/leaderboard": {
+      "get": {
+        "operationId": "getBuilderLeaderboard",
+        "summary": "Get aggregated builder leaderboard",
+        "tags": [
+          "Builders"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Builder leaderboard",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BuilderEntry"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/builders/volume": {
+      "get": {
+        "operationId": "getBuilderVolume",
+        "summary": "Get daily builder volume time-series",
+        "tags": [
+          "Builders"
+        ],
+        "parameters": [
+          {
+            "name": "builder",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Builder address"
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Volume time series",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "date": {
+                        "type": "string"
+                      },
+                      "volume": {
+                        "type": "number"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Position": {
+        "type": "object",
+        "properties": {
+          "proxyWallet": {
+            "type": "string",
+            "description": "User's proxy wallet address"
+          },
+          "asset": {
+            "type": "string",
+            "description": "CLOB token ID"
+          },
+          "conditionId": {
+            "type": "string",
+            "description": "Market condition ID"
+          },
+          "size": {
+            "type": "number",
+            "description": "Position size in tokens"
+          },
+          "avgPrice": {
+            "type": "number",
+            "description": "Average entry price"
+          },
+          "initialValue": {
+            "type": "number",
+            "description": "Initial USDC value"
+          },
+          "currentValue": {
+            "type": "number",
+            "description": "Current USDC value"
+          },
+          "cashPnl": {
+            "type": "number",
+            "description": "Cash profit/loss in USDC"
+          },
+          "percentPnl": {
+            "type": "number",
+            "description": "Percentage profit/loss"
+          },
+          "totalBought": {
+            "type": "number"
+          },
+          "realizedPnl": {
+            "type": "number"
+          },
+          "percentRealizedPnl": {
+            "type": "number"
+          },
+          "curPrice": {
+            "type": "number",
+            "description": "Current market price"
+          },
+          "redeemable": {
+            "type": "boolean"
+          },
+          "title": {
+            "type": "string",
+            "description": "Market question"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "icon": {
+            "type": "string"
+          },
+          "eventSlug": {
+            "type": "string"
+          },
+          "outcome": {
+            "type": "string",
+            "description": "Position outcome (Yes/No)"
+          },
+          "outcomeIndex": {
+            "type": "integer"
+          },
+          "oppositeOutcome": {
+            "type": "string"
+          },
+          "oppositeAsset": {
+            "type": "string"
+          },
+          "endDate": {
+            "type": "string"
+          },
+          "negRisk": {
+            "type": "boolean"
+          }
+        }
+      },
+      "Trade": {
+        "type": "object",
+        "properties": {
+          "proxyWallet": {
+            "type": "string"
+          },
+          "side": {
+            "type": "string",
+            "enum": [
+              "BUY",
+              "SELL"
+            ]
+          },
+          "asset": {
+            "type": "string",
+            "description": "CLOB token ID"
+          },
+          "conditionId": {
+            "type": "string"
+          },
+          "size": {
+            "type": "number",
+            "description": "Trade size in tokens"
+          },
+          "price": {
+            "type": "number"
+          },
+          "timestamp": {
+            "type": "integer",
+            "description": "Unix timestamp (seconds)"
+          },
+          "title": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "icon": {
+            "type": "string"
+          },
+          "eventSlug": {
+            "type": "string"
+          },
+          "outcome": {
+            "type": "string"
+          },
+          "outcomeIndex": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string",
+            "description": "Trader display name"
+          },
+          "pseudonym": {
+            "type": "string"
+          },
+          "bio": {
+            "type": "string"
+          },
+          "profileImage": {
+            "type": "string"
+          },
+          "profileImageOptimized": {
+            "type": "string"
+          },
+          "transactionHash": {
+            "type": "string",
+            "description": "Polygon transaction hash"
+          }
+        }
+      },
+      "Activity": {
+        "type": "object",
+        "properties": {
+          "proxyWallet": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "integer"
+          },
+          "conditionId": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "TRADE",
+              "SPLIT",
+              "MERGE",
+              "REDEEM",
+              "REWARD",
+              "CONVERSION"
+            ]
+          },
+          "size": {
+            "type": "number"
+          },
+          "usdcSize": {
+            "type": "number",
+            "description": "Value in USDC"
+          },
+          "transactionHash": {
+            "type": "string"
+          },
+          "price": {
+            "type": "number"
+          },
+          "asset": {
+            "type": "string"
+          },
+          "side": {
+            "type": "string"
+          },
+          "outcomeIndex": {
+            "type": "integer"
+          },
+          "title": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "icon": {
+            "type": "string"
+          },
+          "eventSlug": {
+            "type": "string"
+          },
+          "outcome": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "pseudonym": {
+            "type": "string"
+          },
+          "bio": {
+            "type": "string"
+          },
+          "profileImage": {
+            "type": "string"
+          },
+          "profileImageOptimized": {
+            "type": "string"
+          }
+        }
+      },
+      "LeaderboardEntry": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "pseudonym": {
+            "type": "string"
+          },
+          "profileImage": {
+            "type": "string"
+          },
+          "rank": {
+            "type": "integer"
+          },
+          "volume": {
+            "type": "number"
+          },
+          "profit": {
+            "type": "number"
+          },
+          "marketsTraded": {
+            "type": "integer"
+          }
+        }
+      },
+      "BuilderEntry": {
+        "type": "object",
+        "properties": {
+          "builder": {
+            "type": "string"
+          },
+          "volume": {
+            "type": "number"
+          },
+          "trades": {
+            "type": "integer"
+          },
+          "uniqueTraders": {
+            "type": "integer"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,996 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Polymarket CLOB API",
+    "description": "Central Limit Order Book API. Orderbook data, pricing, midpoints, spreads, and price history. Also handles order placement, cancellation, and other trading operations. Public endpoints require no auth; trading endpoints require API key authentication via HMAC signatures.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Polymarket",
+      "url": "https://docs.polymarket.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://clob.polymarket.com",
+      "description": "Production"
+    }
+  ],
+  "paths": {
+    "/book": {
+      "get": {
+        "operationId": "getOrderBook",
+        "summary": "Get order book",
+        "description": "Retrieves the full orderbook (bids and asks) for a specific token.",
+        "tags": ["Orderbook & Pricing"],
+        "parameters": [
+          { "name": "token_id", "in": "query", "required": true, "schema": { "type": "string" }, "description": "CLOB token ID (large numeric string)" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Orderbook with bids and asks",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/OrderBook" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/books": {
+      "post": {
+        "operationId": "getOrderBooks",
+        "summary": "Get order books (batch)",
+        "description": "Retrieves orderbooks for multiple tokens in a single request.",
+        "tags": ["Orderbook & Pricing"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "token_ids": {
+                    "type": "array",
+                    "items": { "type": "string" },
+                    "description": "Array of CLOB token IDs"
+                  }
+                },
+                "required": ["token_ids"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Array of orderbooks",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/OrderBook" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/price": {
+      "get": {
+        "operationId": "getMarketPrice",
+        "summary": "Get market price",
+        "description": "Retrieves the market price for a specific token and side.",
+        "tags": ["Orderbook & Pricing"],
+        "parameters": [
+          { "name": "token_id", "in": "query", "required": true, "schema": { "type": "string" }, "description": "CLOB token ID" },
+          { "name": "side", "in": "query", "required": true, "schema": { "type": "string", "enum": ["BUY", "SELL"] }, "description": "Market side" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Market price",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "price": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/prices": {
+      "get": {
+        "operationId": "getMarketPricesQuery",
+        "summary": "Get market prices (query parameters)",
+        "description": "Retrieves prices for multiple tokens via query parameters.",
+        "tags": ["Orderbook & Pricing"],
+        "parameters": [
+          { "name": "token_ids", "in": "query", "required": true, "schema": { "type": "string" }, "description": "Comma-separated token IDs" },
+          { "name": "side", "in": "query", "required": true, "schema": { "type": "string", "enum": ["BUY", "SELL"] } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Map of token_id to price",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "getMarketPricesBody",
+        "summary": "Get market prices (request body)",
+        "tags": ["Orderbook & Pricing"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "token_ids": { "type": "array", "items": { "type": "string" } },
+                  "side": { "type": "string", "enum": ["BUY", "SELL"] }
+                },
+                "required": ["token_ids", "side"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Map of token_id to price",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "additionalProperties": { "type": "string" } }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/midpoint": {
+      "get": {
+        "operationId": "getMidpointPrice",
+        "summary": "Get midpoint price",
+        "description": "Retrieves the midpoint price between best bid and ask for a token.",
+        "tags": ["Orderbook & Pricing"],
+        "parameters": [
+          { "name": "token_id", "in": "query", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Midpoint price",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "mid": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/midpoints": {
+      "get": {
+        "operationId": "getMidpointPricesQuery",
+        "summary": "Get midpoint prices (query)",
+        "tags": ["Orderbook & Pricing"],
+        "parameters": [
+          { "name": "token_ids", "in": "query", "required": true, "schema": { "type": "string" }, "description": "Comma-separated token IDs" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Map of token_id to midpoint",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "additionalProperties": { "type": "string" } }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "getMidpointPricesBody",
+        "summary": "Get midpoint prices (request body)",
+        "tags": ["Orderbook & Pricing"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "token_ids": { "type": "array", "items": { "type": "string" } }
+                },
+                "required": ["token_ids"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Map of token_id to midpoint",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "additionalProperties": { "type": "string" } }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/spread": {
+      "get": {
+        "operationId": "getSpread",
+        "summary": "Get spread",
+        "description": "Retrieves the bid-ask spread for a token.",
+        "tags": ["Orderbook & Pricing"],
+        "parameters": [
+          { "name": "token_id", "in": "query", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Spread value",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "spread": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/spreads": {
+      "post": {
+        "operationId": "getSpreads",
+        "summary": "Get spreads (batch)",
+        "tags": ["Orderbook & Pricing"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "token_ids": { "type": "array", "items": { "type": "string" } }
+                },
+                "required": ["token_ids"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Map of token_id to spread",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "additionalProperties": { "type": "string" } }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/last-trade-price": {
+      "get": {
+        "operationId": "getLastTradePrice",
+        "summary": "Get last trade price",
+        "tags": ["Orderbook & Pricing"],
+        "parameters": [
+          { "name": "token_id", "in": "query", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Last trade price and side",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "price": { "type": "string" },
+                    "side": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/last-trade-prices": {
+      "get": {
+        "operationId": "getLastTradePricesQuery",
+        "summary": "Get last trade prices (query)",
+        "tags": ["Orderbook & Pricing"],
+        "parameters": [
+          { "name": "token_ids", "in": "query", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Map of token_id to last trade price",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "additionalProperties": { "type": "object" } }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "getLastTradePricesBody",
+        "summary": "Get last trade prices (request body)",
+        "tags": ["Orderbook & Pricing"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "token_ids": { "type": "array", "items": { "type": "string" } }
+                },
+                "required": ["token_ids"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Map of token_id to last trade price",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "additionalProperties": { "type": "object" } }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/prices-history": {
+      "get": {
+        "operationId": "getPricesHistory",
+        "summary": "Get prices history",
+        "description": "Retrieves historical price data for a market.",
+        "tags": ["Orderbook & Pricing"],
+        "parameters": [
+          { "name": "market", "in": "query", "required": true, "schema": { "type": "string" }, "description": "Condition ID (0x...)" },
+          { "name": "interval", "in": "query", "schema": { "type": "string", "enum": ["1d", "1w", "1m", "3m", "1y", "max"] }, "description": "Time interval" },
+          { "name": "fidelity", "in": "query", "schema": { "type": "integer" }, "description": "Data point granularity in minutes" },
+          { "name": "startTs", "in": "query", "schema": { "type": "integer" }, "description": "Start timestamp (seconds)" },
+          { "name": "endTs", "in": "query", "schema": { "type": "integer" }, "description": "End timestamp (seconds)" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Price history",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "history": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "t": { "type": "integer", "description": "Timestamp" },
+                          "p": { "type": "number", "description": "Price" }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tick-size": {
+      "get": {
+        "operationId": "getTickSize",
+        "summary": "Get tick size",
+        "description": "Retrieves the minimum tick size for a token.",
+        "tags": ["Orderbook & Pricing"],
+        "parameters": [
+          { "name": "token_id", "in": "query", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Tick size",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "minimum_tick_size": { "type": "number" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tick-size/{token_id}": {
+      "get": {
+        "operationId": "getTickSizeByPath",
+        "summary": "Get tick size by path parameter",
+        "tags": ["Orderbook & Pricing"],
+        "parameters": [
+          { "name": "token_id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Tick size",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "minimum_tick_size": { "type": "number" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/fee-rate": {
+      "get": {
+        "operationId": "getFeeRate",
+        "summary": "Get fee rate",
+        "tags": ["Orderbook & Pricing"],
+        "parameters": [
+          { "name": "token_id", "in": "query", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Fee rate",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "base_fee": { "type": "number" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/fee-rate/{token_id}": {
+      "get": {
+        "operationId": "getFeeRateByPath",
+        "summary": "Get fee rate by path parameter",
+        "tags": ["Orderbook & Pricing"],
+        "parameters": [
+          { "name": "token_id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Fee rate",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "base_fee": { "type": "number" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/time": {
+      "get": {
+        "operationId": "getServerTime",
+        "summary": "Get server time",
+        "description": "Returns the current server time as a Unix timestamp.",
+        "tags": ["Orderbook & Pricing"],
+        "responses": {
+          "200": {
+            "description": "Unix timestamp",
+            "content": {
+              "application/json": {
+                "schema": { "type": "integer" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/order": {
+      "post": {
+        "operationId": "postOrder",
+        "summary": "Post a new order",
+        "description": "Places a new order. Requires L2 API key authentication.",
+        "tags": ["Orders"],
+        "security": [{ "polyL2Auth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/OrderRequest" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Order placed successfully",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/OrderResponse" }
+              }
+            }
+          },
+          "401": { "description": "Unauthorized/Invalid API key" }
+        }
+      },
+      "delete": {
+        "operationId": "cancelOrder",
+        "summary": "Cancel single order",
+        "tags": ["Orders"],
+        "security": [{ "polyL2Auth": [] }],
+        "parameters": [
+          { "name": "id", "in": "query", "required": true, "schema": { "type": "string" }, "description": "Order ID to cancel" }
+        ],
+        "responses": {
+          "200": { "description": "Order cancelled" },
+          "401": { "description": "Unauthorized" }
+        }
+      }
+    },
+    "/order/{id}": {
+      "get": {
+        "operationId": "getOrderById",
+        "summary": "Get single order by ID",
+        "tags": ["Orders"],
+        "security": [{ "polyL2Auth": [] }],
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Order details",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Order" }
+              }
+            }
+          },
+          "401": { "description": "Unauthorized" }
+        }
+      }
+    },
+    "/orders": {
+      "post": {
+        "operationId": "postMultipleOrders",
+        "summary": "Post multiple orders",
+        "tags": ["Orders"],
+        "security": [{ "polyL2Auth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": { "$ref": "#/components/schemas/OrderRequest" }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Orders placed" },
+          "401": { "description": "Unauthorized" }
+        }
+      },
+      "get": {
+        "operationId": "getUserOrders",
+        "summary": "Get user orders",
+        "tags": ["Orders"],
+        "security": [{ "polyL2Auth": [] }],
+        "parameters": [
+          { "name": "market", "in": "query", "schema": { "type": "string" }, "description": "Filter by market condition ID" },
+          { "name": "asset_id", "in": "query", "schema": { "type": "string" }, "description": "Filter by token ID" },
+          { "name": "state", "in": "query", "schema": { "type": "string", "enum": ["LIVE", "MATCHED", "CANCELLED", "ALL"] } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of orders",
+            "content": {
+              "application/json": {
+                "schema": { "type": "array", "items": { "$ref": "#/components/schemas/Order" } }
+              }
+            }
+          },
+          "401": { "description": "Unauthorized" }
+        }
+      },
+      "delete": {
+        "operationId": "cancelMultipleOrders",
+        "summary": "Cancel multiple orders",
+        "tags": ["Orders"],
+        "security": [{ "polyL2Auth": [] }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "ids": { "type": "array", "items": { "type": "string" } }
+                },
+                "required": ["ids"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Orders cancelled" },
+          "401": { "description": "Unauthorized" }
+        }
+      }
+    },
+    "/cancel-all": {
+      "delete": {
+        "operationId": "cancelAllOrders",
+        "summary": "Cancel all orders",
+        "tags": ["Orders"],
+        "security": [{ "polyL2Auth": [] }],
+        "responses": {
+          "200": { "description": "All orders cancelled" },
+          "401": { "description": "Unauthorized" }
+        }
+      }
+    },
+    "/cancel-market-orders": {
+      "delete": {
+        "operationId": "cancelMarketOrders",
+        "summary": "Cancel orders for a market",
+        "tags": ["Orders"],
+        "security": [{ "polyL2Auth": [] }],
+        "parameters": [
+          { "name": "market", "in": "query", "required": true, "schema": { "type": "string" }, "description": "Market condition ID" },
+          { "name": "asset_id", "in": "query", "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Market orders cancelled" },
+          "401": { "description": "Unauthorized" }
+        }
+      }
+    },
+    "/order-scoring": {
+      "get": {
+        "operationId": "getOrderScoringStatus",
+        "summary": "Get order scoring status",
+        "tags": ["Orders"],
+        "security": [{ "polyL2Auth": [] }],
+        "responses": {
+          "200": { "description": "Scoring status" }
+        }
+      }
+    },
+    "/heartbeats": {
+      "post": {
+        "operationId": "sendHeartbeat",
+        "summary": "Send heartbeat",
+        "description": "Sends a heartbeat signal to maintain active session status. If heartbeats are not sent regularly, all open orders for the user will be automatically canceled.",
+        "tags": ["Orders"],
+        "security": [{ "polyL2Auth": [] }],
+        "responses": {
+          "200": { "description": "Heartbeat acknowledged" }
+        }
+      }
+    },
+    "/trades": {
+      "get": {
+        "operationId": "getTrades",
+        "summary": "Get trades",
+        "description": "Retrieves trade history. Requires authentication.",
+        "tags": ["Trades"],
+        "security": [{ "polyL2Auth": [] }],
+        "parameters": [
+          { "name": "market", "in": "query", "schema": { "type": "string" } },
+          { "name": "asset_id", "in": "query", "schema": { "type": "string" } },
+          { "name": "before", "in": "query", "schema": { "type": "string" } },
+          { "name": "after", "in": "query", "schema": { "type": "string" } },
+          { "name": "limit", "in": "query", "schema": { "type": "integer" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of trades",
+            "content": {
+              "application/json": {
+                "schema": { "type": "array", "items": { "$ref": "#/components/schemas/ClobTrade" } }
+              }
+            }
+          },
+          "401": { "description": "Unauthorized" }
+        }
+      }
+    },
+    "/builder-trades": {
+      "get": {
+        "operationId": "getBuilderTrades",
+        "summary": "Get builder trades",
+        "tags": ["Trades"],
+        "security": [{ "polyL2Auth": [] }],
+        "parameters": [
+          { "name": "before", "in": "query", "schema": { "type": "string" } },
+          { "name": "after", "in": "query", "schema": { "type": "string" } },
+          { "name": "limit", "in": "query", "schema": { "type": "integer" } }
+        ],
+        "responses": {
+          "200": { "description": "Array of builder trades" },
+          "401": { "description": "Unauthorized" }
+        }
+      }
+    },
+    "/simplified-markets": {
+      "get": {
+        "operationId": "getSimplifiedMarkets",
+        "summary": "Get simplified markets",
+        "description": "Returns a simplified view of CLOB markets with token info and rewards.",
+        "tags": ["CLOB Markets"],
+        "parameters": [
+          { "name": "limit", "in": "query", "schema": { "type": "integer" } },
+          { "name": "next_cursor", "in": "query", "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Paginated simplified markets",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/SimplifiedMarketsResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sampling-markets": {
+      "get": {
+        "operationId": "getSamplingMarkets",
+        "summary": "Get sampling markets",
+        "description": "Returns detailed CLOB market data including order parameters and neg risk info.",
+        "tags": ["CLOB Markets"],
+        "parameters": [
+          { "name": "limit", "in": "query", "schema": { "type": "integer" } },
+          { "name": "next_cursor", "in": "query", "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Paginated sampling markets",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/SamplingMarketsResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sampling-simplified-markets": {
+      "get": {
+        "operationId": "getSamplingSimplifiedMarkets",
+        "summary": "Get sampling simplified markets",
+        "tags": ["CLOB Markets"],
+        "parameters": [
+          { "name": "limit", "in": "query", "schema": { "type": "integer" } },
+          { "name": "next_cursor", "in": "query", "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Paginated sampling simplified markets" }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "polyL2Auth": {
+        "type": "http",
+        "scheme": "bearer",
+        "description": "CLOB L2 Authentication. Requires 5 custom headers on every authenticated request: POLY_API_KEY (your API key), POLY_ADDRESS (Ethereum address associated with the key), POLY_SIGNATURE (HMAC-SHA256 signature of the request), POLY_PASSPHRASE (API key passphrase), POLY_TIMESTAMP (Unix timestamp). The HMAC signature is computed over: timestamp + method + path + body using the API secret. Credentials are derived from L1 (EIP-712 wallet signature) auth. See https://docs.polymarket.com/api-reference/authentication"
+      }
+    },
+    "schemas": {
+      "OrderBook": {
+        "type": "object",
+        "properties": {
+          "market": { "type": "string", "description": "Condition ID" },
+          "asset_id": { "type": "string", "description": "Token ID" },
+          "timestamp": { "type": "string", "description": "Timestamp in milliseconds" },
+          "hash": { "type": "string" },
+          "bids": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/OrderBookLevel" }
+          },
+          "asks": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/OrderBookLevel" }
+          }
+        }
+      },
+      "OrderBookLevel": {
+        "type": "object",
+        "properties": {
+          "price": { "type": "string" },
+          "size": { "type": "string" }
+        }
+      },
+      "OrderRequest": {
+        "type": "object",
+        "properties": {
+          "order": {
+            "type": "object",
+            "description": "Signed order object",
+            "properties": {
+              "maker": { "type": "string", "description": "Maker address (0x...)" },
+              "signer": { "type": "string", "description": "Signer address (0x...)" },
+              "taker": { "type": "string", "description": "Taker address (0x000... for any taker)" },
+              "tokenId": { "type": "string", "description": "CLOB token ID to trade" },
+              "makerAmount": { "type": "string", "description": "Maker amount in base units" },
+              "takerAmount": { "type": "string", "description": "Taker amount in base units" },
+              "side": { "type": "string", "enum": ["BUY", "SELL"] },
+              "expiration": { "type": "string", "description": "Unix timestamp expiration" },
+              "nonce": { "type": "string" },
+              "feeRateBps": { "type": "string", "description": "Fee rate in basis points" },
+              "salt": { "type": "integer" },
+              "signatureType": { "type": "integer", "enum": [0, 1, 2], "description": "0=EOA, 1=POLY_PROXY, 2=GNOSIS_SAFE" },
+              "signature": { "type": "string", "description": "EIP-712 order signature" }
+            },
+            "required": ["maker", "signer", "taker", "tokenId", "makerAmount", "takerAmount", "side", "expiration", "nonce", "feeRateBps", "signatureType", "signature"]
+          },
+          "owner": { "type": "string", "description": "UUID of the API key owner" },
+          "orderType": { "type": "string", "enum": ["GTC", "GTD", "FOK", "FAK"], "default": "GTC", "description": "Time in force: GTC=Good-til-cancelled, GTD=Good-til-date, FOK=Fill-or-kill, FAK=Fill-and-kill" },
+          "deferExec": { "type": "boolean", "default": false, "description": "Whether to defer execution" },
+          "negRisk": { "type": "boolean" }
+        },
+        "required": ["order", "owner"]
+      },
+      "OrderResponse": {
+        "type": "object",
+        "properties": {
+          "success": { "type": "boolean" },
+          "orderID": { "type": "string" },
+          "transactionsHashes": { "type": "array", "items": { "type": "string" } }
+        }
+      },
+      "Order": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "market": { "type": "string" },
+          "asset_id": { "type": "string" },
+          "side": { "type": "string", "enum": ["BUY", "SELL"] },
+          "original_size": { "type": "string" },
+          "size_matched": { "type": "string" },
+          "price": { "type": "string" },
+          "status": { "type": "string", "enum": ["LIVE", "MATCHED", "CANCELLED"] },
+          "type": { "type": "string" },
+          "outcome": { "type": "string" },
+          "created_at": { "type": "string" },
+          "expiration": { "type": "string" },
+          "associate_trades": { "type": "array", "items": { "type": "object" } }
+        }
+      },
+      "ClobTrade": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "taker_order_id": { "type": "string" },
+          "market": { "type": "string" },
+          "asset_id": { "type": "string" },
+          "side": { "type": "string", "enum": ["BUY", "SELL"] },
+          "size": { "type": "string" },
+          "fee_rate_bps": { "type": "string" },
+          "price": { "type": "string" },
+          "status": { "type": "string" },
+          "match_time": { "type": "string" },
+          "type": { "type": "string" },
+          "bucket_index": { "type": "integer" },
+          "outcome": { "type": "string" },
+          "trader_side": { "type": "string" }
+        }
+      },
+      "SimplifiedMarketsResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "condition_id": { "type": "string" },
+                "tokens": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "token_id": { "type": "string" },
+                      "outcome": { "type": "string" },
+                      "price": { "type": "number" },
+                      "winner": { "type": "boolean" }
+                    }
+                  }
+                },
+                "rewards": {
+                  "type": "object",
+                  "properties": {
+                    "rates": { "type": ["array", "null"] },
+                    "min_size": { "type": "number" },
+                    "max_spread": { "type": "number" }
+                  }
+                },
+                "active": { "type": "boolean" },
+                "closed": { "type": "boolean" },
+                "archived": { "type": "boolean" },
+                "accepting_orders": { "type": "boolean" }
+              }
+            }
+          },
+          "next_cursor": { "type": "string" }
+        }
+      },
+      "SamplingMarketsResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "condition_id": { "type": "string" },
+                "question_id": { "type": "string" },
+                "question": { "type": "string" },
+                "description": { "type": "string" },
+                "market_slug": { "type": "string" },
+                "end_date_iso": { "type": "string", "format": "date-time" },
+                "enable_order_book": { "type": "boolean" },
+                "active": { "type": "boolean" },
+                "closed": { "type": "boolean" },
+                "archived": { "type": "boolean" },
+                "accepting_orders": { "type": "boolean" },
+                "minimum_order_size": { "type": "number" },
+                "minimum_tick_size": { "type": "number" },
+                "neg_risk": { "type": "boolean" },
+                "neg_risk_market_id": { "type": "string" },
+                "neg_risk_request_id": { "type": "string" },
+                "icon": { "type": "string" },
+                "image": { "type": "string" },
+                "tokens": { "type": "array", "items": { "type": "object" } },
+                "rewards": { "type": "object" },
+                "maker_base_fee": { "type": "number" },
+                "taker_base_fee": { "type": "number" }
+              }
+            }
+          },
+          "next_cursor": { "type": "string" }
+        }
+      }
+    }
+  }
+}

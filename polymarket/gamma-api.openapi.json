@@ -1,0 +1,752 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Polymarket Gamma API",
+    "description": "Markets, events, tags, series, comments, sports, search, and public profiles. This is the primary API for discovering and browsing market data. No authentication required.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Polymarket",
+      "url": "https://docs.polymarket.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://gamma-api.polymarket.com",
+      "description": "Production"
+    }
+  ],
+  "paths": {
+    "/events": {
+      "get": {
+        "operationId": "listEvents",
+        "summary": "List events",
+        "description": "Fetches a list of events with various filtering and sorting options. Events are top-level containers that hold one or more markets.",
+        "tags": ["Events"],
+        "parameters": [
+          { "name": "id", "in": "query", "schema": { "type": "string" }, "description": "Filter by event ID" },
+          { "name": "slug", "in": "query", "schema": { "type": "string" }, "description": "Filter by event slug" },
+          { "name": "ticker", "in": "query", "schema": { "type": "string" }, "description": "Filter by event ticker" },
+          { "name": "active", "in": "query", "schema": { "type": "boolean" }, "description": "Filter by active status" },
+          { "name": "closed", "in": "query", "schema": { "type": "boolean" }, "description": "Filter by closed status" },
+          { "name": "archived", "in": "query", "schema": { "type": "boolean" }, "description": "Filter by archived status" },
+          { "name": "tag_id", "in": "query", "schema": { "type": "string" }, "description": "Filter by tag ID" },
+          { "name": "tag", "in": "query", "schema": { "type": "string" }, "description": "Filter by tag slug" },
+          { "name": "order", "in": "query", "schema": { "type": "string", "enum": ["volume_24hr", "volume", "liquidity", "startDate", "endDate", "createdAt", "competitive"] }, "description": "Sort field" },
+          { "name": "ascending", "in": "query", "schema": { "type": "boolean" }, "description": "Sort ascending (default false)" },
+          { "name": "limit", "in": "query", "schema": { "type": "integer", "default": 20 }, "description": "Number of results per page" },
+          { "name": "offset", "in": "query", "schema": { "type": "integer", "default": 0 }, "description": "Pagination offset" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of events",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Event" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/events/{id}": {
+      "get": {
+        "operationId": "getEventById",
+        "summary": "Get event by ID",
+        "description": "Fetches a single event by its numeric ID.",
+        "tags": ["Events"],
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" }, "description": "Event ID" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Event object",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Event" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/events/slug/{slug}": {
+      "get": {
+        "operationId": "getEventBySlug",
+        "summary": "Get event by slug",
+        "description": "Fetches a single event by its URL slug.",
+        "tags": ["Events"],
+        "parameters": [
+          { "name": "slug", "in": "path", "required": true, "schema": { "type": "string" }, "description": "Event slug" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Event object",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Event" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/events/{id}/tags": {
+      "get": {
+        "operationId": "getEventTags",
+        "summary": "Get event tags",
+        "description": "Fetches tags associated with an event.",
+        "tags": ["Events"],
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" }, "description": "Event ID" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of tags",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Tag" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/markets": {
+      "get": {
+        "operationId": "listMarkets",
+        "summary": "List markets",
+        "description": "Fetches a list of markets (individual tradable binary outcomes). Each market belongs to an event.",
+        "tags": ["Markets"],
+        "parameters": [
+          { "name": "id", "in": "query", "schema": { "type": "string" }, "description": "Filter by market ID" },
+          { "name": "slug", "in": "query", "schema": { "type": "string" }, "description": "Filter by market slug" },
+          { "name": "active", "in": "query", "schema": { "type": "boolean" }, "description": "Filter by active status" },
+          { "name": "closed", "in": "query", "schema": { "type": "boolean" }, "description": "Filter by closed status" },
+          { "name": "archived", "in": "query", "schema": { "type": "boolean" }, "description": "Filter by archived status" },
+          { "name": "tag_id", "in": "query", "schema": { "type": "string" }, "description": "Filter by tag ID" },
+          { "name": "tag", "in": "query", "schema": { "type": "string" }, "description": "Filter by tag slug" },
+          { "name": "conditionId", "in": "query", "schema": { "type": "string" }, "description": "Filter by condition ID (0x...)" },
+          { "name": "order", "in": "query", "schema": { "type": "string", "enum": ["volume_24hr", "volume", "liquidity", "startDate", "endDate", "createdAt"] }, "description": "Sort field" },
+          { "name": "ascending", "in": "query", "schema": { "type": "boolean" }, "description": "Sort ascending" },
+          { "name": "limit", "in": "query", "schema": { "type": "integer", "default": 20 }, "description": "Number of results" },
+          { "name": "offset", "in": "query", "schema": { "type": "integer", "default": 0 }, "description": "Pagination offset" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of markets",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Market" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/markets/{id}": {
+      "get": {
+        "operationId": "getMarketById",
+        "summary": "Get market by ID",
+        "tags": ["Markets"],
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" }, "description": "Market ID" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Market object",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Market" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/markets/slug/{slug}": {
+      "get": {
+        "operationId": "getMarketBySlug",
+        "summary": "Get market by slug",
+        "tags": ["Markets"],
+        "parameters": [
+          { "name": "slug", "in": "path", "required": true, "schema": { "type": "string" }, "description": "Market slug" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Market object",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Market" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/markets/{id}/tags": {
+      "get": {
+        "operationId": "getMarketTagsById",
+        "summary": "Get market tags by ID",
+        "tags": ["Markets"],
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" }, "description": "Market ID" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of tags",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Tag" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tags": {
+      "get": {
+        "operationId": "listTags",
+        "summary": "List tags",
+        "description": "Fetches available tags for filtering markets and events.",
+        "tags": ["Tags"],
+        "parameters": [
+          { "name": "limit", "in": "query", "schema": { "type": "integer" } },
+          { "name": "offset", "in": "query", "schema": { "type": "integer" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of tags",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Tag" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tags/{id}": {
+      "get": {
+        "operationId": "getTagById",
+        "summary": "Get tag by ID",
+        "tags": ["Tags"],
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Tag object",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Tag" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tags/slug/{slug}": {
+      "get": {
+        "operationId": "getTagBySlug",
+        "summary": "Get tag by slug",
+        "tags": ["Tags"],
+        "parameters": [
+          { "name": "slug", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Tag object",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Tag" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tags/{id}/relationships": {
+      "get": {
+        "operationId": "getRelatedTagsById",
+        "summary": "Get related tags by tag ID",
+        "tags": ["Tags"],
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of related tags",
+            "content": {
+              "application/json": {
+                "schema": { "type": "array", "items": { "$ref": "#/components/schemas/Tag" } }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tags/slug/{slug}/relationships": {
+      "get": {
+        "operationId": "getRelatedTagsBySlug",
+        "summary": "Get related tags by tag slug",
+        "tags": ["Tags"],
+        "parameters": [
+          { "name": "slug", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of related tags",
+            "content": {
+              "application/json": {
+                "schema": { "type": "array", "items": { "$ref": "#/components/schemas/Tag" } }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tags/{id}/related": {
+      "get": {
+        "operationId": "getTagsRelatedToId",
+        "summary": "Get tags related to a tag ID",
+        "tags": ["Tags"],
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of related tags",
+            "content": {
+              "application/json": {
+                "schema": { "type": "array", "items": { "$ref": "#/components/schemas/Tag" } }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tags/slug/{slug}/related": {
+      "get": {
+        "operationId": "getTagsRelatedToSlug",
+        "summary": "Get tags related to a tag slug",
+        "tags": ["Tags"],
+        "parameters": [
+          { "name": "slug", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of related tags",
+            "content": {
+              "application/json": {
+                "schema": { "type": "array", "items": { "$ref": "#/components/schemas/Tag" } }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/series": {
+      "get": {
+        "operationId": "listSeries",
+        "summary": "List series",
+        "description": "Fetches recurring market series (e.g., weekly Elon tweet counts).",
+        "tags": ["Series"],
+        "parameters": [
+          { "name": "limit", "in": "query", "schema": { "type": "integer" } },
+          { "name": "offset", "in": "query", "schema": { "type": "integer" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of series",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Series" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/series/{id}": {
+      "get": {
+        "operationId": "getSeriesById",
+        "summary": "Get series by ID",
+        "tags": ["Series"],
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Series object",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Series" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/comments": {
+      "get": {
+        "operationId": "listComments",
+        "summary": "List comments",
+        "description": "Fetches comments for a specific entity. NOTE: This endpoint requires session authentication (cookies) and may not be fully accessible via raw API calls.",
+        "tags": ["Comments"],
+        "parameters": [
+          { "name": "parent_entity_id", "in": "query", "required": true, "schema": { "type": "string" }, "description": "ID of the parent entity (event or market)" },
+          { "name": "entity_entity_type", "in": "query", "required": true, "schema": { "type": "string", "enum": ["event", "market"] }, "description": "Type of entity" },
+          { "name": "limit", "in": "query", "schema": { "type": "integer" } },
+          { "name": "offset", "in": "query", "schema": { "type": "integer" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of comments",
+            "content": {
+              "application/json": {
+                "schema": { "type": "array", "items": { "$ref": "#/components/schemas/Comment" } }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/comments/{id}": {
+      "get": {
+        "operationId": "getCommentById",
+        "summary": "Get comment by ID",
+        "tags": ["Comments"],
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Comment object",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Comment" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/comments/user/{address}": {
+      "get": {
+        "operationId": "getCommentsByUserAddress",
+        "summary": "Get comments by user address",
+        "tags": ["Comments"],
+        "parameters": [
+          { "name": "address", "in": "path", "required": true, "schema": { "type": "string" }, "description": "Wallet address" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of comments",
+            "content": {
+              "application/json": {
+                "schema": { "type": "array", "items": { "$ref": "#/components/schemas/Comment" } }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/profiles/{address}": {
+      "get": {
+        "operationId": "getPublicProfile",
+        "summary": "Get public profile by wallet address",
+        "description": "Fetches a public user profile by their wallet address.",
+        "tags": ["Profiles"],
+        "parameters": [
+          { "name": "address", "in": "path", "required": true, "schema": { "type": "string" }, "description": "Wallet address (0x...)" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Profile object",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Profile" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/search": {
+      "get": {
+        "operationId": "search",
+        "summary": "Search markets, events, and profiles",
+        "description": "Full-text search across markets, events, and profiles. NOTE: This endpoint requires session authentication (cookies) and is not accessible via raw API calls. Use the Gamma list endpoints with query filters as an alternative for programmatic access.",
+        "tags": ["Search"],
+        "parameters": [
+          { "name": "query", "in": "query", "required": true, "schema": { "type": "string" }, "description": "Search query" },
+          { "name": "type", "in": "query", "schema": { "type": "string", "enum": ["markets", "events", "profiles"] }, "description": "Filter by entity type" },
+          { "name": "limit", "in": "query", "schema": { "type": "integer" } },
+          { "name": "offset", "in": "query", "schema": { "type": "integer" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Search results containing events, markets, tags, and profiles",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/SearchResults" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - requires session authentication"
+          }
+        }
+      }
+    },
+    "/sports": {
+      "get": {
+        "operationId": "getSportsMetadata",
+        "summary": "Get sports metadata",
+        "description": "Returns metadata for sports including tag IDs, images, resolution sources, and series information.",
+        "tags": ["Sports"],
+        "responses": {
+          "200": {
+            "description": "Array of sports metadata",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Sport" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sports/market-types": {
+      "get": {
+        "operationId": "getSportsMarketTypes",
+        "summary": "Get valid sports market types",
+        "tags": ["Sports"],
+        "responses": {
+          "200": {
+            "description": "Array of valid sports market types",
+            "content": {
+              "application/json": {
+                "schema": { "type": "array", "items": { "type": "string" } }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sports/teams": {
+      "get": {
+        "operationId": "listTeams",
+        "summary": "List sports teams",
+        "tags": ["Sports"],
+        "responses": {
+          "200": {
+            "description": "Array of teams",
+            "content": {
+              "application/json": {
+                "schema": { "type": "array", "items": { "type": "object" } }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Event": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "ticker": { "type": "string" },
+          "slug": { "type": "string" },
+          "title": { "type": "string" },
+          "description": { "type": "string" },
+          "resolutionSource": { "type": "string" },
+          "startDate": { "type": "string", "format": "date-time" },
+          "creationDate": { "type": "string", "format": "date-time" },
+          "endDate": { "type": "string", "format": "date-time" },
+          "image": { "type": "string" },
+          "icon": { "type": "string" },
+          "active": { "type": "boolean" },
+          "closed": { "type": "boolean" },
+          "archived": { "type": "boolean" },
+          "new": { "type": "boolean" },
+          "featured": { "type": "boolean" },
+          "restricted": { "type": "boolean" },
+          "liquidity": { "type": "number" },
+          "volume": { "type": "number" },
+          "openInterest": { "type": "number" },
+          "createdAt": { "type": "string", "format": "date-time" },
+          "updatedAt": { "type": "string", "format": "date-time" },
+          "competitive": { "type": "number" },
+          "volume24hr": { "type": "number" },
+          "volume1wk": { "type": "number" },
+          "volume1mo": { "type": "number" },
+          "volume1yr": { "type": "number" },
+          "enableOrderBook": { "type": "boolean" },
+          "liquidityClob": { "type": "number" },
+          "negRisk": { "type": "boolean" },
+          "commentCount": { "type": "integer" },
+          "markets": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Market" }
+          }
+        }
+      },
+      "Market": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "question": { "type": "string" },
+          "conditionId": { "type": "string", "description": "Condition ID (0x...)" },
+          "slug": { "type": "string" },
+          "resolutionSource": { "type": "string" },
+          "endDate": { "type": "string", "format": "date-time" },
+          "startDate": { "type": "string", "format": "date-time" },
+          "image": { "type": "string" },
+          "icon": { "type": "string" },
+          "description": { "type": "string" },
+          "outcomes": { "type": "string", "description": "JSON-encoded array e.g. '[\"Yes\", \"No\"]'" },
+          "outcomePrices": { "type": "string", "description": "JSON-encoded array e.g. '[\"0.20\", \"0.80\"]'" },
+          "volume": { "type": "string" },
+          "active": { "type": "boolean" },
+          "closed": { "type": "boolean" },
+          "marketMakerAddress": { "type": "string" },
+          "createdAt": { "type": "string", "format": "date-time" },
+          "updatedAt": { "type": "string", "format": "date-time" },
+          "closedTime": { "type": "string" },
+          "new": { "type": "boolean" },
+          "featured": { "type": "boolean" },
+          "archived": { "type": "boolean" },
+          "restricted": { "type": "boolean" },
+          "questionID": { "type": "string" },
+          "enableOrderBook": { "type": "boolean" },
+          "orderPriceMinTickSize": { "type": "number" },
+          "orderMinSize": { "type": "number" },
+          "volumeNum": { "type": "number" },
+          "volume24hr": { "type": "number" },
+          "volume1wk": { "type": "number" },
+          "volume1mo": { "type": "number" },
+          "volume1yr": { "type": "number" },
+          "clobTokenIds": { "type": "string", "description": "JSON-encoded array of CLOB token IDs [YesTokenId, NoTokenId]" },
+          "liquidityClob": { "type": "number" },
+          "volumeClob": { "type": "number" },
+          "negRisk": { "type": "boolean" },
+          "acceptingOrders": { "type": "boolean" },
+          "spread": { "type": "number" },
+          "lastTradePrice": { "type": "number" },
+          "oneDayPriceChange": { "type": "number" },
+          "oneWeekPriceChange": { "type": "number" },
+          "oneMonthPriceChange": { "type": "number" },
+          "events": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Event" }
+          }
+        }
+      },
+      "Tag": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "label": { "type": "string" },
+          "slug": { "type": "string" },
+          "forceShow": { "type": "boolean" },
+          "publishedAt": { "type": "string" },
+          "createdAt": { "type": "string", "format": "date-time" },
+          "updatedAt": { "type": "string", "format": "date-time" },
+          "requiresTranslation": { "type": "boolean" }
+        }
+      },
+      "Series": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "ticker": { "type": "string" },
+          "slug": { "type": "string" },
+          "title": { "type": "string" },
+          "seriesType": { "type": "string" },
+          "recurrence": { "type": "string" },
+          "image": { "type": "string" },
+          "icon": { "type": "string" },
+          "active": { "type": "boolean" },
+          "closed": { "type": "boolean" },
+          "archived": { "type": "boolean" },
+          "createdAt": { "type": "string", "format": "date-time" },
+          "updatedAt": { "type": "string", "format": "date-time" },
+          "volume24hr": { "type": "number" },
+          "volume": { "type": "number" },
+          "liquidity": { "type": "number" },
+          "events": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Event" }
+          }
+        }
+      },
+      "Comment": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "body": { "type": "string" },
+          "author": { "type": "string" },
+          "createdAt": { "type": "string", "format": "date-time" },
+          "updatedAt": { "type": "string", "format": "date-time" }
+        }
+      },
+      "Profile": {
+        "type": "object",
+        "properties": {
+          "address": { "type": "string" },
+          "name": { "type": "string" },
+          "pseudonym": { "type": "string" },
+          "bio": { "type": "string" },
+          "profileImage": { "type": "string" },
+          "profileImageOptimized": { "type": "string" }
+        }
+      },
+      "Sport": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer" },
+          "sport": { "type": "string" },
+          "image": { "type": "string" },
+          "resolution": { "type": "string" },
+          "ordering": { "type": "string" },
+          "tags": { "type": "string", "description": "Comma-separated tag IDs" },
+          "series": { "type": "string" },
+          "createdAt": { "type": "string", "format": "date-time" }
+        }
+      },
+      "SearchResults": {
+        "type": "object",
+        "properties": {
+          "events": { "type": "array", "items": { "$ref": "#/components/schemas/Event" } },
+          "markets": { "type": "array", "items": { "$ref": "#/components/schemas/Market" } },
+          "tags": { "type": "array", "items": { "$ref": "#/components/schemas/Tag" } },
+          "profiles": { "type": "array", "items": { "$ref": "#/components/schemas/Profile" } }
+        }
+      }
+    }
+  }
+}
