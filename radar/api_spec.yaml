@@ -1,0 +1,1637 @@
+Here is the complete Radar API converted to a valid OpenAPI 3.1.0 specification:
+
+```yaml
+openapi: 3.1.0
+info:
+  title: Radar API
+  description: >
+    Radar APIs for location-based products and services including pickup and delivery tracking,
+    location-triggered notifications, location verification, store locators, address autocomplete, and more.
+    The API is RESTful, with predictable, resource-oriented URLs. All responses, including errors, return JSON.
+  version: "1.0.0"
+  contact:
+    name: Radar
+    url: https://radar.com
+
+servers:
+  - url: https://api.radar.io/v1
+
+security:
+  - publishableKey: []
+  - secretKey: []
+
+components:
+  securitySchemes:
+    publishableKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Publishable API key for client-side requests (e.g., prj_live_pk_...)
+    secretKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Secret API key for server-side requests (e.g., prj_live_sk_...)
+
+  schemas:
+    Meta:
+      type: object
+      properties:
+        code:
+          type: integer
+        hasMore:
+          type: boolean
+        param:
+          type: string
+        message:
+          type: string
+
+    GeoJSONPoint:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: [Point]
+        coordinates:
+          type: array
+          items:
+            type: number
+          minItems: 2
+          maxItems: 2
+          description: "[longitude, latitude]"
+
+    GeoJSONPolygon:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: [Polygon]
+        coordinates:
+          type: array
+          items:
+            type: array
+            items:
+              type: array
+              items:
+                type: number
+
+    Address:
+      type: object
+      properties:
+        latitude:
+          type: number
+        longitude:
+          type: number
+        geometry:
+          $ref: '#/components/schemas/GeoJSONPoint'
+        country:
+          type: string
+        countryCode:
+          type: string
+        countryFlag:
+          type: string
+        county:
+          type: string
+        confidence:
+          type: string
+          enum: [exact, interpolated, fallback]
+        borough:
+          type: string
+        city:
+          type: string
+        number:
+          type: string
+        neighborhood:
+          type: string
+        postalCode:
+          type: string
+        stateCode:
+          type: string
+        state:
+          type: string
+        street:
+          type: string
+        layer:
+          type: string
+        formattedAddress:
+          type: string
+        addressLabel:
+          type: string
+        placeLabel:
+          type: string
+        distance:
+          type: number
+        timeZone:
+          type: object
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+            code:
+              type: string
+            currentTime:
+              type: string
+              format: date-time
+            utcOffset:
+              type: integer
+            dstOffset:
+              type: integer
+
+    User:
+      type: object
+      properties:
+        _id:
+          type: string
+        live:
+          type: boolean
+        userId:
+          type: string
+        deviceId:
+          type: string
+        description:
+          type: string
+        metadata:
+          type: object
+          additionalProperties: true
+        location:
+          $ref: '#/components/schemas/GeoJSONPoint'
+        locationAccuracy:
+          type: number
+        foreground:
+          type: boolean
+        stopped:
+          type: boolean
+        deviceType:
+          type: string
+          enum: [iOS, Android, Web]
+        ip:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        geofences:
+          type: array
+          items:
+            $ref: '#/components/schemas/Geofence'
+        trip:
+          $ref: '#/components/schemas/Trip'
+        place:
+          type: object
+          additionalProperties: true
+        country:
+          type: object
+          properties:
+            code:
+              type: string
+            name:
+              type: string
+            flag:
+              type: string
+        state:
+          type: object
+          properties:
+            code:
+              type: string
+            name:
+              type: string
+        dma:
+          type: object
+          properties:
+            code:
+              type: string
+            name:
+              type: string
+        postalCode:
+          type: object
+          properties:
+            code:
+              type: string
+            name:
+              type: string
+        beacons:
+          type: array
+          items:
+            $ref: '#/components/schemas/Beacon'
+        fraud:
+          $ref: '#/components/schemas/Fraud'
+        segments:
+          type: array
+          items:
+            type: object
+            properties:
+              description:
+                type: string
+              externalId:
+                type: string
+        topChains:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              slug:
+                type: string
+              externalId:
+                type: string
+
+    Fraud:
+      type: object
+      properties:
+        verified:
+          type: boolean
+        passed:
+          type: boolean
+        bypassed:
+          type: boolean
+        blocked:
+          type: boolean
+        mocked:
+          type: boolean
+        jumped:
+          type: boolean
+        compromised:
+          type: boolean
+        inaccurate:
+          type: boolean
+        proxy:
+          type: boolean
+        sharing:
+          type: boolean
+        lastMockedAt:
+          type: string
+          format: date-time
+          nullable: true
+        lastJumpedAt:
+          type: string
+          format: date-time
+          nullable: true
+        lastCompromisedAt:
+          type: string
+          format: date-time
+          nullable: true
+        lastInaccurateAt:
+          type: string
+          format: date-time
+          nullable: true
+        lastProxyAt:
+          type: string
+          format: date-time
+          nullable: true
+        lastSharingAt:
+          type: string
+          format: date-time
+          nullable: true
+
+    Event:
+      type: object
+      properties:
+        _id:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        actualCreatedAt:
+          type: string
+          format: date-time
+        live:
+          type: boolean
+        type:
+          type: string
+        user:
+          $ref: '#/components/schemas/User'
+        geofence:
+          $ref: '#/components/schemas/Geofence'
+        place:
+          type: object
+          additionalProperties: true
+        alternatePlaces:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+        verifiedPlace:
+          type: object
+          additionalProperties: true
+        location:
+          $ref: '#/components/schemas/GeoJSONPoint'
+        locationAccuracy:
+          type: number
+        confidence:
+          type: integer
+          enum: [1, 2, 3]
+        duration:
+          type: number
+
+    Geofence:
+      type: object
+      properties:
+        _id:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        live:
+          type: boolean
+        tag:
+          type: string
+        externalId:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+          enum: [circle, polygon, isochrone]
+        geometry:
+          $ref: '#/components/schemas/GeoJSONPolygon'
+        geometryCenter:
+          $ref: '#/components/schemas/GeoJSONPoint'
+        geometryRadius:
+          type: number
+        mode:
+          type: string
+          enum: [foot, bike, car, truck]
+        metadata:
+          type: object
+          additionalProperties: true
+        userId:
+          type: string
+          deprecated: true
+        userIds:
+          type: string
+        ip:
+          type: string
+        tripApproachingThreshold:
+          type: number
+        dwellThreshold:
+          type: number
+        enabled:
+          type: boolean
+        operatingHours:
+          type: object
+          additionalProperties: true
+
+    Trip:
+      type: object
+      properties:
+        _id:
+          type: string
+        live:
+          type: boolean
+        externalId:
+          type: string
+        metadata:
+          type: object
+          additionalProperties: true
+        mode:
+          type: string
+          enum: [foot, bike, car]
+        destinationGeofenceTag:
+          type: string
+        destinationGeofenceExternalId:
+          type: string
+        destinationLocation:
+          $ref: '#/components/schemas/GeoJSONPoint'
+        eta:
+          type: object
+          properties:
+            duration:
+              type: number
+            distance:
+              type: number
+        approachingThreshold:
+          type: number
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        scheduledArrivalAt:
+          type: string
+          format: date-time
+        orderFiredAt:
+          type: string
+          format: date-time
+        arrivedAt:
+          type: string
+          format: date-time
+        completedAt:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum: [pending, started, approaching, arrived, expired, completed, canceled]
+        user:
+          type: object
+          properties:
+            _id:
+              type: string
+            userId:
+              type: string
+            deviceId:
+              type: string
+        userId:
+          type: string
+        locations:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+              coordinates:
+                type: array
+                items:
+                  type: number
+              updatedAt:
+                type: string
+                format: date-time
+        delay:
+          type: object
+          properties:
+            delayed:
+              type: boolean
+            scheduledArrivalTimeDelay:
+              type: number
+
+    Beacon:
+      type: object
+      properties:
+        _id:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        live:
+          type: boolean
+        description:
+          type: string
+        tag:
+          type: string
+        externalId:
+          type: string
+        type:
+          type: string
+          enum: [ibeacon, eddystone]
+        uuid:
+          type: string
+        major:
+          type: string
+        minor:
+          type: string
+        uid:
+          type: string
+        instance:
+          type: string
+        geometry:
+          $ref: '#/components/schemas/GeoJSONPoint'
+        enabled:
+          type: boolean
+        metadata:
+          type: object
+          additionalProperties: true
+
+    DistanceDuration:
+      type: object
+      properties:
+        distance:
+          type: object
+          properties:
+            value:
+              type: number
+            text:
+              type: string
+        duration:
+          type: object
+          properties:
+            value:
+              type: number
+            text:
+              type: string
+
+    Place:
+      type: object
+      properties:
+        name:
+          type: string
+        chain:
+          type: object
+          properties:
+            name:
+              type: string
+            slug:
+              type: string
+            externalId:
+              type: string
+            metadata:
+              type: object
+              additionalProperties: true
+        categories:
+          type: array
+          items:
+            type: string
+        location:
+          $ref: '#/components/schemas/GeoJSONPoint'
+
+    RoadAttribute:
+      type: object
+      properties:
+        roadClass:
+          type: string
+          enum: [motorway, trunk, primary, secondary, tertiary, residential, unclassified, service_other]
+        speedLimit:
+          type: object
+          properties:
+            value:
+              type: number
+            text:
+              type: string
+        names:
+          type: array
+          items:
+            type: string
+        startLocation:
+          type: object
+          properties:
+            latitude:
+              type: number
+            longitude:
+              type: number
+        endLocation:
+          type: object
+          properties:
+            latitude:
+              type: number
+            longitude:
+              type: number
+        originalIndex:
+          type: integer
+
+paths:
+  /track:
+    post:
+      operationId: track
+      summary: Track a location update
+      description: >
+        Tracks a location update. Returns the user and the events generated, depending on project settings.
+      security:
+        - publishableKey: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required: [deviceId, latitude, longitude, accuracy]
+              properties:
+                deviceId:
+                  type: string
+                  description: A device ID for the user.
+                userId:
+                  type: string
+                  description: A stable unique ID for the user.
+                latitude:
+                  type: number
+                  minimum: -90
+                  maximum: 90
+                longitude:
+                  type: number
+                  minimum: -180
+                  maximum: 180
+                accuracy:
+                  type: number
+                  exclusiveMinimum: 0
+                  description: Accuracy in meters.
+                foreground:
+                  type: boolean
+                stopped:
+                  type: boolean
+                description:
+                  type: string
+                metadata:
+                  type: object
+                  additionalProperties: true
+                deviceType:
+                  type: string
+                  enum: [iOS, Android, Web]
+                updatedAt:
+                  type: string
+                  format: date-time
+                replayed:
+                  type: boolean
+                  default: false
+                deviceOS:
+                  type: string
+                deviceMake:
+                  type: string
+                deviceModel:
+                  type: string
+                altitude:
+                  type: number
+                verticalAccuracy:
+                  type: number
+          application/json:
+            schema:
+              type: object
+              required: [deviceId, latitude, longitude, accuracy]
+              properties:
+                deviceId:
+                  type: string
+                userId:
+                  type: string
+                latitude:
+                  type: number
+                  minimum: -90
+                  maximum: 90
+                longitude:
+                  type: number
+                  minimum: -180
+                  maximum: 180
+                accuracy:
+                  type: number
+                  exclusiveMinimum: 0
+                foreground:
+                  type: boolean
+                stopped:
+                  type: boolean
+                description:
+                  type: string
+                metadata:
+                  type: object
+                  additionalProperties: true
+                deviceType:
+                  type: string
+                  enum: [iOS, Android, Web]
+                updatedAt:
+                  type: string
+                  format: date-time
+                replayed:
+                  type: boolean
+                  default: false
+                deviceOS:
+                  type: string
+                deviceMake:
+                  type: string
+                deviceModel:
+                  type: string
+                altitude:
+                  type: number
+                verticalAccuracy:
+                  type: number
+      responses:
+        '200':
+          description: Successful track
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  events:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Event'
+                  user:
+                    $ref: '#/components/schemas/User'
+
+  /geocode/forward:
+    get:
+      operationId: forwardGeocode
+      summary: Forward geocode
+      description: Geocodes an address, converting address to coordinates.
+      security:
+        - publishableKey: []
+      parameters:
+        - name: query
+          in: query
+          required: true
+          schema:
+            type: string
+          description: The address to geocode.
+        - name: layers
+          in: query
+          schema:
+            type: string
+          description: "Comma-separated layer filters: place, address, postalCode, locality, county, state, country, coarse, fine."
+        - name: country
+          in: query
+          schema:
+            type: string
+          description: Comma-separated 2-letter country codes.
+        - name: lang
+          in: query
+          schema:
+            type: string
+            enum: [ar, de, en, es, fr, ja, ko, pt, ru, zh]
+            default: en
+      responses:
+        '200':
+          description: Successful geocode
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  addresses:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Address'
+
+  /geocode/reverse:
+    get:
+      operationId: reverseGeocode
+      summary: Reverse geocode
+      description: Reverse geocodes a location, converting coordinates to address.
+      security:
+        - publishableKey: []
+      parameters:
+        - name: coordinates
+          in: query
+          required: true
+          schema:
+            type: string
+          description: "Format: latitude,longitude"
+        - name: layers
+          in: query
+          schema:
+            type: string
+          description: "Comma-separated layer filters."
+      responses:
+        '200':
+          description: Successful reverse geocode
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  addresses:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Address'
+
+  /geocode/ip:
+    get:
+      operationId: ipGeocode
+      summary: IP geocode
+      description: Geocodes the requester's IP address to city, state, and country.
+      security:
+        - publishableKey: []
+      parameters: []
+      responses:
+        '200':
+          description: Successful IP geocode
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  address:
+                    $ref: '#/components/schemas/Address'
+                  proxy:
+                    type: boolean
+                  ip:
+                    type: string
+
+  /search/autocomplete:
+    get:
+      operationId: autocomplete
+      summary: Autocomplete
+      description: Autocompletes partial addresses and place names, sorted by relevance and proximity.
+      security:
+        - publishableKey: []
+      parameters:
+        - name: query
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: near
+          in: query
+          schema:
+            type: string
+          description: "Format: latitude,longitude"
+        - name: layers
+          in: query
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 10
+        - name: countryCode
+          in: query
+          schema:
+            type: string
+          description: Comma-separated 2-letter country codes.
+      responses:
+        '200':
+          description: Successful autocomplete
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  addresses:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Address'
+
+  /search/users:
+    get:
+      operationId: searchUsers
+      summary: Search users
+      description: Searches for users near a location, sorted by distance.
+      security:
+        - secretKey: []
+      parameters:
+        - name: near
+          in: query
+          required: true
+          schema:
+            type: string
+          description: "Format: latitude,longitude"
+        - name: radius
+          in: query
+          schema:
+            type: integer
+            minimum: 100
+            maximum: 10000
+            default: 1000
+          description: Radius in meters (or travel duration in minutes if mode is specified).
+        - name: mode
+          in: query
+          schema:
+            type: string
+            enum: [car, truck, foot, bike]
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 10
+      responses:
+        '200':
+          description: Successful user search
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  users:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/User'
+
+  /search/geofences:
+    get:
+      operationId: searchGeofences
+      summary: Search geofences
+      description: Searches for geofences near a location, sorted by distance.
+      security:
+        - publishableKey: []
+      parameters:
+        - name: near
+          in: query
+          required: true
+          schema:
+            type: string
+          description: "Format: latitude,longitude"
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 1000
+            default: 100
+        - name: radius
+          in: query
+          schema:
+            type: number
+          description: Radius in meters.
+        - name: tags
+          in: query
+          schema:
+            type: string
+          description: Comma-separated tag filters.
+        - name: includeGeometry
+          in: query
+          schema:
+            type: boolean
+            default: true
+      responses:
+        '200':
+          description: Successful geofence search
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  geofences:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Geofence'
+
+  /search/places:
+    get:
+      operationId: searchPlaces
+      summary: Search places
+      description: Searches for places near a location, sorted by distance.
+      security:
+        - publishableKey: []
+      parameters:
+        - name: near
+          in: query
+          required: true
+          schema:
+            type: string
+          description: "Format: latitude,longitude"
+        - name: chains
+          in: query
+          schema:
+            type: string
+          description: Comma-separated chain slug filters.
+        - name: categories
+          in: query
+          schema:
+            type: string
+          description: Comma-separated category filters.
+        - name: iataCode
+          in: query
+          schema:
+            type: string
+          description: 3-letter IATA airport code.
+        - name: radius
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 10000
+            default: 1000
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 10
+      responses:
+        '200':
+          description: Successful place search
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  places:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Place'
+
+  /addresses/validate:
+    get:
+      operationId: validateAddress
+      summary: Validate an address
+      description: Validates a complete address. Currently available for US and Canada only.
+      security:
+        - publishableKey: []
+      parameters:
+        - name: city
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: stateCode
+          in: query
+          required: true
+          schema:
+            type: string
+          description: 2-letter state abbreviation.
+        - name: postalCode
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: countryCode
+          in: query
+          required: true
+          schema:
+            type: string
+          description: 2-letter country code.
+        - name: number
+          in: query
+          schema:
+            type: string
+          description: Building or P.O. box number.
+        - name: street
+          in: query
+          schema:
+            type: string
+        - name: unit
+          in: query
+          schema:
+            type: string
+          description: "Unit number (e.g., Apt 3)."
+        - name: addressLabel
+          in: query
+          schema:
+            type: string
+          description: First line of the address including number, street, and unit.
+      responses:
+        '200':
+          description: Successful validation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  address:
+                    type: object
+                    properties:
+                      addressLabel:
+                        type: string
+                      unit:
+                        type: string
+                      number:
+                        type: string
+                      street:
+                        type: string
+                      city:
+                        type: string
+                      stateCode:
+                        type: string
+                      postalCode:
+                        type: string
+                      plus4:
+                        type: string
+                      county:
+                        type: string
+                      countryCode:
+                        type: string
+                      formattedAddress:
+                        type: string
+                      metadata:
+                        type: object
+                        properties:
+                          recordType:
+                            type: string
+                            enum: [S, P, R, H, F, G]
+                          propertyType:
+                            type: string
+                  result:
+                    type: object
+                    properties:
+                      verificationStatus:
+                        type: string
+                        enum: [verified, partially verified, ambiguous, unverified]
+
+  /route/distance:
+    get:
+      operationId: routeDistance
+      summary: Distance
+      description: Calculates travel distance and duration between an origin and destination.
+      security:
+        - publishableKey: []
+      parameters:
+        - name: origin
+          in: query
+          required: true
+          schema:
+            type: string
+          description: "Format: latitude,longitude"
+        - name: destination
+          in: query
+          required: true
+          schema:
+            type: string
+          description: "Format: latitude,longitude"
+        - name: modes
+          in: query
+          required: true
+          schema:
+            type: string
+          description: "Comma-separated: car, truck, foot, bike."
+        - name: units
+          in: query
+          schema:
+            type: string
+            enum: [metric, imperial]
+            default: imperial
+        - name: avoid
+          in: query
+          schema:
+            type: string
+          description: "Comma-separated: tolls, highways, ferries, borderCrossings."
+        - name: geometry
+          in: query
+          schema:
+            type: string
+            enum: [linestring, polyline5, polyline6]
+        - name: departureTime
+          in: query
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: Successful distance calculation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  routes:
+                    type: object
+                    additionalProperties:
+                      $ref: '#/components/schemas/DistanceDuration'
+
+  /route/matrix:
+    get:
+      operationId: routeMatrix
+      summary: Matrix
+      description: Calculates travel distances and durations between multiple origins and destinations (up to 625 routes).
+      security:
+        - publishableKey: []
+      parameters:
+        - name: origins
+          in: query
+          required: true
+          schema:
+            type: string
+          description: "Pipe-delimited: lat0,lng0|lat1,lng1|..."
+        - name: destinations
+          in: query
+          required: true
+          schema:
+            type: string
+          description: "Pipe-delimited: lat0,lng0|lat1,lng1|..."
+        - name: mode
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [car, truck, foot, bike]
+        - name: units
+          in: query
+          schema:
+            type: string
+            enum: [metric, imperial]
+            default: imperial
+        - name: avoid
+          in: query
+          schema:
+            type: string
+          description: "Comma-separated: tolls, highways, ferries."
+        - name: departureTime
+          in: query
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: Successful matrix calculation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  origins:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        latitude:
+                          type: number
+                        longitude:
+                          type: number
+                  destinations:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        latitude:
+                          type: number
+                        longitude:
+                          type: number
+                  matrix:
+                    type: array
+                    items:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          distance:
+                            type: object
+                            properties:
+                              value:
+                                type: number
+                              text:
+                                type: string
+                          duration:
+                            type: object
+                            properties:
+                              value:
+                                type: number
+                              text:
+                                type: string
+                          originIndex:
+                            type: integer
+                          destinationIndex:
+                            type: integer
+
+  /route/match:
+    post:
+      operationId: routeMatch
+      summary: Route match
+      description: Snaps points collected along a route to roads most likely traveled.
+      security:
+        - publishableKey: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [path]
+              properties:
+                path:
+                  type: array
+                  items:
+                    type: object
+                    required: [coordinates]
+                    properties:
+                      coordinates:
+                        type: string
+                        description: "Format: latitude,longitude"
+                      createdAt:
+                        type: string
+                        format: date-time
+                      accuracy:
+                        type: number
+                mode:
+                  type: string
+                  enum: [car, truck, foot, bike]
+                  default: car
+                roadAttributes:
+                  type: string
+                  description: "Comma-separated: speedLimit, names, roadClass."
+                units:
+                  type: string
+                  enum: [metric, imperial]
+                  default: imperial
+                geometry:
+                  type: string
+                  enum: [linestring, polyline5, polyline6]
+                  default: polyline6
+      responses:
+        '200':
+          description: Successful route match
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  matchedPath:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        latitude:
+                          type: number
+                        longitude:
+                          type: number
+                        originalIndex:
+                          type: integer
+                  roadAttributes:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/RoadAttribute'
+                  geometry:
+                    type: object
+                    properties:
+                      polyline:
+                        type: string
+                  distance:
+                    type: object
+                    properties:
+                      value:
+                        type: number
+                      text:
+                        type: string
+
+  /route/directions:
+    get:
+      operationId: routeDirections
+      summary: Directions
+      description: Calculates the most efficient route between two or more locations in order.
+      security:
+        - publishableKey: []
+      parameters:
+        - name: locations
+          in: query
+          required: true
+          schema:
+            type: string
+          description: "Pipe-delimited, up to 25 coordinates: lat0,lng0|lat1,lng1|..."
+        - name: mode
+          in: query
+          schema:
+            type: string
+            enum: [car, truck, foot, bike]
+            default: car
+        - name: units
+          in: query
+          schema:
+            type: string
+            enum: [metric, imperial]
+            default: imperial
+        - name: avoid
+          in: query
+          schema:
+            type: string
+          description: "Comma-separated: tolls, highways, ferries, borderCrossings."
+        - name: geometry
+          in: query
+          schema:
+            type: string
+            enum: [linestring, polyline5, polyline6]
+            default: polyline6
+        - name: departureTime
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: heading
+          in: query
+          schema:
+            type: number
+            minimum: 0
+            maximum: 360
+          description: "Initial heading (0=north, 90=east, 180=south, 270=west)."
+        - name: alternatives
+          in: query
+          schema:
+            type: boolean
+            default: false
+          description: Return alternative routes (only for 2 locations).
+        - name: lang
+          in: query
+          schema:
+            type: string
+            enum: [de, en, es, fr, ja, ko, pt, ru]
+            default: en
+      responses:
+        '200':
+          description: Successful directions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  routes:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        duration:
+                          type: object
+                          properties:
+                            value:
+                              type: number
+                            text:
+                              type: string
+                        distance:
+                          type: object
+                          properties:
+                            value:
+                              type: number
+                            text:
+                              type: string
+                        legs:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              startLocation:
+                                type: object
+                                properties:
+                                  latitude:
+                                    type: number
+                                  longitude:
+                                    type: number
+                              endLocation:
+                                type: object
+                                properties:
+                                  latitude:
+                                    type: number
+                                  longitude:
+                                    type: number
+                              duration:
+                                type: object
+                                properties:
+                                  value:
+                                    type: number
+                                  text:
+                                    type: string
+                              distance:
+                                type: object
+                                properties:
+                                  value:
+                                    type: number
+                                  text:
+                                    type: string
+                              geometry:
+                                type: object
+                                properties:
+                                  polyline:
+                                    type: string
+                              steps:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    distance:
+                                      type: object
+                                      properties:
+                                        value:
+                                          type: number
+                                        text:
+                                          type: string
+                                    duration:
+                                      type: object
+                                      properties:
+                                        value:
+                                          type: number
+                                        text:
+                                          type: string
+                                    start_location:
+                                      type: object
+                                      properties:
+                                        latitude:
+                                          type: number
+                                        longitude:
+                                          type: number
+                                    end_location:
+                                      type: object
+                                      properties:
+                                        latitude:
+                                          type: number
+                                        longitude:
+                                          type: number
+                                    bearing_before:
+                                      type: number
+                                    bearing_after:
+                                      type: number
+                                    instructions:
+                                      type: string
+                                    banner_instructions:
+                                      type: string
+                                    voice_instructions:
+                                      type: string
+                                    geometry:
+                                      type: object
+                                      properties:
+                                        polyline:
+                                          type: string
+                                    mode:
+                                      type: string
+                                    manuever:
+                                      type: string
+                                    street_name:
+                                      type: string
+                                    exit_name:
+                                      type: string
+                        geometry:
+                          type: object
+                          properties:
+                            polyline:
+                              type: string
+
+  /route/optimize:
+    get:
+      operationId: routeOptimize
+      summary: Optimize route
+      description: Calculates the optimal ordering and route to visit a list of locations.
+      security:
+        - publishableKey: []
+      parameters:
+        - name: locations
+          in: query
+          required: true
+          schema:
+            type: string
+          description: "Pipe-delimited, up to 10 coordinates: lat0,lng0|lat1,lng1|..."
+        - name: mode
+          in: query
+          schema:
+            type: string
+            enum: [car, truck, foot, bike]
+            default: car
+        - name: units
+          in: query
+          schema:
+            type: string
+            enum: [metric, imperial]
+            default: imperial
+        - name: geometry
+          in: query
+          schema:
+            type: string
+            enum: [linestring, polyline5, polyline6]
+        - name: departureTime
+          in: query
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: Successful route optimization
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  route:
+                    type: object
+                    properties:
+                      distance:
+                        type: object
+                        properties:
+                          value:
+                            type: number
+                          text:
+                            type: string
+                      duration:
+                        type: object
+                        properties:
+                          value:
+                            type: number
+                          text:
+                            type: string
+                      legs:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            startLocation:
+                              type: object
+                              properties:
+                                latitude:
+                                  type: number
+                                longitude:
+                                  type: number
+                            endLocation:
+                              type: object
+                              properties:
+                                latitude:
+                                  type: number
+                                longitude:
+                                  type: number
+                            startIndex:
+                              type: integer
+                            endIndex:
+                              type: integer
+                            distance:
+                              type: object
+                              properties:
