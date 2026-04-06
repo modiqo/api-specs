@@ -1,0 +1,697 @@
+﻿openapi: 3.0.3
+info:
+  title: Glacier API
+  description: 'The Glacier API provides a REST service that allows you to manage glacier storage operations. With this API you can create new glacier store to archive and monitor status. You can schedule restore operations and view reports. The API follows REST standards and provides asynchronous processing for data operations.'
+  version: v1.0
+  x-relativity-api-visibility: public
+servers:
+  - url: /glass
+    description: Glacier Advanced Access
+security:
+  - oauth2: []
+paths:
+  /api/glaciers:
+    post:
+      tags:
+        - Glacier Store
+      operationId: StartGlacierStore
+      summary: Start a new glacier store
+      description: Schedules a new glacier store to move folder to glacier storage. The operation returns immediately with identifiers while the actual data transfer and Inventory Report generation happens asynchronously.
+      security:
+        - oauth2: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StartGlacierStoreRequest'
+            examples:
+              store_request:
+                summary: Basic glacier store request
+                value:
+                  sourceLocation: "t001/ARM/TestLocation-1"
+                  glacierName: "project-archive-2024"
+      responses:
+        '202':
+          description: Glacier store created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StartGlacierStoreResponse'
+              example:
+                jobId: "123e4567-e89b-12d3-a456-426614174000"
+                glacierId: "987fcdeb-51a2-43d1-9876-543210fedcba"
+          headers:
+            Location:
+              description: URL to check status
+              schema:
+                type: string
+                format: uri
+              example: "/api/jobs/123e4567-e89b-12d3-a456-426614174000"
+        '400':
+          description: Bad request - validation failed
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '403':
+          description: Forbidden - insufficient permissions
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: Source location not found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '500':
+          description: Internal server error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    get:
+      tags:
+        - Glacier Storage
+      operationId: ListGlaciers
+      summary: List glaciers
+      description: Retrieves a paginated list of all glaciers. Each glacier in the list includes basic information such as ID, name, and creation date.
+      security:
+        - oauth2: []
+      parameters:
+        - name: page
+          in: query
+          required: false
+          description: "The page number to retrieve (default: 1)"
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+          example: 1
+        - name: pageSize
+          in: query
+          required: false
+          description: "The number of items per page (default: 50)"
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 50
+          example: 50
+        - name: status
+          in: query
+          required: false
+          description: "Filter glaciers by status"
+          schema:
+            type: string
+            enum:
+              - GLACIER_PENDING
+              - GLACIER_IN_PREVIEW
+              - GLACIER_AVAILABLE
+              - GLACIER_RESTORED
+              - GLACIER_FAILED
+          example: GLACIER_AVAILABLE
+      responses:
+        '200':
+          description: List of glaciers retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListGlaciersResponse'
+              example:
+                items:
+                  - glacierId: "987fcdeb-51a2-43d1-9876-543210fedcba"
+                    name: "project-archive-2024"
+                    createdAt: "2024-01-15T10:30:00Z"
+                    status: "GLACIER_AVAILABLE"
+                  - glacierId: "456e7890-f12a-34b5-c678-901234567890"
+                    name: "backup-2024-01"
+                    createdAt: "2024-01-10T14:20:00Z"
+                    status: "GLACIER_PENDING"
+                page: 1
+                pageSize: 50
+                totalCount: 125
+                totalPages: 3
+        '401':
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '403':
+          description: Forbidden - insufficient permissions
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '500':
+          description: Internal server error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /api/glaciers/{glacierId}/report:
+    get:
+      tags:
+        - Glacier Storage
+      operationId: GetGlacierReports
+      summary: Get glacier inventory report
+      description: Retrieves detailed Inventory Report information about a specific glacier with download link.
+      security:
+        - oauth2: []
+      parameters:
+        - name: glacierId
+          in: path
+          required: true
+          description: The unique identifier of the glacier
+          schema:
+            type: string
+            format: uuid
+          example: "987fcdeb-51a2-43d1-9876-543210fedcba"
+      responses:
+        '200':
+          description: Glacier inventory report retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GlacierReportResponse'
+              example:
+                glacierId: "987fcdeb-51a2-43d1-9876-543210fedcba"
+                name: "project-archive-2024"
+                createdAt: "2024-01-15T10:30:00Z"
+                inventoryReport:
+                  glacierStoreEntityCount: 1250
+                  glacierStoreTotalEntitySize: 5368709120
+                downloadLink: "https://mystorageaccount.dfs.core.windows.net/glacier-reports?sv=2022-11-02&ss=bfqt&srt=sco&sp=rl&se=2025-10-02T00:00:00Z&st=2025-10-01T00:00:00Z&spr=https&sig=abc123XYZsignature%3D"
+        '404':
+          description: Glacier not found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '403':
+          description: Forbidden - insufficient permissions
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '500':
+          description: Internal server error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /api/glaciers/{glacierId}/restore:
+    post:
+      tags:
+        - Glacier Restore
+      operationId: StartGlacierRestore
+      summary: Start a new glacier restore
+      description: Schedules restoring glacier entities from glacier storage to a destination location. The operation returns immediately with a store identifier while the actual data restoration happens asynchronously.
+      security:
+        - oauth2: []
+      parameters:
+        - name: glacierId
+          in: path
+          required: true
+          description: The unique identifier of the glacier to restore
+          schema:
+            type: string
+            format: uuid
+          example: "456e7890-f12a-34b5-c678-901234567890"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StartGlacierRestoreRequest'
+            examples:
+              restore_request:
+                summary: Basic glacier restore request
+                value:
+                  destinationLocation: "t001/ARM/RestoreLocation1"
+      responses:
+        '202':
+          description: Glacier restore created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StartGlacierRestoreResponse'
+              example:
+                jobId: "456e7890-f12a-34b5-c678-901234567890"
+          headers:
+            Location:
+              description: URL to check restore job status
+              schema:
+                type: string
+                format: uri
+              example: "/api/jobs/456e7890-f12a-34b5-c678-901234567890"
+        '409':
+          description: Conflict - validation failed
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '404':
+          description: Glacier not found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '403':
+          description: Forbidden - insufficient permissions
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '500':
+          description: Internal server error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /api/jobs/{jobId}:
+    get:
+      tags:
+        - Glacier Jobs
+      operationId: GetGlacierJobStatus
+      summary: Get glacier job status
+      description: Retrieves the current status of glacier and status of a glacier store or restore job. Provides detailed information about the current status of glacier and operations, also any errors that may have occurred.
+      security:
+        - oauth2: []
+      parameters:
+        - name: jobId
+          in: path
+          required: true
+          description: The unique identifier of the glacier job
+          schema:
+            type: string
+            format: uuid
+          example: "123e4567-e89b-12d3-a456-426614174000"
+      responses:
+        '200':
+          description: Job status retrieved successfully
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/GlacierStoreStatusResponse'
+                  - $ref: '#/components/schemas/GlacierRestoreStatusResponse'
+        '404':
+          description: Job not found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '403':
+          description: Forbidden - insufficient permissions
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '500':
+          description: Internal server error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://auth.relone.preview.com/oauth/token
+
+  schemas:
+    StartGlacierStoreRequest:
+      type: object
+      required:
+        - sourceLocation
+        - glacierName
+      properties:
+        sourceLocation:
+          type: string
+          minLength: 10
+          description: Specify the source location to be archived in Glacier. The folder should be located in one of the following locations ARM, ProcessingSource, StructuredData, or TenantVM. Only one item is accepted.
+          example: "t001/ARM/TestLocation-1"
+        glacierName:
+          type: string
+          minLength: 1
+          maxLength: 100
+          pattern: "^[a-z0-9-]+$"
+          description: The name of the glacier storage
+          example: "project-archive-2024"
+
+    StartGlacierStoreResponse:
+      type: object
+      required:
+        - jobId
+        - glacierId
+      properties:
+        jobId:
+          type: string
+          format: uuid
+          description: The unique identifier of the created job
+          example: "123e4567-e89b-12d3-a456-426614174000"
+        glacierId:
+          type: string
+          format: uuid
+          description: The unique identifier of the created glacier
+          example: "987fcdeb-51a2-43d1-9876-543210fedcba"
+
+    StartGlacierRestoreRequest:
+      type: object
+      required:
+        - destinationLocation
+      properties:
+        destinationLocation:
+          type: string
+          minLength: 10
+          description: Specify the destination location to restore from Glacier. The location should be located in one of the following locations ARM, ProcessingSource, StructuredData, or TenantVM.
+          example: "t001/ARM/RestoreLocation1"
+
+    StartGlacierRestoreResponse:
+      type: object
+      required:
+        - jobId
+        - glacierId
+      properties:
+        jobId:
+          type: string
+          format: uuid
+          description: The unique identifier of the created job
+          example: "456e7890-f12a-34b5-c678-901234567890"
+        glacierId:
+          type: string
+          format: uuid
+          description: The unique identifier of the glacier to restore
+          example: "456e7890-f12a-34b5-c678-901234567890"
+
+    GlacierStoreStatusResponse:
+      type: object
+      required:
+        - status
+        - jobType
+        - glacierId
+        - tenantId
+        - sourceLocation
+        - glacierName
+        - scheduledAt
+      properties:
+        status:
+          type: string
+          enum:
+            - STORE_DATA_SCHEDULED
+            - STORE_DATA_IN_PROGRESS
+            - STORE_DATA_COMPLETED
+            - STORE_INVENTORY_REPORT_SCHEDULED
+            - STORE_INVENTORY_REPORT_IN_PROGRESS
+            - STORE_INVENTORY_REPORT_COMPLETED
+            - STORE_COMPLETED
+            - STORE_FAILED
+          description: Current status of the glacier store
+        jobType:
+          type: string
+          enum:
+            - STORE
+            - RESTORE
+          description: The type of job
+        glacierId:
+          type: string
+          format: uuid
+          description: The unique identifier of the glacier store
+        tenantId:
+          type: string
+          format: uuid
+          description: The tenant identifier for the store
+        sourceLocation:
+          type: string
+          description: Source location archived in Glacier
+        glacierName:
+          type: string
+          description: The name of the glacier storage
+        scheduledAt:
+          type: string
+          format: date-time
+          description: When the store was scheduled
+        completedAt:
+          type: string
+          format: date-time
+          description: When the store was completed (only present for completed stores)
+        failedAt:
+          type: string
+          format: date-time
+          description: When the store failed (only present for failed stores)
+        inventoryReport:
+          $ref: '#/components/schemas/InventoryReport'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+          description: Collection of error objects with message details (only present for failed stores)
+
+    GlacierRestoreStatusResponse:
+      type: object
+      required:
+        - status
+        - jobType
+        - glacierId
+        - tenantId
+        - glacierName
+        - destinationLocation
+        - scheduledAt
+      properties:
+        status:
+          type: string
+          enum:
+            - RESTORE_SCHEDULED
+            - RESTORE_IN_PROGRESS
+            - RESTORE_COMPLETED
+            - RESTORE_FAILED
+          description: Current status of the glacier restore
+        jobType:
+          type: string
+          enum:
+            - STORE
+            - RESTORE
+          description: The type of job
+        glacierId:
+          type: string
+          format: uuid
+          description: The unique identifier of the glacier restore job
+        tenantId:
+          type: string
+          format: uuid
+          description: The tenant identifier
+        glacierName:
+          type: string
+          description: The name of the glacier to restore from
+        destinationLocation:
+          type: string
+          description: The destination location for restore operations
+        scheduledAt:
+          type: string
+          format: date-time
+          description: When the restore was scheduled
+        completedAt:
+          type: string
+          format: date-time
+          description: When the restore was completed (only present for completed restores)
+        failedAt:
+          type: string
+          format: date-time
+          description: When the restore failed (only present for failed restores)
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+          description: Collection of error objects with message details (only present for failed restores)
+
+    InventoryReport:
+      type: object
+      required:
+        - glacierStoreEntityCount
+        - glacierStoreTotalEntitySize
+      properties:
+        glacierStoreEntityCount:
+          type: integer
+          description: Number of entities in the glacier
+          example: 1250
+        glacierStoreTotalEntitySize:
+          type: integer
+          format: int64
+          description: Total size of all entities in bytes
+          example: 5368709120
+
+    ErrorDetail:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+          description: Error message
+          example: "Source directory not found"
+
+    ListGlaciersResponse:
+      type: object
+      required:
+        - items
+        - page
+        - pageSize
+        - totalCount
+        - totalPages
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/GlacierListItem'
+          description: Array of glacier objects
+        page:
+          type: integer
+          description: Current page number
+          example: 1
+        pageSize:
+          type: integer
+          description: Number of items per page
+          example: 50
+        totalCount:
+          type: integer
+          description: Total number of glaciers
+          example: 125
+        totalPages:
+          type: integer
+          description: Total number of pages
+          example: 3
+
+    GlacierListItem:
+      type: object
+      required:
+        - glacierId
+        - name
+        - createdAt
+        - status
+      properties:
+        glacierId:
+          type: string
+          format: uuid
+          description: The unique identifier of the glacier
+          example: "987fcdeb-51a2-43d1-9876-543210fedcba"
+        name:
+          type: string
+          description: The name of the glacier
+          example: "project-archive-2024"
+        createdAt:
+          type: string
+          format: date-time
+          description: When the glacier was created
+          example: "2024-01-15T10:30:00Z"
+        status:
+          type: string
+          enum:
+            - GLACIER_PENDING
+            - GLACIER_IN_PREVIEW
+            - GLACIER_AVAILABLE
+            - GLACIER_RESTORED
+            - GLACIER_FAILED
+          description: Current status of the glacier
+          example: "GLACIER_AVAILABLE"
+
+    GlacierReportResponse:
+      type: object
+      required:
+        - glacierId
+        - name
+        - createdAt
+        - inventoryReport
+        - downloadLink
+      properties:
+        glacierId:
+          type: string
+          format: uuid
+          description: The unique identifier of the glacier
+          example: "987fcdeb-51a2-43d1-9876-543210fedcba"
+        name:
+          type: string
+          description: The name of the glacier
+          example: "project-archive-2024"
+        createdAt:
+          type: string
+          format: date-time
+          description: When the glacier was created
+          example: "2024-01-15T10:30:00Z"
+        inventoryReport:
+          $ref: '#/components/schemas/InventoryReport'
+        downloadLink:
+          type: string
+          format: uri
+          description: Download link for the glacier inventory report
+          example: "https://mystorageaccount.dfs.core.windows.net/glacier-reports?sv=2022-11-02&ss=bfqt&srt=sco&sp=rl&se=2025-10-02T00:00:00Z&st=2025-10-01T00:00:00Z&spr=https&sig=abc123XYZsignature%3D"
+
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          format: uri
+          description: A URI reference identifying the problem type
+        title:
+          type: string
+          description: A short, human-readable summary of the problem
+        status:
+          type: integer
+          description: The HTTP status code
+        detail:
+          type: string
+          description: A human-readable explanation specific to this occurrence
+        instance:
+          type: string
+          format: uri
+          description: A URI reference identifying the specific occurrence
+
+    ValidationProblemDetails:
+      allOf:
+        - $ref: '#/components/schemas/ProblemDetails'
+        - type: object
+          properties:
+            errors:
+              type: object
+              additionalProperties:
+                type: array
+                items:
+                  type: string
+              description: Field-specific validation errors

@@ -1,0 +1,2014 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Relativity.Imaging.Services.Interfaces.V1",
+    "description": "Relativity.Imaging.Services.Interfaces",
+    "version": "V1"
+  },
+  "servers": [
+    {
+      "url": "/Relativity.REST/api",
+      "description": "The URL prefix for all Kepler services"
+    }
+  ],
+  "paths": {
+    "/relativity-imaging/v1/workspaces/{workspaceID}/application-field-codes/{applicationFieldCodeID}": {
+      "get": {
+        "tags": [
+          "Versioned Imaging Module v1"
+        ],
+        "description": "[Public] IApplicationFieldCodeManager - ",
+        "operationId": "Relativity.Imaging.Services.Interfaces.V1.IApplicationFieldCodeManager.ReadAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationFieldCodeID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationFieldCode"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Versioned Imaging Module v1"
+        ],
+        "description": "[Public] IApplicationFieldCodeManager - ",
+        "operationId": "Relativity.Imaging.Services.Interfaces.V1.IApplicationFieldCodeManager.UpdateAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationFieldCodeID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplicationFieldCodeRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Versioned Imaging Module v1"
+        ],
+        "description": "[Public] IApplicationFieldCodeManager - ",
+        "operationId": "Relativity.Imaging.Services.Interfaces.V1.IApplicationFieldCodeManager.DeleteAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationFieldCodeID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-imaging/v1/workspaces/{workspaceID}/application-field-codes/": {
+      "post": {
+        "tags": [
+          "Versioned Imaging Module v1"
+        ],
+        "description": "[Public] IApplicationFieldCodeManager - ",
+        "operationId": "Relativity.Imaging.Services.Interfaces.V1.IApplicationFieldCodeManager.CreateAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplicationFieldCodeRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-imaging/v1/workspaces/{workspaceID}/documents/{documentID}/status": {
+      "get": {
+        "tags": [
+          "Versioned Imaging Module v1"
+        ],
+        "description": "[Public] IDocumentStatusManager - ",
+        "operationId": "Relativity.Imaging.Services.Interfaces.V1.IDocumentStatusManager.GetStatusAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/documentID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentStatusResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-imaging/v1/environment/jobs/inactive-jobs": {
+      "delete": {
+        "tags": [
+          "Versioned Imaging Module v1"
+        ],
+        "description": "[Public] IImagingEnvironmentManager - ",
+        "operationId": "Relativity.Imaging.Services.Interfaces.V1.IImagingEnvironmentManager.CleanupInactiveJobsAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      }
+    },
+    "/relativity-imaging/v1/environment/jobs/mass-imaging-max-size": {
+      "get": {
+        "tags": [
+          "Versioned Imaging Module v1"
+        ],
+        "description": "[Public] IImagingEnvironmentManager - ",
+        "operationId": "Relativity.Imaging.Services.Interfaces.V1.IImagingEnvironmentManager.GetMaxMassImagingJobSizeAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-imaging/v1/workspaces/{workspaceID}/imaging-sets/{imagingSetID}/run": {
+      "post": {
+        "tags": [
+          "Versioned Imaging Module v1"
+        ],
+        "description": "[Public] IImagingJobManager - ",
+        "operationId": "Relativity.Imaging.Services.Interfaces.V1.IImagingJobManager.RunImagingSetAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/imagingSetID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImagingSetRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImagingSetResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-imaging/v1/workspaces/{workspaceID}/imaging-sets/{imagingSetID}/retry-errors": {
+      "post": {
+        "tags": [
+          "Versioned Imaging Module v1"
+        ],
+        "description": "[Public] IImagingJobManager - ",
+        "operationId": "Relativity.Imaging.Services.Interfaces.V1.IImagingJobManager.RetryImagingSetErrorsAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/imagingSetID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImagingSetRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImagingSetResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-imaging/v1/workspaces/{workspaceID}/jobs/{imagingJobID}/stop": {
+      "post": {
+        "tags": [
+          "Versioned Imaging Module v1"
+        ],
+        "description": "[Public] IImagingJobManager - ",
+        "operationId": "Relativity.Imaging.Services.Interfaces.V1.IImagingJobManager.StopImagingJobAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/imagingJobID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StopImagingJobRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StopImagingJobResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-imaging/v1/workspaces/{workspaceID}/documents/{documentArtifactID}/image": {
+      "post": {
+        "tags": [
+          "Versioned Imaging Module v1"
+        ],
+        "description": "[Public] IImagingJobManager - ",
+        "operationId": "Relativity.Imaging.Services.Interfaces.V1.IImagingJobManager.ImageDocumentAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/documentArtifactID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImageOnTheFlyRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImageOnTheFlyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-imaging/v1/workspaces/{workspaceID}/documents/mass-image": {
+      "post": {
+        "tags": [
+          "Versioned Imaging Module v1"
+        ],
+        "description": "[Public] IImagingJobManager - ",
+        "operationId": "Relativity.Imaging.Services.Interfaces.V1.IImagingJobManager.MassImageDocumentsByMassProcessIdAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MassImageRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MassImagingResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-imaging/v1/workspaces/{workspaceID}/jobs/{imagingJobID}/priority": {
+      "post": {
+        "tags": [
+          "Versioned Imaging Module v1"
+        ],
+        "description": "[Public] IImagingJobManager - ",
+        "operationId": "Relativity.Imaging.Services.Interfaces.V1.IImagingJobManager.UpdateJobPriorityAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/imagingJobID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateJobPriorityRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateJobPriorityResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-imaging/v1/workspaces/{workspaceID}/imaging-profiles/basic": {
+      "post": {
+        "tags": [
+          "Versioned Imaging Module v1"
+        ],
+        "description": "[Public] IImagingProfileManager - ",
+        "operationId": "Relativity.Imaging.Services.Interfaces.V1.IImagingProfileManager.CreateBasicImagingProfileAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BasicImagingProfileCreateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-imaging/v1/workspaces/{workspaceID}/imaging-profiles/native": {
+      "post": {
+        "tags": [
+          "Versioned Imaging Module v1"
+        ],
+        "description": "[Public] IImagingProfileManager - ",
+        "operationId": "Relativity.Imaging.Services.Interfaces.V1.IImagingProfileManager.CreateNativeImagingProfileAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NativeImagingProfileCreateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-imaging/v1/workspaces/{workspaceID}/imaging-profiles/{imagingProfileID}": {
+      "get": {
+        "tags": [
+          "Versioned Imaging Module v1"
+        ],
+        "description": "[Public] IImagingProfileManager - ",
+        "operationId": "Relativity.Imaging.Services.Interfaces.V1.IImagingProfileManager.ReadAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/imagingProfileID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImagingProfile"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Versioned Imaging Module v1"
+        ],
+        "description": "[Public] IImagingProfileManager - ",
+        "operationId": "Relativity.Imaging.Services.Interfaces.V1.IImagingProfileManager.UpdateAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/imagingProfileID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImagingProfileUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Versioned Imaging Module v1"
+        ],
+        "description": "[Public] IImagingProfileManager - ",
+        "operationId": "Relativity.Imaging.Services.Interfaces.V1.IImagingProfileManager.DeleteAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/imagingProfileID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      }
+    },
+    "/relativity-imaging/v1/workspaces/{workspaceID}/imaging-sets/": {
+      "post": {
+        "tags": [
+          "Versioned Imaging Module v1"
+        ],
+        "description": "[Public] IImagingSetManager - ",
+        "operationId": "Relativity.Imaging.Services.Interfaces.V1.IImagingSetManager.CreateAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImagingSetCreateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-imaging/v1/workspaces/{workspaceID}/imaging-sets/{imagingSetID}": {
+      "post": {
+        "tags": [
+          "Versioned Imaging Module v1"
+        ],
+        "description": "[Public] IImagingSetManager - ",
+        "operationId": "Relativity.Imaging.Services.Interfaces.V1.IImagingSetManager.UpdateAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/imagingSetID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImagingSetUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Versioned Imaging Module v1"
+        ],
+        "description": "[Public] IImagingSetManager - ",
+        "operationId": "Relativity.Imaging.Services.Interfaces.V1.IImagingSetManager.ReadAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/imagingSetID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImagingSet"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Versioned Imaging Module v1"
+        ],
+        "description": "[Public] IImagingSetManager - ",
+        "operationId": "Relativity.Imaging.Services.Interfaces.V1.IImagingSetManager.DeleteAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/imagingSetID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      }
+    },
+    "/relativity-imaging/v1/workspaces/{workspaceID}/imaging-sets/{imagingSetID}/release-images": {
+      "post": {
+        "tags": [
+          "Versioned Imaging Module v1"
+        ],
+        "description": "[Public] IImagingSetManager - ",
+        "operationId": "Relativity.Imaging.Services.Interfaces.V1.IImagingSetManager.ReleaseImagingSetAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/imagingSetID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      }
+    },
+    "/relativity-imaging/v1/workspaces/{workspaceID}/imaging-sets/{imagingSetID}/hide-images": {
+      "post": {
+        "tags": [
+          "Versioned Imaging Module v1"
+        ],
+        "description": "[Public] IImagingSetManager - ",
+        "operationId": "Relativity.Imaging.Services.Interfaces.V1.IImagingSetManager.HideImagingSetAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/imagingSetID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      }
+    },
+    "/relativity-imaging/v1/workspaces/{workspaceID}/imaging-sets/{imagingSetID}/status": {
+      "get": {
+        "tags": [
+          "Versioned Imaging Module v1"
+        ],
+        "description": "[Public] IImagingSetManager - ",
+        "operationId": "Relativity.Imaging.Services.Interfaces.V1.IImagingSetManager.GetStatusAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/imagingSetID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImagingSetStatusResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-imaging/v1/workspaces/{workspaceID}/native-types/{nativeTypeID}": {
+      "get": {
+        "tags": [
+          "Versioned Imaging Module v1"
+        ],
+        "description": "[Public] INativeTypeManager - ",
+        "operationId": "Relativity.Imaging.Services.Interfaces.V1.INativeTypeManager.ReadAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/nativeTypeID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NativeType"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ApplicationFieldCode": {
+        "title": "ApplicationFieldCode",
+        "type": "object",
+        "properties": {
+          "FieldCode": {
+            "type": "string"
+          },
+          "Application": {
+            "enum": [
+              "NotSet",
+              "MicrosoftWord",
+              "MicrosoftExcel",
+              "MicrosoftPowerpoint",
+              "MicrosoftVisio"
+            ],
+            "type": "string"
+          },
+          "Option": {
+            "enum": [
+              "NotSet",
+              "DocumentDefault",
+              "ShowFieldCode",
+              "ShowNothing",
+              "ReplaceWithRelativityField"
+            ],
+            "type": "string"
+          },
+          "RelativityField": {
+            "$ref": "#/components/schemas/FieldRef"
+          },
+          "ImagingProfiles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ImagingProfileRef"
+            }
+          },
+          "ArtifactID": {
+            "type": "integer"
+          },
+          "Name": {
+            "type": "string"
+          }
+        }
+      },
+      "FieldRef": {
+        "title": "FieldRef",
+        "type": "object",
+        "properties": {
+          "ArtifactID": {
+            "type": "integer"
+          },
+          "ViewFieldID": {
+            "type": "integer"
+          },
+          "Guids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "Name": {
+            "type": "string"
+          }
+        }
+      },
+      "ImagingProfileRef": {
+        "title": "ImagingProfileRef",
+        "type": "object",
+        "properties": {
+          "ArtifactID": {
+            "type": "integer"
+          },
+          "Name": {
+            "type": "string"
+          }
+        }
+      },
+      "ApplicationFieldCodeRequest": {
+        "title": "ApplicationFieldCodeRequest",
+        "type": "object",
+        "properties": {
+          "FieldCode": {
+            "type": "string"
+          },
+          "Application": {
+            "enum": [
+              "NotSet",
+              "MicrosoftWord",
+              "MicrosoftExcel",
+              "MicrosoftPowerpoint",
+              "MicrosoftVisio"
+            ],
+            "type": "string"
+          },
+          "Option": {
+            "enum": [
+              "NotSet",
+              "DocumentDefault",
+              "ShowFieldCode",
+              "ShowNothing",
+              "ReplaceWithRelativityField"
+            ],
+            "type": "string"
+          },
+          "RelativityField": {
+            "$ref": "#/components/schemas/FieldRef"
+          },
+          "ImagingProfiles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ImagingProfileRef"
+            }
+          }
+        }
+      },
+      "DocumentStatusResponse": {
+        "title": "DocumentStatusResponse",
+        "type": "object",
+        "properties": {
+          "ImageCount": {
+            "type": "integer"
+          },
+          "Error": {
+            "$ref": "#/components/schemas/DocumentError"
+          },
+          "Warnings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DocumentWarning"
+            }
+          },
+          "HasImages": {
+            "type": "string"
+          }
+        }
+      },
+      "DocumentError": {
+        "title": "DocumentError",
+        "type": "object",
+        "properties": {
+          "Message": {
+            "type": "string"
+          },
+          "Status": {
+            "type": "string"
+          }
+        }
+      },
+      "DocumentWarning": {
+        "title": "DocumentWarning",
+        "type": "object",
+        "properties": {
+          "Message": {
+            "type": "string"
+          },
+          "Type": {
+            "type": "string"
+          }
+        }
+      },
+      "ImagingSetRequest": {
+        "title": "ImagingSetRequest",
+        "type": "object",
+        "properties": {
+          "QcEnabled": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "OriginationID": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "ImagingSetResponse": {
+        "title": "ImagingSetResponse",
+        "type": "object",
+        "properties": {
+          "ImagingJobID": {
+            "type": "integer"
+          }
+        }
+      },
+      "StopImagingJobRequest": {
+        "title": "StopImagingJobRequest",
+        "type": "object",
+        "properties": {
+          "OriginationID": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "StopImagingJobResponse": {
+        "title": "StopImagingJobResponse",
+        "type": "object",
+        "properties": {
+          "Success": {
+            "type": "boolean"
+          },
+          "ErrorMessage": {
+            "type": "string"
+          }
+        }
+      },
+      "ImageOnTheFlyRequest": {
+        "title": "ImageOnTheFlyRequest",
+        "type": "object",
+        "properties": {
+          "ProfileID": {
+            "type": "integer"
+          },
+          "AlternateNativeLocation": {
+            "type": "string"
+          },
+          "RemoveAlternateNativeAfterImaging": {
+            "type": "boolean"
+          },
+          "OriginationID": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "ImageOnTheFlyResponse": {
+        "title": "ImageOnTheFlyResponse",
+        "type": "object",
+        "properties": {
+          "ImagingJobID": {
+            "type": "integer"
+          }
+        }
+      },
+      "MassImageRequest": {
+        "title": "MassImageRequest",
+        "type": "object",
+        "properties": {
+          "ProfileID": {
+            "type": "integer"
+          },
+          "MassProcessID": {
+            "type": "string"
+          },
+          "SourceType": {
+            "enum": [
+              "Native",
+              "RenderedPdf"
+            ],
+            "type": "string"
+          },
+          "OriginationID": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "MassImagingResponse": {
+        "title": "MassImagingResponse",
+        "type": "object",
+        "properties": {
+          "ImagingJobID": {
+            "type": "integer"
+          }
+        }
+      },
+      "UpdateJobPriorityRequest": {
+        "title": "UpdateJobPriorityRequest",
+        "type": "object",
+        "properties": {
+          "Priority": {
+            "type": "integer"
+          },
+          "OriginationID": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "UpdateJobPriorityResponse": {
+        "title": "UpdateJobPriorityResponse",
+        "type": "object",
+        "properties": {
+          "Success": {
+            "type": "boolean"
+          },
+          "ErrorMessage": {
+            "type": "string"
+          }
+        }
+      },
+      "BasicImagingProfileCreateRequest": {
+        "title": "BasicImagingProfileCreateRequest",
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string"
+          },
+          "BasicOptions": {
+            "$ref": "#/components/schemas/BasicImagingEngineOptions"
+          },
+          "Keywords": {
+            "type": "string"
+          },
+          "Notes": {
+            "type": "string"
+          },
+          "NativeTypes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NativeTypeRef"
+            }
+          }
+        }
+      },
+      "BasicImagingEngineOptions": {
+        "title": "BasicImagingEngineOptions",
+        "type": "object",
+        "properties": {
+          "ImageOutputDpi": {
+            "type": "integer"
+          },
+          "BasicImageFormat": {
+            "enum": [
+              "Tiff",
+              "Jpeg"
+            ],
+            "type": "string"
+          },
+          "ImageSize": {
+            "enum": [
+              "OriginalSetting",
+              "Letter",
+              "A4",
+              "Legal",
+              "Custom"
+            ],
+            "type": "string"
+          },
+          "MaximumImageHeight": {
+            "type": "number",
+            "nullable": true
+          },
+          "MaximumImageWidth": {
+            "type": "number",
+            "nullable": true
+          },
+          "BasicWordIncludeComments": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "BasicPowerPointIncludeComments": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "BasicPowerPointShowSpeakerNotes": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "WordIncludeTrackChanges": {
+            "type": "boolean",
+            "nullable": true
+          }
+        }
+      },
+      "NativeTypeRef": {
+        "title": "NativeTypeRef",
+        "type": "object",
+        "properties": {
+          "ArtifactID": {
+            "type": "integer"
+          },
+          "Name": {
+            "type": "string"
+          }
+        }
+      },
+      "NativeImagingProfileCreateRequest": {
+        "title": "NativeImagingProfileCreateRequest",
+        "type": "object",
+        "properties": {
+          "NativeOptions": {
+            "$ref": "#/components/schemas/NativeImagingEngineOptions"
+          },
+          "SpreadsheetOptions": {
+            "$ref": "#/components/schemas/SpreadsheetOptions"
+          },
+          "EmailOptions": {
+            "$ref": "#/components/schemas/EmailOptions"
+          },
+          "WordProcessingOptions": {
+            "$ref": "#/components/schemas/WordProcessingOptions"
+          },
+          "PresentationOptions": {
+            "$ref": "#/components/schemas/PresentationOptions"
+          },
+          "HtmlOptions": {
+            "$ref": "#/components/schemas/HtmlOptions"
+          },
+          "ApplicationFieldCodes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApplicationFieldCodeRef"
+            }
+          },
+          "Name": {
+            "type": "string"
+          },
+          "BasicOptions": {
+            "$ref": "#/components/schemas/BasicImagingEngineOptions"
+          },
+          "Keywords": {
+            "type": "string"
+          },
+          "Notes": {
+            "type": "string"
+          },
+          "NativeTypes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NativeTypeRef"
+            }
+          }
+        }
+      },
+      "NativeImagingEngineOptions": {
+        "title": "NativeImagingEngineOptions",
+        "type": "object",
+        "properties": {
+          "ImageOutputDpi": {
+            "type": "integer"
+          },
+          "NativeImageFormat": {
+            "enum": [
+              "Tiff",
+              "Jpeg"
+            ],
+            "type": "string"
+          },
+          "RenderColorPagesToJpeg": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "MaxPagesPerDoc": {
+            "type": "integer",
+            "nullable": true
+          },
+          "DitheringAlgorithm": {
+            "enum": [
+              "Clustered6X6",
+              "Clustered8X8",
+              "Clustered16X16",
+              "Dispersed4X4",
+              "Dispersed8X8",
+              "Dispersed16X16",
+              "FloydAndSteinberg",
+              "Threshold"
+            ],
+            "type": "string",
+            "nullable": true
+          },
+          "DitheringThreshold": {
+            "type": "integer",
+            "nullable": true
+          },
+          "TimeZoneFieldOnDocument": {
+            "$ref": "#/components/schemas/FieldRef"
+          },
+          "LastModifiedDateOnDocument": {
+            "$ref": "#/components/schemas/FieldRef"
+          }
+        }
+      },
+      "SpreadsheetOptions": {
+        "title": "SpreadsheetOptions",
+        "type": "object",
+        "properties": {
+          "PaperSizeOrientation": {
+            "enum": [
+              "OriginalSetting",
+              "Letter8Point5X11",
+              "Letter11X8Point5",
+              "Tabloid",
+              "Ledger"
+            ],
+            "type": "string"
+          },
+          "PageOrder": {
+            "enum": [
+              "OriginalSetting",
+              "DownThenOver",
+              "OverThenDown"
+            ],
+            "type": "string"
+          },
+          "PrintArea": {
+            "enum": [
+              "OriginalSetting",
+              "IgnorePrintArea"
+            ],
+            "type": "string"
+          },
+          "HideAndPageBreakAfterConsecutiveBlankRowCol": {
+            "type": "integer"
+          },
+          "ShowTrackChanges": {
+            "type": "boolean"
+          },
+          "IncludeRowAndColumnHeadings": {
+            "enum": [
+              "OriginalSetting",
+              "Yes",
+              "No"
+            ],
+            "type": "string"
+          },
+          "IncludeHeadersAndFooters": {
+            "enum": [
+              "OriginalSetting",
+              "Yes",
+              "No"
+            ],
+            "type": "string"
+          },
+          "IncludeComments": {
+            "type": "boolean"
+          },
+          "IncludeGridlines": {
+            "enum": [
+              "OriginalSetting",
+              "Yes",
+              "No"
+            ],
+            "type": "string"
+          },
+          "IncludeBorders": {
+            "type": "boolean"
+          },
+          "UnhideHiddenWorksheets": {
+            "type": "boolean"
+          },
+          "LimitToPages": {
+            "type": "integer",
+            "nullable": true
+          },
+          "ZoomLevelPercentage": {
+            "type": "integer",
+            "nullable": true
+          },
+          "FitToPagesWide": {
+            "type": "integer",
+            "nullable": true
+          },
+          "FitToPagesTall": {
+            "type": "integer",
+            "nullable": true
+          },
+          "Formatting": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "AutoFitRows",
+                "AutoFitColumns",
+                "ClearFormattingInEmptyRows",
+                "ClearFormattingInEmptyColumns"
+              ],
+              "type": "string"
+            }
+          },
+          "TextVisibility": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "RemoveBackgroundFillColors",
+                "SetTextColorToBlack"
+              ],
+              "type": "string"
+            }
+          }
+        }
+      },
+      "EmailOptions": {
+        "title": "EmailOptions",
+        "type": "object",
+        "properties": {
+          "Orientation": {
+            "enum": [
+              "Portrait",
+              "Landscape"
+            ],
+            "type": "string"
+          },
+          "ResizeImagesToFitPage": {
+            "type": "boolean"
+          },
+          "ResizeTablesToFitPage": {
+            "type": "boolean"
+          },
+          "SplitTablesToFitPageWidth": {
+            "type": "boolean"
+          },
+          "DownloadImagesFromInternet": {
+            "type": "boolean"
+          },
+          "ClearIndentations": {
+            "type": "boolean"
+          },
+          "DetectCharacterEncoding": {
+            "type": "boolean"
+          },
+          "DisplaySmtpAddresses": {
+            "type": "boolean"
+          },
+          "ShowMessageTypeInHeader": {
+            "type": "boolean"
+          }
+        }
+      },
+      "WordProcessingOptions": {
+        "title": "WordProcessingOptions",
+        "type": "object",
+        "properties": {
+          "ShowTrackChanges": {
+            "type": "boolean"
+          },
+          "PageOrientation": {
+            "enum": [
+              "OriginalSetting",
+              "Portrait",
+              "Landscape"
+            ],
+            "type": "string"
+          },
+          "Include": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "Comments",
+                "FieldCodes",
+                "HiddenText"
+              ],
+              "type": "string"
+            }
+          }
+        }
+      },
+      "PresentationOptions": {
+        "title": "PresentationOptions",
+        "type": "object",
+        "properties": {
+          "ShowSpeakerNotes": {
+            "type": "boolean"
+          },
+          "SlideOrientation": {
+            "enum": [
+              "OriginalSetting",
+              "Portrait",
+              "Landscape"
+            ],
+            "type": "string"
+          }
+        }
+      },
+      "HtmlOptions": {
+        "title": "HtmlOptions",
+        "type": "object",
+        "properties": {
+          "RemoveNonBreakingSpaceCodes": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ApplicationFieldCodeRef": {
+        "title": "ApplicationFieldCodeRef",
+        "type": "object",
+        "properties": {
+          "ArtifactID": {
+            "type": "integer"
+          },
+          "Name": {
+            "type": "string"
+          }
+        }
+      },
+      "ImagingProfile": {
+        "title": "ImagingProfile",
+        "type": "object",
+        "properties": {
+          "ImagingMethod": {
+            "enum": [
+              "Basic",
+              "Native"
+            ],
+            "type": "string"
+          },
+          "BasicOptions": {
+            "$ref": "#/components/schemas/BasicImagingEngineOptions"
+          },
+          "NativeOptions": {
+            "$ref": "#/components/schemas/NativeImagingEngineOptions"
+          },
+          "SpreadsheetOptions": {
+            "$ref": "#/components/schemas/SpreadsheetOptions"
+          },
+          "EmailOptions": {
+            "$ref": "#/components/schemas/EmailOptions"
+          },
+          "WordProcessingOptions": {
+            "$ref": "#/components/schemas/WordProcessingOptions"
+          },
+          "PresentationOptions": {
+            "$ref": "#/components/schemas/PresentationOptions"
+          },
+          "HtmlOptions": {
+            "$ref": "#/components/schemas/HtmlOptions"
+          },
+          "NativeTypes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NativeTypeRef"
+            }
+          },
+          "ApplicationFieldCodes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApplicationFieldCodeRef"
+            }
+          },
+          "Keywords": {
+            "type": "string"
+          },
+          "Notes": {
+            "type": "string"
+          },
+          "ArtifactID": {
+            "type": "integer"
+          },
+          "Name": {
+            "type": "string"
+          }
+        }
+      },
+      "ImagingProfileUpdateRequest": {
+        "title": "ImagingProfileUpdateRequest",
+        "type": "object",
+        "properties": {
+          "ImagingMethod": {
+            "enum": [
+              "Basic",
+              "Native"
+            ],
+            "type": "string"
+          },
+          "NativeOptions": {
+            "$ref": "#/components/schemas/NativeImagingEngineOptions"
+          },
+          "SpreadsheetOptions": {
+            "$ref": "#/components/schemas/SpreadsheetOptions"
+          },
+          "EmailOptions": {
+            "$ref": "#/components/schemas/EmailOptions"
+          },
+          "WordProcessingOptions": {
+            "$ref": "#/components/schemas/WordProcessingOptions"
+          },
+          "PresentationOptions": {
+            "$ref": "#/components/schemas/PresentationOptions"
+          },
+          "HtmlOptions": {
+            "$ref": "#/components/schemas/HtmlOptions"
+          },
+          "ApplicationFieldCodes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApplicationFieldCodeRef"
+            }
+          },
+          "Name": {
+            "type": "string"
+          },
+          "BasicOptions": {
+            "$ref": "#/components/schemas/BasicImagingEngineOptions"
+          },
+          "Keywords": {
+            "type": "string"
+          },
+          "Notes": {
+            "type": "string"
+          },
+          "NativeTypes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NativeTypeRef"
+            }
+          }
+        }
+      },
+      "ImagingSetCreateRequest": {
+        "title": "ImagingSetCreateRequest",
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string"
+          },
+          "ImagingProfileID": {
+            "type": "integer"
+          },
+          "DataSourceID": {
+            "type": "integer"
+          },
+          "EmailNotificationRecipients": {
+            "type": "string"
+          }
+        }
+      },
+      "ImagingSetUpdateRequest": {
+        "title": "ImagingSetUpdateRequest",
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string"
+          },
+          "ImagingProfileID": {
+            "type": "integer"
+          },
+          "DataSourceID": {
+            "type": "integer"
+          },
+          "EmailNotificationRecipients": {
+            "type": "string"
+          }
+        }
+      },
+      "ImagingSet": {
+        "title": "ImagingSet",
+        "type": "object",
+        "properties": {
+          "ImagingProfile": {
+            "$ref": "#/components/schemas/ImagingProfileRef"
+          },
+          "DataSourceID": {
+            "type": "integer"
+          },
+          "EmailNotificationRecipients": {
+            "type": "string"
+          },
+          "Status": {
+            "$ref": "#/components/schemas/ImagingSetStatus"
+          },
+          "ArtifactID": {
+            "type": "integer"
+          },
+          "Name": {
+            "type": "string"
+          }
+        }
+      },
+      "ImagingSetStatus": {
+        "title": "ImagingSetStatus",
+        "type": "object",
+        "properties": {
+          "ImageCompletion": {
+            "type": "string"
+          },
+          "ImageQCReviewStatus": {
+            "type": "string"
+          },
+          "LastRunError": {
+            "type": "string"
+          },
+          "QCEnabledOnLastRun": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "Status": {
+            "type": "string"
+          },
+          "CompletionRate": {
+            "type": "string"
+          },
+          "StartTime": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        }
+      },
+      "ImagingSetStatusResponse": {
+        "title": "ImagingSetStatusResponse",
+        "type": "object",
+        "properties": {
+          "Status": {
+            "type": "string"
+          },
+          "LastRunError": {
+            "type": "string"
+          },
+          "QcReviewEnabledOnLastRun": {
+            "type": "boolean"
+          },
+          "JobGuid": {
+            "type": "string",
+            "nullable": true
+          },
+          "JobType": {
+            "type": "integer"
+          },
+          "JobStartTime": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "NumberOfDocuments": {
+            "type": "integer",
+            "nullable": true
+          },
+          "NumberOfDocumentsHidden": {
+            "type": "integer",
+            "nullable": true
+          },
+          "NumberOfDocumentsViewable": {
+            "type": "integer",
+            "nullable": true
+          },
+          "NumberOfDocumentsWithWarnings": {
+            "type": "integer",
+            "nullable": true
+          },
+          "SubmittedByUserId": {
+            "type": "integer",
+            "nullable": true
+          },
+          "JobStatus": {
+            "enum": [
+              "Default",
+              "Created",
+              "CancelRequested",
+              "PickedUpByAgent",
+              "SubmittedToInvariant",
+              "Invalid"
+            ],
+            "type": "string"
+          },
+          "JobPriority": {
+            "type": "integer",
+            "nullable": true
+          },
+          "JobExists": {
+            "type": "boolean"
+          },
+          "NumberOfDocumentsCompleted": {
+            "type": "integer",
+            "nullable": true
+          },
+          "NumberOfDocumentsSkipped": {
+            "type": "integer",
+            "nullable": true
+          },
+          "NumberOfDocumentsWaiting": {
+            "type": "integer",
+            "nullable": true
+          },
+          "NumberOfDocumentsErrored": {
+            "type": "integer",
+            "nullable": true
+          },
+          "NumberOfDocumentsSubmitted": {
+            "type": "integer",
+            "nullable": true
+          },
+          "JobArtifactId": {
+            "type": "integer",
+            "nullable": true
+          }
+        }
+      },
+      "NativeType": {
+        "title": "NativeType",
+        "type": "object",
+        "properties": {
+          "BasicCategory": {
+            "enum": [
+              "Other",
+              "Database",
+              "Graphic",
+              "Multimedia",
+              "Spreadsheet",
+              "WordProcessor"
+            ],
+            "type": "string"
+          },
+          "NativeCategory": {
+            "enum": [
+              "Other",
+              "Spreadsheet",
+              "Email",
+              "WordProcessor",
+              "Presentation",
+              "Html"
+            ],
+            "type": "string",
+            "nullable": true
+          },
+          "UseNativeImaging": {
+            "type": "boolean"
+          },
+          "RestrictedFromImagingByDefault": {
+            "type": "boolean"
+          },
+          "FileTypeID": {
+            "type": "integer"
+          },
+          "PreventNativeDownload": {
+            "type": "boolean"
+          },
+          "ArtifactID": {
+            "type": "integer"
+          },
+          "Name": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "parameters": {
+      "workspaceID": {
+        "name": "workspaceID",
+        "in": "path",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "applicationFieldCodeID": {
+        "name": "applicationFieldCodeID",
+        "in": "path",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "x-csrf-header": {
+        "name": "x-csrf-header",
+        "in": "header",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "default": "-"
+        }
+      },
+      "documentID": {
+        "name": "documentID",
+        "in": "path",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "imagingSetID": {
+        "name": "imagingSetID",
+        "in": "path",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "imagingJobID": {
+        "name": "imagingJobID",
+        "in": "path",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "documentArtifactID": {
+        "name": "documentArtifactID",
+        "in": "path",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "imagingProfileID": {
+        "name": "imagingProfileID",
+        "in": "path",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "nativeTypeID": {
+        "name": "nativeTypeID",
+        "in": "path",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}

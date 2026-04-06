@@ -1,0 +1,1674 @@
+{
+  "openapi": "3.0.4",
+  "info": {
+    "title": "Workspace Service API",
+    "description": "The Workspace Service API provides a REST service for managing workspace creation and maintenance.\n\nThe URL prefix for workspace services endpoints: https://\\<host\\>/api/workspace-service",
+    "version": "1",
+    "x-relativity-api-visibility": "public"
+  },
+  "paths": {
+    "/v1/outbox/flush": {
+      "post": {
+        "tags": [
+          "Outbox"
+        ],
+        "summary": "Flush Transactional Outbox",
+        "description": "This endpoint flushes the outbox, processing all pending messages.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/v1/workspace/{workspaceId}": {
+      "get": {
+        "tags": [
+          "Workspace"
+        ],
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkspaceReadResponseV1"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkspaceReadResponseV1"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkspaceReadResponseV1"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "567": {
+            "description": "Workspace Temporarily Unavailable"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Workspace"
+        ],
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Workspace"
+        ],
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkspaceRequestEnvelope"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkspaceRequestEnvelope"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkspaceRequestEnvelope"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkspaceReadResponseV1"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkspaceReadResponseV1"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkspaceReadResponseV1"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/v1/workspace/{workspaceId}/{includeMetadata}/{includeActions}": {
+      "get": {
+        "tags": [
+          "Workspace"
+        ],
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "includeMetadata",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "includeActions",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkspaceReadResponseV1"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkspaceReadResponseV1"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkspaceReadResponseV1"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "567": {
+            "description": "Workspace Temporarily Unavailable"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/v1/workspace-job": {
+      "post": {
+        "tags": [
+          "WorkspaceJob"
+        ],
+        "summary": "Creates a workspace creation job",
+        "description": "Validates the request, checks permissions, auto-populates infrastructure fields, and creates a job for asynchronous workspace creation. Infrastructure fields (ResourcePool, SqlServer, etc.) are not accepted - they are always auto-populated with default values.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkspaceCreateRequestDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkspaceCreateRequestDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkspaceCreateRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkspaceCreateEnqueueResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkspaceCreateEnqueueResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkspaceCreateEnqueueResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Unsupported Media Type",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/v1/workspace-job/{jobId}": {
+      "get": {
+        "tags": [
+          "WorkspaceJob"
+        ],
+        "summary": "Gets workspace create job progress",
+        "description": "Retrieves the current progress and status of a workspace creation job by job ID. This is an internal API endpoint based on legacy Kepler service.",
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkspaceCreateJobResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkspaceCreateJobResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkspaceCreateJobResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Action": {
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "Verb": {
+            "type": "string",
+            "nullable": true
+          },
+          "Href": {
+            "type": "string",
+            "nullable": true
+          },
+          "IsAvailable": {
+            "type": "boolean"
+          },
+          "Reason": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DisplayableObjectIdentifier": {
+        "type": "object",
+        "properties": {
+          "ArtifactID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "Guids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "nullable": true
+          },
+          "Name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DisplayableObjectIdentifierSecurable": {
+        "type": "object",
+        "properties": {
+          "Value": {
+            "$ref": "#/components/schemas/DisplayableObjectIdentifier"
+          },
+          "Secured": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Field": {
+        "type": "object",
+        "properties": {
+          "FieldCategory": {
+            "enum": [
+              "Generic",
+              "FullText",
+              "Identifier",
+              "Reflected",
+              "Comments",
+              "Relational",
+              "ProductionMarker",
+              "AutoCreate",
+              "FileSize",
+              "FolderName",
+              "FileInfo",
+              "ParentArtifact",
+              "MarkupSetMarker",
+              "GenericSystem",
+              "MultiReflected",
+              "Batch"
+            ],
+            "type": "string"
+          },
+          "FieldType": {
+            "enum": [
+              "FixedLengthText",
+              "WholeNumber",
+              "Date",
+              "YesNo",
+              "LongText",
+              "SingleChoice",
+              "Decimal",
+              "Currency",
+              "MultipleChoice",
+              "File",
+              "SingleObject",
+              "User",
+              "MultipleObject",
+              "Empty"
+            ],
+            "type": "string"
+          },
+          "ViewFieldID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ArtifactID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Guids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "nullable": true
+          },
+          "Name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FieldRefV1": {
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "ViewFieldID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ArtifactID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Guids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FieldRefV1QueryRequest": {
+        "type": "object",
+        "properties": {
+          "ObjectType": {
+            "$ref": "#/components/schemas/ObjectTypeRef"
+          },
+          "Condition": {
+            "type": "string",
+            "nullable": true
+          },
+          "Sorts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FieldRefV1Sort"
+            },
+            "nullable": true
+          },
+          "RelationalField": {
+            "$ref": "#/components/schemas/FieldRefV1"
+          },
+          "RowCondition": {
+            "type": "string",
+            "nullable": true
+          },
+          "SearchProviderCondition": {
+            "$ref": "#/components/schemas/SearchProviderCondition"
+          },
+          "SampleParameters": {
+            "$ref": "#/components/schemas/SampleParameters"
+          },
+          "IncludeIDWindow": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "RankSortOrder": {
+            "enum": [
+              "Ascending",
+              "Descending"
+            ],
+            "type": "string",
+            "nullable": true
+          },
+          "QueryHint": {
+            "type": "string",
+            "nullable": true
+          },
+          "Fields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FieldRefV1"
+            },
+            "nullable": true
+          },
+          "IsAdhocQuery": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "ConvertNumberFieldValuesToString": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "IncludeNameInQueryResult": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "ExecutingSavedSearchID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "ExecutingViewID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "ActiveArtifactID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "MaxCharactersForLongTextValues": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "LongTextBehavior": {
+            "enum": [
+              "Default",
+              "Tokenized",
+              "DefaultWithErrors",
+              "TokenizedWithErrors"
+            ],
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "FieldRefV1QueryRequestBody": {
+        "required": [
+          "Length",
+          "Request",
+          "Start"
+        ],
+        "type": "object",
+        "properties": {
+          "Request": {
+            "$ref": "#/components/schemas/FieldRefV1QueryRequest"
+          },
+          "Start": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Length": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "FieldRefV1Sort": {
+        "type": "object",
+        "properties": {
+          "FieldIdentifier": {
+            "$ref": "#/components/schemas/FieldRefV1"
+          },
+          "Direction": {
+            "enum": [
+              "Ascending",
+              "Descending"
+            ],
+            "type": "string"
+          },
+          "Order": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Meta": {
+        "type": "object",
+        "properties": {
+          "Unsupported": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "ReadOnly": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "NameIDPair": {
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ObjectIdentifier": {
+        "type": "object",
+        "properties": {
+          "ArtifactID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "Guids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ObjectIdentifierSecurable": {
+        "type": "object",
+        "properties": {
+          "Value": {
+            "$ref": "#/components/schemas/ObjectIdentifier"
+          },
+          "Secured": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ObjectType": {
+        "type": "object",
+        "properties": {
+          "ArtifactID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "Guids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "nullable": true
+          },
+          "ArtifactTypeID": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ObjectTypeRef": {
+        "type": "object",
+        "properties": {
+          "ArtifactID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ArtifactTypeID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "Guid": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProblemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": { }
+      },
+      "QueryResultSlim": {
+        "type": "object",
+        "properties": {
+          "TotalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Objects": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RelativityObjectSlim"
+            },
+            "nullable": true
+          },
+          "IDWindow": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "nullable": true
+          },
+          "CurrentStartIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ResultCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ObjectType": {
+            "$ref": "#/components/schemas/ObjectType"
+          },
+          "SampleDetails": {
+            "$ref": "#/components/schemas/SampleDetails"
+          },
+          "RankWindow": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "nullable": true
+          },
+          "RelationalField": {
+            "$ref": "#/components/schemas/Field"
+          },
+          "Fields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Field"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RelativityObjectSlim": {
+        "type": "object",
+        "properties": {
+          "ArtifactID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Values": {
+            "type": "array",
+            "items": { },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SampleDetails": {
+        "type": "object",
+        "properties": {
+          "SampleSize": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "UniverseSize": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "Token": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SampleParameters": {
+        "type": "object",
+        "properties": {
+          "ExistingToken": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "MarginOfError": {
+            "type": "number",
+            "format": "double"
+          },
+          "ConfidenceLevel": {
+            "type": "number",
+            "format": "double"
+          },
+          "FixedSampleSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "SamplingPercentage": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SearchIndexRef": {
+        "type": "object",
+        "properties": {
+          "ArtifactID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SearchProviderCondition": {
+        "type": "object",
+        "properties": {
+          "SearchIndex": {
+            "$ref": "#/components/schemas/SearchIndexRef"
+          },
+          "Input": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SqlFullTextLanguageOptions": {
+        "type": "object",
+        "properties": {
+          "DefaultLanguageLcid": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Languages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NameIDPair"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "StringSecurable": {
+        "type": "object",
+        "properties": {
+          "Value": {
+            "type": "string",
+            "nullable": true
+          },
+          "Secured": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "WorkspaceCreateEnqueueResponse": {
+        "required": [
+          "JobId"
+        ],
+        "type": "object",
+        "properties": {
+          "JobId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false
+      },
+      "WorkspaceCreateJobResponse": {
+        "type": "object",
+        "properties": {
+          "JobId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "WorkspaceArtifactId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "TotalNumberOfSteps": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "CurrentStep": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "JobState": {
+            "type": "string",
+            "nullable": true
+          },
+          "Attempt": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "WorkspaceCreateRequestDto": {
+        "required": [
+          "Name",
+          "UseCase"
+        ],
+        "type": "object",
+        "properties": {
+          "Name": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string"
+          },
+          "MatterArtifactId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "StatusArtifactId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "TemplateArtifactId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "SqlFullTextLanguage": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Keywords": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          },
+          "Notes": {
+            "type": "string",
+            "nullable": true
+          },
+          "DownloadHandlerUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "UseCase": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "WorkspaceAdminGroupArtifactId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "WorkspaceReadResponseV1": {
+        "type": "object",
+        "properties": {
+          "ArtifactID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "Guids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "nullable": true
+          },
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "Client": {
+            "$ref": "#/components/schemas/DisplayableObjectIdentifierSecurable"
+          },
+          "ClientNumber": {
+            "$ref": "#/components/schemas/StringSecurable"
+          },
+          "DownloadHandlerUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "EnableDataGrid": {
+            "type": "boolean"
+          },
+          "Matter": {
+            "$ref": "#/components/schemas/DisplayableObjectIdentifierSecurable"
+          },
+          "MatterNumber": {
+            "$ref": "#/components/schemas/StringSecurable"
+          },
+          "ProductionRestrictions": {
+            "$ref": "#/components/schemas/DisplayableObjectIdentifierSecurable"
+          },
+          "ResourcePool": {
+            "$ref": "#/components/schemas/DisplayableObjectIdentifierSecurable"
+          },
+          "DefaultFileRepository": {
+            "$ref": "#/components/schemas/DisplayableObjectIdentifierSecurable"
+          },
+          "DataGridFileRepository": {
+            "$ref": "#/components/schemas/DisplayableObjectIdentifierSecurable"
+          },
+          "DefaultCacheLocation": {
+            "$ref": "#/components/schemas/DisplayableObjectIdentifierSecurable"
+          },
+          "SqlServer": {
+            "$ref": "#/components/schemas/DisplayableObjectIdentifierSecurable"
+          },
+          "AzureCredentials": {
+            "$ref": "#/components/schemas/DisplayableObjectIdentifierSecurable"
+          },
+          "AzureFileSystemCredentials": {
+            "$ref": "#/components/schemas/DisplayableObjectIdentifierSecurable"
+          },
+          "SqlFullTextLanguage": {
+            "$ref": "#/components/schemas/NameIDPair"
+          },
+          "Status": {
+            "$ref": "#/components/schemas/DisplayableObjectIdentifier"
+          },
+          "Keywords": {
+            "type": "string",
+            "nullable": true
+          },
+          "Notes": {
+            "type": "string",
+            "nullable": true
+          },
+          "CreatedOn": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "CreatedBy": {
+            "$ref": "#/components/schemas/DisplayableObjectIdentifier"
+          },
+          "LastModifiedBy": {
+            "$ref": "#/components/schemas/DisplayableObjectIdentifier"
+          },
+          "LastModifiedOn": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "Meta": {
+            "$ref": "#/components/schemas/Meta"
+          },
+          "Actions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Action"
+            },
+            "nullable": true
+          },
+          "WorkspaceAdminGroup": {
+            "$ref": "#/components/schemas/DisplayableObjectIdentifierSecurable"
+          },
+          "UseCase": {
+            "type": "string",
+            "nullable": true
+          },
+          "JobID": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "WorkspaceRequestEnvelope": {
+        "required": [
+          "WorkspaceRequest"
+        ],
+        "type": "object",
+        "properties": {
+          "WorkspaceRequest": {
+            "$ref": "#/components/schemas/WorkspaceUpdateRequest"
+          },
+          "LastModifiedOn": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "WorkspaceUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "DownloadHandlerUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "EnableDataGrid": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "Matter": {
+            "$ref": "#/components/schemas/ObjectIdentifierSecurable"
+          },
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "ProductionRestrictions": {
+            "$ref": "#/components/schemas/ObjectIdentifierSecurable"
+          },
+          "ResourcePool": {
+            "$ref": "#/components/schemas/ObjectIdentifierSecurable"
+          },
+          "DefaultFileRepository": {
+            "$ref": "#/components/schemas/ObjectIdentifierSecurable"
+          },
+          "DataGridFileRepository": {
+            "$ref": "#/components/schemas/ObjectIdentifierSecurable"
+          },
+          "DefaultCacheLocation": {
+            "$ref": "#/components/schemas/ObjectIdentifierSecurable"
+          },
+          "SqlServer": {
+            "$ref": "#/components/schemas/ObjectIdentifierSecurable"
+          },
+          "AzureCredentials": {
+            "$ref": "#/components/schemas/ObjectIdentifierSecurable"
+          },
+          "AzureFileSystemCredentials": {
+            "$ref": "#/components/schemas/ObjectIdentifierSecurable"
+          },
+          "SqlFullTextLanguage": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "Status": {
+            "$ref": "#/components/schemas/ObjectIdentifier"
+          },
+          "Template": {
+            "$ref": "#/components/schemas/ObjectIdentifierSecurable"
+          },
+          "WorkspaceAdminGroup": {
+            "$ref": "#/components/schemas/ObjectIdentifierSecurable"
+          },
+          "UseCase": {
+            "type": "string",
+            "nullable": true
+          },
+          "Keywords": {
+            "type": "string",
+            "nullable": true
+          },
+          "Notes": {
+            "type": "string",
+            "nullable": true
+          },
+          "UserId": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "http",
+        "description": "Standard Authorization header using the Bearer scheme. Example: \"bearer {token}\"",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
+}

@@ -1,0 +1,318 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Analytics.Conceptual.Service.Interfaces.Public.V1",
+    "description": "Analytics.Conceptual.Service.Interfaces.Public",
+    "version": "V1"
+  },
+  "servers": [
+    {
+      "url": "/Relativity.REST/api",
+      "description": "The URL prefix for all Kepler services"
+    }
+  ],
+  "paths": {
+    "/conceptual-analytics/v1/workspaces/{workspaceID}/indexes/": {
+      "post": {
+        "tags": [
+          "Conceptual Analytics v1"
+        ],
+        "description": "[Public] IConceptualIndexService",
+        "operationId": "Analytics.Conceptual.Service.Interfaces.Public.v1.IConceptualIndexService.CreateAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConceptualIndex"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Operation"
+          }
+        }
+      }
+    },
+    "/conceptual-analytics/v1/workspaces/{workspaceID}/indexes/{indexID}": {
+      "get": {
+        "tags": [
+          "Conceptual Analytics v1"
+        ],
+        "description": "[Public] IConceptualIndexService",
+        "operationId": "Analytics.Conceptual.Service.Interfaces.Public.v1.IConceptualIndexService.ReadAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/indexID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Conceptual Analytics v1"
+        ],
+        "description": "[Public] IConceptualIndexService",
+        "operationId": "Analytics.Conceptual.Service.Interfaces.Public.v1.IConceptualIndexService.UpdateAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/indexID"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConceptualIndex"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Conceptual Analytics v1"
+        ],
+        "description": "[Public] IConceptualIndexService",
+        "operationId": "Analytics.Conceptual.Service.Interfaces.Public.v1.IConceptualIndexService.DeleteAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/indexID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      }
+    },
+    "/conceptual-analytics/v1/workspaces/{workspaceID}/indexes/{indexID}/status": {
+      "get": {
+        "tags": [
+          "Conceptual Analytics v1"
+        ],
+        "description": "[Public] IConceptualIndexService",
+        "operationId": "Analytics.Conceptual.Service.Interfaces.Public.v1.IConceptualIndexService.GetStatusAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/indexID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      }
+    },
+    "/conceptual-analytics/v1/workspaces/{workspaceID}/indexes/{indexID}/job": {
+      "post": {
+        "tags": [
+          "Conceptual Analytics v1"
+        ],
+        "description": "[Public] IConceptualIndexService",
+        "operationId": "Analytics.Conceptual.Service.Interfaces.Public.v1.IConceptualIndexService.SubmitJobAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/indexID"
+          },
+          {
+            "$ref": "#/components/parameters/jobType"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful Operation"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Conceptual Analytics v1"
+        ],
+        "description": "[Public] IConceptualIndexService",
+        "operationId": "Analytics.Conceptual.Service.Interfaces.Public.v1.IConceptualIndexService.CancelJobAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/indexID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ConceptualIndex": {
+        "title": "ConceptualIndex",
+        "type": "object",
+        "properties": {
+          "ArtifactID": {
+            "type": "integer"
+          },
+          "Guids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "AnalyticsServer": {
+            "$ref": "#/components/schemas/ArtifactRef"
+          },
+          "ConceptStopWords": {
+            "type": "string"
+          },
+          "Dimensions": {
+            "type": "integer"
+          },
+          "EmailNotificationRecipients": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "Name": {
+            "type": "string"
+          },
+          "OptimizeTrainingSet": {
+            "type": "boolean"
+          },
+          "Order": {
+            "type": "integer"
+          },
+          "RemoveEngSignaturesAndFooters": {
+            "type": "boolean"
+          },
+          "EnableEmailHeaderFilter": {
+            "type": "boolean"
+          },
+          "RepeatedContentFilters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ArtifactRef"
+            }
+          },
+          "SearchableSet": {
+            "$ref": "#/components/schemas/ArtifactRef"
+          },
+          "TrainingSet": {
+            "$ref": "#/components/schemas/ArtifactRef"
+          },
+          "Active": {
+            "type": "boolean"
+          },
+          "RemoveDocumentErrors": {
+            "type": "boolean"
+          },
+          "ContinueIndexStepsToCompletion": {
+            "type": "boolean"
+          },
+          "LastErrorMessage": {
+            "type": "string"
+          },
+          "IndexLastUsedOn": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "InUseByCategorizationSet": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ArtifactRef": {
+        "title": "ArtifactRef",
+        "type": "object",
+        "properties": {
+          "ArtifactID": {
+            "type": "integer"
+          },
+          "Guids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "parameters": {
+      "workspaceID": {
+        "name": "workspaceID",
+        "in": "path",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "indexID": {
+        "name": "indexID",
+        "in": "path",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "jobType": {
+        "name": "jobType",
+        "in": "query",
+        "description": "",
+        "required": true,
+        "schema": {
+          "enum": [
+            "FullPopulation",
+            "IncrementalPopulation",
+            "RetryErrors",
+            "RemoveDocumentsInError",
+            "Build",
+            "Activate",
+            "Deactivate",
+            "TagDocuments"
+          ],
+          "type": "string"
+        }
+      }
+    }
+  }
+}

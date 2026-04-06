@@ -1,0 +1,75 @@
+openapi: 3.0.1
+info:
+  title: Relativity.Notifications.V1
+  description: Relativity.Notifications
+  version: V1
+servers:
+  - url: /Relativity.REST/api
+    description: The URL prefix for all Kepler services
+paths:
+  /relativity-notifications/v1/workspaces/-1/notifications/email:
+    post:
+      tags:
+        - Relativity Notifications Module v1
+      description: '[Public] IEmailNotificationsManager - '
+      operationId: Relativity.Notifications.V1.IEmailNotificationsManager.SendEmailNotificationAsync
+      parameters:
+        - $ref: '#/components/parameters/x-csrf-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmailNotificationRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmailNotificationResponse'
+components:
+  schemas:
+    EmailNotificationRequest:
+      title: EmailNotificationRequest
+      type: object
+      properties:
+        Sender:
+          type: string
+        Recipients:
+          type: array
+          items:
+            type: string
+        Subject:
+          type: string
+        Body:
+          type: string
+        IsBodyHtml:
+          type: boolean
+    EmailNotificationResponse:
+      title: EmailNotificationResponse
+      type: object
+      properties:
+        EmailNotifications:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmailNotificationStatus'
+    EmailNotificationStatus:
+      title: EmailNotificationStatus
+      type: object
+      properties:
+        Recipient:
+          type: string
+        IsSent:
+          type: boolean
+        Message:
+          type: string
+  parameters:
+    x-csrf-header:
+      name: x-csrf-header
+      in: header
+      description: ''
+      required: true
+      schema:
+        type: string
+        default: '-'

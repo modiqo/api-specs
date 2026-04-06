@@ -1,0 +1,5158 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Relativity.Audit.Services.Interfaces.V1",
+    "description": "Relativity.Audit.Services.Interfaces",
+    "version": "V1"
+  },
+  "servers": [
+    {
+      "url": "/Relativity.REST/api",
+      "description": "The URL prefix for all Kepler services"
+    }
+  ],
+  "paths": {
+    "/relativity-audit/v1/workload-discovery/migrator-workload": {
+      "get": {
+        "tags": [
+          "Audit Module v1"
+        ],
+        "description": "[Public] IWorkloadDiscoveryService - ",
+        "operationId": "Relativity.Audit.Services.Interfaces.V1.WorkloadDiscovery.IWorkloadDiscoveryService.GetMigratorWorkloadAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Workload"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-audit/v1/workload-discovery/deleter-workload": {
+      "get": {
+        "tags": [
+          "Audit Module v1"
+        ],
+        "description": "[Public] IWorkloadDiscoveryService - ",
+        "operationId": "Relativity.Audit.Services.Interfaces.V1.WorkloadDiscovery.IWorkloadDiscoveryService.GetDeleterWorkloadAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Workload"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-audit/v1/workload-discovery/reviewer-statistics-workload": {
+      "get": {
+        "tags": [
+          "Audit Module v1"
+        ],
+        "description": "[Public] IWorkloadDiscoveryService - ",
+        "operationId": "Relativity.Audit.Services.Interfaces.V1.WorkloadDiscovery.IWorkloadDiscoveryService.GetReviewerStatisticsWorkloadAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Workload"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-audit/v1/workload-discovery/export-workload": {
+      "get": {
+        "tags": [
+          "Audit Module v1"
+        ],
+        "description": "[Public] IWorkloadDiscoveryService - ",
+        "operationId": "Relativity.Audit.Services.Interfaces.V1.WorkloadDiscovery.IWorkloadDiscoveryService.GetExportWorkloadAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Workload"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-audit/v1/workspaces/{workspaceID}/audits": {
+      "post": {
+        "tags": [
+          "Audit Module v1"
+        ],
+        "description": "[Public] IAuditQueryService - ",
+        "operationId": "Relativity.Audit.Services.Interfaces.V1.Query.IAuditQueryService.GetAuditAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetAuditAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuditLogItem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-audit/v1/workspaces/{workspaceID}/audit-metrics": {
+      "get": {
+        "tags": [
+          "Audit Module v1"
+        ],
+        "description": "[Public] IAuditMetricsService - ",
+        "operationId": "Relativity.Audit.Services.Interfaces.V1.Metrics.IAuditMetricsService.GetWorkspaceAuditMetricsAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuditMetricsAggregateResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-audit/v1/workspaces/{workspaceID}/audits/ui/query": {
+      "post": {
+        "tags": [
+          "Audit Module v1"
+        ],
+        "description": "[Public] IAuditObjectManagerUIService - ",
+        "operationId": "Relativity.Audit.Services.Interfaces.V1.UI.IAuditObjectManagerUIService.QueryAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QueryResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-audit/v1/workspaces/{workspaceID}/audits/ui/query-slim": {
+      "post": {
+        "tags": [
+          "Audit Module v1"
+        ],
+        "description": "[Public] IAuditObjectManagerUIService - ",
+        "operationId": "Relativity.Audit.Services.Interfaces.V1.UI.IAuditObjectManagerUIService.QuerySlimAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QuerySlimAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QueryResultSlim"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-audit/v1/workspaces/{workspaceID}/document-action-counts": {
+      "post": {
+        "tags": [
+          "Audit Module v1"
+        ],
+        "description": "[Public] IAuditReviewerStatisticsService - ",
+        "operationId": "Relativity.Audit.Services.Interfaces.V1.ReviewerStatistics.IAuditReviewerStatisticsService.GetDocumentActionCountsAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetDocumentActionCountsAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentActionCountResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-audit/v1/workspaces/{workspaceID}/usage-time": {
+      "post": {
+        "tags": [
+          "Audit Module v1"
+        ],
+        "description": "[Public] IAuditReviewerStatisticsService - ",
+        "operationId": "Relativity.Audit.Services.Interfaces.V1.ReviewerStatistics.IAuditReviewerStatisticsService.GetUsageTimesAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetUsageTimesAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsageTimeResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-audit/v1/workspaces/{workspaceID}/total-reviewed-text-size": {
+      "post": {
+        "tags": [
+          "Audit Module v1"
+        ],
+        "description": "[Public] IAuditReviewerStatisticsService - ",
+        "operationId": "Relativity.Audit.Services.Interfaces.V1.ReviewerStatistics.IAuditReviewerStatisticsService.GetTotalReviewedDocumentSizesAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetTotalReviewedDocumentSizesAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewedDocumentSizeResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-audit/v1/workspaces/{workspaceID}/distinct-document-actions-per-hour-of-day": {
+      "post": {
+        "tags": [
+          "Audit Module v1"
+        ],
+        "description": "[Public] IAuditReviewerStatisticsService - ",
+        "operationId": "Relativity.Audit.Services.Interfaces.V1.ReviewerStatistics.IAuditReviewerStatisticsService.GetDocumentActionsPerHourOfDayAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetDocumentActionsPerHourOfDayAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentActionPerHourOfDayResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-audit/v1/workspaces/{workspaceID}/reviewer-choices": {
+      "post": {
+        "tags": [
+          "Audit Module v1"
+        ],
+        "description": "[Public] IAuditReviewerStatisticsService - ",
+        "operationId": "Relativity.Audit.Services.Interfaces.V1.ReviewerStatistics.IAuditReviewerStatisticsService.GetReviewerChoicesAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetReviewerChoicesAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewedFieldChoicesPerUserResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-audit/v1/workspaces/{workspaceID}/summary-report": {
+      "post": {
+        "tags": [
+          "Audit Module v1"
+        ],
+        "description": "[Public] IAuditReviewerStatisticsService - ",
+        "operationId": "Relativity.Audit.Services.Interfaces.V1.ReviewerStatistics.IAuditReviewerStatisticsService.GetReviewerStatsAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetReviewerStatsAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ReviewersStats"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-audit/v1/workspaces/{workspaceID}/audits/revert": {
+      "post": {
+        "tags": [
+          "Audit Module v1"
+        ],
+        "description": "[Public] IAuditRevertService - ",
+        "operationId": "Relativity.Audit.Services.Interfaces.V1.Revert.IAuditRevertService.RevertAuditAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RevertAuditAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RevertAuditResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-audit/v1/workspaces/{workspaceID}/audits/revert/validate": {
+      "post": {
+        "tags": [
+          "Audit Module v1"
+        ],
+        "description": "[Public] IAuditRevertService - ",
+        "operationId": "Relativity.Audit.Services.Interfaces.V1.Revert.IAuditRevertService.ValidateRevertAuditAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ValidateRevertAuditAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidateRevertAuditResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-audit/v1/workspaces/{workspaceID}/audits/mass-revert": {
+      "post": {
+        "tags": [
+          "Audit Module v1"
+        ],
+        "description": "[Public] IAuditRevertService - ",
+        "operationId": "Relativity.Audit.Services.Interfaces.V1.Revert.IAuditRevertService.MassRevertAuditAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MassRevertAuditAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MassRevertAuditResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-audit/v1/workspaces/{workspaceID}/pivots": {
+      "post": {
+        "tags": [
+          "Audit Module v1"
+        ],
+        "description": "[Public] IAuditPivotService - ",
+        "operationId": "Relativity.Audit.Services.Interfaces.V1.Pivot.IAuditPivotService.PivotAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PivotAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PivotResultSet"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-audit/v1/workspaces/{workspaceID}/export": {
+      "post": {
+        "tags": [
+          "Audit Module v1"
+        ],
+        "description": "[Public] IAuditExportService - ",
+        "operationId": "Relativity.Audit.Services.Interfaces.V1.Export.IAuditExportService.SubmitExportJobAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubmitExportJobAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubmitExportJobResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-audit/v1/workspaces/{workspaceID}/export/{jobID}": {
+      "get": {
+        "tags": [
+          "Audit Module v1"
+        ],
+        "description": "[Public] IAuditExportService - ",
+        "operationId": "Relativity.Audit.Services.Interfaces.V1.Export.IAuditExportService.GetExportJobStatusAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/jobID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetExportJobStatusResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-audit/v1/workspaces/{workspaceID}/export/download": {
+      "post": {
+        "tags": [
+          "Audit Module v1"
+        ],
+        "description": "[Public] IAuditExportService - ",
+        "operationId": "Relativity.Audit.Services.Interfaces.V1.Export.IAuditExportService.DownloadExportedFileAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DownloadExportedFileAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IKeplerStream"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-audit/v1/audit-dump/schedule": {
+      "post": {
+        "tags": [
+          "Audit Module v1"
+        ],
+        "description": "[Public] IAuditDumpService - ",
+        "operationId": "Relativity.Audit.Services.Interfaces.V1.Dump.IAuditDumpService.ScheduleJobAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ScheduleJobAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DumpResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-audit/v1/audit-dump/{jobID}/status": {
+      "get": {
+        "tags": [
+          "Audit Module v1"
+        ],
+        "description": "[Public] IAuditDumpService - ",
+        "operationId": "Relativity.Audit.Services.Interfaces.V1.Dump.IAuditDumpService.GetJobStatusAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/jobID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DumpJobStatusResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-audit/v1/audit-dump/workspaces/{workspaceID}/jobs/{jobID}/file-names": {
+      "get": {
+        "tags": [
+          "Audit Module v1"
+        ],
+        "description": "[Public] IAuditDumpService - ",
+        "operationId": "Relativity.Audit.Services.Interfaces.V1.Dump.IAuditDumpService.GetFileNamesAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/jobID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DumpFileDetails"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-audit/v1/audit-dump/workspaces/{workspaceID}/jobs/{jobID}": {
+      "get": {
+        "tags": [
+          "Audit Module v1"
+        ],
+        "description": "[Public] IAuditDumpService - ",
+        "operationId": "Relativity.Audit.Services.Interfaces.V1.Dump.IAuditDumpService.GetFileAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/jobID"
+          },
+          {
+            "$ref": "#/components/parameters/fileName"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IKeplerStream"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Workload": {
+        "title": "Workload",
+        "type": "object",
+        "properties": {
+          "Size": {
+            "enum": [
+              "None",
+              "One",
+              "S",
+              "M",
+              "L",
+              "XL",
+              "XXL"
+            ],
+            "type": "string"
+          }
+        }
+      },
+      "GetAuditAsync_RequestBody": {
+        "title": "GetAuditAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "request": {
+            "$ref": "#/components/schemas/GetAuditRequest"
+          }
+        }
+      },
+      "GetAuditRequest": {
+        "title": "GetAuditRequest",
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "string"
+          },
+          "Timestamp": {
+            "type": "string"
+          }
+        }
+      },
+      "AuditLogItem": {
+        "title": "AuditLogItem",
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "string"
+          },
+          "TimeStamp": {
+            "type": "string"
+          },
+          "ArtifactName": {
+            "type": "string"
+          },
+          "ActionName": {
+            "type": "string"
+          },
+          "ActionID": {
+            "type": "integer"
+          },
+          "ObjectTypeName": {
+            "type": "string"
+          },
+          "ObjectTypeID": {
+            "type": "integer"
+          },
+          "ExecutionTime": {
+            "type": "integer",
+            "nullable": true
+          },
+          "ArtifactID": {
+            "type": "integer"
+          },
+          "UserName": {
+            "type": "string"
+          },
+          "UserID": {
+            "type": "integer"
+          },
+          "Details": {
+            "$ref": "#/components/schemas/Object"
+          },
+          "OldValues": {
+            "$ref": "#/components/schemas/Object"
+          },
+          "NewValues": {
+            "$ref": "#/components/schemas/Object"
+          },
+          "Fields": {
+            "$ref": "#/components/schemas/Object"
+          },
+          "WorkspaceId": {
+            "type": "integer"
+          },
+          "WorkspaceName": {
+            "type": "string"
+          }
+        }
+      },
+      "Object": {
+        "title": "Object",
+        "type": "object"
+      },
+      "AuditMetricsAggregateResponse": {
+        "title": "AuditMetricsAggregateResponse",
+        "type": "object",
+        "properties": {
+          "Count": {
+            "type": "integer",
+            "nullable": true
+          },
+          "SizeInBytes": {
+            "type": "integer",
+            "nullable": true
+          }
+        }
+      },
+      "QueryAsync_RequestBody": {
+        "title": "QueryAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "request": {
+            "$ref": "#/components/schemas/QueryRequest"
+          },
+          "start": {
+            "type": "integer"
+          },
+          "length": {
+            "type": "integer"
+          }
+        }
+      },
+      "QueryRequest": {
+        "title": "QueryRequest",
+        "type": "object",
+        "properties": {
+          "ObjectType": {
+            "$ref": "#/components/schemas/ObjectTypeRef"
+          },
+          "Condition": {
+            "type": "string"
+          },
+          "Sorts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Sort"
+            }
+          },
+          "RelationalField": {
+            "$ref": "#/components/schemas/FieldRef"
+          },
+          "RowCondition": {
+            "type": "string"
+          },
+          "SearchProviderCondition": {
+            "$ref": "#/components/schemas/SearchProviderCondition"
+          },
+          "SampleParameters": {
+            "$ref": "#/components/schemas/SampleParameters"
+          },
+          "IncludeIDWindow": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "RankSortOrder": {
+            "enum": [
+              "Ascending",
+              "Descending"
+            ],
+            "type": "string",
+            "nullable": true
+          },
+          "QueryHint": {
+            "type": "string"
+          },
+          "Fields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FieldRef"
+            }
+          },
+          "IsAdhocQuery": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "ConvertNumberFieldValuesToStr": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "IncludeNameInQueryResult": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "ExecutingSavedSearchID": {
+            "type": "integer",
+            "nullable": true
+          },
+          "ExecutingViewID": {
+            "type": "integer",
+            "nullable": true
+          },
+          "ActiveArtifactID": {
+            "type": "integer",
+            "nullable": true
+          },
+          "MaxCharactersForLongTextValues": {
+            "type": "integer",
+            "nullable": true
+          },
+          "LongTextBehavior": {
+            "enum": [
+              "Default",
+              "Tokenized",
+              "DefaultWithErrors",
+              "TokenizedWithErrors"
+            ],
+            "type": "string"
+          }
+        }
+      },
+      "ObjectTypeRef": {
+        "title": "ObjectTypeRef",
+        "type": "object",
+        "properties": {
+          "ArtifactID": {
+            "type": "integer"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "Guid": {
+            "type": "string",
+            "nullable": true
+          },
+          "ArtifactTypeID": {
+            "type": "integer"
+          }
+        }
+      },
+      "Sort": {
+        "title": "Sort",
+        "type": "object",
+        "properties": {
+          "FieldIdentifier": {
+            "$ref": "#/components/schemas/FieldRef"
+          },
+          "Order": {
+            "type": "integer"
+          },
+          "Direction": {
+            "enum": [
+              "Ascending",
+              "Descending"
+            ],
+            "type": "string"
+          }
+        }
+      },
+      "FieldRef": {
+        "title": "FieldRef",
+        "type": "object",
+        "properties": {
+          "ViewFieldID": {
+            "type": "integer"
+          },
+          "ArtifactID": {
+            "type": "integer"
+          },
+          "Guid": {
+            "type": "string",
+            "nullable": true
+          },
+          "Name": {
+            "type": "string"
+          }
+        }
+      },
+      "SearchProviderCondition": {
+        "title": "SearchProviderCondition",
+        "type": "object",
+        "properties": {
+          "SearchIndex": {
+            "$ref": "#/components/schemas/SearchIndexRef"
+          },
+          "Input": {
+            "type": "string"
+          }
+        }
+      },
+      "SearchIndexRef": {
+        "title": "SearchIndexRef",
+        "type": "object",
+        "properties": {
+          "ArtifactID": {
+            "type": "integer"
+          },
+          "Name": {
+            "type": "string"
+          }
+        }
+      },
+      "SampleParameters": {
+        "title": "SampleParameters",
+        "type": "object",
+        "properties": {
+          "ExistingToken": {
+            "type": "string",
+            "nullable": true
+          },
+          "MarginOfError": {
+            "type": "number"
+          },
+          "ConfidenceLevel": {
+            "type": "number"
+          },
+          "FixedSampleSize": {
+            "type": "integer"
+          },
+          "SamplingPercentage": {
+            "type": "number"
+          }
+        }
+      },
+      "QueryResult": {
+        "title": "QueryResult",
+        "type": "object",
+        "properties": {
+          "TotalCount": {
+            "type": "integer"
+          },
+          "Objects": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RelativityObject"
+            }
+          },
+          "IDWindow": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "CurrentStartIndex": {
+            "type": "integer"
+          },
+          "ResultCount": {
+            "type": "integer"
+          },
+          "ObjectType": {
+            "$ref": "#/components/schemas/ObjectType"
+          },
+          "SampleDetails": {
+            "$ref": "#/components/schemas/SampleDetails"
+          },
+          "RankWindow": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
+          },
+          "RelationalField": {
+            "$ref": "#/components/schemas/Field"
+          }
+        }
+      },
+      "RelativityObject": {
+        "title": "RelativityObject",
+        "type": "object",
+        "properties": {
+          "ParentObject": {
+            "$ref": "#/components/schemas/RelativityObjectRef"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "FieldValues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FieldValuePair"
+            }
+          },
+          "ArtifactID": {
+            "type": "integer"
+          },
+          "Guids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "Item": {
+            "$ref": "#/components/schemas/FieldValuePair"
+          }
+        }
+      },
+      "RelativityObjectRef": {
+        "title": "RelativityObjectRef",
+        "type": "object",
+        "properties": {
+          "ArtifactID": {
+            "type": "integer"
+          },
+          "Guid": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "FieldValuePair": {
+        "title": "FieldValuePair",
+        "type": "object",
+        "properties": {
+          "Value": {
+            "$ref": "#/components/schemas/Object"
+          },
+          "Field": {
+            "$ref": "#/components/schemas/Field"
+          }
+        }
+      },
+      "Field": {
+        "title": "Field",
+        "type": "object",
+        "properties": {
+          "FieldCategory": {
+            "enum": [
+              "Generic",
+              "FullText",
+              "Identifier",
+              "Reflected",
+              "Comments",
+              "Relational",
+              "ProductionMarker",
+              "AutoCreate",
+              "FileSize",
+              "FolderName",
+              "FileInfo",
+              "ParentArtifact",
+              "MarkupSetMarker",
+              "GenericSystem",
+              "MultiReflected",
+              "Batch"
+            ],
+            "type": "string"
+          },
+          "FieldType": {
+            "enum": [
+              "FixedLengthText",
+              "WholeNumber",
+              "Date",
+              "YesNo",
+              "LongText",
+              "SingleChoice",
+              "Decimal",
+              "Currency",
+              "MultipleChoice",
+              "File",
+              "SingleObject",
+              "User",
+              "MultipleObject",
+              "Empty"
+            ],
+            "type": "string"
+          },
+          "ViewFieldID": {
+            "type": "integer"
+          },
+          "ArtifactID": {
+            "type": "integer"
+          },
+          "Guids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "Name": {
+            "type": "string"
+          }
+        }
+      },
+      "ObjectType": {
+        "title": "ObjectType",
+        "type": "object",
+        "properties": {
+          "ArtifactID": {
+            "type": "integer"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "Guids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "ArtifactTypeID": {
+            "type": "integer"
+          }
+        }
+      },
+      "SampleDetails": {
+        "title": "SampleDetails",
+        "type": "object",
+        "properties": {
+          "SampleSize": {
+            "type": "integer",
+            "nullable": true
+          },
+          "UniverseSize": {
+            "type": "integer",
+            "nullable": true
+          },
+          "Token": {
+            "type": "string"
+          }
+        }
+      },
+      "QuerySlimAsync_RequestBody": {
+        "title": "QuerySlimAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "request": {
+            "$ref": "#/components/schemas/QueryRequest"
+          },
+          "start": {
+            "type": "integer"
+          },
+          "length": {
+            "type": "integer"
+          }
+        }
+      },
+      "QueryResultSlim": {
+        "title": "QueryResultSlim",
+        "type": "object",
+        "properties": {
+          "TotalCount": {
+            "type": "integer"
+          },
+          "Objects": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RelativityObjectSlim"
+            }
+          },
+          "IDWindow": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "CurrentStartIndex": {
+            "type": "integer"
+          },
+          "ResultCount": {
+            "type": "integer"
+          },
+          "ObjectType": {
+            "$ref": "#/components/schemas/ObjectType"
+          },
+          "SampleDetails": {
+            "$ref": "#/components/schemas/SampleDetails"
+          },
+          "RankWindow": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
+          },
+          "RelationalField": {
+            "$ref": "#/components/schemas/Field"
+          },
+          "Fields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Field"
+            }
+          }
+        }
+      },
+      "RelativityObjectSlim": {
+        "title": "RelativityObjectSlim",
+        "type": "object",
+        "properties": {
+          "ArtifactID": {
+            "type": "integer"
+          },
+          "Values": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Object"
+            }
+          }
+        }
+      },
+      "GetDocumentActionCountsAsync_RequestBody": {
+        "title": "GetDocumentActionCountsAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "criteria": {
+            "$ref": "#/components/schemas/DocumentActionCountCriteria"
+          }
+        }
+      },
+      "DocumentActionCountCriteria": {
+        "title": "DocumentActionCountCriteria",
+        "type": "object",
+        "properties": {
+          "AuditActionIDs": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "UserIDs": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "StartDate": {
+            "$ref": "#/components/schemas/DateTimeOffset"
+          },
+          "EndDate": {
+            "$ref": "#/components/schemas/DateTimeOffset"
+          },
+          "TimeZone": {
+            "type": "string"
+          }
+        }
+      },
+      "DateTimeOffset": {
+        "title": "DateTimeOffset",
+        "type": "object",
+        "properties": {
+          "Now": {
+            "$ref": "#/components/schemas/DateTimeOffset"
+          },
+          "UtcNow": {
+            "$ref": "#/components/schemas/DateTimeOffset"
+          },
+          "DateTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "UtcDateTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "LocalDateTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "Date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "Day": {
+            "type": "integer"
+          },
+          "DayOfWeek": {
+            "enum": [
+              "Sunday",
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday"
+            ],
+            "type": "string"
+          },
+          "DayOfYear": {
+            "type": "integer"
+          },
+          "Hour": {
+            "type": "integer"
+          },
+          "Millisecond": {
+            "type": "integer"
+          },
+          "Minute": {
+            "type": "integer"
+          },
+          "Month": {
+            "type": "integer"
+          },
+          "Offset": {
+            "$ref": "#/components/schemas/TimeSpan"
+          },
+          "Second": {
+            "type": "integer"
+          },
+          "Ticks": {
+            "type": "integer"
+          },
+          "UtcTicks": {
+            "type": "integer"
+          },
+          "TimeOfDay": {
+            "$ref": "#/components/schemas/TimeSpan"
+          },
+          "Year": {
+            "type": "integer"
+          }
+        }
+      },
+      "TimeSpan": {
+        "title": "TimeSpan",
+        "type": "object",
+        "properties": {
+          "Ticks": {
+            "type": "integer"
+          },
+          "Days": {
+            "type": "integer"
+          },
+          "Hours": {
+            "type": "integer"
+          },
+          "Milliseconds": {
+            "type": "integer"
+          },
+          "Minutes": {
+            "type": "integer"
+          },
+          "Seconds": {
+            "type": "integer"
+          },
+          "TotalDays": {
+            "type": "number"
+          },
+          "TotalHours": {
+            "type": "number"
+          },
+          "TotalMilliseconds": {
+            "type": "number"
+          },
+          "TotalMinutes": {
+            "type": "number"
+          },
+          "TotalSeconds": {
+            "type": "number"
+          }
+        }
+      },
+      "DocumentActionCountResponse": {
+        "title": "DocumentActionCountResponse",
+        "type": "object",
+        "properties": {
+          "ReviewerStatistics": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReviewerWithStatistics1"
+            }
+          }
+        }
+      },
+      "ReviewerWithStatistics1": {
+        "title": "ReviewerWithStatistics`1",
+        "type": "object",
+        "properties": {
+          "UserID": {
+            "type": "integer"
+          },
+          "Statistics": {
+            "$ref": "#/components/schemas/DocumentActionCountStatistics"
+          }
+        }
+      },
+      "DocumentActionCountStatistics": {
+        "title": "DocumentActionCountStatistics",
+        "type": "object",
+        "properties": {
+          "ActionCounts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ActionCount"
+            }
+          }
+        }
+      },
+      "ActionCount": {
+        "title": "ActionCount",
+        "type": "object",
+        "properties": {
+          "AuditActionID": {
+            "type": "integer"
+          },
+          "Count": {
+            "type": "integer"
+          },
+          "DistinctDocumentCount": {
+            "type": "integer"
+          }
+        }
+      },
+      "GetUsageTimesAsync_RequestBody": {
+        "title": "GetUsageTimesAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "criteria": {
+            "$ref": "#/components/schemas/UsageTimeCriteria"
+          }
+        }
+      },
+      "UsageTimeCriteria": {
+        "title": "UsageTimeCriteria",
+        "type": "object",
+        "properties": {
+          "AuditActionIDs": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "DownTimeThresholdSeconds": {
+            "type": "integer",
+            "nullable": true
+          },
+          "UserIDs": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "StartDate": {
+            "$ref": "#/components/schemas/DateTimeOffset"
+          },
+          "EndDate": {
+            "$ref": "#/components/schemas/DateTimeOffset"
+          },
+          "TimeZone": {
+            "type": "string"
+          }
+        }
+      },
+      "UsageTimeResponse": {
+        "title": "UsageTimeResponse",
+        "type": "object",
+        "properties": {
+          "ReviewerStatistics": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReviewerWithStatistics1"
+            }
+          }
+        }
+      },
+      "UsageTimeStatistics": {
+        "title": "UsageTimeStatistics",
+        "type": "object",
+        "properties": {
+          "TotalSeconds": {
+            "type": "integer"
+          }
+        }
+      },
+      "GetTotalReviewedDocumentSizesAsync_RequestBody": {
+        "title": "GetTotalReviewedDocumentSizesAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "criteria": {
+            "$ref": "#/components/schemas/ReviewedDocumentSizeCriteria"
+          }
+        }
+      },
+      "ReviewedDocumentSizeCriteria": {
+        "title": "ReviewedDocumentSizeCriteria",
+        "type": "object",
+        "properties": {
+          "AuditActionIDs": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "ExtractedTextFieldArtifactID": {
+            "type": "integer"
+          },
+          "UserIDs": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "StartDate": {
+            "$ref": "#/components/schemas/DateTimeOffset"
+          },
+          "EndDate": {
+            "$ref": "#/components/schemas/DateTimeOffset"
+          },
+          "TimeZone": {
+            "type": "string"
+          }
+        }
+      },
+      "ReviewedDocumentSizeResponse": {
+        "title": "ReviewedDocumentSizeResponse",
+        "type": "object",
+        "properties": {
+          "ReviewerStatistics": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReviewerWithStatistics1"
+            }
+          }
+        }
+      },
+      "ReviewedDocumentSizeStatistics": {
+        "title": "ReviewedDocumentSizeStatistics",
+        "type": "object",
+        "properties": {
+          "TotalBytes": {
+            "type": "integer"
+          }
+        }
+      },
+      "GetDocumentActionsPerHourOfDayAsync_RequestBody": {
+        "title": "GetDocumentActionsPerHourOfDayAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "criteria": {
+            "$ref": "#/components/schemas/DocumentActionPerHourOfDayCriteria"
+          }
+        }
+      },
+      "DocumentActionPerHourOfDayCriteria": {
+        "title": "DocumentActionPerHourOfDayCriteria",
+        "type": "object",
+        "properties": {
+          "AuditActionIDs": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "UserIDs": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "StartDate": {
+            "$ref": "#/components/schemas/DateTimeOffset"
+          },
+          "EndDate": {
+            "$ref": "#/components/schemas/DateTimeOffset"
+          },
+          "TimeZone": {
+            "type": "string"
+          }
+        }
+      },
+      "DocumentActionPerHourOfDayResponse": {
+        "title": "DocumentActionPerHourOfDayResponse",
+        "type": "object",
+        "properties": {
+          "ReviewerStatistics": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReviewerWithStatistics1"
+            }
+          }
+        }
+      },
+      "DocumentActionPerHourOfDayStatistics": {
+        "title": "DocumentActionPerHourOfDayStatistics",
+        "type": "object",
+        "properties": {
+          "HourBuckets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HourOfDayActionCount"
+            }
+          }
+        }
+      },
+      "HourOfDayActionCount": {
+        "title": "HourOfDayActionCount",
+        "type": "object",
+        "properties": {
+          "HourOfDay": {
+            "$ref": "#/components/schemas/Byte"
+          },
+          "ActionCount": {
+            "type": "integer"
+          }
+        }
+      },
+      "Byte": {
+        "title": "Byte",
+        "type": "object"
+      },
+      "GetReviewerChoicesAsync_RequestBody": {
+        "title": "GetReviewerChoicesAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "reviewerChoicesCriteria": {
+            "$ref": "#/components/schemas/ReviewerChoicesCriteria"
+          }
+        }
+      },
+      "ReviewerChoicesCriteria": {
+        "title": "ReviewerChoicesCriteria",
+        "type": "object",
+        "properties": {
+          "FieldIDs": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "EndDate": {
+            "$ref": "#/components/schemas/DateTimeOffset"
+          },
+          "StartDate": {
+            "$ref": "#/components/schemas/DateTimeOffset"
+          },
+          "TimeZone": {
+            "type": "string"
+          },
+          "UserIdsToIncludeInReport": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "UserIdsToExcludeInReport": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "SavedSearchId": {
+            "type": "integer",
+            "nullable": true
+          }
+        }
+      },
+      "ReviewedFieldChoicesPerUserResponse": {
+        "title": "ReviewedFieldChoicesPerUserResponse",
+        "type": "object",
+        "properties": {
+          "ReviewerStatistics": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReviewerWithStatistics1"
+            }
+          }
+        }
+      },
+      "ReviewedFieldChoicesBuckets": {
+        "title": "ReviewedFieldChoicesBuckets",
+        "type": "object",
+        "properties": {
+          "ReviewedFieldChoices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReviewedFieldChoices"
+            }
+          },
+          "TotalDocsUpdated": {
+            "type": "integer"
+          },
+          "TotalChoicesUnset": {
+            "type": "integer"
+          }
+        }
+      },
+      "ReviewedFieldChoices": {
+        "title": "ReviewedFieldChoices",
+        "type": "object",
+        "properties": {
+          "FieldID": {
+            "type": "integer"
+          },
+          "ReviewedChoices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReviewedChoiceCount"
+            }
+          },
+          "TotalChoicesUnset": {
+            "type": "integer"
+          },
+          "FieldType": {
+            "enum": [
+              "MultipleChoice",
+              "SingleChoice",
+              "YesOrNo"
+            ],
+            "type": "string"
+          }
+        }
+      },
+      "ReviewedChoiceCount": {
+        "title": "ReviewedChoiceCount",
+        "type": "object",
+        "properties": {
+          "ChoiceID": {
+            "type": "integer"
+          },
+          "Count": {
+            "type": "integer"
+          }
+        }
+      },
+      "GetReviewerStatsAsync_RequestBody": {
+        "title": "GetReviewerStatsAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "reviewerStatsDataRequest": {
+            "$ref": "#/components/schemas/ReviewerStatsDataRequest"
+          }
+        }
+      },
+      "ReviewerStatsDataRequest": {
+        "title": "ReviewerStatsDataRequest",
+        "type": "object",
+        "properties": {
+          "StartDate": {
+            "type": "string"
+          },
+          "EndDate": {
+            "type": "string"
+          },
+          "TimeZone": {
+            "type": "number"
+          },
+          "DownTimeThreshold": {
+            "type": "integer"
+          },
+          "NonAdmin": {
+            "type": "boolean"
+          },
+          "AdditionalActions": {
+            "type": "string"
+          }
+        }
+      },
+      "ReviewersStats": {
+        "title": "ReviewersStats",
+        "type": "object",
+        "properties": {
+          "FullName": {
+            "type": "string"
+          },
+          "UserID": {
+            "type": "integer"
+          },
+          "TotalUsageTime": {
+            "type": "string"
+          },
+          "Views": {
+            "type": "integer"
+          },
+          "DistinctViews": {
+            "type": "integer"
+          },
+          "Edits": {
+            "type": "integer"
+          },
+          "DistinctEdits": {
+            "type": "integer"
+          },
+          "EditsPerHour": {
+            "type": "number",
+            "nullable": true
+          },
+          "EditsPerDay": {
+            "type": "number",
+            "nullable": true
+          },
+          "DistinctEditsPerHour": {
+            "type": "number",
+            "nullable": true
+          },
+          "DistinctEditsPerDay": {
+            "type": "number",
+            "nullable": true
+          },
+          "MassEdits": {
+            "type": "integer",
+            "nullable": true
+          },
+          "DistinctMassEdits": {
+            "type": "integer",
+            "nullable": true
+          },
+          "DistinctMassEditsPerHour": {
+            "type": "number",
+            "nullable": true
+          },
+          "DistinctMassEditsPerDay": {
+            "type": "number",
+            "nullable": true
+          },
+          "MassEditsPerHour": {
+            "type": "number",
+            "nullable": true
+          },
+          "MassEditsPerDay": {
+            "type": "number",
+            "nullable": true
+          },
+          "Propagations": {
+            "type": "integer",
+            "nullable": true
+          },
+          "DistinctPropagations": {
+            "type": "integer",
+            "nullable": true
+          },
+          "DistinctMassPropagationsPerHour": {
+            "type": "number",
+            "nullable": true
+          },
+          "DistinctMassPropagationsPerDay": {
+            "type": "number",
+            "nullable": true
+          },
+          "PropagationsPerHour": {
+            "type": "number",
+            "nullable": true
+          },
+          "PropagationsPerDay": {
+            "type": "number",
+            "nullable": true
+          }
+        }
+      },
+      "RevertAuditAsync_RequestBody": {
+        "title": "RevertAuditAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "request": {
+            "$ref": "#/components/schemas/RevertAuditRequest"
+          }
+        }
+      },
+      "RevertAuditRequest": {
+        "title": "RevertAuditRequest",
+        "type": "object",
+        "properties": {
+          "AuditID": {
+            "type": "string"
+          },
+          "Timestamp": {
+            "type": "string"
+          }
+        }
+      },
+      "RevertAuditResponse": {
+        "title": "RevertAuditResponse",
+        "type": "object",
+        "properties": {
+          "Success": {
+            "type": "boolean"
+          },
+          "ValidationResponse": {
+            "$ref": "#/components/schemas/ValidateRevertAuditResponse"
+          },
+          "Message": {
+            "type": "string"
+          }
+        }
+      },
+      "ValidateRevertAuditResponse": {
+        "title": "ValidateRevertAuditResponse",
+        "type": "object",
+        "properties": {
+          "AuditID": {
+            "type": "string"
+          },
+          "Timestamp": {
+            "type": "string"
+          },
+          "IsRevertable": {
+            "type": "boolean"
+          },
+          "Message": {
+            "type": "string"
+          }
+        }
+      },
+      "ValidateRevertAuditAsync_RequestBody": {
+        "title": "ValidateRevertAuditAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "request": {
+            "$ref": "#/components/schemas/RevertAuditRequest"
+          }
+        }
+      },
+      "MassRevertAuditAsync_RequestBody": {
+        "title": "MassRevertAuditAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "request": {
+            "$ref": "#/components/schemas/MassRevertAuditRequest"
+          }
+        }
+      },
+      "MassRevertAuditRequest": {
+        "title": "MassRevertAuditRequest",
+        "type": "object",
+        "properties": {
+          "RevertAuditRequests": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RevertAuditRequest"
+            }
+          }
+        }
+      },
+      "MassRevertAuditResponse": {
+        "title": "MassRevertAuditResponse",
+        "type": "object",
+        "properties": {
+          "Success": {
+            "type": "boolean"
+          },
+          "ValidationResponses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ValidateRevertAuditResponse"
+            }
+          }
+        }
+      },
+      "PivotAsync_RequestBody": {
+        "title": "PivotAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "settings": {
+            "$ref": "#/components/schemas/PivotSettings"
+          },
+          "cancel": {
+            "$ref": "#/components/schemas/CancellationToken"
+          },
+          "progress": {
+            "$ref": "#/components/schemas/IProgress1"
+          }
+        }
+      },
+      "PivotSettings": {
+        "title": "PivotSettings",
+        "type": "object",
+        "properties": {
+          "ObjectSetQuery": {
+            "$ref": "#/components/schemas/Query"
+          },
+          "ArtifactTypeID": {
+            "type": "integer"
+          },
+          "GroupBy": {
+            "$ref": "#/components/schemas/FieldRef"
+          },
+          "PivotOn": {
+            "$ref": "#/components/schemas/FieldRef"
+          },
+          "GroupByDateGrouping": {
+            "enum": [
+              "Date",
+              "Month",
+              "Year",
+              "YearMonth",
+              "Week",
+              "TwoWeeks"
+            ],
+            "type": "string"
+          },
+          "PivotOnDateGrouping": {
+            "enum": [
+              "Date",
+              "Month",
+              "Year",
+              "YearMonth",
+              "Week",
+              "TwoWeeks"
+            ],
+            "type": "string"
+          },
+          "MaximumNumberOfColumns": {
+            "type": "integer"
+          },
+          "MaximumNumberOfRows": {
+            "type": "integer"
+          },
+          "Timeout": {
+            "type": "integer"
+          },
+          "RawDataOnly": {
+            "type": "boolean"
+          },
+          "TimeZone": {
+            "type": "string"
+          },
+          "ConvertNumberFieldValuesToString": {
+            "type": "boolean"
+          }
+        }
+      },
+      "Query": {
+        "title": "Query",
+        "type": "object",
+        "properties": {
+          "Fields": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "Condition": {
+            "type": "string"
+          },
+          "Sorts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "RelationalField": {
+            "type": "string"
+          },
+          "RowCondition": {
+            "type": "string"
+          },
+          "SearchProviderCondition": {
+            "$ref": "#/components/schemas/SearchProviderCondition"
+          },
+          "SampleParameters": {
+            "$ref": "#/components/schemas/SampleParameters"
+          },
+          "IncludeIdWindow": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "TruncateTextFields": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "ConvertNumberFieldValuesToString": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "IsAdHocQuery": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "ExecutingSavedSearchID": {
+            "type": "integer",
+            "nullable": true
+          },
+          "ExecutingViewID": {
+            "type": "integer",
+            "nullable": true
+          },
+          "ActiveArtifactID": {
+            "type": "integer",
+            "nullable": true
+          },
+          "RankSortOrder": {
+            "type": "string"
+          },
+          "QueryHint": {
+            "type": "string"
+          }
+        }
+      },
+      "CancellationToken": {
+        "title": "CancellationToken",
+        "type": "object",
+        "properties": {
+          "None": {
+            "$ref": "#/components/schemas/CancellationToken"
+          },
+          "IsCancellationRequested": {
+            "type": "boolean"
+          },
+          "CanBeCanceled": {
+            "type": "boolean"
+          },
+          "WaitHandle": {
+            "$ref": "#/components/schemas/WaitHandle"
+          }
+        }
+      },
+      "WaitHandle": {
+        "title": "WaitHandle",
+        "type": "object"
+      },
+      "IProgress1": {
+        "title": "IProgress`1",
+        "type": "object"
+      },
+      "PivotResultSet": {
+        "title": "PivotResultSet",
+        "type": "object",
+        "properties": {
+          "Results": {
+            "$ref": "#/components/schemas/DataTable"
+          },
+          "TotalCount": {
+            "type": "integer"
+          },
+          "QueryToken": {
+            "type": "string"
+          },
+          "Success": {
+            "type": "boolean"
+          },
+          "Message": {
+            "type": "string"
+          },
+          "MessageType": {
+            "type": "string"
+          },
+          "PivotIDToDisplayValueMap": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "DataTable": {
+        "title": "DataTable",
+        "type": "object",
+        "properties": {
+          "CaseSensitive": {
+            "type": "boolean"
+          },
+          "IsInitialized": {
+            "type": "boolean"
+          },
+          "RemotingFormat": {
+            "enum": [
+              "Xml",
+              "Binary"
+            ],
+            "type": "string"
+          },
+          "ChildRelations": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "DataRelationCollection"
+            }
+          },
+          "Columns": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "DataColumnCollection"
+            }
+          },
+          "Constraints": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "ConstraintCollection"
+            }
+          },
+          "DataSet": {
+            "$ref": "#/components/schemas/DataSet"
+          },
+          "DefaultView": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "DataView"
+            }
+          },
+          "DisplayExpression": {
+            "type": "string"
+          },
+          "ExtendedProperties": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "PropertyCollection"
+            }
+          },
+          "HasErrors": {
+            "type": "boolean"
+          },
+          "Locale": {
+            "$ref": "#/components/schemas/CultureInfo"
+          },
+          "MinimumCapacity": {
+            "type": "integer"
+          },
+          "ParentRelations": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "DataRelationCollection"
+            }
+          },
+          "PrimaryKey": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DataColumn"
+            }
+          },
+          "Rows": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "DataRowCollection"
+            }
+          },
+          "TableName": {
+            "type": "string"
+          },
+          "Namespace": {
+            "type": "string"
+          },
+          "Prefix": {
+            "type": "string"
+          },
+          "Site": {
+            "$ref": "#/components/schemas/ISite"
+          },
+          "Container": {
+            "$ref": "#/components/schemas/IContainer"
+          },
+          "DesignMode": {
+            "type": "boolean"
+          }
+        }
+      },
+      "DataSet": {
+        "title": "DataSet",
+        "type": "object",
+        "properties": {
+          "RemotingFormat": {
+            "enum": [
+              "Xml",
+              "Binary"
+            ],
+            "type": "string"
+          },
+          "SchemaSerializationMode": {
+            "enum": [
+              "IncludeSchema",
+              "ExcludeSchema"
+            ],
+            "type": "string"
+          },
+          "CaseSensitive": {
+            "type": "boolean"
+          },
+          "DefaultViewManager": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "DataViewManager"
+            }
+          },
+          "EnforceConstraints": {
+            "type": "boolean"
+          },
+          "DataSetName": {
+            "type": "string"
+          },
+          "Namespace": {
+            "type": "string"
+          },
+          "Prefix": {
+            "type": "string"
+          },
+          "ExtendedProperties": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "PropertyCollection"
+            }
+          },
+          "HasErrors": {
+            "type": "boolean"
+          },
+          "IsInitialized": {
+            "type": "boolean"
+          },
+          "Locale": {
+            "$ref": "#/components/schemas/CultureInfo"
+          },
+          "Site": {
+            "$ref": "#/components/schemas/ISite"
+          },
+          "Relations": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "DataRelationCollection"
+            }
+          },
+          "Tables": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "DataTableCollection"
+            }
+          },
+          "Container": {
+            "$ref": "#/components/schemas/IContainer"
+          },
+          "DesignMode": {
+            "type": "boolean"
+          }
+        }
+      },
+      "CultureInfo": {
+        "title": "CultureInfo",
+        "type": "object",
+        "properties": {
+          "CurrentCulture": {
+            "$ref": "#/components/schemas/CultureInfo"
+          },
+          "CurrentUICulture": {
+            "$ref": "#/components/schemas/CultureInfo"
+          },
+          "InstalledUICulture": {
+            "$ref": "#/components/schemas/CultureInfo"
+          },
+          "DefaultThreadCurrentCulture": {
+            "$ref": "#/components/schemas/CultureInfo"
+          },
+          "DefaultThreadCurrentUICulture": {
+            "$ref": "#/components/schemas/CultureInfo"
+          },
+          "InvariantCulture": {
+            "$ref": "#/components/schemas/CultureInfo"
+          },
+          "Parent": {
+            "$ref": "#/components/schemas/CultureInfo"
+          },
+          "LCID": {
+            "type": "integer"
+          },
+          "KeyboardLayoutId": {
+            "type": "integer"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "IetfLanguageTag": {
+            "type": "string"
+          },
+          "DisplayName": {
+            "type": "string"
+          },
+          "NativeName": {
+            "type": "string"
+          },
+          "EnglishName": {
+            "type": "string"
+          },
+          "TwoLetterISOLanguageName": {
+            "type": "string"
+          },
+          "ThreeLetterISOLanguageName": {
+            "type": "string"
+          },
+          "ThreeLetterWindowsLanguageName": {
+            "type": "string"
+          },
+          "CompareInfo": {
+            "$ref": "#/components/schemas/CompareInfo"
+          },
+          "TextInfo": {
+            "$ref": "#/components/schemas/TextInfo"
+          },
+          "IsNeutralCulture": {
+            "type": "boolean"
+          },
+          "CultureTypes": {
+            "enum": [
+              "NeutralCultures",
+              "SpecificCultures",
+              "InstalledWin32Cultures",
+              "AllCultures",
+              "UserCustomCulture",
+              "ReplacementCultures",
+              "WindowsOnlyCultures",
+              "FrameworkCultures"
+            ],
+            "type": "string"
+          },
+          "NumberFormat": {
+            "$ref": "#/components/schemas/NumberFormatInfo"
+          },
+          "DateTimeFormat": {
+            "$ref": "#/components/schemas/DateTimeFormatInfo"
+          },
+          "Calendar": {
+            "$ref": "#/components/schemas/Calendar"
+          },
+          "OptionalCalendars": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Calendar"
+            }
+          },
+          "UseUserOverride": {
+            "type": "boolean"
+          },
+          "IsReadOnly": {
+            "type": "boolean"
+          }
+        }
+      },
+      "CompareInfo": {
+        "title": "CompareInfo",
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string"
+          },
+          "LCID": {
+            "type": "integer"
+          },
+          "Version": {
+            "$ref": "#/components/schemas/SortVersion"
+          }
+        }
+      },
+      "SortVersion": {
+        "title": "SortVersion",
+        "type": "object",
+        "properties": {
+          "FullVersion": {
+            "type": "integer"
+          },
+          "SortId": {
+            "type": "string"
+          }
+        }
+      },
+      "TextInfo": {
+        "title": "TextInfo",
+        "type": "object",
+        "properties": {
+          "ANSICodePage": {
+            "type": "integer"
+          },
+          "OEMCodePage": {
+            "type": "integer"
+          },
+          "MacCodePage": {
+            "type": "integer"
+          },
+          "EBCDICCodePage": {
+            "type": "integer"
+          },
+          "LCID": {
+            "type": "integer"
+          },
+          "CultureName": {
+            "type": "string"
+          },
+          "IsReadOnly": {
+            "type": "boolean"
+          },
+          "ListSeparator": {
+            "type": "string"
+          },
+          "IsRightToLeft": {
+            "type": "boolean"
+          }
+        }
+      },
+      "NumberFormatInfo": {
+        "title": "NumberFormatInfo",
+        "type": "object",
+        "properties": {
+          "InvariantInfo": {
+            "$ref": "#/components/schemas/NumberFormatInfo"
+          },
+          "CurrencyDecimalDigits": {
+            "type": "integer"
+          },
+          "CurrencyDecimalSeparator": {
+            "type": "string"
+          },
+          "IsReadOnly": {
+            "type": "boolean"
+          },
+          "CurrencyGroupSizes": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "NumberGroupSizes": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "PercentGroupSizes": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "CurrencyGroupSeparator": {
+            "type": "string"
+          },
+          "CurrencySymbol": {
+            "type": "string"
+          },
+          "CurrentInfo": {
+            "$ref": "#/components/schemas/NumberFormatInfo"
+          },
+          "NaNSymbol": {
+            "type": "string"
+          },
+          "CurrencyNegativePattern": {
+            "type": "integer"
+          },
+          "NumberNegativePattern": {
+            "type": "integer"
+          },
+          "PercentPositivePattern": {
+            "type": "integer"
+          },
+          "PercentNegativePattern": {
+            "type": "integer"
+          },
+          "NegativeInfinitySymbol": {
+            "type": "string"
+          },
+          "NegativeSign": {
+            "type": "string"
+          },
+          "NumberDecimalDigits": {
+            "type": "integer"
+          },
+          "NumberDecimalSeparator": {
+            "type": "string"
+          },
+          "NumberGroupSeparator": {
+            "type": "string"
+          },
+          "CurrencyPositivePattern": {
+            "type": "integer"
+          },
+          "PositiveInfinitySymbol": {
+            "type": "string"
+          },
+          "PositiveSign": {
+            "type": "string"
+          },
+          "PercentDecimalDigits": {
+            "type": "integer"
+          },
+          "PercentDecimalSeparator": {
+            "type": "string"
+          },
+          "PercentGroupSeparator": {
+            "type": "string"
+          },
+          "PercentSymbol": {
+            "type": "string"
+          },
+          "PerMilleSymbol": {
+            "type": "string"
+          },
+          "NativeDigits": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "DigitSubstitution": {
+            "enum": [
+              "Context",
+              "None",
+              "NativeNational"
+            ],
+            "type": "string"
+          }
+        }
+      },
+      "DateTimeFormatInfo": {
+        "title": "DateTimeFormatInfo",
+        "type": "object",
+        "properties": {
+          "InvariantInfo": {
+            "$ref": "#/components/schemas/DateTimeFormatInfo"
+          },
+          "CurrentInfo": {
+            "$ref": "#/components/schemas/DateTimeFormatInfo"
+          },
+          "AMDesignator": {
+            "type": "string"
+          },
+          "Calendar": {
+            "$ref": "#/components/schemas/Calendar"
+          },
+          "DateSeparator": {
+            "type": "string"
+          },
+          "FirstDayOfWeek": {
+            "enum": [
+              "Sunday",
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday"
+            ],
+            "type": "string"
+          },
+          "CalendarWeekRule": {
+            "enum": [
+              "FirstDay",
+              "FirstFullWeek",
+              "FirstFourDayWeek"
+            ],
+            "type": "string"
+          },
+          "FullDateTimePattern": {
+            "type": "string"
+          },
+          "LongDatePattern": {
+            "type": "string"
+          },
+          "LongTimePattern": {
+            "type": "string"
+          },
+          "MonthDayPattern": {
+            "type": "string"
+          },
+          "PMDesignator": {
+            "type": "string"
+          },
+          "RFC1123Pattern": {
+            "type": "string"
+          },
+          "ShortDatePattern": {
+            "type": "string"
+          },
+          "ShortTimePattern": {
+            "type": "string"
+          },
+          "SortableDateTimePattern": {
+            "type": "string"
+          },
+          "TimeSeparator": {
+            "type": "string"
+          },
+          "UniversalSortableDateTimePattern": {
+            "type": "string"
+          },
+          "YearMonthPattern": {
+            "type": "string"
+          },
+          "AbbreviatedDayNames": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "ShortestDayNames": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "DayNames": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "AbbreviatedMonthNames": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "MonthNames": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "IsReadOnly": {
+            "type": "boolean"
+          },
+          "NativeCalendarName": {
+            "type": "string"
+          },
+          "AbbreviatedMonthGenitiveNames": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "MonthGenitiveNames": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "Calendar": {
+        "title": "Calendar",
+        "type": "object",
+        "properties": {
+          "MinSupportedDateTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "MaxSupportedDateTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "AlgorithmType": {
+            "enum": [
+              "Unknown",
+              "SolarCalendar",
+              "LunarCalendar",
+              "LunisolarCalendar"
+            ],
+            "type": "string"
+          },
+          "IsReadOnly": {
+            "type": "boolean"
+          },
+          "Eras": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "TwoDigitYearMax": {
+            "type": "integer"
+          }
+        }
+      },
+      "ISite": {
+        "title": "ISite",
+        "type": "object",
+        "properties": {
+          "Component": {
+            "$ref": "#/components/schemas/IComponent"
+          },
+          "Container": {
+            "$ref": "#/components/schemas/IContainer"
+          },
+          "DesignMode": {
+            "type": "boolean"
+          },
+          "Name": {
+            "type": "string"
+          }
+        }
+      },
+      "IComponent": {
+        "title": "IComponent",
+        "type": "object",
+        "properties": {
+          "Site": {
+            "$ref": "#/components/schemas/ISite"
+          }
+        }
+      },
+      "IContainer": {
+        "title": "IContainer",
+        "type": "object",
+        "properties": {
+          "Components": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "ComponentCollection"
+            }
+          }
+        }
+      },
+      "DataColumn": {
+        "title": "DataColumn",
+        "type": "object",
+        "properties": {
+          "AllowDBNull": {
+            "type": "boolean"
+          },
+          "AutoIncrement": {
+            "type": "boolean"
+          },
+          "AutoIncrementSeed": {
+            "type": "integer"
+          },
+          "AutoIncrementStep": {
+            "type": "integer"
+          },
+          "Caption": {
+            "type": "string"
+          },
+          "ColumnName": {
+            "type": "string"
+          },
+          "Prefix": {
+            "type": "string"
+          },
+          "DataType": {
+            "$ref": "#/components/schemas/Type"
+          },
+          "DateTimeMode": {
+            "enum": [
+              "Local",
+              "Unspecified",
+              "UnspecifiedLocal",
+              "Utc"
+            ],
+            "type": "string"
+          },
+          "DefaultValue": {
+            "$ref": "#/components/schemas/Object"
+          },
+          "Expression": {
+            "type": "string"
+          },
+          "ExtendedProperties": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "PropertyCollection"
+            }
+          },
+          "MaxLength": {
+            "type": "integer"
+          },
+          "Namespace": {
+            "type": "string"
+          },
+          "Ordinal": {
+            "type": "integer"
+          },
+          "ReadOnly": {
+            "type": "boolean"
+          },
+          "Table": {
+            "$ref": "#/components/schemas/DataTable"
+          },
+          "Unique": {
+            "type": "boolean"
+          },
+          "ColumnMapping": {
+            "enum": [
+              "Element",
+              "Attribute",
+              "SimpleContent",
+              "Hidden"
+            ],
+            "type": "string"
+          },
+          "Site": {
+            "$ref": "#/components/schemas/ISite"
+          },
+          "Container": {
+            "$ref": "#/components/schemas/IContainer"
+          },
+          "DesignMode": {
+            "type": "boolean"
+          }
+        }
+      },
+      "Type": {
+        "title": "Type",
+        "type": "object",
+        "properties": {
+          "MemberType": {
+            "enum": [
+              "Constructor",
+              "Event",
+              "Field",
+              "Method",
+              "Property",
+              "TypeInfo",
+              "Custom",
+              "NestedType",
+              "All"
+            ],
+            "type": "string"
+          },
+          "DeclaringType": {
+            "$ref": "#/components/schemas/Type"
+          },
+          "DeclaringMethod": {
+            "$ref": "#/components/schemas/MethodBase"
+          },
+          "ReflectedType": {
+            "$ref": "#/components/schemas/Type"
+          },
+          "StructLayoutAttribute": {
+            "$ref": "#/components/schemas/StructLayoutAttribute"
+          },
+          "GUID": {
+            "type": "string"
+          },
+          "DefaultBinder": {
+            "$ref": "#/components/schemas/Binder"
+          },
+          "Module": {
+            "$ref": "#/components/schemas/Module"
+          },
+          "Assembly": {
+            "$ref": "#/components/schemas/Assembly"
+          },
+          "TypeHandle": {
+            "$ref": "#/components/schemas/RuntimeTypeHandle"
+          },
+          "FullName": {
+            "type": "string"
+          },
+          "Namespace": {
+            "type": "string"
+          },
+          "AssemblyQualifiedName": {
+            "type": "string"
+          },
+          "BaseType": {
+            "$ref": "#/components/schemas/Type"
+          },
+          "TypeInitializer": {
+            "$ref": "#/components/schemas/ConstructorInfo"
+          },
+          "IsNested": {
+            "type": "boolean"
+          },
+          "Attributes": {
+            "enum": [
+              "NotPublic",
+              "AutoLayout",
+              "AnsiClass",
+              "Class",
+              "Public",
+              "NestedPublic",
+              "NestedPrivate",
+              "NestedFamily",
+              "NestedAssembly",
+              "NestedFamANDAssem",
+              "NestedFamORAssem",
+              "VisibilityMask",
+              "SequentialLayout",
+              "ExplicitLayout",
+              "LayoutMask",
+              "Interface",
+              "ClassSemanticsMask",
+              "Abstract",
+              "Sealed",
+              "SpecialName",
+              "RTSpecialName",
+              "Import",
+              "Serializable",
+              "WindowsRuntime",
+              "UnicodeClass",
+              "AutoClass",
+              "StringFormatMask",
+              "CustomFormatClass",
+              "HasSecurity",
+              "ReservedMask",
+              "BeforeFieldInit",
+              "CustomFormatMask"
+            ],
+            "type": "string"
+          },
+          "GenericParameterAttributes": {
+            "enum": [
+              "None",
+              "Covariant",
+              "Contravariant",
+              "VarianceMask",
+              "ReferenceTypeConstraint",
+              "NotNullableValueTypeConstraint",
+              "DefaultConstructorConstraint",
+              "SpecialConstraintMask"
+            ],
+            "type": "string"
+          },
+          "IsVisible": {
+            "type": "boolean"
+          },
+          "IsNotPublic": {
+            "type": "boolean"
+          },
+          "IsPublic": {
+            "type": "boolean"
+          },
+          "IsNestedPublic": {
+            "type": "boolean"
+          },
+          "IsNestedPrivate": {
+            "type": "boolean"
+          },
+          "IsNestedFamily": {
+            "type": "boolean"
+          },
+          "IsNestedAssembly": {
+            "type": "boolean"
+          },
+          "IsNestedFamANDAssem": {
+            "type": "boolean"
+          },
+          "IsNestedFamORAssem": {
+            "type": "boolean"
+          },
+          "IsAutoLayout": {
+            "type": "boolean"
+          },
+          "IsLayoutSequential": {
+            "type": "boolean"
+          },
+          "IsExplicitLayout": {
+            "type": "boolean"
+          },
+          "IsClass": {
+            "type": "boolean"
+          },
+          "IsInterface": {
+            "type": "boolean"
+          },
+          "IsValueType": {
+            "type": "boolean"
+          },
+          "IsAbstract": {
+            "type": "boolean"
+          },
+          "IsSealed": {
+            "type": "boolean"
+          },
+          "IsEnum": {
+            "type": "boolean"
+          },
+          "IsSpecialName": {
+            "type": "boolean"
+          },
+          "IsImport": {
+            "type": "boolean"
+          },
+          "IsSerializable": {
+            "type": "boolean"
+          },
+          "IsAnsiClass": {
+            "type": "boolean"
+          },
+          "IsUnicodeClass": {
+            "type": "boolean"
+          },
+          "IsAutoClass": {
+            "type": "boolean"
+          },
+          "IsArray": {
+            "type": "boolean"
+          },
+          "IsGenericType": {
+            "type": "boolean"
+          },
+          "IsGenericTypeDefinition": {
+            "type": "boolean"
+          },
+          "IsConstructedGenericType": {
+            "type": "boolean"
+          },
+          "IsGenericParameter": {
+            "type": "boolean"
+          },
+          "GenericParameterPosition": {
+            "type": "integer"
+          },
+          "ContainsGenericParameters": {
+            "type": "boolean"
+          },
+          "IsByRef": {
+            "type": "boolean"
+          },
+          "IsPointer": {
+            "type": "boolean"
+          },
+          "IsPrimitive": {
+            "type": "boolean"
+          },
+          "IsCOMObject": {
+            "type": "boolean"
+          },
+          "HasElementType": {
+            "type": "boolean"
+          },
+          "IsContextful": {
+            "type": "boolean"
+          },
+          "IsMarshalByRef": {
+            "type": "boolean"
+          },
+          "GenericTypeArguments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Type"
+            }
+          },
+          "IsSecurityCritical": {
+            "type": "boolean"
+          },
+          "IsSecuritySafeCritical": {
+            "type": "boolean"
+          },
+          "IsSecurityTransparent": {
+            "type": "boolean"
+          },
+          "UnderlyingSystemType": {
+            "$ref": "#/components/schemas/Type"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "CustomAttributes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomAttributeData"
+            }
+          },
+          "MetadataToken": {
+            "type": "integer"
+          }
+        }
+      },
+      "MethodBase": {
+        "title": "MethodBase",
+        "type": "object",
+        "properties": {
+          "MethodImplementationFlags": {
+            "enum": [
+              "IL",
+              "Managed",
+              "Native",
+              "OPTIL",
+              "Runtime",
+              "CodeTypeMask",
+              "Unmanaged",
+              "ManagedMask",
+              "NoInlining",
+              "ForwardRef",
+              "Synchronized",
+              "NoOptimization",
+              "PreserveSig",
+              "AggressiveInlining",
+              "SecurityMitigations",
+              "InternalCall",
+              "MaxMethodImplVal"
+            ],
+            "type": "string"
+          },
+          "MethodHandle": {
+            "$ref": "#/components/schemas/RuntimeMethodHandle"
+          },
+          "Attributes": {
+            "enum": [
+              "ReuseSlot",
+              "PrivateScope",
+              "Private",
+              "FamANDAssem",
+              "Assembly",
+              "Family",
+              "FamORAssem",
+              "Public",
+              "MemberAccessMask",
+              "UnmanagedExport",
+              "Static",
+              "Final",
+              "Virtual",
+              "HideBySig",
+              "NewSlot",
+              "VtableLayoutMask",
+              "CheckAccessOnOverride",
+              "Abstract",
+              "SpecialName",
+              "RTSpecialName",
+              "PinvokeImpl",
+              "HasSecurity",
+              "RequireSecObject",
+              "ReservedMask"
+            ],
+            "type": "string"
+          },
+          "CallingConvention": {
+            "enum": [
+              "Standard",
+              "VarArgs",
+              "Any",
+              "HasThis",
+              "ExplicitThis"
+            ],
+            "type": "string"
+          },
+          "IsGenericMethodDefinition": {
+            "type": "boolean"
+          },
+          "ContainsGenericParameters": {
+            "type": "boolean"
+          },
+          "IsGenericMethod": {
+            "type": "boolean"
+          },
+          "IsSecurityCritical": {
+            "type": "boolean"
+          },
+          "IsSecuritySafeCritical": {
+            "type": "boolean"
+          },
+          "IsSecurityTransparent": {
+            "type": "boolean"
+          },
+          "IsPublic": {
+            "type": "boolean"
+          },
+          "IsPrivate": {
+            "type": "boolean"
+          },
+          "IsFamily": {
+            "type": "boolean"
+          },
+          "IsAssembly": {
+            "type": "boolean"
+          },
+          "IsFamilyAndAssembly": {
+            "type": "boolean"
+          },
+          "IsFamilyOrAssembly": {
+            "type": "boolean"
+          },
+          "IsStatic": {
+            "type": "boolean"
+          },
+          "IsFinal": {
+            "type": "boolean"
+          },
+          "IsVirtual": {
+            "type": "boolean"
+          },
+          "IsHideBySig": {
+            "type": "boolean"
+          },
+          "IsAbstract": {
+            "type": "boolean"
+          },
+          "IsSpecialName": {
+            "type": "boolean"
+          },
+          "IsConstructor": {
+            "type": "boolean"
+          },
+          "MemberType": {
+            "enum": [
+              "Constructor",
+              "Event",
+              "Field",
+              "Method",
+              "Property",
+              "TypeInfo",
+              "Custom",
+              "NestedType",
+              "All"
+            ],
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "DeclaringType": {
+            "$ref": "#/components/schemas/Type"
+          },
+          "ReflectedType": {
+            "$ref": "#/components/schemas/Type"
+          },
+          "CustomAttributes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomAttributeData"
+            }
+          },
+          "MetadataToken": {
+            "type": "integer"
+          },
+          "Module": {
+            "$ref": "#/components/schemas/Module"
+          }
+        }
+      },
+      "RuntimeMethodHandle": {
+        "title": "RuntimeMethodHandle",
+        "type": "object",
+        "properties": {
+          "Value": {
+            "$ref": "#/components/schemas/IntPtr"
+          }
+        }
+      },
+      "IntPtr": {
+        "title": "IntPtr",
+        "type": "object"
+      },
+      "CustomAttributeData": {
+        "title": "CustomAttributeData",
+        "type": "object",
+        "properties": {
+          "AttributeType": {
+            "$ref": "#/components/schemas/Type"
+          },
+          "Constructor": {
+            "$ref": "#/components/schemas/ConstructorInfo"
+          },
+          "ConstructorArguments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomAttributeTypedArgument"
+            }
+          },
+          "NamedArguments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomAttributeNamedArgument"
+            }
+          }
+        }
+      },
+      "ConstructorInfo": {
+        "title": "ConstructorInfo",
+        "type": "object",
+        "properties": {
+          "MemberType": {
+            "enum": [
+              "Constructor",
+              "Event",
+              "Field",
+              "Method",
+              "Property",
+              "TypeInfo",
+              "Custom",
+              "NestedType",
+              "All"
+            ],
+            "type": "string"
+          },
+          "MethodImplementationFlags": {
+            "enum": [
+              "IL",
+              "Managed",
+              "Native",
+              "OPTIL",
+              "Runtime",
+              "CodeTypeMask",
+              "Unmanaged",
+              "ManagedMask",
+              "NoInlining",
+              "ForwardRef",
+              "Synchronized",
+              "NoOptimization",
+              "PreserveSig",
+              "AggressiveInlining",
+              "SecurityMitigations",
+              "InternalCall",
+              "MaxMethodImplVal"
+            ],
+            "type": "string"
+          },
+          "MethodHandle": {
+            "$ref": "#/components/schemas/RuntimeMethodHandle"
+          },
+          "Attributes": {
+            "enum": [
+              "ReuseSlot",
+              "PrivateScope",
+              "Private",
+              "FamANDAssem",
+              "Assembly",
+              "Family",
+              "FamORAssem",
+              "Public",
+              "MemberAccessMask",
+              "UnmanagedExport",
+              "Static",
+              "Final",
+              "Virtual",
+              "HideBySig",
+              "NewSlot",
+              "VtableLayoutMask",
+              "CheckAccessOnOverride",
+              "Abstract",
+              "SpecialName",
+              "RTSpecialName",
+              "PinvokeImpl",
+              "HasSecurity",
+              "RequireSecObject",
+              "ReservedMask"
+            ],
+            "type": "string"
+          },
+          "CallingConvention": {
+            "enum": [
+              "Standard",
+              "VarArgs",
+              "Any",
+              "HasThis",
+              "ExplicitThis"
+            ],
+            "type": "string"
+          },
+          "IsGenericMethodDefinition": {
+            "type": "boolean"
+          },
+          "ContainsGenericParameters": {
+            "type": "boolean"
+          },
+          "IsGenericMethod": {
+            "type": "boolean"
+          },
+          "IsSecurityCritical": {
+            "type": "boolean"
+          },
+          "IsSecuritySafeCritical": {
+            "type": "boolean"
+          },
+          "IsSecurityTransparent": {
+            "type": "boolean"
+          },
+          "IsPublic": {
+            "type": "boolean"
+          },
+          "IsPrivate": {
+            "type": "boolean"
+          },
+          "IsFamily": {
+            "type": "boolean"
+          },
+          "IsAssembly": {
+            "type": "boolean"
+          },
+          "IsFamilyAndAssembly": {
+            "type": "boolean"
+          },
+          "IsFamilyOrAssembly": {
+            "type": "boolean"
+          },
+          "IsStatic": {
+            "type": "boolean"
+          },
+          "IsFinal": {
+            "type": "boolean"
+          },
+          "IsVirtual": {
+            "type": "boolean"
+          },
+          "IsHideBySig": {
+            "type": "boolean"
+          },
+          "IsAbstract": {
+            "type": "boolean"
+          },
+          "IsSpecialName": {
+            "type": "boolean"
+          },
+          "IsConstructor": {
+            "type": "boolean"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "DeclaringType": {
+            "$ref": "#/components/schemas/Type"
+          },
+          "ReflectedType": {
+            "$ref": "#/components/schemas/Type"
+          },
+          "CustomAttributes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomAttributeData"
+            }
+          },
+          "MetadataToken": {
+            "type": "integer"
+          },
+          "Module": {
+            "$ref": "#/components/schemas/Module"
+          }
+        }
+      },
+      "Module": {
+        "title": "Module",
+        "type": "object",
+        "properties": {
+          "CustomAttributes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomAttributeData"
+            }
+          },
+          "MDStreamVersion": {
+            "type": "integer"
+          },
+          "FullyQualifiedName": {
+            "type": "string"
+          },
+          "ModuleVersionId": {
+            "type": "string"
+          },
+          "MetadataToken": {
+            "type": "integer"
+          },
+          "ScopeName": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "Assembly": {
+            "$ref": "#/components/schemas/Assembly"
+          },
+          "ModuleHandle": {
+            "$ref": "#/components/schemas/ModuleHandle"
+          }
+        }
+      },
+      "Assembly": {
+        "title": "Assembly",
+        "type": "object",
+        "properties": {
+          "CodeBase": {
+            "type": "string"
+          },
+          "EscapedCodeBase": {
+            "type": "string"
+          },
+          "FullName": {
+            "type": "string"
+          },
+          "EntryPoint": {
+            "$ref": "#/components/schemas/MethodInfo"
+          },
+          "ExportedTypes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Type"
+            }
+          },
+          "DefinedTypes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TypeInfo"
+            }
+          },
+          "Evidence": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "Evidence"
+            }
+          },
+          "PermissionSet": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "PermissionSet"
+            }
+          },
+          "IsFullyTrusted": {
+            "type": "boolean"
+          },
+          "SecurityRuleSet": {
+            "enum": [
+              "None",
+              "Level1",
+              "Level2"
+            ],
+            "type": "string"
+          },
+          "ManifestModule": {
+            "$ref": "#/components/schemas/Module"
+          },
+          "CustomAttributes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomAttributeData"
+            }
+          },
+          "ReflectionOnly": {
+            "type": "boolean"
+          },
+          "Modules": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Module"
+            }
+          },
+          "Location": {
+            "type": "string"
+          },
+          "ImageRuntimeVersion": {
+            "type": "string"
+          },
+          "GlobalAssemblyCache": {
+            "type": "boolean"
+          },
+          "HostContext": {
+            "type": "integer"
+          },
+          "IsDynamic": {
+            "type": "boolean"
+          }
+        }
+      },
+      "MethodInfo": {
+        "title": "MethodInfo",
+        "type": "object",
+        "properties": {
+          "MemberType": {
+            "enum": [
+              "Constructor",
+              "Event",
+              "Field",
+              "Method",
+              "Property",
+              "TypeInfo",
+              "Custom",
+              "NestedType",
+              "All"
+            ],
+            "type": "string"
+          },
+          "ReturnType": {
+            "$ref": "#/components/schemas/Type"
+          },
+          "ReturnParameter": {
+            "$ref": "#/components/schemas/ParameterInfo"
+          },
+          "ReturnTypeCustomAttributes": {
+            "$ref": "#/components/schemas/ICustomAttributeProvider"
+          },
+          "MethodImplementationFlags": {
+            "enum": [
+              "IL",
+              "Managed",
+              "Native",
+              "OPTIL",
+              "Runtime",
+              "CodeTypeMask",
+              "Unmanaged",
+              "ManagedMask",
+              "NoInlining",
+              "ForwardRef",
+              "Synchronized",
+              "NoOptimization",
+              "PreserveSig",
+              "AggressiveInlining",
+              "SecurityMitigations",
+              "InternalCall",
+              "MaxMethodImplVal"
+            ],
+            "type": "string"
+          },
+          "MethodHandle": {
+            "$ref": "#/components/schemas/RuntimeMethodHandle"
+          },
+          "Attributes": {
+            "enum": [
+              "ReuseSlot",
+              "PrivateScope",
+              "Private",
+              "FamANDAssem",
+              "Assembly",
+              "Family",
+              "FamORAssem",
+              "Public",
+              "MemberAccessMask",
+              "UnmanagedExport",
+              "Static",
+              "Final",
+              "Virtual",
+              "HideBySig",
+              "NewSlot",
+              "VtableLayoutMask",
+              "CheckAccessOnOverride",
+              "Abstract",
+              "SpecialName",
+              "RTSpecialName",
+              "PinvokeImpl",
+              "HasSecurity",
+              "RequireSecObject",
+              "ReservedMask"
+            ],
+            "type": "string"
+          },
+          "CallingConvention": {
+            "enum": [
+              "Standard",
+              "VarArgs",
+              "Any",
+              "HasThis",
+              "ExplicitThis"
+            ],
+            "type": "string"
+          },
+          "IsGenericMethodDefinition": {
+            "type": "boolean"
+          },
+          "ContainsGenericParameters": {
+            "type": "boolean"
+          },
+          "IsGenericMethod": {
+            "type": "boolean"
+          },
+          "IsSecurityCritical": {
+            "type": "boolean"
+          },
+          "IsSecuritySafeCritical": {
+            "type": "boolean"
+          },
+          "IsSecurityTransparent": {
+            "type": "boolean"
+          },
+          "IsPublic": {
+            "type": "boolean"
+          },
+          "IsPrivate": {
+            "type": "boolean"
+          },
+          "IsFamily": {
+            "type": "boolean"
+          },
+          "IsAssembly": {
+            "type": "boolean"
+          },
+          "IsFamilyAndAssembly": {
+            "type": "boolean"
+          },
+          "IsFamilyOrAssembly": {
+            "type": "boolean"
+          },
+          "IsStatic": {
+            "type": "boolean"
+          },
+          "IsFinal": {
+            "type": "boolean"
+          },
+          "IsVirtual": {
+            "type": "boolean"
+          },
+          "IsHideBySig": {
+            "type": "boolean"
+          },
+          "IsAbstract": {
+            "type": "boolean"
+          },
+          "IsSpecialName": {
+            "type": "boolean"
+          },
+          "IsConstructor": {
+            "type": "boolean"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "DeclaringType": {
+            "$ref": "#/components/schemas/Type"
+          },
+          "ReflectedType": {
+            "$ref": "#/components/schemas/Type"
+          },
+          "CustomAttributes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomAttributeData"
+            }
+          },
+          "MetadataToken": {
+            "type": "integer"
+          },
+          "Module": {
+            "$ref": "#/components/schemas/Module"
+          }
+        }
+      },
+      "ParameterInfo": {
+        "title": "ParameterInfo",
+        "type": "object",
+        "properties": {
+          "ParameterType": {
+            "$ref": "#/components/schemas/Type"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "HasDefaultValue": {
+            "type": "boolean"
+          },
+          "DefaultValue": {
+            "$ref": "#/components/schemas/Object"
+          },
+          "RawDefaultValue": {
+            "$ref": "#/components/schemas/Object"
+          },
+          "Position": {
+            "type": "integer"
+          },
+          "Attributes": {
+            "enum": [
+              "None",
+              "In",
+              "Out",
+              "Lcid",
+              "Retval",
+              "Optional",
+              "HasDefault",
+              "HasFieldMarshal",
+              "Reserved3",
+              "Reserved4",
+              "ReservedMask"
+            ],
+            "type": "string"
+          },
+          "Member": {
+            "$ref": "#/components/schemas/MemberInfo"
+          },
+          "IsIn": {
+            "type": "boolean"
+          },
+          "IsOut": {
+            "type": "boolean"
+          },
+          "IsLcid": {
+            "type": "boolean"
+          },
+          "IsRetval": {
+            "type": "boolean"
+          },
+          "IsOptional": {
+            "type": "boolean"
+          },
+          "MetadataToken": {
+            "type": "integer"
+          },
+          "CustomAttributes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomAttributeData"
+            }
+          }
+        }
+      },
+      "MemberInfo": {
+        "title": "MemberInfo",
+        "type": "object",
+        "properties": {
+          "MemberType": {
+            "enum": [
+              "Constructor",
+              "Event",
+              "Field",
+              "Method",
+              "Property",
+              "TypeInfo",
+              "Custom",
+              "NestedType",
+              "All"
+            ],
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "DeclaringType": {
+            "$ref": "#/components/schemas/Type"
+          },
+          "ReflectedType": {
+            "$ref": "#/components/schemas/Type"
+          },
+          "CustomAttributes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomAttributeData"
+            }
+          },
+          "MetadataToken": {
+            "type": "integer"
+          },
+          "Module": {
+            "$ref": "#/components/schemas/Module"
+          }
+        }
+      },
+      "ICustomAttributeProvider": {
+        "title": "ICustomAttributeProvider",
+        "type": "object"
+      },
+      "TypeInfo": {
+        "title": "TypeInfo",
+        "type": "object",
+        "properties": {
+          "GenericTypeParameters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Type"
+            }
+          },
+          "DeclaredConstructors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ConstructorInfo"
+            }
+          },
+          "DeclaredEvents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EventInfo"
+            }
+          },
+          "DeclaredFields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FieldInfo"
+            }
+          },
+          "DeclaredMembers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MemberInfo"
+            }
+          },
+          "DeclaredMethods": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MethodInfo"
+            }
+          },
+          "DeclaredNestedTypes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TypeInfo"
+            }
+          },
+          "DeclaredProperties": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PropertyInfo"
+            }
+          },
+          "ImplementedInterfaces": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Type"
+            }
+          },
+          "MemberType": {
+            "enum": [
+              "Constructor",
+              "Event",
+              "Field",
+              "Method",
+              "Property",
+              "TypeInfo",
+              "Custom",
+              "NestedType",
+              "All"
+            ],
+            "type": "string"
+          },
+          "DeclaringType": {
+            "$ref": "#/components/schemas/Type"
+          },
+          "DeclaringMethod": {
+            "$ref": "#/components/schemas/MethodBase"
+          },
+          "ReflectedType": {
+            "$ref": "#/components/schemas/Type"
+          },
+          "StructLayoutAttribute": {
+            "$ref": "#/components/schemas/StructLayoutAttribute"
+          },
+          "GUID": {
+            "type": "string"
+          },
+          "Module": {
+            "$ref": "#/components/schemas/Module"
+          },
+          "Assembly": {
+            "$ref": "#/components/schemas/Assembly"
+          },
+          "TypeHandle": {
+            "$ref": "#/components/schemas/RuntimeTypeHandle"
+          },
+          "FullName": {
+            "type": "string"
+          },
+          "Namespace": {
+            "type": "string"
+          },
+          "AssemblyQualifiedName": {
+            "type": "string"
+          },
+          "BaseType": {
+            "$ref": "#/components/schemas/Type"
+          },
+          "TypeInitializer": {
+            "$ref": "#/components/schemas/ConstructorInfo"
+          },
+          "IsNested": {
+            "type": "boolean"
+          },
+          "Attributes": {
+            "enum": [
+              "NotPublic",
+              "AutoLayout",
+              "AnsiClass",
+              "Class",
+              "Public",
+              "NestedPublic",
+              "NestedPrivate",
+              "NestedFamily",
+              "NestedAssembly",
+              "NestedFamANDAssem",
+              "NestedFamORAssem",
+              "VisibilityMask",
+              "SequentialLayout",
+              "ExplicitLayout",
+              "LayoutMask",
+              "Interface",
+              "ClassSemanticsMask",
+              "Abstract",
+              "Sealed",
+              "SpecialName",
+              "RTSpecialName",
+              "Import",
+              "Serializable",
+              "WindowsRuntime",
+              "UnicodeClass",
+              "AutoClass",
+              "StringFormatMask",
+              "CustomFormatClass",
+              "HasSecurity",
+              "ReservedMask",
+              "BeforeFieldInit",
+              "CustomFormatMask"
+            ],
+            "type": "string"
+          },
+          "GenericParameterAttributes": {
+            "enum": [
+              "None",
+              "Covariant",
+              "Contravariant",
+              "VarianceMask",
+              "ReferenceTypeConstraint",
+              "NotNullableValueTypeConstraint",
+              "DefaultConstructorConstraint",
+              "SpecialConstraintMask"
+            ],
+            "type": "string"
+          },
+          "IsVisible": {
+            "type": "boolean"
+          },
+          "IsNotPublic": {
+            "type": "boolean"
+          },
+          "IsPublic": {
+            "type": "boolean"
+          },
+          "IsNestedPublic": {
+            "type": "boolean"
+          },
+          "IsNestedPrivate": {
+            "type": "boolean"
+          },
+          "IsNestedFamily": {
+            "type": "boolean"
+          },
+          "IsNestedAssembly": {
+            "type": "boolean"
+          },
+          "IsNestedFamANDAssem": {
+            "type": "boolean"
+          },
+          "IsNestedFamORAssem": {
+            "type": "boolean"
+          },
+          "IsAutoLayout": {
+            "type": "boolean"
+          },
+          "IsLayoutSequential": {
+            "type": "boolean"
+          },
+          "IsExplicitLayout": {
+            "type": "boolean"
+          },
+          "IsClass": {
+            "type": "boolean"
+          },
+          "IsInterface": {
+            "type": "boolean"
+          },
+          "IsValueType": {
+            "type": "boolean"
+          },
+          "IsAbstract": {
+            "type": "boolean"
+          },
+          "IsSealed": {
+            "type": "boolean"
+          },
+          "IsEnum": {
+            "type": "boolean"
+          },
+          "IsSpecialName": {
+            "type": "boolean"
+          },
+          "IsImport": {
+            "type": "boolean"
+          },
+          "IsSerializable": {
+            "type": "boolean"
+          },
+          "IsAnsiClass": {
+            "type": "boolean"
+          },
+          "IsUnicodeClass": {
+            "type": "boolean"
+          },
+          "IsAutoClass": {
+            "type": "boolean"
+          },
+          "IsArray": {
+            "type": "boolean"
+          },
+          "IsGenericType": {
+            "type": "boolean"
+          },
+          "IsGenericTypeDefinition": {
+            "type": "boolean"
+          },
+          "IsConstructedGenericType": {
+            "type": "boolean"
+          },
+          "IsGenericParameter": {
+            "type": "boolean"
+          },
+          "GenericParameterPosition": {
+            "type": "integer"
+          },
+          "ContainsGenericParameters": {
+            "type": "boolean"
+          },
+          "IsByRef": {
+            "type": "boolean"
+          },
+          "IsPointer": {
+            "type": "boolean"
+          },
+          "IsPrimitive": {
+            "type": "boolean"
+          },
+          "IsCOMObject": {
+            "type": "boolean"
+          },
+          "HasElementType": {
+            "type": "boolean"
+          },
+          "IsContextful": {
+            "type": "boolean"
+          },
+          "IsMarshalByRef": {
+            "type": "boolean"
+          },
+          "GenericTypeArguments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Type"
+            }
+          },
+          "IsSecurityCritical": {
+            "type": "boolean"
+          },
+          "IsSecuritySafeCritical": {
+            "type": "boolean"
+          },
+          "IsSecurityTransparent": {
+            "type": "boolean"
+          },
+          "UnderlyingSystemType": {
+            "$ref": "#/components/schemas/Type"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "CustomAttributes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomAttributeData"
+            }
+          },
+          "MetadataToken": {
+            "type": "integer"
+          }
+        }
+      },
+      "EventInfo": {
+        "title": "EventInfo",
+        "type": "object",
+        "properties": {
+          "MemberType": {
+            "enum": [
+              "Constructor",
+              "Event",
+              "Field",
+              "Method",
+              "Property",
+              "TypeInfo",
+              "Custom",
+              "NestedType",
+              "All"
+            ],
+            "type": "string"
+          },
+          "Attributes": {
+            "enum": [
+              "None",
+              "SpecialName",
+              "ReservedMask",
+              "RTSpecialName"
+            ],
+            "type": "string"
+          },
+          "AddMethod": {
+            "$ref": "#/components/schemas/MethodInfo"
+          },
+          "RemoveMethod": {
+            "$ref": "#/components/schemas/MethodInfo"
+          },
+          "RaiseMethod": {
+            "$ref": "#/components/schemas/MethodInfo"
+          },
+          "EventHandlerType": {
+            "$ref": "#/components/schemas/Type"
+          },
+          "IsSpecialName": {
+            "type": "boolean"
+          },
+          "IsMulticast": {
+            "type": "boolean"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "DeclaringType": {
+            "$ref": "#/components/schemas/Type"
+          },
+          "ReflectedType": {
+            "$ref": "#/components/schemas/Type"
+          },
+          "CustomAttributes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomAttributeData"
+            }
+          },
+          "MetadataToken": {
+            "type": "integer"
+          },
+          "Module": {
+            "$ref": "#/components/schemas/Module"
+          }
+        }
+      },
+      "FieldInfo": {
+        "title": "FieldInfo",
+        "type": "object",
+        "properties": {
+          "MemberType": {
+            "enum": [
+              "Constructor",
+              "Event",
+              "Field",
+              "Method",
+              "Property",
+              "TypeInfo",
+              "Custom",
+              "NestedType",
+              "All"
+            ],
+            "type": "string"
+          },
+          "FieldHandle": {
+            "$ref": "#/components/schemas/RuntimeFieldHandle"
+          },
+          "FieldType": {
+            "$ref": "#/components/schemas/Type"
+          },
+          "Attributes": {
+            "enum": [
+              "PrivateScope",
+              "Private",
+              "FamANDAssem",
+              "Assembly",
+              "Family",
+              "FamORAssem",
+              "Public",
+              "FieldAccessMask",
+              "Static",
+              "InitOnly",
+              "Literal",
+              "NotSerialized",
+              "HasFieldRVA",
+              "SpecialName",
+              "RTSpecialName",
+              "HasFieldMarshal",
+              "PinvokeImpl",
+              "HasDefault",
+              "ReservedMask"
+            ],
+            "type": "string"
+          },
+          "IsPublic": {
+            "type": "boolean"
+          },
+          "IsPrivate": {
+            "type": "boolean"
+          },
+          "IsFamily": {
+            "type": "boolean"
+          },
+          "IsAssembly": {
+            "type": "boolean"
+          },
+          "IsFamilyAndAssembly": {
+            "type": "boolean"
+          },
+          "IsFamilyOrAssembly": {
+            "type": "boolean"
+          },
+          "IsStatic": {
+            "type": "boolean"
+          },
+          "IsInitOnly": {
+            "type": "boolean"
+          },
+          "IsLiteral": {
+            "type": "boolean"
+          },
+          "IsNotSerialized": {
+            "type": "boolean"
+          },
+          "IsSpecialName": {
+            "type": "boolean"
+          },
+          "IsPinvokeImpl": {
+            "type": "boolean"
+          },
+          "IsSecurityCritical": {
+            "type": "boolean"
+          },
+          "IsSecuritySafeCritical": {
+            "type": "boolean"
+          },
+          "IsSecurityTransparent": {
+            "type": "boolean"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "DeclaringType": {
+            "$ref": "#/components/schemas/Type"
+          },
+          "ReflectedType": {
+            "$ref": "#/components/schemas/Type"
+          },
+          "CustomAttributes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomAttributeData"
+            }
+          },
+          "MetadataToken": {
+            "type": "integer"
+          },
+          "Module": {
+            "$ref": "#/components/schemas/Module"
+          }
+        }
+      },
+      "RuntimeFieldHandle": {
+        "title": "RuntimeFieldHandle",
+        "type": "object",
+        "properties": {
+          "Value": {
+            "$ref": "#/components/schemas/IntPtr"
+          }
+        }
+      },
+      "PropertyInfo": {
+        "title": "PropertyInfo",
+        "type": "object",
+        "properties": {
+          "MemberType": {
+            "enum": [
+              "Constructor",
+              "Event",
+              "Field",
+              "Method",
+              "Property",
+              "TypeInfo",
+              "Custom",
+              "NestedType",
+              "All"
+            ],
+            "type": "string"
+          },
+          "PropertyType": {
+            "$ref": "#/components/schemas/Type"
+          },
+          "Attributes": {
+            "enum": [
+              "None",
+              "SpecialName",
+              "RTSpecialName",
+              "HasDefault",
+              "Reserved2",
+              "Reserved3",
+              "Reserved4",
+              "ReservedMask"
+            ],
+            "type": "string"
+          },
+          "CanRead": {
+            "type": "boolean"
+          },
+          "CanWrite": {
+            "type": "boolean"
+          },
+          "GetMethod": {
+            "$ref": "#/components/schemas/MethodInfo"
+          },
+          "SetMethod": {
+            "$ref": "#/components/schemas/MethodInfo"
+          },
+          "IsSpecialName": {
+            "type": "boolean"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "DeclaringType": {
+            "$ref": "#/components/schemas/Type"
+          },
+          "ReflectedType": {
+            "$ref": "#/components/schemas/Type"
+          },
+          "CustomAttributes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomAttributeData"
+            }
+          },
+          "MetadataToken": {
+            "type": "integer"
+          },
+          "Module": {
+            "$ref": "#/components/schemas/Module"
+          }
+        }
+      },
+      "StructLayoutAttribute": {
+        "title": "StructLayoutAttribute",
+        "type": "object",
+        "properties": {
+          "Value": {
+            "enum": [
+              "Sequential",
+              "Explicit",
+              "Auto"
+            ],
+            "type": "string"
+          },
+          "TypeId": {
+            "$ref": "#/components/schemas/Object"
+          }
+        }
+      },
+      "RuntimeTypeHandle": {
+        "title": "RuntimeTypeHandle",
+        "type": "object",
+        "properties": {
+          "Value": {
+            "$ref": "#/components/schemas/IntPtr"
+          }
+        }
+      },
+      "ModuleHandle": {
+        "title": "ModuleHandle",
+        "type": "object",
+        "properties": {
+          "MDStreamVersion": {
+            "type": "integer"
+          }
+        }
+      },
+      "CustomAttributeTypedArgument": {
+        "title": "CustomAttributeTypedArgument",
+        "type": "object",
+        "properties": {
+          "ArgumentType": {
+            "$ref": "#/components/schemas/Type"
+          },
+          "Value": {
+            "$ref": "#/components/schemas/Object"
+          }
+        }
+      },
+      "CustomAttributeNamedArgument": {
+        "title": "CustomAttributeNamedArgument",
+        "type": "object",
+        "properties": {
+          "MemberInfo": {
+            "$ref": "#/components/schemas/MemberInfo"
+          },
+          "TypedValue": {
+            "$ref": "#/components/schemas/CustomAttributeTypedArgument"
+          },
+          "MemberName": {
+            "type": "string"
+          },
+          "IsField": {
+            "type": "boolean"
+          }
+        }
+      },
+      "Binder": {
+        "title": "Binder",
+        "type": "object"
+      },
+      "SubmitExportJobAsync_RequestBody": {
+        "title": "SubmitExportJobAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "request": {
+            "$ref": "#/components/schemas/SubmitExportJobRequest"
+          }
+        }
+      },
+      "SubmitExportJobRequest": {
+        "title": "SubmitExportJobRequest",
+        "type": "object",
+        "properties": {
+          "PathUrl": {
+            "type": "string"
+          },
+          "FileType": {
+            "type": "string"
+          }
+        }
+      },
+      "SubmitExportJobResponse": {
+        "title": "SubmitExportJobResponse",
+        "type": "object",
+        "properties": {
+          "JobId": {
+            "type": "string"
+          }
+        }
+      },
+      "GetExportJobStatusResponse": {
+        "title": "GetExportJobStatusResponse",
+        "type": "object",
+        "properties": {
+          "JobStatus": {
+            "enum": [
+              "Scheduled",
+              "Processing",
+              "Finished",
+              "Error",
+              "Expired"
+            ],
+            "type": "string"
+          }
+        }
+      },
+      "DownloadExportedFileAsync_RequestBody": {
+        "title": "DownloadExportedFileAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "request": {
+            "$ref": "#/components/schemas/DownloadExportedFileRequest"
+          }
+        }
+      },
+      "DownloadExportedFileRequest": {
+        "title": "DownloadExportedFileRequest",
+        "type": "object",
+        "properties": {
+          "JobId": {
+            "type": "string"
+          },
+          "FileType": {
+            "type": "string"
+          }
+        }
+      },
+      "IKeplerStream": {
+        "title": "IKeplerStream",
+        "type": "object",
+        "properties": {
+          "ContentType": {
+            "type": "string"
+          },
+          "ContentDisposition": {
+            "type": "string"
+          },
+          "CacheControl": {
+            "type": "string"
+          },
+          "StatusCode": {
+            "enum": [
+              "Continue",
+              "SwitchingProtocols",
+              "OK",
+              "Created",
+              "Accepted",
+              "NonAuthoritativeInformation",
+              "NoContent",
+              "ResetContent",
+              "PartialContent",
+              "MultipleChoices",
+              "Ambiguous",
+              "MovedPermanently",
+              "Moved",
+              "Found",
+              "Redirect",
+              "SeeOther",
+              "RedirectMethod",
+              "NotModified",
+              "UseProxy",
+              "Unused",
+              "TemporaryRedirect",
+              "RedirectKeepVerb",
+              "BadRequest",
+              "Unauthorized",
+              "PaymentRequired",
+              "Forbidden",
+              "NotFound",
+              "MethodNotAllowed",
+              "NotAcceptable",
+              "ProxyAuthenticationRequired",
+              "RequestTimeout",
+              "Conflict",
+              "Gone",
+              "LengthRequired",
+              "PreconditionFailed",
+              "RequestEntityTooLarge",
+              "RequestUriTooLong",
+              "UnsupportedMediaType",
+              "RequestedRangeNotSatisfiable",
+              "ExpectationFailed",
+              "UpgradeRequired",
+              "InternalServerError",
+              "NotImplemented",
+              "BadGateway",
+              "ServiceUnavailable",
+              "GatewayTimeout",
+              "HttpVersionNotSupported"
+            ],
+            "type": "string",
+            "nullable": true
+          },
+          "Headers": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "NameValueCollection"
+            }
+          }
+        }
+      },
+      "ScheduleJobAsync_RequestBody": {
+        "title": "ScheduleJobAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "dumpRequest": {
+            "$ref": "#/components/schemas/DumpRequest"
+          }
+        }
+      },
+      "DumpRequest": {
+        "title": "DumpRequest",
+        "type": "object",
+        "properties": {
+          "WorkspaceID": {
+            "type": "integer"
+          },
+          "Fields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FieldRef"
+            }
+          },
+          "StartDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "EndDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "Condition": {
+            "type": "string"
+          }
+        }
+      },
+      "DumpResponse": {
+        "title": "DumpResponse",
+        "type": "object",
+        "properties": {
+          "JobID": {
+            "type": "string"
+          },
+          "JobStatus": {
+            "type": "string"
+          },
+          "CreatedTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "DumpJobStatusResponse": {
+        "title": "DumpJobStatusResponse",
+        "type": "object",
+        "properties": {
+          "JobID": {
+            "type": "string"
+          },
+          "JobStatus": {
+            "type": "string"
+          },
+          "CreatedTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "LastUpdatedTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "JobProgress": {
+            "$ref": "#/components/schemas/JobProgress"
+          },
+          "Error": {
+            "type": "string"
+          },
+          "Result": {
+            "type": "string"
+          }
+        }
+      },
+      "JobProgress": {
+        "title": "JobProgress",
+        "type": "object",
+        "properties": {
+          "StartTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "EndTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "TotalRecords": {
+            "type": "integer"
+          },
+          "RecordsTransferred": {
+            "type": "integer"
+          },
+          "BytesPerSecond": {
+            "type": "number"
+          },
+          "BytesTransferred": {
+            "type": "integer"
+          },
+          "RecordsPerSecond": {
+            "type": "number"
+          }
+        }
+      },
+      "DumpFileDetails": {
+        "title": "DumpFileDetails",
+        "type": "object",
+        "properties": {
+          "FileName": {
+            "type": "string"
+          },
+          "Expires": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    },
+    "parameters": {
+      "x-csrf-header": {
+        "name": "x-csrf-header",
+        "in": "header",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "default": "-"
+        }
+      },
+      "workspaceID": {
+        "name": "workspaceID",
+        "in": "path",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "jobID": {
+        "name": "jobID",
+        "in": "path",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "fileName": {
+        "name": "fileName",
+        "in": "path",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

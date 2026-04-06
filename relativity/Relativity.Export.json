@@ -1,0 +1,1080 @@
+﻿{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Relativity.Export",
+    "description": "Relativity.Export",
+    "version": "V1"
+  },
+  "servers": [
+    {
+      "url": "/Relativity.REST/api",
+      "description": "The URL prefix for all Kepler services"
+    }
+  ],
+    "paths": {
+        "/export/v1/health-check/": {
+            "get": {
+                "tags": [
+                    "Health Check Module v1"
+                ],
+                "summary": "",
+                "description": "Check if Export Services is available.",
+                "operationId": "Relativity.Export.V1.IHealthCheckManager.HealthCheckAsync",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/X-CSRF-Header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HealthCheckResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/export/v1/workspaces/{workspaceID}/jobs/GetKeplerStatusAsync": {
+            "get": {
+                "tags": [
+                    "Relativity Export Module v1"
+                ],
+                "summary": "Ping Endpoint",
+                "operationId": "Relativity.Export.V1.IExportJobManager.GetKeplerStatusAsync",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/X-CSRF-Header"
+                    },
+                    {
+                        "$ref": "#/components/parameters/workspaceID"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetKeplerStatusResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/export/v1/workspaces/{workspaceID}/jobs/{jobID}": {
+            "post": {
+                "tags": [
+                    "Relativity Export Module v1"
+                ],
+                "summary": "Creates job with specified ID, without starting it",
+                "operationId": "Relativity.Export.V1.IExportJobManager.CreateAsync",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/X-CSRF-Header"
+                    },
+                    {
+                        "$ref": "#/components/parameters/workspaceID"
+                    },
+                    {
+                        "$ref": "#/components/parameters/jobID"
+                    }
+                ],
+                "requestBody": {
+                    "description": "",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateAsync"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValueResponse.ValidationResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Relativity Export Module v1"
+                ],
+                "summary": "Gets status of job with specified ID",
+                "operationId": "Relativity.Export.V1.IExportJobManager.GetAsync",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/X-CSRF-Header"
+                    },
+                    {
+                        "$ref": "#/components/parameters/workspaceID"
+                    },
+                    {
+                        "$ref": "#/components/parameters/jobID"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValueResponse.ExportJob"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/export/v1/workspaces/{workspaceID}/jobs/{jobID}/start": {
+            "post": {
+                "tags": [
+                    "Relativity Export Module v1"
+                ],
+                "summary": "Starts job with specified ID",
+                "operationId": "Relativity.Export.V1.IExportJobManager.StartAsync",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/X-CSRF-Header"
+                    },
+                    {
+                        "$ref": "#/components/parameters/workspaceID"
+                    },
+                    {
+                        "$ref": "#/components/parameters/jobID"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/export/v1/workspaces/{workspaceID}/jobs/{jobID}/cancel": {
+            "post": {
+                "tags": [
+                    "Relativity Export Module v1"
+                ],
+                "summary": "Cancels job with specified ID",
+                "operationId": "Relativity.Export.V1.IExportJobManager.CancelAsync",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/X-CSRF-Header"
+                    },
+                    {
+                        "$ref": "#/components/parameters/workspaceID"
+                    },
+                    {
+                        "$ref": "#/components/parameters/jobID"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/export/v1/workspaces/{workspaceID}/jobs/": {
+            "get": {
+                "tags": [
+                    "Relativity Export Module v1"
+                ],
+                "summary": "Lists all defined jobs",
+                "operationId": "Relativity.Export.V1.IExportJobManager.ListAsync",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/X-CSRF-Header"
+                    },
+                    {
+                        "$ref": "#/components/parameters/workspaceID"
+                    },
+                    {
+                        "$ref": "#/components/parameters/start"
+                    },
+                    {
+                        "$ref": "#/components/parameters/length"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValueResponse.ExportJobs"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/export/v1/workspaces/{workspaceID}/jobs/{jobID}/settings": {
+            "get": {
+                "tags": [
+                    "Relativity Export Module v1"
+                ],
+                "summary": "Gets settings of specified export job",
+                "operationId": "Relativity.Export.V1.IExportJobManager.GetSettingsAsync",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/X-CSRF-Header"
+                    },
+                    {
+                        "$ref": "#/components/parameters/workspaceID"
+                    },
+                    {
+                        "$ref": "#/components/parameters/jobID"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "No description set",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValueResponse.ExportJobSettings"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/export/v1/workspaces/{workspaceID}/jobs/{jobID}/errors": {
+            "get": {
+                "tags": [
+                    "Relativity Export Module v1"
+                ],
+                "summary": "Gets errors that occurred during specific job",
+                "operationId": "Relativity.Export.V1.IExportJobManager.GetErrorsAsync",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/X-CSRF-Header"
+                    },
+                    {
+                        "$ref": "#/components/parameters/workspaceID"
+                    },
+                    {
+                        "$ref": "#/components/parameters/jobID"
+                    },
+                    {
+                        "$ref": "#/components/parameters/start"
+                    },
+                    {
+                        "$ref": "#/components/parameters/length"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "No description set",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValueResponse.ArtifactExportErrors"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+  "components": {
+    "schemas": {
+        "HealthCheckResult": {
+            "type": "object",
+            "properties": {
+                "IsHealthy": {
+                    "type": "boolean",
+                    "example": true
+                },
+                "Message": {
+                    "type": "string",
+                    "example": "Export.Service is healthy"
+                }
+            }
+        },
+        "GetKeplerStatusResponse": {
+            "type": "object",
+            "description": "Status of Export Service Kepler",
+            "properties": {
+                "Status": {
+                    "type": "string",
+                    "description": "Status of service",
+                    "example": "OK"
+                }
+            }
+        },
+        "CreateAsync": {
+            "title": "CreateAsync",
+            "required": [
+                "settings",
+                "applicationName",
+                "correlationID"
+            ],
+            "properties": {
+                "settings": {
+                    "$ref": "#/components/schemas/ExportJobSettings"
+                },
+                "applicationName": {
+                    "type": "string",
+                    "format": "string"
+                },
+                "correlationID": {
+                    "type": "string",
+                    "format": "string"
+                }
+            },
+            "description": ""
+        },
+        "Response": {
+            "type": "object",
+            "properties": {
+                "IsSuccess": {
+                    "type": "boolean",
+                    "example": true
+                },
+                "ErrorMessage": {
+                    "type": "string",
+                    "example": ""
+                },
+                "ErrorCode": {
+                    "type": "string",
+                    "example": ""
+                },
+                "ExportJobID": {
+                    "description": "Export job identification GUID number.",
+                    "type": "string",
+                    "format": "uuid",
+                    "example": "47c9e267-a82d-4152-8771-dfe535beaa9e"
+                }
+            }
+        },
+        "ValueResponse.ValidationResult": {
+            "description": "ValueResponse of ExportJobs type",
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "Value": { "$ref": "#/components/schemas/ValidationResult" }
+                    }
+                },
+                { "$ref": "#/components/schemas/Response" }
+            ]
+        },
+        "ValueResponse.ExportJob": {
+            "description": "ValueResponse of ExportJob type",
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "Value": { "$ref": "#/components/schemas/ExportJob" }
+                    }
+                },
+                { "$ref": "#/components/schemas/Response" }
+            ]
+        },
+        "ValueResponse.ExportJobs": {
+            "description": "ValueResponse of ExportJobs type",
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "Value": { "$ref": "#/components/schemas/ExportJobs" }
+                    }
+                },
+                { "$ref": "#/components/schemas/Response" }
+            ]
+        },
+        "ValueResponse.ArtifactExportErrors": {
+            "description": "ValueResponse of ExportJobs type",
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "Value": { "$ref": "#/components/schemas/ArtifactExportErrors" }
+                    }
+                },
+                { "$ref": "#/components/schemas/Response" }
+            ]
+        },
+        "ValueResponse.ExportJobSettings": {
+            "description": "ValueResponse of ExportJobs type",
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "Value": { "$ref": "#/components/schemas/ExportJobSettings" }
+                    }
+                },
+                { "$ref": "#/components/schemas/Response" }
+            ]
+        },
+        "ExportJob": {
+            "type": "object",
+            "description": "Status of export job",
+            "properties": {
+                "ID": {
+                    "type": "string",
+                    "format": "uuid",
+                    "description": "ID of export job",
+                    "example": "47c9e267-a82d-4152-8771-dfe535beaa9e"
+                },
+                "ApplicationName": {
+                    "type": "string",
+                    "description": "Name of application",
+                    "example": "Import/Export"
+                },
+                "CorrelationID": {
+                    "type": "string",
+                    "description": "Correlation ID",
+                    "example": "f1064568-fac7-451a-a5d8-c11525ba3bc5"
+                },
+                "JobStatus": {
+                    "description": "Status of the job",
+                    "$ref": "#/components/schemas/ExportStatus"
+                },
+                "OutputUrl": {
+                    "type": "string",
+                    "description": "URL of output for export job"
+                },
+                "TotalRecords": {
+                    "type": "integer",
+                    "nullable": true,
+                    "description": "Total exported records",
+                    "example": "8692"
+                },
+                "ProcessedRecords": {
+                    "type": "integer",
+                    "nullable": true,
+                    "description": "Number of processed records",
+                    "example": "8692"
+                },
+                "ErroredRecords": {
+                    "type": "integer",
+                    "nullable": true,
+                    "description": "Number of records with errors",
+                    "example": "0",
+                    "deprecated": true
+                },
+                "RecordsWithErrors": {
+                    "type": "integer",
+                    "nullable": true,
+                    "description": "Number of records with errors",
+                    "example": "0"
+                },
+                "RecordsWithWarnings": {
+                    "type": "integer",
+                    "nullable": true,
+                    "description": "Number of records with warnings",
+                    "example": "0"
+                },
+                "JobErrorsCount": {
+                    "type": "integer",
+                    "nullable": true,
+                    "description": "Number of job level errors",
+                    "example": "0"
+                },
+                "JobWarningsCount": {
+                    "type": "integer",
+                    "nullable": true,
+                    "description": "Number of job level warnings",
+                    "example": "0"
+                },
+                "CreatedBy": {
+                    "type": "integer",
+                    "description": "Creator of export job",
+                    "example": "9"
+                },
+                "ErrorCode": {
+                    "type": "string",
+                    "description": "Error code for export job",
+                    "example": "#"
+                },
+                "ErrorMessage": {
+                    "type": "string",
+                    "description": "Error message for export job",
+                    "example": "#"
+                }
+            }
+        },
+        "ExportJobSettings": {
+            "type": "object",
+            "description": "Settings for the Export Job",
+            "properties": {
+                "ExportSourceSettings": {
+                    "$ref": "#/components/schemas/ExportSourceSettings"
+                },
+                "ExportArtifactSettings": {
+                    "$ref": "#/components/schemas/ExportArtifactSettings"
+                },
+                "ExportOutputSettings": {
+                    "$ref": "#/components/schemas/ExportOutputSettings"
+                }
+            }
+        },
+        "ExportSourceSettings": {
+            "type": "object",
+            "description": "Settings of source of exported items",
+            "properties": {
+                "ArtifactTypeID": {
+                    "type": "integer",
+                    "description": "Object type (e.g. Document, Entity)",
+                    "example": "10"
+                },
+                "ExportSourceType": {
+                    "$ref": "#/components/schemas/ExportSourceType",
+                    "description": "Source of the records to exports (e.g. Folder, Saved Search)"
+                },
+                "ExportSourceArtifactID": {
+                    "type": "integer",
+                    "description": "Artifact ID of the export source",
+                    "example": "1042983"
+                },
+                "ViewID": {
+                    "type": "integer",
+                    "description": "View ID. It is required for folder/folder and subfolder export, and it defines records order and filters documents.",
+                    "example": "1048729"
+                },
+                "StartAtDocumentNumber": {
+                    "type": "integer",
+                    "description": "Gets or sets starting document number in source (e.g. ExportSourceType: Folder and StartAtDocumentNumber: 10 - exports documents, starting from the 10th document in the specified folder). If property is not set then default value 1 is used",
+                    "example": "10"
+                }
+            }
+        },
+        "ExportArtifactSettings": {
+            "type": "object",
+            "description": "Settings for the Export Job",
+            "properties": {
+                "FileNamePattern": {
+                    "type": "string",
+                    "format": "string",
+                    "description": "Pattern for produced files",
+                    "example": "{Identifier}_{originalfilename}"
+                },
+                "ApplyFileNamePatternToImages": {
+                    "type": "boolean",
+                    "description": "Value indicating whether FileNamePattern should be applied to exported Images"
+                },
+                "ExportNative": {
+                    "type": "boolean",
+                    "description": "Value indicating whether native files should be exported"
+                },
+                "ExportPdf": {
+                    "type": "boolean",
+                    "description": "Value indicating whether PDF should be exported"
+                },
+                "ExportImages": {
+                    "type": "boolean",
+                    "description": "Value indicating whether images should be exported"
+                },
+                "ExportFullText": {
+                    "type": "boolean",
+                    "description": "Value indicating whether full text should be exported"
+                },
+                "ExportMultiChoicesAsNested": {
+                    "type": "boolean",
+                    "description": "Value indicating whether multi choice values should be treated as nested"
+                },
+                "ImageExportSettings": {
+                    "$ref": "#/components/schemas/ImageExportSettings"
+                },
+                "FullTextExportSettings": {
+                    "$ref": "#/components/schemas/FullTextExportSettings"
+                },
+                "NativeFilesExportSettings": {
+                    "$ref": "#/components/schemas/NativeFilesExportSettings"
+                },
+                "FieldArtifactIDs": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    },
+                    "uniqueItems": true,
+                    "description": "List of artifact fields to export",
+                    "example": [ 1049872, 1042398, 1049238 ]
+                }
+            }
+        },
+        "ExportSourceType": {
+            "type": "string",
+            "example": "Production",
+            "enum": [
+                "Production",
+                "SavedSearch",
+                "Folder",
+                "FolderWithSubfolders",
+				"Objects"
+            ]
+        },
+        "ImageExportSettings": {
+            "type": "object",
+            "description": "Settings of exported images",
+            "properties": {
+                "TypeOfImage": {
+                    "$ref": "#/components/schemas/ImageType"
+                },
+                "ImagePrecedenceArtifactIDs": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    },
+                    "uniqueItems": true,
+                    "description": "Precedence of production artifact IDs of exported images. Use -1 for default image source.",
+                    "example": [ 1044978, 1049201, -1 ]
+                }
+            }
+        },
+        "ImageType": {
+            "type": "string",
+            "example": "SinglePage",
+            "enum": [
+                "SinglePage",
+                "MultiPageTiff",
+                "Pdf"
+            ]
+        },
+        "FolderStructure": {
+            "type": "string",
+            "example": "Classic",
+            "enum": [
+                "Classic",
+                "Workspace",
+                "Identifier"
+            ]
+        },
+        "FullTextExportSettings": {
+            "type": "object",
+            "description": "Settings of full text export",
+            "properties": {
+                "ExportFullTextAsFile": {
+                    "type": "boolean",
+                    "description": "Value indicating whether full text should be exported to file"
+                },
+                "TextFileEncoding": {
+                    "type": "string",
+                    "description": "Encoding for output text file",
+                    "example": "utf-8"
+                },
+                "PrecedenceFieldsArtifactIDs": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    },
+                    "uniqueItems": true,
+                    "description": "Fields containing full text in the correct order",
+                    "example": [ 1041253, 1040931 ]
+                }
+            }
+        },
+        "NativeFilesExportSettings": {
+            "type": "object",
+            "description": "Settings of native files export",
+            "properties": {
+                "NativePrecedenceArtifactIDs": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    },
+                    "uniqueItems": true,
+                    "description": "Precedence of production artifact IDs of exported natives. Use -1 for default natives source.",
+                    "example": [ 1044978, 1049201, -1 ]
+                }
+            }
+        },
+        "ExportOutputSettings": {
+            "type": "object",
+            "description": "Settings for the Export Job",
+            "properties": {
+                "LoadFileSettings": {
+                    "$ref": "#/components/schemas/LoadFileSettings"
+                },
+                "VolumeSettings": {
+                    "$ref": "#/components/schemas/VolumeSettings"
+                },
+                "SubdirectorySettings": {
+                    "$ref": "#/components/schemas/SubdirectorySettings"
+                },
+                "CreateArchive": {
+                    "type": "boolean",
+                    "description": "Value indicating whether archive should be created"
+                },
+                "FolderStructure": {
+                    "$ref": "#/components/schemas/FolderStructure"
+                },
+                "DestinationPath": {
+                    "type": "string",
+                    "description": "The path to export destination folder",
+                    "example": "\\files.t001.ctus014128.r1.kcura.com\T001\Files\Export\my_export_directory\"
+                },
+            }
+        },
+        "LoadFileSettings": {
+            "type": "object",
+            "description": "Settings of produced load file",
+            "properties": {
+                "LoadFileFormat": {
+                    "$ref": "#/components/schemas/LoadFileFormat"
+                },
+                "ImageLoadFileFormat": {
+                    "$ref": "#/components/schemas/ImageLoadFileFormat"
+                },
+                "PdfLoadFileFormat": {
+                    "$ref": "#/components/schemas/PdfLoadFileFormat"
+                },
+                "Encoding": {
+                    "type": "string",
+                    "description": "Character encoding of output file",
+                    "example": "utf-8"
+                },
+                "CultureInfo": {
+                    "type": "string",
+                    "description": "Culture info used for date formatting",
+                    "example": "en-GB"
+                },
+                "DelimitersSettings": {
+                    "$ref": "#/components/schemas/DelimitersSettings"
+                },
+                "ExportMsAccess": {
+                    "type": "boolean",
+                    "description": "Value indicating whether MsAccess load file should be exported"
+                }
+          }
+        },
+        "DelimitersSettings": {
+            "type": "object",
+            "description": "Definition of delimiting characters in load file.",
+            "properties": {
+                "NestedValueDelimiter": {
+                    "type": "string",
+                    "format": "char",
+                    "description": "Delimiting character for nested value",
+                    "example": "&"
+                },
+                "RecordDelimiter": {
+                    "type": "string",
+                    "format": "char",
+                    "description": "Delimiting character for record",
+                    "example": "|"
+                },
+                "QuoteDelimiter": {
+                    "type": "string",
+                    "format": "char",
+                    "description": "Delimiting character for quote",
+                    "example": "^"
+                },
+                "NewlineDelimiter": {
+                    "type": "string",
+                    "format": "char",
+                    "description": "Delimiting character for newline",
+                    "example": "#"
+                },
+                "MultiRecordDelimiter": {
+                    "type": "string",
+                    "format": "char",
+                    "description": "Delimiting character for multi record",
+                    "example": "$"
+                }
+            }
+        },
+        "VolumeSettings": {
+            "type": "object",
+            "description": "Settings of export output batching into volumes",
+            "properties": {
+                "VolumePrefix": {
+                    "type": "string",
+                    "description": "Prefix for volume names",
+                    "example": "VOL"
+                },
+                "VolumeStartNumber": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "Starting number for volume counting",
+                    "example": "1"
+                },
+                "VolumeMaxSizeInMegabytes": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "Single volume maximum size in megabytes",
+                    "example": "650"
+                },
+                "VolumeDigitPadding": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "Padding for volume digits. For example: 5 would result in files ending in 00001.",
+                    "example": "5"
+                }
+            }
+        },
+        "SubdirectorySettings": {
+            "type": "object",
+            "description": "Settings of export output batching into volumes",
+            "properties": {
+                "SubdirectoryStartNumber": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "Starting number for subdirectories count",
+                    "example": "1"
+                },
+                "MaxNumberOfFilesInDirectory": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "Maximum number of files in directory",
+                    "example": "500"
+                },
+                "ImageSubdirectoryPrefix": {
+                    "type": "string",
+                    "description": "Prefix for volume names",
+                    "example": "IMG"
+                },
+                "NativeSubdirectoryPrefix": {
+                    "type": "string",
+                    "description": "Prefix for native files subdirectory",
+                    "example": "NATIVE"
+                },
+                "FullTextSubdirectoryPrefix": {
+                    "type": "string",
+                    "description": "Prefix for full text files subdirectory",
+                    "example": "TEXT"
+                },
+                "PdfSubdirectoryPrefix": {
+                    "type": "string",
+                    "description": "Prefix for PDF files subdirectory",
+                    "example": "PDF"
+                },
+                "SubdirectoryDigitPadding": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "Padding for subdirectories digits. For example: 5 would result in files ending in 00001.",
+                    "example": "5"
+                }
+            }
+        },
+        "ImageLoadFileFormat": {
+            "type": "string",
+            "nullable": true,
+            "example": "Opticon",
+            "enum": [
+                "Opticon",
+                "IPRO",
+                "IPRO_FullText"
+            ]
+        },
+        "PdfLoadFileFormat": {
+            "type": "string",
+            "nullable": true,
+            "example": "Opticon",
+            "enum": [
+                "Opticon",
+                "IPRO",
+                "IPRO_FullText"
+            ]
+        },
+        "LoadFileFormat": {
+            "type": "string",
+            "example": "DAT",
+            "enum": [
+                "DAT",
+                "CSV",
+                "TXT",
+                "HTML"
+            ]
+        },
+        "ExportJobs": {
+            "type": "object",
+            "description": "Status of export job",
+            "properties": {
+                "TotalNumberOfJobs": {
+                    "type": "integer",
+                    "description": "Total number of jobs",
+                    "example": "756"
+                },
+                "Jobs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/components/schemas/ExportJob"
+                    },
+                    "uniqueItems": true,
+                    "description": "List of export jobs"
+                }
+            }
+        },
+        "ExportStatus": {
+            "type": "string",
+            "example": "Running",
+            "enum": [
+                "New",
+                "Scheduled",
+                "Running",
+                "Transferring",
+                "Completed",
+                "CompletedWithErrors",
+                "Failed",
+                "Canceled",
+            ]
+        },
+        "ValidationResult": {
+            "type": "object",
+            "description": "Validation result for request",
+            "properties": {
+                "ValidationErrors": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "ArtifactExportErrors": {
+            "type": "object",
+            "description": "Status of export job",
+            "properties": {
+                "TotalNumberOfErrors": {
+                    "type": "integer",
+                    "description": "Total number of errors",
+                    "example": "756"
+                },
+                "Errors": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/components/schemas/ArtifactExportError"
+                    },
+                    "uniqueItems": true,
+                    "description": "List of export errors"
+                }
+            }
+        },
+        "ArtifactExportError": {
+            "type": "object",
+            "description": "Single error occurring during export of artifact",
+            "properties": {
+                "ArtifactID": {
+                    "type": "integer",
+                    "description": "ID of exported artifact",
+                    "example": "1049821"
+                },
+                "ErrorCode": {
+                    "type": "string",
+                    "description": "Code of error",
+                    "example": "#"
+                },
+                "ErrorMessage": {
+                    "type": "string",
+                    "description": "Error message",
+                    "example": "#"
+                },
+                "Severity": {
+                    "$ref": "#/components/schemas/Severity"
+                },
+                "ErrorProperties": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "Severity": {
+            "type": "string",
+            "example": "Warning",
+            "enum": [
+                "Warning",
+                "Error"
+            ]
+        }
+    },
+    "parameters": {
+      "X-CSRF-Header": {
+        "name": "X-CSRF-Header",
+        "in": "header",
+        "description": "Required CSRF header for any KeplerService. *Note: Actual string value does not matter*. ",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "format": "System.String",
+          "default": "."
+        }
+      },
+      "workspaceID": {
+        "name": "workspaceID",
+        "in": "path",
+        "description": "Workspace of job.",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        },
+        "example": 1018535
+      },
+      "jobID": {
+        "name": "jobID",
+        "in": "path",
+        "description": "Guid of job",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "example": "47c9e267-a82d-4152-8771-dfe535beaa9e"
+      },
+      "start": {
+        "name": "start",
+        "in": "query",
+        "description": "Defines from which position listing should start",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        },
+        "example": 3000
+      },
+      "length": {
+        "name": "length",
+        "in": "query",
+        "description": "Defines how many records maximally should be returned",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        },
+        "example": 1000
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Relativity.Export.V1.IExportJobManager",
+      "description": ""
+    }
+  ]
+}

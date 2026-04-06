@@ -1,0 +1,2396 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Relativity.MassOperations.Service.V2",
+    "description": "Relativity.MassOperations.Service",
+    "version": "V2"
+  },
+  "servers": [
+    {
+      "url": "/Relativity.REST/api",
+      "description": "The URL prefix for all Kepler services"
+    }
+  ],
+  "paths": {
+    "/relativity-massoperation/v2/workspaces/{workspaceID}/publishmasscopyjobrequest": {
+      "post": {
+        "tags": [
+          "Relativity Mass Operation Module v2"
+        ],
+        "description": "[Public] IMassOperationManagerService - ",
+        "operationId": "Relativity.MassOperations.Service.V2.IMassOperationManagerService.PublishMassCopyJobRequestAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PublishMassCopyJobRequestAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      }
+    },
+    "/relativity-massoperation/v2/workspaces/{workspaceID}/masscopy": {
+      "post": {
+        "tags": [
+          "Relativity Mass Operation Module v2"
+        ],
+        "description": "[Public] IMassOperationManagerService - ",
+        "operationId": "Relativity.MassOperations.Service.V2.IMassOperationManagerService.MassCopyAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MassCopyAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MassOperationResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-massoperation/v2/workspaces/{workspaceID}/publishmassmovejobrequest": {
+      "post": {
+        "tags": [
+          "Relativity Mass Operation Module v2"
+        ],
+        "description": "[Public] IMassOperationManagerService - ",
+        "operationId": "Relativity.MassOperations.Service.V2.IMassOperationManagerService.PublishMassMoveJobRequestAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PublishMassMoveJobRequestAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      }
+    },
+    "/relativity-massoperation/v2/workspaces/{workspaceID}/massmove": {
+      "post": {
+        "tags": [
+          "Relativity Mass Operation Module v2"
+        ],
+        "description": "[Public] IMassOperationManagerService - ",
+        "operationId": "Relativity.MassOperations.Service.V2.IMassOperationManagerService.MassMoveAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MassMoveAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MassOperationResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-massoperation/v2/workspaces/{workspaceID}/publishmasseditjobrequest": {
+      "post": {
+        "tags": [
+          "Relativity Mass Operation Module v2"
+        ],
+        "description": "[Public] IMassOperationManagerService - ",
+        "operationId": "Relativity.MassOperations.Service.V2.IMassOperationManagerService.PublishMassEditJobRequestAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PublishMassEditJobRequestAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      }
+    },
+    "/relativity-massoperation/v2/workspaces/{workspaceID}/massedit": {
+      "post": {
+        "tags": [
+          "Relativity Mass Operation Module v2"
+        ],
+        "description": "[Public] IMassOperationManagerService - ",
+        "operationId": "Relativity.MassOperations.Service.V2.IMassOperationManagerService.MassEditAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MassEditAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MassOperationResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-massoperation/v2/workspaces/{workspaceID}/publishmassdeletejobrequest": {
+      "post": {
+        "tags": [
+          "Relativity Mass Operation Module v2"
+        ],
+        "description": "[Public] IMassOperationManagerService - ",
+        "operationId": "Relativity.MassOperations.Service.V2.IMassOperationManagerService.PublishMassDeleteJobRequestAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PublishMassDeleteJobRequestAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      }
+    },
+    "/relativity-massoperation/v2/workspaces/{workspaceID}/massdelete": {
+      "post": {
+        "tags": [
+          "Relativity Mass Operation Module v2"
+        ],
+        "description": "[Public] IMassOperationManagerService - ",
+        "operationId": "Relativity.MassOperations.Service.V2.IMassOperationManagerService.MassDeleteAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MassDeleteAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MassOperationResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-massoperation/v2/workspaces/{workspaceID}/publishmassreplacejobrequest": {
+      "post": {
+        "tags": [
+          "Relativity Mass Operation Module v2"
+        ],
+        "description": "[Public] IMassOperationManagerService - ",
+        "operationId": "Relativity.MassOperations.Service.V2.IMassOperationManagerService.PublishMassReplaceJobRequestAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PublishMassReplaceJobRequestAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      }
+    },
+    "/relativity-massoperation/v2/workspaces/{workspaceID}/massreplace": {
+      "post": {
+        "tags": [
+          "Relativity Mass Operation Module v2"
+        ],
+        "description": "[Public] IMassOperationManagerService - ",
+        "operationId": "Relativity.MassOperations.Service.V2.IMassOperationManagerService.MassReplaceAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MassReplaceAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MassOperationResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-massoperation/v2/workspaces/{workspaceID}/publishmasssaveaslistjobrequest": {
+      "post": {
+        "tags": [
+          "Relativity Mass Operation Module v2"
+        ],
+        "description": "[Public] IMassOperationManagerService - ",
+        "operationId": "Relativity.MassOperations.Service.V2.IMassOperationManagerService.PublishMassSaveAsListJobRequestAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PublishMassSaveAsListJobRequestAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      }
+    },
+    "/relativity-massoperation/v2/workspaces/{workspaceID}/masssaveaslist": {
+      "post": {
+        "tags": [
+          "Relativity Mass Operation Module v2"
+        ],
+        "description": "[Public] IMassOperationManagerService - ",
+        "operationId": "Relativity.MassOperations.Service.V2.IMassOperationManagerService.MassSaveAsListAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MassSaveAsListAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MassOperationResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-massoperation/v2/workspaces/{workspaceID}/publishmasstallysumaveragejobrequest": {
+      "post": {
+        "tags": [
+          "Relativity Mass Operation Module v2"
+        ],
+        "description": "[Public] IMassOperationManagerService - ",
+        "operationId": "Relativity.MassOperations.Service.V2.IMassOperationManagerService.PublishMassTallySumAverageJobRequestAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PublishMassTallySumAverageJobRequestAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TallySumAverageResult"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-massoperation/v2/workspaces/{workspaceID}/masstallysumaverage": {
+      "post": {
+        "tags": [
+          "Relativity Mass Operation Module v2"
+        ],
+        "description": "[Public] IMassOperationManagerService - ",
+        "operationId": "Relativity.MassOperations.Service.V2.IMassOperationManagerService.TallySumAverageAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TallySumAverageAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TallySumAverageResult"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-massoperation/v2/workspaces/{workspaceID}/publishmassexporttofilejobrequest": {
+      "post": {
+        "tags": [
+          "Relativity Mass Operation Module v2"
+        ],
+        "description": "[Public] IMassOperationManagerService - ",
+        "operationId": "Relativity.MassOperations.Service.V2.IMassOperationManagerService.PublishMassExportToFileJobRequestAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PublishMassExportToFileJobRequestAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IKeplerStream"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-massoperation/v2/workspaces/{workspaceID}/massexporttofile": {
+      "post": {
+        "tags": [
+          "Relativity Mass Operation Module v2"
+        ],
+        "description": "[Public] IMassOperationManagerService - ",
+        "operationId": "Relativity.MassOperations.Service.V2.IMassOperationManagerService.MassExportToFileAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MassExportToFileAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IKeplerStream"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-massoperation/v2/workspaces/{workspaceID}/initializemassoperation": {
+      "post": {
+        "tags": [
+          "Relativity Mass Operation Module v2"
+        ],
+        "description": "[Public] IMassOperationManagerService - ",
+        "operationId": "Relativity.MassOperations.Service.V2.IMassOperationManagerService.InitializeMassOperationAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InitializeMassOperationAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InitializeMassOperationResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-massoperation/v2/workspaces/{workspaceID}/processes/{processID}": {
+      "delete": {
+        "tags": [
+          "Relativity Mass Operation Module v2"
+        ],
+        "description": "[Public] IMassOperationManagerService - ",
+        "operationId": "Relativity.MassOperations.Service.V2.IMassOperationManagerService.CancelAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/processID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      }
+    },
+    "/relativity-massoperation/v2/workspaces/{workspaceID}/processes/{processIdentifier}": {
+      "delete": {
+        "tags": [
+          "Relativity Mass Operation Module v2"
+        ],
+        "description": "[Public] IMassOperationManagerService - ",
+        "operationId": "Relativity.MassOperations.Service.V2.IMassOperationManagerService.CancelAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/processIdentifier"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      }
+    },
+    "/relativity-massoperation/v2/workspaces/{workspaceID}/processes/{processID}/checkprogress": {
+      "get": {
+        "tags": [
+          "Relativity Mass Operation Module v2"
+        ],
+        "description": "[Public] IMassOperationManagerService - ",
+        "operationId": "Relativity.MassOperations.Service.V2.IMassOperationManagerService.CheckProgress",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/processID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MassOperationProcessState"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-massoperation/v2/workspaces/{workspaceID}/processes/{processIdentifier}/checkprogress": {
+      "get": {
+        "tags": [
+          "Relativity Mass Operation Module v2"
+        ],
+        "description": "[Public] IMassOperationManagerService - ",
+        "operationId": "Relativity.MassOperations.Service.V2.IMassOperationManagerService.CheckProgress",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/processIdentifier"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MassOperationProcessState"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-massoperation/v2/workspaces/{workspaceID}/artifactType/{artifactTypeID}/processes/{processID}/massdeletestartup": {
+      "get": {
+        "tags": [
+          "Relativity Mass Operation Module v2"
+        ],
+        "description": "[Public] IMassOperationManagerService - ",
+        "operationId": "Relativity.MassOperations.Service.V2.IMassOperationManagerService.GetMassDeleteStartupInformationAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/artifactTypeID"
+          },
+          {
+            "$ref": "#/components/parameters/processID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MassDeleteStartupResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-massoperation/v2/processes/{processID}/massagentdeletestartup": {
+      "get": {
+        "tags": [
+          "Relativity Mass Operation Module v2"
+        ],
+        "description": "[Public] IMassOperationManagerService - ",
+        "operationId": "Relativity.MassOperations.Service.V2.IMassOperationManagerService.GetMassAgentDeleteStartupInformationAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/processID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MassAgentDeleteStartupResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-massoperation/v2/workspaces/{workspaceID}/artifactType/{artifactTypeID}/processes/{processID}/validatemassedit": {
+      "get": {
+        "tags": [
+          "Relativity Mass Operation Module v2"
+        ],
+        "description": "[Public] IMassOperationManagerService - ",
+        "operationId": "Relativity.MassOperations.Service.V2.IMassOperationManagerService.ValidateMassEditAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/artifactTypeID"
+          },
+          {
+            "$ref": "#/components/parameters/processID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-massoperation/v2/massoperationprocessstateextended": {
+      "get": {
+        "tags": [
+          "Relativity Mass Operation Module v2"
+        ],
+        "description": "[Public] IMassOperationManagerService - ",
+        "operationId": "Relativity.MassOperations.Service.V2.IMassOperationManagerService.GetMassOperationProcessStateExtendedAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MassOperationProcessStateExtendedResult"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-massoperation/v2/massoperationjobsrefreshinterval": {
+      "get": {
+        "tags": [
+          "Relativity Mass Operation Module v2"
+        ],
+        "description": "[Public] IMassOperationManagerService - ",
+        "operationId": "Relativity.MassOperations.Service.V2.IMassOperationManagerService.GetMassOperationJobsRefreshInterval",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UInt32"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "PublishMassCopyJobRequestAsync_RequestBody": {
+        "title": "PublishMassCopyJobRequestAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "request": {
+            "$ref": "#/components/schemas/MassCopyJobRequest"
+          }
+        }
+      },
+      "MassCopyJobRequest": {
+        "title": "MassCopyJobRequest",
+        "type": "object",
+        "properties": {
+          "ParentArtifactID": {
+            "type": "integer"
+          },
+          "Type": {
+            "enum": [
+              "Edit",
+              "Delete",
+              "Replace",
+              "Move",
+              "Copy",
+              "Report",
+              "SendToCaseMap",
+              "Tif",
+              "Print",
+              "Export",
+              "Cluster",
+              "Tally",
+              "SaveAsList",
+              "Custom"
+            ],
+            "type": "string"
+          },
+          "ArtifactTypeID": {
+            "type": "integer"
+          },
+          "MassProcessID": {
+            "type": "integer"
+          }
+        }
+      },
+      "MassCopyAsync_RequestBody": {
+        "title": "MassCopyAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "request": {
+            "$ref": "#/components/schemas/MassCopyRequest"
+          }
+        }
+      },
+      "MassCopyRequest": {
+        "title": "MassCopyRequest",
+        "type": "object",
+        "properties": {
+          "ParentArtifactID": {
+            "type": "integer"
+          },
+          "Type": {
+            "enum": [
+              "Edit",
+              "Delete",
+              "Replace",
+              "Move",
+              "Copy",
+              "Report",
+              "SendToCaseMap",
+              "Tif",
+              "Print",
+              "Export",
+              "Cluster",
+              "Tally",
+              "SaveAsList",
+              "Custom"
+            ],
+            "type": "string"
+          },
+          "ArtifactTypeID": {
+            "type": "integer"
+          },
+          "Query": {
+            "$ref": "#/components/schemas/QueryRequest"
+          }
+        }
+      },
+      "QueryRequest": {
+        "title": "QueryRequest",
+        "type": "object",
+        "properties": {
+          "ObjectType": {
+            "$ref": "#/components/schemas/ObjectTypeRef"
+          },
+          "Condition": {
+            "type": "string"
+          },
+          "Sorts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Sort"
+            }
+          },
+          "RelationalField": {
+            "$ref": "#/components/schemas/FieldRef"
+          },
+          "RowCondition": {
+            "type": "string"
+          },
+          "SearchProviderCondition": {
+            "$ref": "#/components/schemas/SearchProvider"
+          },
+          "SampleParameters": {
+            "$ref": "#/components/schemas/SampleParameters"
+          },
+          "IncludeIDWindow": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "RankSortOrder": {
+            "enum": [
+              "Ascending",
+              "Descending"
+            ],
+            "type": "string",
+            "nullable": true
+          },
+          "QueryHint": {
+            "type": "string"
+          },
+          "Fields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FieldRef"
+            }
+          },
+          "IsAdhocQuery": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "ConvertNumberFieldValuesToString": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "IncludeNameInQueryResult": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "ExecutingSavedSearchID": {
+            "type": "integer",
+            "nullable": true
+          },
+          "ExecutingViewID": {
+            "type": "integer",
+            "nullable": true
+          },
+          "ActiveArtifactID": {
+            "type": "integer",
+            "nullable": true
+          },
+          "MaxCharactersForLongTextValues": {
+            "type": "integer",
+            "nullable": true
+          },
+          "LongTextBehavior": {
+            "enum": [
+              "Default",
+              "Tokenized"
+            ],
+            "type": "string"
+          }
+        }
+      },
+      "ObjectTypeRef": {
+        "title": "ObjectTypeRef",
+        "type": "object",
+        "properties": {
+          "ArtifactID": {
+            "type": "integer"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "Guid": {
+            "type": "string",
+            "nullable": true
+          },
+          "ArtifactTypeID": {
+            "type": "integer"
+          }
+        }
+      },
+      "Sort": {
+        "title": "Sort",
+        "type": "object",
+        "properties": {
+          "FieldIdentifier": {
+            "$ref": "#/components/schemas/FieldRef"
+          },
+          "Order": {
+            "type": "integer"
+          },
+          "Direction": {
+            "enum": [
+              "Ascending",
+              "Descending"
+            ],
+            "type": "string"
+          }
+        }
+      },
+      "FieldRef": {
+        "title": "FieldRef",
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string"
+          },
+          "ArtifactID": {
+            "type": "integer"
+          },
+          "ViewFieldID": {
+            "type": "integer"
+          },
+          "Guid": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "SearchProvider": {
+        "title": "SearchProvider",
+        "type": "object",
+        "properties": {
+          "SearchIndex": {
+            "$ref": "#/components/schemas/SearchIndexRef"
+          },
+          "Input": {
+            "type": "string"
+          }
+        }
+      },
+      "SearchIndexRef": {
+        "title": "SearchIndexRef",
+        "type": "object",
+        "properties": {
+          "ArtifactID": {
+            "type": "integer"
+          },
+          "Name": {
+            "type": "string"
+          }
+        }
+      },
+      "SampleParameters": {
+        "title": "SampleParameters",
+        "type": "object",
+        "properties": {
+          "ExistingToken": {
+            "type": "string",
+            "nullable": true
+          },
+          "MarginOfError": {
+            "type": "number"
+          },
+          "ConfidenceLevel": {
+            "type": "number"
+          },
+          "FixedSampleSize": {
+            "type": "integer"
+          },
+          "SamplingPercentage": {
+            "type": "number"
+          }
+        }
+      },
+      "MassOperationResult": {
+        "title": "MassOperationResult",
+        "type": "object",
+        "properties": {
+          "ProcessID": {
+            "type": "integer"
+          }
+        }
+      },
+      "PublishMassMoveJobRequestAsync_RequestBody": {
+        "title": "PublishMassMoveJobRequestAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "request": {
+            "$ref": "#/components/schemas/MassMoveJobRequest"
+          }
+        }
+      },
+      "MassMoveJobRequest": {
+        "title": "MassMoveJobRequest",
+        "type": "object",
+        "properties": {
+          "DestinationFolderArtifactID": {
+            "type": "integer"
+          },
+          "Type": {
+            "enum": [
+              "Edit",
+              "Delete",
+              "Replace",
+              "Move",
+              "Copy",
+              "Report",
+              "SendToCaseMap",
+              "Tif",
+              "Print",
+              "Export",
+              "Cluster",
+              "Tally",
+              "SaveAsList",
+              "Custom"
+            ],
+            "type": "string"
+          },
+          "ArtifactTypeID": {
+            "type": "integer"
+          },
+          "MassProcessID": {
+            "type": "integer"
+          }
+        }
+      },
+      "MassMoveAsync_RequestBody": {
+        "title": "MassMoveAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "request": {
+            "$ref": "#/components/schemas/MassMoveRequest"
+          }
+        }
+      },
+      "MassMoveRequest": {
+        "title": "MassMoveRequest",
+        "type": "object",
+        "properties": {
+          "DestinationFolderArtifactID": {
+            "type": "integer"
+          },
+          "Type": {
+            "enum": [
+              "Edit",
+              "Delete",
+              "Replace",
+              "Move",
+              "Copy",
+              "Report",
+              "SendToCaseMap",
+              "Tif",
+              "Print",
+              "Export",
+              "Cluster",
+              "Tally",
+              "SaveAsList",
+              "Custom"
+            ],
+            "type": "string"
+          },
+          "ArtifactTypeID": {
+            "type": "integer"
+          },
+          "Query": {
+            "$ref": "#/components/schemas/QueryRequest"
+          }
+        }
+      },
+      "PublishMassEditJobRequestAsync_RequestBody": {
+        "title": "PublishMassEditJobRequestAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "request": {
+            "$ref": "#/components/schemas/MassEditJobRequest"
+          }
+        }
+      },
+      "MassEditJobRequest": {
+        "title": "MassEditJobRequest",
+        "type": "object",
+        "properties": {
+          "Type": {
+            "enum": [
+              "Edit",
+              "Delete",
+              "Replace",
+              "Move",
+              "Copy",
+              "Report",
+              "SendToCaseMap",
+              "Tif",
+              "Print",
+              "Export",
+              "Cluster",
+              "Tally",
+              "SaveAsList",
+              "Custom"
+            ],
+            "type": "string"
+          },
+          "Fields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EditField"
+            }
+          },
+          "ArtifactTypeID": {
+            "type": "integer"
+          },
+          "MassProcessID": {
+            "type": "integer"
+          }
+        }
+      },
+      "EditField": {
+        "title": "EditField",
+        "type": "object",
+        "properties": {
+          "Value": {
+            "$ref": "#/components/schemas/Object"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "ArtifactID": {
+            "type": "integer"
+          },
+          "ViewFieldID": {
+            "type": "integer"
+          },
+          "Guid": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "Object": {
+        "title": "Object",
+        "type": "object"
+      },
+      "MassEditAsync_RequestBody": {
+        "title": "MassEditAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "request": {
+            "$ref": "#/components/schemas/MassEditRequest"
+          }
+        }
+      },
+      "MassEditRequest": {
+        "title": "MassEditRequest",
+        "type": "object",
+        "properties": {
+          "Type": {
+            "enum": [
+              "Edit",
+              "Delete",
+              "Replace",
+              "Move",
+              "Copy",
+              "Report",
+              "SendToCaseMap",
+              "Tif",
+              "Print",
+              "Export",
+              "Cluster",
+              "Tally",
+              "SaveAsList",
+              "Custom"
+            ],
+            "type": "string"
+          },
+          "Fields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EditField"
+            }
+          },
+          "ArtifactTypeID": {
+            "type": "integer"
+          },
+          "Query": {
+            "$ref": "#/components/schemas/QueryRequest"
+          }
+        }
+      },
+      "PublishMassDeleteJobRequestAsync_RequestBody": {
+        "title": "PublishMassDeleteJobRequestAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "request": {
+            "$ref": "#/components/schemas/MassDeleteJobRequest"
+          }
+        }
+      },
+      "MassDeleteJobRequest": {
+        "title": "MassDeleteJobRequest",
+        "type": "object",
+        "properties": {
+          "DocumentDeleteOptions": {
+            "enum": [
+              "DeleteDocumentAndAllAssociatedFiles",
+              "DeleteOnlyImages",
+              "DeleteOnlyNatives",
+              "DeleteOnlyNativesAndImages"
+            ],
+            "type": "string"
+          },
+          "ForceDelete": {
+            "type": "boolean"
+          },
+          "Type": {
+            "enum": [
+              "Edit",
+              "Delete",
+              "Replace",
+              "Move",
+              "Copy",
+              "Report",
+              "SendToCaseMap",
+              "Tif",
+              "Print",
+              "Export",
+              "Cluster",
+              "Tally",
+              "SaveAsList",
+              "Custom"
+            ],
+            "type": "string"
+          },
+          "PromoteDuplicatesFromOtherSources": {
+            "type": "boolean"
+          },
+          "SnapshotAuditSelectionForOperation": {
+            "type": "boolean"
+          },
+          "ArtifactTypeID": {
+            "type": "integer"
+          },
+          "MassProcessID": {
+            "type": "integer"
+          }
+        }
+      },
+      "MassDeleteAsync_RequestBody": {
+        "title": "MassDeleteAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "request": {
+            "$ref": "#/components/schemas/MassDeleteRequest"
+          }
+        }
+      },
+      "MassDeleteRequest": {
+        "title": "MassDeleteRequest",
+        "type": "object",
+        "properties": {
+          "DocumentDeleteOptions": {
+            "enum": [
+              "DeleteDocumentAndAllAssociatedFiles",
+              "DeleteOnlyImages",
+              "DeleteOnlyNatives",
+              "DeleteOnlyNativesAndImages"
+            ],
+            "type": "string"
+          },
+          "ForceDelete": {
+            "type": "boolean"
+          },
+          "Type": {
+            "enum": [
+              "Edit",
+              "Delete",
+              "Replace",
+              "Move",
+              "Copy",
+              "Report",
+              "SendToCaseMap",
+              "Tif",
+              "Print",
+              "Export",
+              "Cluster",
+              "Tally",
+              "SaveAsList",
+              "Custom"
+            ],
+            "type": "string"
+          },
+          "PromoteDuplicatesFromOtherSources": {
+            "type": "boolean"
+          },
+          "SnapshotAuditSelectionForOperation": {
+            "type": "boolean"
+          },
+          "ArtifactTypeID": {
+            "type": "integer"
+          },
+          "Query": {
+            "$ref": "#/components/schemas/QueryRequest"
+          }
+        }
+      },
+      "PublishMassReplaceJobRequestAsync_RequestBody": {
+        "title": "PublishMassReplaceJobRequestAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "request": {
+            "$ref": "#/components/schemas/MassReplaceJobRequest"
+          }
+        }
+      },
+      "MassReplaceJobRequest": {
+        "title": "MassReplaceJobRequest",
+        "type": "object",
+        "properties": {
+          "Type": {
+            "enum": [
+              "Edit",
+              "Delete",
+              "Replace",
+              "Move",
+              "Copy",
+              "Report",
+              "SendToCaseMap",
+              "Tif",
+              "Print",
+              "Export",
+              "Cluster",
+              "Tally",
+              "SaveAsList",
+              "Custom"
+            ],
+            "type": "string"
+          },
+          "Fields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReplaceField"
+            }
+          },
+          "ArtifactTypeID": {
+            "type": "integer"
+          },
+          "MassProcessID": {
+            "type": "integer"
+          }
+        }
+      },
+      "ReplaceField": {
+        "title": "ReplaceField",
+        "type": "object",
+        "properties": {
+          "ReplaceAction": {
+            "$ref": "#/components/schemas/ReplaceAction"
+          },
+          "ReplaceOptions": {
+            "$ref": "#/components/schemas/ReplaceOptions"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "ArtifactID": {
+            "type": "integer"
+          },
+          "ViewFieldID": {
+            "type": "integer"
+          },
+          "Guid": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "ReplaceAction": {
+        "title": "ReplaceAction",
+        "type": "object",
+        "properties": {
+          "Options": {
+            "enum": [
+              "Text",
+              "Field"
+            ],
+            "type": "string"
+          },
+          "ReplacementText": {
+            "type": "string"
+          },
+          "ReplacementField": {
+            "$ref": "#/components/schemas/FieldRef"
+          }
+        }
+      },
+      "ReplaceOptions": {
+        "title": "ReplaceOptions",
+        "type": "object",
+        "properties": {
+          "Options": {
+            "enum": [
+              "ReplaceEntireField",
+              "AppendToEnd",
+              "InsertAtBeginning",
+              "SearchFor"
+            ],
+            "type": "string"
+          },
+          "Value": {
+            "type": "string"
+          }
+        }
+      },
+      "MassReplaceAsync_RequestBody": {
+        "title": "MassReplaceAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "request": {
+            "$ref": "#/components/schemas/MassReplaceRequest"
+          }
+        }
+      },
+      "MassReplaceRequest": {
+        "title": "MassReplaceRequest",
+        "type": "object",
+        "properties": {
+          "Type": {
+            "enum": [
+              "Edit",
+              "Delete",
+              "Replace",
+              "Move",
+              "Copy",
+              "Report",
+              "SendToCaseMap",
+              "Tif",
+              "Print",
+              "Export",
+              "Cluster",
+              "Tally",
+              "SaveAsList",
+              "Custom"
+            ],
+            "type": "string"
+          },
+          "Fields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReplaceField"
+            }
+          },
+          "ArtifactTypeID": {
+            "type": "integer"
+          },
+          "Query": {
+            "$ref": "#/components/schemas/QueryRequest"
+          }
+        }
+      },
+      "PublishMassSaveAsListJobRequestAsync_RequestBody": {
+        "title": "PublishMassSaveAsListJobRequestAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "request": {
+            "$ref": "#/components/schemas/MassSaveAsListJobRequest"
+          }
+        }
+      },
+      "MassSaveAsListJobRequest": {
+        "title": "MassSaveAsListJobRequest",
+        "type": "object",
+        "properties": {
+          "Notes": {
+            "type": "string"
+          },
+          "ListName": {
+            "type": "string"
+          },
+          "ExistingListArtifactID": {
+            "type": "integer"
+          },
+          "Options": {
+            "enum": [
+              "CreateNewList",
+              "ReplaceExistingList"
+            ],
+            "type": "string"
+          },
+          "Type": {
+            "enum": [
+              "Edit",
+              "Delete",
+              "Replace",
+              "Move",
+              "Copy",
+              "Report",
+              "SendToCaseMap",
+              "Tif",
+              "Print",
+              "Export",
+              "Cluster",
+              "Tally",
+              "SaveAsList",
+              "Custom"
+            ],
+            "type": "string"
+          },
+          "ArtifactTypeID": {
+            "type": "integer"
+          },
+          "MassProcessID": {
+            "type": "integer"
+          }
+        }
+      },
+      "MassSaveAsListAsync_RequestBody": {
+        "title": "MassSaveAsListAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "request": {
+            "$ref": "#/components/schemas/MassSaveAsListRequest"
+          }
+        }
+      },
+      "MassSaveAsListRequest": {
+        "title": "MassSaveAsListRequest",
+        "type": "object",
+        "properties": {
+          "Notes": {
+            "type": "string"
+          },
+          "ListName": {
+            "type": "string"
+          },
+          "ExistingListArtifactID": {
+            "type": "integer"
+          },
+          "Options": {
+            "enum": [
+              "CreateNewList",
+              "ReplaceExistingList"
+            ],
+            "type": "string"
+          },
+          "Type": {
+            "enum": [
+              "Edit",
+              "Delete",
+              "Replace",
+              "Move",
+              "Copy",
+              "Report",
+              "SendToCaseMap",
+              "Tif",
+              "Print",
+              "Export",
+              "Cluster",
+              "Tally",
+              "SaveAsList",
+              "Custom"
+            ],
+            "type": "string"
+          },
+          "ArtifactTypeID": {
+            "type": "integer"
+          },
+          "Query": {
+            "$ref": "#/components/schemas/QueryRequest"
+          }
+        }
+      },
+      "PublishMassTallySumAverageJobRequestAsync_RequestBody": {
+        "title": "PublishMassTallySumAverageJobRequestAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "request": {
+            "$ref": "#/components/schemas/MassTallySumAverageJobRequest"
+          }
+        }
+      },
+      "MassTallySumAverageJobRequest": {
+        "title": "MassTallySumAverageJobRequest",
+        "type": "object",
+        "properties": {
+          "Field": {
+            "$ref": "#/components/schemas/FieldRef"
+          },
+          "Operation": {
+            "enum": [
+              "Tally",
+              "Sum",
+              "Average"
+            ],
+            "type": "string"
+          },
+          "Type": {
+            "enum": [
+              "Edit",
+              "Delete",
+              "Replace",
+              "Move",
+              "Copy",
+              "Report",
+              "SendToCaseMap",
+              "Tif",
+              "Print",
+              "Export",
+              "Cluster",
+              "Tally",
+              "SaveAsList",
+              "Custom"
+            ],
+            "type": "string"
+          },
+          "ArtifactTypeID": {
+            "type": "integer"
+          },
+          "MassProcessID": {
+            "type": "integer"
+          }
+        }
+      },
+      "TallySumAverageResult": {
+        "title": "TallySumAverageResult",
+        "type": "object",
+        "properties": {
+          "Value": {
+            "type": "string"
+          },
+          "Count": {
+            "type": "number"
+          }
+        }
+      },
+      "TallySumAverageAsync_RequestBody": {
+        "title": "TallySumAverageAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "request": {
+            "$ref": "#/components/schemas/MassTallySumAverageRequest"
+          }
+        }
+      },
+      "MassTallySumAverageRequest": {
+        "title": "MassTallySumAverageRequest",
+        "type": "object",
+		"properties": {
+          "Field": {
+            "$ref": "#/components/schemas/FieldRef"
+          },
+          "Operation": {
+            "enum": [
+              "Tally",
+              "Sum",
+              "Average"
+            ],
+            "type": "string"
+          },
+          "Type": {
+            "enum": [
+              "Edit",
+              "Delete",
+              "Replace",
+              "Move",
+              "Copy",
+              "Report",
+              "SendToCaseMap",
+              "Tif",
+              "Print",
+              "Export",
+              "Cluster",
+              "Tally",
+              "SaveAsList",
+              "Custom"
+            ],
+            "type": "string"
+          },
+          "ArtifactTypeID": {
+            "type": "integer"
+          },
+          "Query": {
+            "$ref": "#/components/schemas/QueryRequest"
+          }
+        }
+      },
+      "PublishMassExportToFileJobRequestAsync_RequestBody": {
+        "title": "PublishMassExportToFileJobRequestAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "request": {
+            "$ref": "#/components/schemas/MassExportToFileJobRequest"
+          }
+        }
+      },
+      "MassExportToFileJobRequest": {
+        "title": "MassExportToFileJobRequest",
+        "type": "object",
+        "properties": {
+          "Type": {
+            "enum": [
+              "Edit",
+              "Delete",
+              "Replace",
+              "Move",
+              "Copy",
+              "Report",
+              "SendToCaseMap",
+              "Tif",
+              "Print",
+              "Export",
+              "Cluster",
+              "Tally",
+              "SaveAsList",
+              "Custom"
+            ],
+            "type": "string"
+          },
+          "ViewID": {
+            "type": "integer"
+          },
+          "ViewFields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FieldRef"
+            }
+          },
+          "EscapeFormulas": {
+            "type": "boolean"
+          },
+          "HasRank": {
+            "type": "boolean"
+          },
+          "SearchProviderArtifactID": {
+            "type": "integer",
+            "nullable": true
+          },
+          "ExportFileFormat": {
+            "enum": [
+              "Csv",
+              "Dat",
+              "Xls"
+            ],
+            "type": "string"
+          },
+          "ExportEncodingType": {
+            "enum": [
+              "JapaneseShiftJIS",
+              "ChineseGB2312",
+              "Korean",
+              "ChineseTraditional",
+              "Unicode",
+              "UnicodeBigEndian",
+              "WesternEuropean",
+              "JapaneseJIS",
+              "ChineseGB18030",
+              "UnicodeUTF8"
+            ],
+            "type": "string"
+          },
+          "ArtifactTypeID": {
+            "type": "integer"
+          },
+          "MassProcessID": {
+            "type": "integer"
+          }
+        }
+      },
+      "IKeplerStream": {
+        "title": "IKeplerStream",
+        "type": "object",
+        "properties": {
+          "ContentType": {
+            "type": "string"
+          },
+          "ContentDisposition": {
+            "type": "string"
+          },
+          "CacheControl": {
+            "type": "string"
+          },
+          "StatusCode": {
+            "enum": [
+              "Continue",
+              "SwitchingProtocols",
+              "OK",
+              "Created",
+              "Accepted",
+              "NonAuthoritativeInformation",
+              "NoContent",
+              "ResetContent",
+              "PartialContent",
+              "MultipleChoices",
+              "Ambiguous",
+              "MovedPermanently",
+              "Moved",
+              "Found",
+              "Redirect",
+              "SeeOther",
+              "RedirectMethod",
+              "NotModified",
+              "UseProxy",
+              "Unused",
+              "TemporaryRedirect",
+              "RedirectKeepVerb",
+              "BadRequest",
+              "Unauthorized",
+              "PaymentRequired",
+              "Forbidden",
+              "NotFound",
+              "MethodNotAllowed",
+              "NotAcceptable",
+              "ProxyAuthenticationRequired",
+              "RequestTimeout",
+              "Conflict",
+              "Gone",
+              "LengthRequired",
+              "PreconditionFailed",
+              "RequestEntityTooLarge",
+              "RequestUriTooLong",
+              "UnsupportedMediaType",
+              "RequestedRangeNotSatisfiable",
+              "ExpectationFailed",
+              "UpgradeRequired",
+              "InternalServerError",
+              "NotImplemented",
+              "BadGateway",
+              "ServiceUnavailable",
+              "GatewayTimeout",
+              "HttpVersionNotSupported"
+            ],
+            "type": "string",
+            "nullable": true
+          },
+          "Headers": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "NameValueCollection"
+            }
+          }
+        }
+      },
+      "MassExportToFileAsync_RequestBody": {
+        "title": "MassExportToFileAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "request": {
+            "$ref": "#/components/schemas/MassExportToFileRequest"
+          }
+        }
+      },
+      "MassExportToFileRequest": {
+        "title": "MassExportToFileRequest",
+        "type": "object",
+        "properties": {
+          "Type": {
+            "enum": [
+              "Edit",
+              "Delete",
+              "Replace",
+              "Move",
+              "Copy",
+              "Report",
+              "SendToCaseMap",
+              "Tif",
+              "Print",
+              "Export",
+              "Cluster",
+              "Tally",
+              "SaveAsList",
+              "Custom"
+            ],
+            "type": "string"
+          },
+          "ViewID": {
+            "type": "integer"
+          },
+          "ViewFields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FieldRef"
+            }
+          },
+          "EscapeFormulas": {
+            "type": "boolean"
+          },
+          "HasRank": {
+            "type": "boolean"
+          },
+          "SearchProviderArtifactID": {
+            "type": "integer",
+            "nullable": true
+          },
+          "ExportFileFormat": {
+            "enum": [
+              "Csv",
+              "Dat",
+              "Xls"
+            ],
+            "type": "string"
+          },
+          "ExportEncodingType": {
+            "enum": [
+              "JapaneseShiftJIS",
+              "ChineseGB2312",
+              "Korean",
+              "ChineseTraditional",
+              "Unicode",
+              "UnicodeBigEndian",
+              "WesternEuropean",
+              "JapaneseJIS",
+              "ChineseGB18030",
+              "UnicodeUTF8"
+            ],
+            "type": "string"
+          },
+          "ArtifactTypeID": {
+            "type": "integer"
+          },
+          "Query": {
+            "$ref": "#/components/schemas/QueryRequest"
+          }
+        }
+      },
+      "InitializeMassOperationAsync_RequestBody": {
+        "title": "InitializeMassOperationAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "request": {
+            "$ref": "#/components/schemas/InitializeMassOperationRequest"
+          }
+        }
+      },
+      "InitializeMassOperationRequest": {
+        "title": "InitializeMassOperationRequest",
+        "type": "object",
+        "properties": {
+          "ArtifactTypeID": {
+            "type": "integer"
+          },
+          "Query": {
+            "$ref": "#/components/schemas/QueryRequest"
+          },
+          "DatabaseTokenRequired": {
+            "type": "boolean"
+          }
+        }
+      },
+      "InitializeMassOperationResult": {
+        "title": "InitializeMassOperationResult",
+        "type": "object",
+        "properties": {
+          "ProcessID": {
+            "type": "integer"
+          },
+          "ObjectCount": {
+            "type": "integer"
+          },
+          "DatabaseToken": {
+            "type": "string"
+          }
+        }
+      },
+      "MassOperationProcessState": {
+        "title": "MassOperationProcessState",
+        "type": "object",
+        "properties": {
+          "ProcessIdentifier": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "State": {
+            "enum": [
+              "Idle",
+              "Running",
+              "Completed",
+              "HandleException",
+              "UnhandledException",
+              "RunningWarning",
+              "Canceled",
+              "Cancelling",
+              "CompletedWithError",
+              "NotStarted",
+              "Pausing",
+              "Paused"
+            ],
+            "type": "string"
+          },
+          "Status": {
+            "type": "string"
+          },
+          "IsCanceled": {
+            "type": "boolean"
+          },
+          "TotalOperations": {
+            "type": "integer"
+          },
+          "OperationsCompleted": {
+            "type": "integer"
+          },
+          "ExceptionMessage": {
+            "type": "string"
+          },
+          "CancelReason": {
+            "enum": [
+              "UserInitiated",
+              "AgentShutdown",
+              "Unknown",
+              "JobOrphaned",
+              "NotApplicable"
+            ],
+            "type": "string"
+          }
+        }
+      },
+      "MassDeleteStartupResult": {
+        "title": "MassDeleteStartupResult",
+        "type": "object",
+        "properties": {
+          "IsCascadeDeletable": {
+            "type": "boolean"
+          },
+          "HasDependencies": {
+            "type": "boolean"
+          },
+          "HasDeleteObjectDependenciesPermission": {
+            "type": "boolean"
+          },
+          "SnapshotAuditSettingFromObjectType": {
+            "type": "boolean"
+          },
+          "PPDEventHandlerToggleValue": {
+            "type": "boolean"
+          },
+          "SnapshotAuditOverrideOptionToggleValue": {
+            "type": "boolean"
+          }
+        }
+      },
+      "MassAgentDeleteStartupResult": {
+        "title": "MassAgentDeleteStartupResult",
+        "type": "object",
+        "properties": {
+          "LastPerEnvironmentAgents": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "MinPerResourcePoolAgents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MinPerResourcePoolResult"
+            }
+          },
+          "ForceDelete": {
+            "type": "boolean"
+          },
+          "WarningMessages": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "MinPerResourcePoolResult": {
+        "title": "MinPerResourcePoolResult",
+        "type": "object",
+        "properties": {
+          "AgentName": {
+            "type": "string"
+          },
+          "ResourcePoolName": {
+            "type": "string"
+          }
+        }
+      },
+      "MassOperationProcessStateExtendedResult": {
+        "title": "MassOperationProcessStateExtendedResult",
+        "type": "object",
+        "properties": {
+          "WorkspaceId": {
+            "type": "integer"
+          },
+          "WorkspaceName": {
+            "type": "string"
+          },
+          "MassOperationType": {
+            "type": "string"
+          },
+          "Status": {
+            "type": "string"
+          },
+          "StatusMessage": {
+            "type": "string"
+          },
+          "ProcessIdentifier": {
+            "type": "string"
+          },
+          "StartedDateTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "ArtifactType": {
+            "type": "string"
+          },
+          "ArtifactCount": {
+            "type": "integer"
+          },
+          "MassOpsProgress": {
+            "type": "number"
+          },
+          "MassOperationFriendlyName": {
+            "type": "string"
+          },
+          "CancelReason": {
+            "enum": [
+              "UserInitiated",
+              "AgentShutdown",
+              "Unknown",
+              "JobOrphaned",
+              "NotApplicable"
+            ],
+            "type": "string"
+          }
+        }
+      },
+      "UInt32": {
+        "title": "UInt32",
+        "type": "object"
+      }
+    },
+    "parameters": {
+      "workspaceID": {
+        "name": "workspaceID",
+        "in": "path",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "x-csrf-header": {
+        "name": "x-csrf-header",
+        "in": "header",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "default": "-"
+        }
+      },
+      "processID": {
+        "name": "processID",
+        "in": "path",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "processIdentifier": {
+        "name": "processIdentifier",
+        "in": "path",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "artifactTypeID": {
+        "name": "artifactTypeID",
+        "in": "path",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}

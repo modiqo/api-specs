@@ -1,0 +1,1765 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Relativity.Processing.V2",
+    "description": "Relativity.Processing",
+    "version": "V2"
+  },
+  "servers": [
+    {
+      "url": "/Relativity.REST/api",
+      "description": "The URL prefix for all Kepler services"
+    }
+  ],
+  "paths": {
+    "/relativity-processing/v2/workspaces/{workspaceID}/metadata": {
+      "get": {
+        "tags": [
+          "Processing Module v2"
+        ],
+        "description": "[Public] IProcessingDocumentManager - ",
+        "operationId": "Relativity.Processing.V2.Services.IProcessingDocumentManager.GetDocumentMetadataAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/logicalID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProcessingMetadataResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-processing/v2/workspaces/{workspaceID}/documents/metadata": {
+      "post": {
+        "tags": [
+          "Processing Module v2"
+        ],
+        "description": "[Public] IProcessingDocumentManager - ",
+        "operationId": "Relativity.Processing.V2.Services.IProcessingDocumentManager.GetDocumentsMetadataAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetDocumentsMetadataAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProcessingMetadataResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-processing/v2/workspaces/{workspaceID}/documents/get-file-paths": {
+      "post": {
+        "tags": [
+          "Processing Module v2"
+        ],
+        "description": "[Public] IProcessingDocumentManager - ",
+        "operationId": "Relativity.Processing.V2.Services.IProcessingDocumentManager.GetFilePathsAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetFilePathsAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProcessingFilePathResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-processing/v2/workspaces/{workspaceID}/errors": {
+      "get": {
+        "tags": [
+          "Processing Module v2"
+        ],
+        "description": "[Public] IProcessingDocumentManager - ",
+        "operationId": "Relativity.Processing.V2.Services.IProcessingDocumentManager.GetDocumentErrorHistoryAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/logicalID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetDocumentErrorHistoryAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProcessingDocumentErrorHistoryResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-processing/v2/workspaces/{workspaceID}/documents/retry-delete": {
+      "post": {
+        "tags": [
+          "Processing Module v2"
+        ],
+        "description": "[Public] IProcessingDocumentManager - ",
+        "operationId": "Relativity.Processing.V2.Services.IProcessingDocumentManager.RetryDeleteDocumentAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RetryDeleteDocumentAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      }
+    },
+    "/relativity-processing/v2/workspaces/{workspaceID}/documents/retry-errors": {
+      "post": {
+        "tags": [
+          "Processing Module v2"
+        ],
+        "description": "[Public] IProcessingDocumentManager - ",
+        "operationId": "Relativity.Processing.V2.Services.IProcessingDocumentManager.RetryDocumentErrorsAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RetryDocumentErrorsAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      }
+    },
+    "/relativity-processing/v2/workspaces/{workspaceID}/documents/publish": {
+      "post": {
+        "tags": [
+          "Processing Module v2"
+        ],
+        "description": "[Public] IProcessingDocumentManager - ",
+        "operationId": "Relativity.Processing.V2.Services.IProcessingDocumentManager.PublishDocumentsAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PublishDocumentsAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      }
+    },
+    "/relativity-processing/v2/workspaces/{workspaceID}/documents/get-publish-job-errors": {
+      "post": {
+        "tags": [
+          "Processing Module v2"
+        ],
+        "description": "[Public] IProcessingDocumentManager - ",
+        "operationId": "Relativity.Processing.V2.Services.IProcessingDocumentManager.GetPublishJobErrorsAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetPublishJobErrorsAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublishJobErrorInfoResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-processing/v2/workspaces/{workspaceID}/documents/count": {
+      "post": {
+        "tags": [
+          "Processing Module v2"
+        ],
+        "description": "[Public] IProcessingDocumentManager - ",
+        "operationId": "Relativity.Processing.V2.Services.IProcessingDocumentManager.RetrievePublishableDocumentCountAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RetrievePublishableDocumentCountAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-processing/v2/workspaces/{workspaceID}/filters": {
+      "post": {
+        "tags": [
+          "Processing Module v2"
+        ],
+        "description": "[Public] IProcessingFilterManager - ",
+        "operationId": "Relativity.Processing.V2.Services.IProcessingFilterManager.CreateExpressionFilterAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateExpressionFilterAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProcessingFilter"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Processing Module v2"
+        ],
+        "description": "[Public] IProcessingFilterManager - ",
+        "operationId": "Relativity.Processing.V2.Services.IProcessingFilterManager.GetFiltersAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProcessingFilter"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-processing/v2/workspaces/{workspaceID}/filters/results/{filterID}": {
+      "get": {
+        "tags": [
+          "Processing Module v2"
+        ],
+        "description": "[Public] IProcessingFilterManager - ",
+        "operationId": "Relativity.Processing.V2.Services.IProcessingFilterManager.GetFilterResultAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/filterID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetFilterResultAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProcessingFilterData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-processing/v2/workspaces/{workspaceID}/filters/data-sources/{dataSourceID}/filters": {
+      "get": {
+        "tags": [
+          "Processing Module v2"
+        ],
+        "description": "[Public] IProcessingFilterManager - ",
+        "operationId": "Relativity.Processing.V2.Services.IProcessingFilterManager.GetFiltersByDataSourceAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/dataSourceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProcessingFilter"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-processing/v2/workspaces/{workspaceID}/filters/{filterID}": {
+      "put": {
+        "tags": [
+          "Processing Module v2"
+        ],
+        "description": "[Public] IProcessingFilterManager - ",
+        "operationId": "Relativity.Processing.V2.Services.IProcessingFilterManager.UpdateExpressionFilterAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/filterID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateExpressionFilterAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProcessingFilter"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Processing Module v2"
+        ],
+        "description": "[Public] IProcessingFilterManager - ",
+        "operationId": "Relativity.Processing.V2.Services.IProcessingFilterManager.DeleteFilterAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/filterID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      }
+    },
+    "/relativity-processing/v2/workspaces/{workspaceID}/filters/documents": {
+      "post": {
+        "tags": [
+          "Processing Module v2"
+        ],
+        "description": "[Public] IProcessingFilterManager - ",
+        "operationId": "Relativity.Processing.V2.Services.IProcessingFilterManager.GetDiscoveredDocumentsAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetDiscoveredDocumentsAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProcessingFilterData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-processing/v2/workspaces/{workspaceID}/filters/pivot-discovered-documents": {
+      "post": {
+        "tags": [
+          "Processing Module v2"
+        ],
+        "description": "[Public] IProcessingFilterManager - ",
+        "operationId": "Relativity.Processing.V2.Services.IProcessingFilterManager.PivotOnDiscoveredDocumentsAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PivotOnDiscoveredDocumentsAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetDiscoveredDocumentsWithPivotOnResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-processing/v2/workspaces/{workspaceID}/filters/csvs": {
+      "post": {
+        "tags": [
+          "Processing Module v2"
+        ],
+        "description": "[Public] IProcessingFilterManager - ",
+        "operationId": "Relativity.Processing.V2.Services.IProcessingFilterManager.DownloadDiscoveredDocumentListAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DownloadDiscoveredDocumentListAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IKeplerStream"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-processing/v2/workspaces/{workspaceID}/filters/get-nisted-documents": {
+      "get": {
+        "tags": [
+          "Processing Module v2"
+        ],
+        "description": "[Public] IProcessingFilterManager - ",
+        "operationId": "Relativity.Processing.V2.Services.IProcessingFilterManager.DownloadNistedDocumentListAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DownloadNistedDocumentListAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IKeplerStream"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-processing/v2/workspaces/{workspaceID}/filters/document-ids": {
+      "post": {
+        "tags": [
+          "Processing Module v2"
+        ],
+        "description": "[Public] IProcessingFilterManager - ",
+        "operationId": "Relativity.Processing.V2.Services.IProcessingFilterManager.GetDiscoveredDocumentIdsAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetDiscoveredDocumentIdsAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProcessingLogicalIdResults"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ProcessingMetadataResponse": {
+        "title": "ProcessingMetadataResponse",
+        "type": "object",
+        "properties": {
+          "LogicalID": {
+            "type": "string"
+          },
+          "WorkspaceArtifactID": {
+            "type": "integer"
+          },
+          "MetadataJson": {
+            "type": "string"
+          },
+          "Errors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "GetDocumentsMetadataAsync_RequestBody": {
+        "title": "GetDocumentsMetadataAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "request": {
+            "$ref": "#/components/schemas/ProcessingMetadataRequest"
+          }
+        }
+      },
+      "ProcessingMetadataRequest": {
+        "title": "ProcessingMetadataRequest",
+        "type": "object",
+        "properties": {
+          "LogicalIDs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "GetFilePathsAsync_RequestBody": {
+        "title": "GetFilePathsAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "request": {
+            "$ref": "#/components/schemas/ProcessingMetadataRequest"
+          }
+        }
+      },
+      "ProcessingFilePathResponse": {
+        "title": "ProcessingFilePathResponse",
+        "type": "object",
+        "properties": {
+          "LogicalID": {
+            "type": "string"
+          },
+          "StoredAs": {
+            "type": "string"
+          }
+        }
+      },
+      "GetDocumentErrorHistoryAsync_RequestBody": {
+        "title": "GetDocumentErrorHistoryAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "skip": {
+            "type": "integer"
+          },
+          "top": {
+            "type": "integer"
+          }
+        }
+      },
+      "ProcessingDocumentErrorHistoryResponse": {
+        "title": "ProcessingDocumentErrorHistoryResponse",
+        "type": "object",
+        "properties": {
+          "TotalCount": {
+            "type": "integer"
+          },
+          "DocumentErrorHistory": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProcessingDocumentErrorInfo"
+            }
+          }
+        }
+      },
+      "ProcessingDocumentErrorInfo": {
+        "title": "ProcessingDocumentErrorInfo",
+        "type": "object",
+        "properties": {
+          "TimeStamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "Category": {
+            "type": "string"
+          },
+          "ErrorMessage": {
+            "type": "string"
+          },
+          "ErrorPhase": {
+            "type": "string"
+          },
+          "RetryStatus": {
+            "type": "string"
+          }
+        }
+      },
+      "RetryDeleteDocumentAsync_RequestBody": {
+        "title": "RetryDeleteDocumentAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "documentsRequest": {
+            "$ref": "#/components/schemas/ProcessingDocumentsRequest"
+          }
+        }
+      },
+      "ProcessingDocumentsRequest": {
+        "title": "ProcessingDocumentsRequest",
+        "type": "object",
+        "properties": {
+          "LogicalIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "Expression": {
+            "type": "string"
+          }
+        }
+      },
+      "RetryDocumentErrorsAsync_RequestBody": {
+        "title": "RetryDocumentErrorsAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "documentsRequest": {
+            "$ref": "#/components/schemas/ProcessingDocumentsRequest"
+          }
+        }
+      },
+      "PublishDocumentsAsync_RequestBody": {
+        "title": "PublishDocumentsAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "documentsRequest": {
+            "$ref": "#/components/schemas/ProcessingDocumentsRequest"
+          }
+        }
+      },
+      "GetPublishJobErrorsAsync_RequestBody": {
+        "title": "GetPublishJobErrorsAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "documentsRequest": {
+            "$ref": "#/components/schemas/ProcessingDocumentsRequest"
+          }
+        }
+      },
+      "PublishJobErrorInfoResponse": {
+        "title": "PublishJobErrorInfoResponse",
+        "type": "object",
+        "properties": {
+          "ErroredJobCount": {
+            "type": "integer"
+          },
+          "GroupIdsWithJobErrors": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "ErrorArtifactIds": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "GroupIdsCheckedCount": {
+            "type": "integer"
+          }
+        }
+      },
+      "RetrievePublishableDocumentCountAsync_RequestBody": {
+        "title": "RetrievePublishableDocumentCountAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "documentsRequest": {
+            "$ref": "#/components/schemas/ProcessingDocumentsRequest"
+          }
+        }
+      },
+      "CreateExpressionFilterAsync_RequestBody": {
+        "title": "CreateExpressionFilterAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "request": {
+            "$ref": "#/components/schemas/CreateProcessingExpressionFilterRequest"
+          }
+        }
+      },
+      "CreateProcessingExpressionFilterRequest": {
+        "title": "CreateProcessingExpressionFilterRequest",
+        "type": "object",
+        "properties": {
+          "FilterName": {
+            "type": "string"
+          },
+          "DataSourceIDs": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "Expression": {
+            "type": "string"
+          },
+          "IncludeFamily": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ProcessingFilter": {
+        "title": "ProcessingFilter",
+        "type": "object",
+        "properties": {
+          "FilterID": {
+            "type": "integer"
+          },
+          "FilterName": {
+            "type": "string"
+          },
+          "Type": {
+            "type": "string"
+          }
+        }
+      },
+      "GetFilterResultAsync_RequestBody": {
+        "title": "GetFilterResultAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "skip": {
+            "type": "integer"
+          },
+          "top": {
+            "type": "integer"
+          }
+        }
+      },
+      "ProcessingFilterData": {
+        "title": "ProcessingFilterData",
+        "type": "object",
+        "properties": {
+          "Uuid": {
+            "type": "string"
+          },
+          "TotalCount": {
+            "type": "integer"
+          },
+          "UniqueDataSourceCount": {
+            "type": "integer"
+          },
+          "Results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProcessingFilterResult"
+            }
+          }
+        }
+      },
+      "ProcessingFilterResult": {
+        "title": "ProcessingFilterResult",
+        "type": "object",
+        "properties": {
+          "ContainerExtension": {
+            "type": "string"
+          },
+          "ContainerID": {
+            "type": "integer"
+          },
+          "ContainerName": {
+            "type": "string"
+          },
+          "CustodianArtifactId": {
+            "type": "integer"
+          },
+          "CustodianName": {
+            "type": "string"
+          },
+          "DataSourceArtifactId": {
+            "type": "integer"
+          },
+          "DataSourceName": {
+            "type": "string"
+          },
+          "DiscoverGroupId": {
+            "type": "integer"
+          },
+          "ErrorMessage": {
+            "type": "string"
+          },
+          "ErrorCategory": {
+            "type": "string"
+          },
+          "ErrorPhase": {
+            "type": "string"
+          },
+          "ExtractedTextLocation": {
+            "type": "string"
+          },
+          "FileExtension": {
+            "type": "string"
+          },
+          "FileName": {
+            "type": "string"
+          },
+          "FileSize": {
+            "type": "integer"
+          },
+          "FileType": {
+            "type": "string"
+          },
+          "FolderPath": {
+            "type": "string"
+          },
+          "ImportSource": {
+            "type": "string"
+          },
+          "IsContainer": {
+            "type": "boolean"
+          },
+          "IsDeleted": {
+            "type": "boolean"
+          },
+          "IsEmbedded": {
+            "type": "boolean"
+          },
+          "IsPublished": {
+            "type": "boolean"
+          },
+          "LogicalPath": {
+            "type": "string"
+          },
+          "MD5Hash": {
+            "type": "string"
+          },
+          "OfficeEmbeddedItems": {
+            "type": "boolean"
+          },
+          "OriginalPath": {
+            "type": "string"
+          },
+          "ParentId": {
+            "type": "integer"
+          },
+          "ProcessingFileId": {
+            "type": "integer"
+          },
+          "SourceId": {
+            "type": "string"
+          },
+          "UniqueId": {
+            "type": "string"
+          },
+          "LogicalId": {
+            "type": "string"
+          },
+          "ParentLogicalId": {
+            "type": "string"
+          },
+          "SHA1Hash": {
+            "type": "string"
+          },
+          "SHA256Hash": {
+            "type": "string"
+          },
+          "TextExtractionMethod": {
+            "type": "string"
+          },
+          "Unprocessable": {
+            "type": "boolean"
+          },
+          "VirtualPath": {
+            "type": "string"
+          },
+          "SenderDomain": {
+            "type": "string"
+          },
+          "SortDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "ErrorStatus": {
+            "type": "string"
+          },
+          "DedupeStatus": {
+            "type": "string"
+          },
+          "DocumentUuid": {
+            "type": "string"
+          },
+          "Severity": {
+            "type": "string"
+          },
+          "ProcessingDupeHash": {
+            "type": "string"
+          },
+          "StorageId": {
+            "type": "string"
+          }
+        }
+      },
+      "UpdateExpressionFilterAsync_RequestBody": {
+        "title": "UpdateExpressionFilterAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "request": {
+            "$ref": "#/components/schemas/UpdateProcessingExpressionFilterRequest"
+          }
+        }
+      },
+      "UpdateProcessingExpressionFilterRequest": {
+        "title": "UpdateProcessingExpressionFilterRequest",
+        "type": "object",
+        "properties": {
+          "FilterName": {
+            "type": "string"
+          },
+          "DataSourceIDs": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "Expression": {
+            "type": "string"
+          },
+          "IncludeFamily": {
+            "type": "boolean"
+          }
+        }
+      },
+      "GetDiscoveredDocumentsAsync_RequestBody": {
+        "title": "GetDiscoveredDocumentsAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "request": {
+            "$ref": "#/components/schemas/GetDiscoveredDocumentsRequest"
+          }
+        }
+      },
+      "GetDiscoveredDocumentsRequest": {
+        "title": "GetDiscoveredDocumentsRequest",
+        "type": "object",
+        "properties": {
+          "StartingPointOfResult": {
+            "type": "integer"
+          },
+          "NumberOfResults": {
+            "type": "integer"
+          },
+          "Expression": {
+            "type": "string"
+          },
+          "AuditedSourceID": {
+            "type": "integer"
+          },
+          "SortingOptions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SortOption"
+            }
+          },
+          "ExcludeTotalCount": {
+            "type": "boolean"
+          },
+          "IncludeDuplicateHash": {
+            "type": "boolean"
+          },
+          "AdvancedOptionsFlag": {
+            "enum": [
+              "None",
+              "EnableMDSKepler"
+            ],
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "SortOption": {
+        "title": "SortOption",
+        "type": "object",
+        "properties": {
+          "Property": {
+            "enum": [
+              "ContainerID",
+              "ProcessingFileId",
+              "FileSize",
+              "ParentFileId",
+              "DiscoverGroupId",
+              "ContainerName",
+              "ContainerExtension",
+              "IngestionError",
+              "ExtractedTextLocation",
+              "FileName",
+              "FileExtension",
+              "FileType",
+              "FolderPath",
+              "ImportSource",
+              "LogicalPath",
+              "MD5Hash",
+              "DocumentErrorMessage",
+              "OriginalPath",
+              "SHA1Hash",
+              "SHA256Hash",
+              "TextExtractionMethod",
+              "VirtualPath",
+              "IsContainer",
+              "IsEmbedded",
+              "OfficeEmbeddedItems",
+              "Unprocessable",
+              "IsPublished",
+              "CustodianArtifactId",
+              "DataSourceArtifactId",
+              "CustodianName",
+              "DataSourceName",
+              "SenderDomain",
+              "SortDate",
+              "IsDeleted",
+              "ErrorMessage",
+              "ErrorCategory",
+              "ErrorPhase",
+              "ErrorStatus",
+              "JobId",
+              "DedupeStatus",
+              "StorageId",
+              "Severity",
+              "SourceId",
+              "DocumentUuid",
+              "ParentId",
+              "RootId",
+              "UniqueId",
+              "LogicalId",
+              "ParentLogicalId"
+            ],
+            "type": "string"
+          },
+          "Order": {
+            "enum": [
+              "Descending",
+              "Ascending"
+            ],
+            "type": "string"
+          }
+        }
+      },
+      "PivotOnDiscoveredDocumentsAsync_RequestBody": {
+        "title": "PivotOnDiscoveredDocumentsAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "request": {
+            "$ref": "#/components/schemas/GetDiscoveredDocumentsWithPivotOnRequest"
+          }
+        }
+      },
+      "GetDiscoveredDocumentsWithPivotOnRequest": {
+        "title": "GetDiscoveredDocumentsWithPivotOnRequest",
+        "type": "object",
+        "properties": {
+          "Expression": {
+            "type": "string"
+          },
+          "PivotOnOption": {
+            "$ref": "#/components/schemas/PivotOnOption"
+          },
+          "AdvancedOptionsFlag": {
+            "enum": [
+              "None",
+              "EnableMDSKepler"
+            ],
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "PivotOnOption": {
+        "title": "PivotOnOption",
+        "type": "object",
+        "properties": {
+          "GroupByProperty": {
+            "enum": [
+              "ContainerID",
+              "ProcessingFileId",
+              "FileSize",
+              "ParentFileId",
+              "DiscoverGroupId",
+              "ContainerName",
+              "ContainerExtension",
+              "IngestionError",
+              "ExtractedTextLocation",
+              "FileName",
+              "FileExtension",
+              "FileType",
+              "FolderPath",
+              "ImportSource",
+              "LogicalPath",
+              "MD5Hash",
+              "DocumentErrorMessage",
+              "OriginalPath",
+              "SHA1Hash",
+              "SHA256Hash",
+              "TextExtractionMethod",
+              "VirtualPath",
+              "IsContainer",
+              "IsEmbedded",
+              "OfficeEmbeddedItems",
+              "Unprocessable",
+              "IsPublished",
+              "CustodianArtifactId",
+              "DataSourceArtifactId",
+              "CustodianName",
+              "DataSourceName",
+              "SenderDomain",
+              "SortDate",
+              "IsDeleted",
+              "ErrorMessage",
+              "ErrorCategory",
+              "ErrorPhase",
+              "ErrorStatus",
+              "JobId",
+              "DedupeStatus",
+              "StorageId",
+              "Severity",
+              "SourceId",
+              "DocumentUuid",
+              "ParentId",
+              "RootId",
+              "UniqueId",
+              "LogicalId",
+              "ParentLogicalId"
+            ],
+            "type": "string"
+          },
+          "GroupByCount": {
+            "type": "integer"
+          },
+          "PivotOnProperty": {
+            "enum": [
+              "ContainerID",
+              "ProcessingFileId",
+              "FileSize",
+              "ParentFileId",
+              "DiscoverGroupId",
+              "ContainerName",
+              "ContainerExtension",
+              "IngestionError",
+              "ExtractedTextLocation",
+              "FileName",
+              "FileExtension",
+              "FileType",
+              "FolderPath",
+              "ImportSource",
+              "LogicalPath",
+              "MD5Hash",
+              "DocumentErrorMessage",
+              "OriginalPath",
+              "SHA1Hash",
+              "SHA256Hash",
+              "TextExtractionMethod",
+              "VirtualPath",
+              "IsContainer",
+              "IsEmbedded",
+              "OfficeEmbeddedItems",
+              "Unprocessable",
+              "IsPublished",
+              "CustodianArtifactId",
+              "DataSourceArtifactId",
+              "CustodianName",
+              "DataSourceName",
+              "SenderDomain",
+              "SortDate",
+              "IsDeleted",
+              "ErrorMessage",
+              "ErrorCategory",
+              "ErrorPhase",
+              "ErrorStatus",
+              "JobId",
+              "DedupeStatus",
+              "StorageId",
+              "Severity",
+              "SourceId",
+              "DocumentUuid",
+              "ParentId",
+              "RootId",
+              "UniqueId",
+              "LogicalId",
+              "ParentLogicalId"
+            ],
+            "type": "string",
+            "nullable": true
+          },
+          "PivotOnCount": {
+            "type": "integer"
+          }
+        }
+      },
+      "GetDiscoveredDocumentsWithPivotOnResponse": {
+        "title": "GetDiscoveredDocumentsWithPivotOnResponse",
+        "type": "object",
+        "properties": {
+          "GroupByIdentifier": {
+            "type": "string"
+          },
+          "GroupByArtifactId": {
+            "type": "string"
+          },
+          "PivotOnIdentifier": {
+            "type": "string"
+          },
+          "PivotOnArtifactId": {
+            "type": "string"
+          },
+          "ResultCount": {
+            "type": "integer"
+          }
+        }
+      },
+      "DownloadDiscoveredDocumentListAsync_RequestBody": {
+        "title": "DownloadDiscoveredDocumentListAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "request": {
+            "$ref": "#/components/schemas/GetDiscoveredDocumentListRequest"
+          }
+        }
+      },
+      "GetDiscoveredDocumentListRequest": {
+        "title": "GetDiscoveredDocumentListRequest",
+        "type": "object",
+        "properties": {
+          "Expression": {
+            "type": "string"
+          },
+          "LogicalIDs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "Columns": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExportColumn"
+            }
+          },
+          "SortingOptions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SortOption"
+            }
+          },
+          "Culture": {
+            "type": "string"
+          },
+          "IncludeDuplicateHash": {
+            "type": "boolean"
+          },
+          "AdvancedOptionsFlag": {
+            "enum": [
+              "None",
+              "EnableMDSKepler"
+            ],
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "ExportColumn": {
+        "title": "ExportColumn",
+        "type": "object",
+        "properties": {
+          "Property": {
+            "enum": [
+              "ContainerID",
+              "ProcessingFileId",
+              "FileSize",
+              "ParentFileId",
+              "DiscoverGroupId",
+              "ContainerName",
+              "ContainerExtension",
+              "IngestionError",
+              "ExtractedTextLocation",
+              "FileName",
+              "FileExtension",
+              "FileType",
+              "FolderPath",
+              "ImportSource",
+              "LogicalPath",
+              "MD5Hash",
+              "DocumentErrorMessage",
+              "OriginalPath",
+              "SHA1Hash",
+              "SHA256Hash",
+              "TextExtractionMethod",
+              "VirtualPath",
+              "IsContainer",
+              "IsEmbedded",
+              "OfficeEmbeddedItems",
+              "Unprocessable",
+              "IsPublished",
+              "CustodianArtifactId",
+              "DataSourceArtifactId",
+              "CustodianName",
+              "DataSourceName",
+              "SenderDomain",
+              "SortDate",
+              "IsDeleted",
+              "ErrorMessage",
+              "ErrorCategory",
+              "ErrorPhase",
+              "ErrorStatus",
+              "JobId",
+              "DedupeStatus",
+              "StorageId",
+              "Severity",
+              "SourceId",
+              "DocumentUuid",
+              "ParentId",
+              "RootId",
+              "UniqueId",
+              "LogicalId",
+              "ParentLogicalId"
+            ],
+            "type": "string"
+          },
+          "Header": {
+            "type": "string"
+          }
+        }
+      },
+      "IKeplerStream": {
+        "title": "IKeplerStream",
+        "type": "object",
+        "properties": {
+          "ContentType": {
+            "type": "string"
+          },
+          "ContentDisposition": {
+            "type": "string"
+          },
+          "CacheControl": {
+            "type": "string"
+          },
+          "StatusCode": {
+            "enum": [
+              "Continue",
+              "SwitchingProtocols",
+              "OK",
+              "Created",
+              "Accepted",
+              "NonAuthoritativeInformation",
+              "NoContent",
+              "ResetContent",
+              "PartialContent",
+              "MultipleChoices",
+              "Ambiguous",
+              "MovedPermanently",
+              "Moved",
+              "Found",
+              "Redirect",
+              "SeeOther",
+              "RedirectMethod",
+              "NotModified",
+              "UseProxy",
+              "Unused",
+              "TemporaryRedirect",
+              "RedirectKeepVerb",
+              "BadRequest",
+              "Unauthorized",
+              "PaymentRequired",
+              "Forbidden",
+              "NotFound",
+              "MethodNotAllowed",
+              "NotAcceptable",
+              "ProxyAuthenticationRequired",
+              "RequestTimeout",
+              "Conflict",
+              "Gone",
+              "LengthRequired",
+              "PreconditionFailed",
+              "RequestEntityTooLarge",
+              "RequestUriTooLong",
+              "UnsupportedMediaType",
+              "RequestedRangeNotSatisfiable",
+              "ExpectationFailed",
+              "UpgradeRequired",
+              "InternalServerError",
+              "NotImplemented",
+              "BadGateway",
+              "ServiceUnavailable",
+              "GatewayTimeout",
+              "HttpVersionNotSupported"
+            ],
+            "type": "string",
+            "nullable": true
+          },
+          "Headers": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "NameValueCollection"
+            }
+          }
+        }
+      },
+      "DownloadNistedDocumentListAsync_RequestBody": {
+        "title": "DownloadNistedDocumentListAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "processingSetId": {
+            "type": "integer"
+          }
+        }
+      },
+      "GetDiscoveredDocumentIdsAsync_RequestBody": {
+        "title": "GetDiscoveredDocumentIdsAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "request": {
+            "$ref": "#/components/schemas/GetDiscoveredDocumentsRequest"
+          }
+        }
+      },
+      "ProcessingLogicalIdResults": {
+        "title": "ProcessingLogicalIdResults",
+        "type": "object",
+        "properties": {
+          "FilterUuid": {
+            "type": "string"
+          },
+          "TotalCount": {
+            "type": "integer"
+          },
+          "Results": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "parameters": {
+      "workspaceID": {
+        "name": "workspaceID",
+        "in": "path",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "logicalID": {
+        "name": "logicalID",
+        "in": "path",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "x-csrf-header": {
+        "name": "x-csrf-header",
+        "in": "header",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "default": "-"
+        }
+      },
+      "filterID": {
+        "name": "filterID",
+        "in": "path",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "dataSourceID": {
+        "name": "dataSourceID",
+        "in": "path",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}

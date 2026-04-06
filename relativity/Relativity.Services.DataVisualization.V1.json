@@ -1,0 +1,641 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Relativity.Services.DataVisualization",
+    "description": "Relativity.Services.DataVisualization contains APIs that control the display and visualization of metamodel objects in Relativity.",
+	"version": "1"
+  },
+  "servers": [
+    {
+      "url": "/Relativity.REST/api",
+      "description": "The URL prefix for all Kepler services"
+    }
+  ],
+  "paths": {
+    "/relativity-data-visualization/v1/workspaces/{workspaceID}/tabs": {
+      "post": {
+        "tags": [
+          "Tab Manager v1"
+        ],
+        "summary": "Creates a Tab.",
+        "description": "[Public] ITabManager",
+        "operationId": "Relativity.Services.Interfaces.DataVisualization.V1.Tab.ITabManager.CreateAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-CSRF-Header"
+          },
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateAsync"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "No description set"
+          }
+        }
+      }
+    },
+    "/relativity-data-visualization/v1/workspaces/{workspaceID}/tabs/{tabArtifactID}": {
+		"get": {
+			"tags": [
+			  "Tab Manager v1"
+			],
+			"summary": "Reads a Tab.",
+			"description": "[Public] ITabManager",
+			"operationId": "Relativity.Services.Interfaces.DataVisualization.V1.Tab.ITabManager.ReadAsync",
+			"parameters": [
+			  {
+				"$ref": "#/components/parameters/X-CSRF-Header"
+			  },
+			  {
+				"$ref": "#/components/parameters/workspaceID"
+			  },
+			  {
+				"$ref": "#/components/parameters/tabArtifactID"
+			  },
+			  {
+				"$ref": "#/components/parameters/includeMetadata"
+			  },
+			  {
+				"$ref": "#/components/parameters/includeActions"
+			  }
+			],
+			"responses": {
+			  "200": {
+				"description": "No description set"
+		  }
+		}
+      },
+      "put": {
+        "tags": [
+          "Tab Manager v1"
+        ],
+        "summary": "Updates a Tab.",
+        "description": "[Public] ITabManager",
+        "operationId": "Relativity.Services.Interfaces.DataVisualization.V1.Tab.ITabManager.UpdateAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-CSRF-Header"
+          },
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/tabArtifactID"
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateAsync"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "No description set"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Tab Manager v1"
+        ],
+        "summary": "Deletes a Tab.",
+        "description": "[Public] ITabManager",
+        "operationId": "Relativity.Services.Interfaces.DataVisualization.V1.Tab.ITabManager.DeleteAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-CSRF-Header"
+          },
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/tabArtifactID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/relativity-data-visualization/v1/workspaces/{workspaceID}/tabs/meta": {
+      "get": {
+        "tags": [
+          "Tab Manager v1"
+        ],
+        "summary": "Gets the Meta for creating a new Tab object type.",
+        "description": "[Public] ITabManager",
+        "operationId": "Relativity.Services.Interfaces.DataVisualization.V1.Tab.ITabManager.GetMetaAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-CSRF-Header"
+          },
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No description set"
+          }
+        }
+      }
+    },
+    "/relativity-data-visualization/v1/workspaces/{workspaceID}/tabs/eligible-parents": {
+      "get": {
+        "tags": [
+          "Tab Manager v1"
+        ],
+        "summary": "Gets a list of all eligible Parent Tabs.",
+        "description": "[Public] ITabManager",
+        "operationId": "Relativity.Services.Interfaces.DataVisualization.V1.Tab.ITabManager.GetEligibleParentTabsAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-CSRF-Header"
+          },
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No description set"
+          }
+        }
+      }
+    },
+    "/relativity-data-visualization/v1/workspaces/{workspaceID}/tabs/eligible-object-types": {
+      "get": {
+        "tags": [
+          "Tab Manager v1"
+        ],
+        "summary": "Gets a list of all eligible object types for a new Tab.",
+        "description": "[Public] ITabManager",
+        "operationId": "Relativity.Services.Interfaces.DataVisualization.V1.Tab.ITabManager.GetEligibleObjectTypesAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-CSRF-Header"
+          },
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No description set"
+          }
+        }
+      }
+    },
+    "/relativity-data-visualization/v1/workspaces/{workspaceID}/tabs/view-order-list": {
+      "get": {
+        "tags": [
+          "Tab Manager v1"
+        ],
+        "summary": "Gets a list of all Tabs and their order for a given workspace.",
+        "description": "[Public] ITabManager",
+        "operationId": "Relativity.Services.Interfaces.DataVisualization.V1.Tab.ITabManager.GetViewOrderListAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-CSRF-Header"
+          },
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No description set"
+          }
+        }
+      }
+    },
+    "/relativity-data-visualization/v1/workspaces/{workspaceID}/tabs/navigation": {
+      "get": {
+        "tags": [
+          "Tab Manager v1"
+        ],
+        "summary": "Gets a list of all Tabs in a workspace that a user has permissions and Tab Visibility access to.",
+        "description": "[Public] ITabManager",
+        "operationId": "Relativity.Services.Interfaces.DataVisualization.V1.Tab.ITabManager.GetAllNavigationTabsAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-CSRF-Header"
+          },
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No description set"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+	"schemas": {
+		"CreateAsync": {
+        "title": "CreateAsync",
+        "required": [
+          "tabRequest"
+        ],
+        "properties": {
+          "tabRequest": {
+            "title": "TabRequest",
+            "required": [
+              "Name",
+              "Order",
+              "ObjectType",
+              "Link",
+              "IsShownInSidebar",
+              "RelativityApplications",
+              "Parent"
+            ],
+            "type": "object",
+            "properties": {
+              "Name": {
+                "type": "string",
+                "description": "",
+                "format": "System.String"
+              },
+              "Order": {
+                "type": "integer",
+                "description": "",
+                "format": "System.Int32"
+              },
+              "ObjectType": {
+                "type": "object",
+                "properties": {
+                  "Secured": {
+                    "type": "boolean",
+                    "description": "",
+                    "format": "System.Boolean"
+                  },
+                  "Value": {
+                    "type": "object",
+                    "required": [
+                        "ArtifactTypeID"
+                    ],
+                    "properties": {
+                      "ArtifactTypeID" : {
+                        "type": "integer",
+                        "description": "",
+                        "format": "System.Int32"
+                      },
+                      "Name" : {
+                        "type": "string",
+                        "description": "",
+                        "format": "System.String"
+                      },
+                      "ArtifactID" : {
+                        "type": "integer",
+                        "description": "",
+                        "format": "System.Int32"
+                      },
+                      "Guids": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "format": "System.Guid"
+                        }
+                      }                         
+                    },
+                    "description": "",
+                    "format": "Relativity.Shared.V1.Models.DisplayableObjectTypeIdentifier"
+                  }
+                },
+                "description": "",
+                "format": "Relativity.Shared.V1.Models.Securable`1[[Relativity.Shared.V1.Models.DisplayableObjectTypeIdentifier, Relativity.Shared, Version=1.3.0.0, Culture=neutral, PublicKeyToken=null]]"
+              },
+              "Link": {
+                "type": "string",
+                "description": "",
+                "format": "System.String"
+              },
+              "IsDefault": {
+                "type": "boolean",
+                "description": "",
+                "format": "System.Nullable`1[[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"
+              },
+              "IsVisible": {
+                "type": "boolean",
+                "description": "",
+                "format": "System.Nullable`1[[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"
+              },
+              "IsShownInSidebar": {
+                "type": "boolean",
+                "description": "",
+                "format": "System.Boolean"
+              },
+              "RelativityApplications": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                      "ArtifactID" : {
+                        "type": "integer",
+                        "description": "",
+                        "format": "System.Int32"
+                      },
+                      "Guids": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "format": "System.Guid"
+                        }
+                      }
+                    },   
+                  "format": "Relativity.Shared.V1.Models.ObjectIdentifier",                 
+              },
+              "description": ""
+            },
+              "LinkType": {
+                "type": "string",
+                "format": "Relativity.Services.Interfaces.DataVisualization.V1.Tab.Models.TabLinkTypeEnum"
+              },
+              "Parent": {
+                "type": "object",
+                "properties": {
+                  "Secured": {
+                    "type": "boolean",
+                    "description": "",
+                    "format": "System.Boolean"
+                  },
+                  "Value": {
+                    "type": "object",
+                    "properties": {
+                      "ArtifactID" : {
+                        "type": "integer",
+                        "description": "",
+                        "format": "System.Int32"
+                      },
+                      "Guids": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "format": "System.Guid"
+                        }
+                      }                         
+                    },
+                    "description": "",
+                    "format": "Relativity.Shared.V1.Models.ObjectIdentifier"
+                  }
+                },
+                "description": "",
+                "format": "Relativity.Shared.V1.Models.Securable`1[[Relativity.Shared.V1.Models.ObjectIdentifier, Relativity.Shared, Version=1.3.0.0, Culture=neutral, PublicKeyToken=null]]"
+              },
+              "IconIdentifier": {
+                "type": "string",
+                "description": "",
+                "format": "System.String"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "description": ""
+      },
+		"UpdateAsync": {
+        "title": "UpdateAsync",
+        "required": [
+          "tabRequest"
+        ],
+        "properties": {
+          "tabRequest": {
+            "title": "TabRequest",
+            "required": [
+              "Name",
+              "Order",
+              "ObjectType",
+              "Link",
+              "IsShownInSidebar",
+              "RelativityApplications",
+              "Parent"
+            ],
+            "type": "object",
+            "properties": {
+              "Name": {
+                "type": "string",
+                "description": "",
+                "format": "System.String"
+              },
+              "Order": {
+                "type": "integer",
+                "description": "",
+                "format": "System.Int32"
+              },
+              "ObjectType": {
+                "type": "object",
+                "properties": {
+                  "Secured": {
+                    "type": "boolean",
+                    "description": "",
+                    "format": "System.Boolean"
+                  },
+                  "Value": {
+                    "type": "object",
+                    "required": [
+                        "ArtifactTypeID"
+                    ],
+                    "properties": {
+                      "ArtifactTypeID" : {
+                        "type": "integer",
+                        "description": "",
+                        "format": "System.Int32"
+                      },
+                      "Name" : {
+                        "type": "string",
+                        "description": "",
+                        "format": "System.String"
+                      },
+                      "ArtifactID" : {
+                        "type": "integer",
+                        "description": "",
+                        "format": "System.Int32"
+                      },
+                      "Guids": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "format": "System.Guid"
+                        }
+                      }
+                    },
+                    "description": "",
+                    "format": "Relativity.Shared.V1.Models.DisplayableObjectTypeIdentifier"
+                  }
+                },
+                "description": "",
+                "format": "Relativity.Shared.V1.Models.Securable`1[[Relativity.Shared.V1.Models.DisplayableObjectTypeIdentifier, Relativity.Shared, Version=1.3.0.0, Culture=neutral, PublicKeyToken=null]]"
+              },
+              "Link": {
+                "type": "string",
+                "description": "",
+                "format": "System.String"
+              },
+              "IsDefault": {
+                "type": "boolean",
+                "description": "",
+                "format": "System.Nullable`1[[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"
+              },
+              "IsVisible": {
+                "type": "boolean",
+                "description": "",
+                "format": "System.Nullable`1[[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"
+              },
+              "IsShownInSidebar": {
+                "type": "boolean",
+                "description": "",
+                "format": "System.Boolean"
+              },
+              "RelativityApplications": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                      "ArtifactID" : {
+                        "type": "integer",
+                        "description": "",
+                        "format": "System.Int32"
+                      },
+                      "Guids": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "format": "System.Guid"
+                        }
+                      }
+                    },   
+                  "format": "Relativity.Shared.V1.Models.ObjectIdentifier",                 
+              },
+              "description": ""
+            },
+              "LinkType": {
+                "type": "string",
+                "format": "Relativity.Services.Interfaces.DataVisualization.V1.Tab.Models.TabLinkTypeEnum"
+              },
+              "Parent": {
+                "type": "object",
+                "properties": {
+                  "Secured": {
+                    "type": "boolean",
+                    "description": "",
+                    "format": "System.Boolean"
+                  },
+                  "Value": {
+                    "type": "object",
+                    "properties": {
+                      "ArtifactID" : {
+                        "type": "integer",
+                        "description": "",
+                        "format": "System.Int32"
+                      },
+                      "Guids": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "format": "System.Guid"
+                        }
+                      }                         
+                    },
+                    "description": "",
+                    "format": "Relativity.Shared.V1.Models.ObjectIdentifier"
+                  }
+                },
+                "description": "",
+                "format": "Relativity.Shared.V1.Models.Securable`1[[Relativity.Shared.V1.Models.ObjectIdentifier, Relativity.Shared, Version=1.3.0.0, Culture=neutral, PublicKeyToken=null]]"
+              },
+              "IconIdentifier": {
+                "type": "string",
+                "description": "",
+                "format": "System.String"
+              }
+            },
+            "additionalProperties": false
+          },
+          "lastModifiedOn": {
+            "type": "string",
+            "format": "System.DateTime"
+          }
+        },
+        "description": ""
+      }
+	},
+	"parameters": {
+      "X-CSRF-Header": {
+        "name": "X-CSRF-Header",
+        "in": "header",
+        "description": "Required CSRF header for any KeplerService. *Note: Actual string value does not matter*. ",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "format": "System.String",
+          "default": "."
+        }
+      },
+      "workspaceID": {
+        "name": "workspaceID",
+        "in": "path",
+        "description": "No description set for this parameter",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "includeMetadata": {
+        "name": "includeMetadata",
+        "in": "query",
+        "description": "No description set for this parameter",
+        "required": true,
+        "schema": {
+          "type": "boolean"
+        }
+      },
+      "includeActions": {
+        "name": "includeActions",
+        "in": "query",
+        "description": "No description set for this parameter",
+        "required": true,
+        "schema": {
+          "type": "boolean"
+        }
+      },
+      "tabArtifactID": {
+        "name": "tabArtifactID",
+        "in": "path",
+        "description": "No description set for this parameter",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      }
+    }
+	},
+	"tags": [
+	{
+      "name": "Tab Manager v1",
+      "description": "Tab Manager is an API which exposes methods for interacting with tab objects in Relativity."
+    }
+  ]
+}

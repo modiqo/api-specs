@@ -1,0 +1,2196 @@
+openapi: 3.0.4
+info:
+  title: Billing Insights API
+  description: 'The Billing Insights API provides a REST service that allows you to retrieve billing data. With this API you can check billing metrics breakdown for instance, workspace, matter, and client. For example, you can compare billing costs like review, repo, and cold storage. You can also check peak values and current usage for the whole instance or specific workspaces. Finally, you can retrieve billing user details.'
+  version: v2
+  x-relativity-api-visibility: public
+servers:
+  - url: https://billing-insights.api.relativity.one/billing-drilldown-api
+    description: Production
+  - url: https://services.vaus.relativityone.us/billing-drilldown-api/
+    description: Government
+paths:
+  /api/v2/billing-configuration/product-configurations:
+    post:
+      tags:
+        - BillingConfiguration
+      summary: Get product configuration
+      description: Get product configuration for a given dates. If the requested data does not exist then 404 is returned.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetProductConfigurationRequest'
+            examples:
+              All product configurations for an instance:
+                summary: Product configurations for an instance for a given dates
+                value:
+                  instanceID: f53c069b-9706-4570-8f97-be6e8fdbe156
+                  dateKeys:
+                    - '202308'
+                    - '202307'
+                  metricKey: Relativity_Translate
+          text/json:
+            schema:
+              $ref: '#/components/schemas/GetProductConfigurationRequest'
+            examples:
+              All product configurations for an instance:
+                summary: Product configurations for an instance for a given dates
+                value:
+                  instanceID: f53c069b-9706-4570-8f97-be6e8fdbe156
+                  dateKeys:
+                    - '202308'
+                    - '202307'
+                  metricKey: Relativity_Translate
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/GetProductConfigurationRequest'
+            examples:
+              All product configurations for an instance:
+                summary: Product configurations for an instance for a given dates
+                value:
+                  instanceID: f53c069b-9706-4570-8f97-be6e8fdbe156
+                  dateKeys:
+                    - '202308'
+                    - '202307'
+                  metricKey: Relativity_Translate
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GetProductConfigurationResponse'
+              example:
+                results:
+                  Relativity_Translate:
+                    - name: ConversionRate
+                      dateKey: '202308'
+                      value: 20
+                    - name: ConversionRate
+                      dateKey: '202307'
+                      value: 30
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetProductConfigurationResponse'
+              example:
+                results:
+                  Relativity_Translate:
+                    - name: ConversionRate
+                      dateKey: '202308'
+                      value: 20
+                    - name: ConversionRate
+                      dateKey: '202307'
+                      value: 30
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GetProductConfigurationResponse'
+              example:
+                results:
+                  Relativity_Translate:
+                    - name: ConversionRate
+                      dateKey: '202308'
+                      value: 20
+                    - name: ConversionRate
+                      dateKey: '202307'
+                      value: 30
+  /api/v2/billing-configuration/package-consumption:
+    post:
+      tags:
+        - BillingConfiguration
+      summary: Get information about package consumption
+      description: Get package consumption for specific instance. If the requested data does not exist then 404 is returned.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetPackageConsumptionRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/GetPackageConsumptionRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/GetPackageConsumptionRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GetPackageConsumptionResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetPackageConsumptionResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GetPackageConsumptionResponse'
+  /api/v2/billing-configuration/available-products:
+    post:
+      tags:
+        - BillingConfiguration
+      summary: Get information about products available for instance
+      description: Get information about products available for instance. If the requested data does not exist then 404 is returned.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetProductsAndPackagesAvailabilityRequest'
+            examples:
+              Products and packages availability for an instance:
+                summary: Products and packages availability for an instance for a given date
+                value:
+                  instanceID: f53c069b-9706-4570-8f97-be6e8fdbe156
+                  dateKey: '202308'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/GetProductsAndPackagesAvailabilityRequest'
+            examples:
+              Products and packages availability for an instance:
+                summary: Products and packages availability for an instance for a given date
+                value:
+                  instanceID: f53c069b-9706-4570-8f97-be6e8fdbe156
+                  dateKey: '202308'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/GetProductsAndPackagesAvailabilityRequest'
+            examples:
+              Products and packages availability for an instance:
+                summary: Products and packages availability for an instance for a given date
+                value:
+                  instanceID: f53c069b-9706-4570-8f97-be6e8fdbe156
+                  dateKey: '202308'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GetAvailableProductsResponse'
+              example:
+                results:
+                  - metricKey: Relativity_Translate
+                  - metricKey: aiR_for_Privilege
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAvailableProductsResponse'
+              example:
+                results:
+                  - metricKey: Relativity_Translate
+                  - metricKey: aiR_for_Privilege
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GetAvailableProductsResponse'
+              example:
+                results:
+                  - metricKey: Relativity_Translate
+                  - metricKey: aiR_for_Privilege
+  /api/v2/billing-configuration/available-packages:
+    post:
+      tags:
+        - BillingConfiguration
+      summary: Get information about packages available for instance
+      description: Get information about packages available for instance. If the requested data does not exist then 404 is returned.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetProductsAndPackagesAvailabilityRequest'
+            examples:
+              Products and packages availability for an instance:
+                summary: Products and packages availability for an instance for a given date
+                value:
+                  instanceID: f53c069b-9706-4570-8f97-be6e8fdbe156
+                  dateKey: '202308'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/GetProductsAndPackagesAvailabilityRequest'
+            examples:
+              Products and packages availability for an instance:
+                summary: Products and packages availability for an instance for a given date
+                value:
+                  instanceID: f53c069b-9706-4570-8f97-be6e8fdbe156
+                  dateKey: '202308'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/GetProductsAndPackagesAvailabilityRequest'
+            examples:
+              Products and packages availability for an instance:
+                summary: Products and packages availability for an instance for a given date
+                value:
+                  instanceID: f53c069b-9706-4570-8f97-be6e8fdbe156
+                  dateKey: '202308'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GetAvailablePackagesResponse'
+              example:
+                results:
+                  - packageType: aiRBulkUsage
+                    startDate: '0001-01-01T00:00:00'
+                    endDate: '9999-12-31T23:59:59.9999999'
+                    quantity: 1000000
+                    unitOfMeasure: Documents
+                    overageRate: 0.15
+                    metricKeys:
+                      - aiRforReview
+                      - aiRforPrivilege
+                  - packageType: aiRUnitUsage
+                    startDate: '0001-01-01T00:00:00'
+                    endDate: '9999-12-31T23:59:59.9999999'
+                    quantity: 500000
+                    unitOfMeasure: Pages
+                    overageRate: 0.10
+                    metricKeys:
+                      - aiR_for_Review
+                      - aiR_for_Privilige
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAvailablePackagesResponse'
+              example:
+                results:
+                  - packageType: aiRBulkUsage
+                    startDate: '0001-01-01T00:00:00'
+                    endDate: '9999-12-31T23:59:59.9999999'
+                    quantity: 1000000
+                    unitOfMeasure: Documents
+                    overageRate: 0.15
+                    metricKeys:
+                      - aiRforReview
+                      - aiRforPrivilege
+                  - packageType: aiRUnitUsage
+                    startDate: '0001-01-01T00:00:00'
+                    endDate: '9999-12-31T23:59:59.9999999'
+                    quantity: 500000
+                    unitOfMeasure: Pages
+                    overageRate: 0.10
+                    metricKeys:
+                      - aiR_for_Review
+                      - aiR_for_Privilige
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GetAvailablePackagesResponse'
+              example:
+                results:
+                  - packageType: aiRBulkUsage
+                    startDate: '0001-01-01T00:00:00'
+                    endDate: '9999-12-31T23:59:59.9999999'
+                    quantity: 1000000
+                    unitOfMeasure: Documents
+                    overageRate: 0.15
+                    metricKeys:
+                      - aiRforReview
+                      - aiRforPrivilege
+                  - packageType: aiRUnitUsage
+                    startDate: '0001-01-01T00:00:00'
+                    endDate: '9999-12-31T23:59:59.9999999'
+                    quantity: 500000
+                    unitOfMeasure: Pages
+                    overageRate: 0.10
+                    metricKeys:
+                      - aiR_for_Review
+                      - aiR_for_Privilige
+  /api/v2/billing-configuration/products-and-packages-availability:
+    post:
+      tags:
+        - BillingConfiguration
+      summary: Get information about products and packages availability for instance
+      description: Get information about products and packages availability for instance. If the requested data does not exist then false is returned.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetProductsAndPackagesAvailabilityRequest'
+            examples:
+              Products and packages availability for an instance:
+                summary: Products and packages availability for an instance for a given date
+                value:
+                  instanceID: f53c069b-9706-4570-8f97-be6e8fdbe156
+                  dateKey: '202308'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/GetProductsAndPackagesAvailabilityRequest'
+            examples:
+              Products and packages availability for an instance:
+                summary: Products and packages availability for an instance for a given date
+                value:
+                  instanceID: f53c069b-9706-4570-8f97-be6e8fdbe156
+                  dateKey: '202308'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/GetProductsAndPackagesAvailabilityRequest'
+            examples:
+              Products and packages availability for an instance:
+                summary: Products and packages availability for an instance for a given date
+                value:
+                  instanceID: f53c069b-9706-4570-8f97-be6e8fdbe156
+                  dateKey: '202308'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GetProductsAndPackagesAvailabilityResponse'
+              example:
+                results:
+                  - areProductsAvailable: true
+                    arePackagesAvailable: true
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetProductsAndPackagesAvailabilityResponse'
+              example:
+                results:
+                  - areProductsAvailable: true
+                    arePackagesAvailable: true
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GetProductsAndPackagesAvailabilityResponse'
+              example:
+                results:
+                  - areProductsAvailable: true
+                    arePackagesAvailable: true
+  '/api/v2/billing-insights/hierarchy-lookup/{level}':
+    get:
+      tags:
+        - BillingInsights
+      summary: Get artifact ids
+      description: 'Get artifact ids for workspace, matter, client, instance that can be used for filtering billing users and month details data.'
+      parameters:
+        - name: level
+          in: path
+          description: The hierarchy level
+          required: true
+          schema:
+            enum:
+              - Workspace
+              - Matter
+              - Client
+              - Instance
+              - Contract
+            type: string
+        - name: instanceId
+          in: query
+          description: The instance ID
+          schema:
+            type: string
+        - name: shouldUnhashData
+          in: query
+          description: Specifies if the response should include unhashed data. Default value is false.
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GetHierarchyLookupResponse'
+              example:
+                results:
+                  - name: Workspace A
+                    selector:
+                      instanceID: a2c4e2da-8596-4196-a704-9cd202ce6d47
+                      workspaceArtifactID: 1001
+                  - name: Workspace B
+                    selector:
+                      instanceID: a2c4e2da-8596-4196-a704-9cd202ce6d47
+                      workspaceArtifactID: 1002
+                  - name: Workspace C
+                    selector:
+                      instanceID: a2c4e2da-8596-4196-a704-9cd202ce6d47
+                      workspaceArtifactID: 1003
+                  - name: Workspace D
+                    selector:
+                      instanceID: a2c4e2da-8596-4196-a704-9cd202ce6d47
+                      workspaceArtifactID: 1004
+                  - name: Workspace A
+                    selector:
+                      instanceID: 891b6552-6db5-459b-a983-1ed94225da52
+                      workspaceArtifactID: 1001
+                  - name: Workspace B
+                    selector:
+                      instanceID: 891b6552-6db5-459b-a983-1ed94225da52
+                      workspaceArtifactID: 1002
+                  - name: Workspace X
+                    selector:
+                      instanceID: 891b6552-6db5-459b-a983-1ed94225da52
+                      workspaceArtifactID: 1003
+                  - name: Workspace Y
+                    selector:
+                      instanceID: 891b6552-6db5-459b-a983-1ed94225da52
+                      workspaceArtifactID: 2005
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetHierarchyLookupResponse'
+              example:
+                results:
+                  - name: Workspace A
+                    selector:
+                      instanceID: a2c4e2da-8596-4196-a704-9cd202ce6d47
+                      workspaceArtifactID: 1001
+                  - name: Workspace B
+                    selector:
+                      instanceID: a2c4e2da-8596-4196-a704-9cd202ce6d47
+                      workspaceArtifactID: 1002
+                  - name: Workspace C
+                    selector:
+                      instanceID: a2c4e2da-8596-4196-a704-9cd202ce6d47
+                      workspaceArtifactID: 1003
+                  - name: Workspace D
+                    selector:
+                      instanceID: a2c4e2da-8596-4196-a704-9cd202ce6d47
+                      workspaceArtifactID: 1004
+                  - name: Workspace A
+                    selector:
+                      instanceID: 891b6552-6db5-459b-a983-1ed94225da52
+                      workspaceArtifactID: 1001
+                  - name: Workspace B
+                    selector:
+                      instanceID: 891b6552-6db5-459b-a983-1ed94225da52
+                      workspaceArtifactID: 1002
+                  - name: Workspace X
+                    selector:
+                      instanceID: 891b6552-6db5-459b-a983-1ed94225da52
+                      workspaceArtifactID: 1003
+                  - name: Workspace Y
+                    selector:
+                      instanceID: 891b6552-6db5-459b-a983-1ed94225da52
+                      workspaceArtifactID: 2005
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GetHierarchyLookupResponse'
+              example:
+                results:
+                  - name: Workspace A
+                    selector:
+                      instanceID: a2c4e2da-8596-4196-a704-9cd202ce6d47
+                      workspaceArtifactID: 1001
+                  - name: Workspace B
+                    selector:
+                      instanceID: a2c4e2da-8596-4196-a704-9cd202ce6d47
+                      workspaceArtifactID: 1002
+                  - name: Workspace C
+                    selector:
+                      instanceID: a2c4e2da-8596-4196-a704-9cd202ce6d47
+                      workspaceArtifactID: 1003
+                  - name: Workspace D
+                    selector:
+                      instanceID: a2c4e2da-8596-4196-a704-9cd202ce6d47
+                      workspaceArtifactID: 1004
+                  - name: Workspace A
+                    selector:
+                      instanceID: 891b6552-6db5-459b-a983-1ed94225da52
+                      workspaceArtifactID: 1001
+                  - name: Workspace B
+                    selector:
+                      instanceID: 891b6552-6db5-459b-a983-1ed94225da52
+                      workspaceArtifactID: 1002
+                  - name: Workspace X
+                    selector:
+                      instanceID: 891b6552-6db5-459b-a983-1ed94225da52
+                      workspaceArtifactID: 1003
+                  - name: Workspace Y
+                    selector:
+                      instanceID: 891b6552-6db5-459b-a983-1ed94225da52
+                      workspaceArtifactID: 2005
+  /api/v2/billing-insights/month-details:
+    post:
+      tags:
+        - BillingInsights
+      summary: Get monthly billing metrics
+      description: 'Get monthly billing metrics at the specific level (Workspace, Matter, Client, Instance) for a given date. If the requested data does not exist then an empty list will be returned (e.g. instance didn''t exist in a given month)'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetMonthDetailsRequest'
+            examples:
+              All workspaces for an instance:
+                summary: Metrics for all workspaces in the instance for a given date
+                value:
+                  dateKey: '202105'
+                  metricKeys:
+                    - Relativity_Storage_Review
+                    - Relativity_Storage_Repository
+                  selectorLevel: Instance
+                  itemSelectors:
+                    - instanceID: f53c069b-9706-4570-8f97-be6e8fdbe156
+                  level: Workspace
+                  shouldUnhashData: false
+              Single workspace for an instance:
+                summary: Metrics for single workspace
+                value:
+                  dateKey: '202106'
+                  metricKeys:
+                    - Relativity_Storage_Review
+                    - Relativity_Storage_Repository
+                  selectorLevel: Workspace
+                  itemSelectors:
+                    - instanceID: f53c069b-9706-4570-8f97-be6e8fdbe156
+                      workspaceArtifactID: 2354352
+                  level: Workspace
+                  shouldUnhashData: false
+              Top 10 results:
+                summary: Paging
+                value:
+                  dateKey: '202106'
+                  metricKeys:
+                    - Relativity_Storage_Review
+                    - Relativity_Storage_Repository
+                  selectorLevel: Instance
+                  itemSelectors:
+                    - instanceID: f53c069b-9706-4570-8f97-be6e8fdbe156
+                  level: Client
+                  pagingRequest:
+                    top: 10
+                    skip: 0
+                    includeCount: true
+                  shouldUnhashData: false
+              Order by:
+                summary: Order by field (not applicable for if field was unhashed)
+                value:
+                  dateKey: '202106'
+                  metricKeys:
+                    - Relativity_Storage_Review
+                    - Relativity_Storage_Repository
+                  selectorLevel: Instance
+                  itemSelectors:
+                    - instanceID: f53c069b-9706-4570-8f97-be6e8fdbe156
+                  level: Matter
+                  order:
+                    fieldName: PricedMetrics.Relativity_Storage_Review.BillableValue
+                    direction: Desc
+                  shouldUnhashData: false
+          text/json:
+            schema:
+              $ref: '#/components/schemas/GetMonthDetailsRequest'
+            examples:
+              All workspaces for an instance:
+                summary: Metrics for all workspaces in the instance for a given date
+                value:
+                  dateKey: '202105'
+                  metricKeys:
+                    - Relativity_Storage_Review
+                    - Relativity_Storage_Repository
+                  selectorLevel: Instance
+                  itemSelectors:
+                    - instanceID: f53c069b-9706-4570-8f97-be6e8fdbe156
+                  level: Workspace
+                  shouldUnhashData: false
+              Single workspace for an instance:
+                summary: Metrics for single workspace
+                value:
+                  dateKey: '202106'
+                  metricKeys:
+                    - Relativity_Storage_Review
+                    - Relativity_Storage_Repository
+                  selectorLevel: Workspace
+                  itemSelectors:
+                    - instanceID: f53c069b-9706-4570-8f97-be6e8fdbe156
+                      workspaceArtifactID: 2354352
+                  level: Workspace
+                  shouldUnhashData: false
+              Top 10 results:
+                summary: Paging
+                value:
+                  dateKey: '202106'
+                  metricKeys:
+                    - Relativity_Storage_Review
+                    - Relativity_Storage_Repository
+                  selectorLevel: Instance
+                  itemSelectors:
+                    - instanceID: f53c069b-9706-4570-8f97-be6e8fdbe156
+                  level: Client
+                  pagingRequest:
+                    top: 10
+                    skip: 0
+                    includeCount: true
+                  shouldUnhashData: false
+              Order by:
+                summary: Order by field (not applicable for if field was unhashed)
+                value:
+                  dateKey: '202106'
+                  metricKeys:
+                    - Relativity_Storage_Review
+                    - Relativity_Storage_Repository
+                  selectorLevel: Instance
+                  itemSelectors:
+                    - instanceID: f53c069b-9706-4570-8f97-be6e8fdbe156
+                  level: Matter
+                  order:
+                    fieldName: PricedMetrics.Relativity_Storage_Review.BillableValue
+                    direction: Desc
+                  shouldUnhashData: false
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/GetMonthDetailsRequest'
+            examples:
+              All workspaces for an instance:
+                summary: Metrics for all workspaces in the instance for a given date
+                value:
+                  dateKey: '202105'
+                  metricKeys:
+                    - Relativity_Storage_Review
+                    - Relativity_Storage_Repository
+                  selectorLevel: Instance
+                  itemSelectors:
+                    - instanceID: f53c069b-9706-4570-8f97-be6e8fdbe156
+                  level: Workspace
+                  shouldUnhashData: false
+              Single workspace for an instance:
+                summary: Metrics for single workspace
+                value:
+                  dateKey: '202106'
+                  metricKeys:
+                    - Relativity_Storage_Review
+                    - Relativity_Storage_Repository
+                  selectorLevel: Workspace
+                  itemSelectors:
+                    - instanceID: f53c069b-9706-4570-8f97-be6e8fdbe156
+                      workspaceArtifactID: 2354352
+                  level: Workspace
+                  shouldUnhashData: false
+              Top 10 results:
+                summary: Paging
+                value:
+                  dateKey: '202106'
+                  metricKeys:
+                    - Relativity_Storage_Review
+                    - Relativity_Storage_Repository
+                  selectorLevel: Instance
+                  itemSelectors:
+                    - instanceID: f53c069b-9706-4570-8f97-be6e8fdbe156
+                  level: Client
+                  pagingRequest:
+                    top: 10
+                    skip: 0
+                    includeCount: true
+                  shouldUnhashData: false
+              Order by:
+                summary: Order by field (not applicable for if field was unhashed)
+                value:
+                  dateKey: '202106'
+                  metricKeys:
+                    - Relativity_Storage_Review
+                    - Relativity_Storage_Repository
+                  selectorLevel: Instance
+                  itemSelectors:
+                    - instanceID: f53c069b-9706-4570-8f97-be6e8fdbe156
+                  level: Matter
+                  order:
+                    fieldName: PricedMetrics.Relativity_Storage_Review.BillableValue
+                    direction: Desc
+                  shouldUnhashData: false
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GetMonthDetailsResponse'
+              example:
+                results:
+                  - contract:
+                      id: 10060000003IO9HXXX
+                      name: Sample contract
+                    instance:
+                      id: f53c069b-9706-4570-8f97-be6e8fdbe156
+                      name: R1 - Sample
+                      pricingVisibility: Visible
+                    client:
+                      artifactID: 4001
+                      name: Client 1
+                      number: '1234'
+                    matter:
+                      artifactID: 3001
+                      name: Matter 1
+                      number: '1234'
+                    workspace:
+                      id: a2858a40-c24e-42d3-a6c1-28004f8b4c6f
+                      artifactID: 2001
+                      name: Sample workspace 1
+                      activityStatus: Active
+                      workspaceStatus: Active
+                      billableStatus: Billable
+                    usageMetrics:
+                      Relativity_Storage_Review:
+                        reportedValue: 1000
+                        collectionTimeUtc: '2021-09-10T14:12:00'
+                        subMetrics:
+                          Relativity_Storage_Linked:
+                            value: 1000
+                      Relativity_Storage_Repository:
+                        reportedValue: 100
+                        collectionTimeUtc: '2021-09-10T14:12:00'
+                    pricedMetrics:
+                      Relativity_Storage_Review:
+                        billableValue: 1000
+                        amount:
+                          value: 100000
+                          currency: USD
+                        collectionTimeUtc: '2021-09-10T14:12:00'
+                        subMetrics:
+                          Relativity_Storage_Linked:
+                            value: 1000
+                      Relativity_Storage_Repository:
+                        billableValue: 100
+                        amount:
+                          value: 2500
+                          currency: USD
+                        collectionTimeUtc: '2021-09-10T14:12:00'
+                    pricedMetricsSubMetricsSummary:
+                      Relativity_Storage_TextOnlyDocuments:
+                        value: 4000
+                        comment: ''
+                      Relativity_Storage_Linked:
+                        value: 1000
+                        comment: ''
+                    usageMetricsSubMetricsSummary:
+                      Relativity_Storage_TextOnlyDocuments:
+                        value: 4000
+                        comment: ''
+                      Relativity_Storage_Linked:
+                        value: 1000
+                        comment: ''
+                  - contract:
+                      id: 10060000003IO9HXXX
+                      name: Sample contract
+                    instance:
+                      id: f53c069b-9706-4570-8f97-be6e8fdbe156
+                      name: R1 - Sample
+                      pricingVisibility: Visible
+                    client:
+                      artifactID: 8001
+                      name: Client 2
+                      number: '1234'
+                    matter:
+                      artifactID: 7001
+                      name: Matter 2
+                      number: '1234'
+                    workspace:
+                      id: 87f653b8-eb1f-4281-a6d8-17f8632123c6
+                      artifactID: 6001
+                      name: Sample workspace 2
+                      activityStatus: Active
+                      workspaceStatus: Active
+                      billableStatus: Billable
+                    usageMetrics:
+                      Relativity_Storage_Review:
+                        reportedValue: 200
+                        collectionTimeUtc: '2021-09-10T14:12:00'
+                    pricedMetrics:
+                      Relativity_Storage_Review:
+                        billableValue: 200
+                        amount:
+                          value: 20000
+                          currency: USD
+                        collectionTimeUtc: '2021-09-10T14:12:00'
+                    pricedMetricsSubMetricsSummary:
+                      Relativity_Storage_TextOnlyDocuments:
+                        value: 8000
+                        comment: ''
+                      Relativity_Storage_Linked:
+                        value: 0
+                        comment: ''
+                    usageMetricsSubMetricsSummary:
+                      Relativity_Storage_TextOnlyDocuments:
+                        value: 8000
+                        comment: ''
+                      Relativity_Storage_Linked:
+                        value: 0
+                        comment: ''
+                pagingResponse:
+                  totalRecordCount: 2
+                status: OK
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetMonthDetailsResponse'
+              example:
+                results:
+                  - contract:
+                      id: 10060000003IO9HXXX
+                      name: Sample contract
+                    instance:
+                      id: f53c069b-9706-4570-8f97-be6e8fdbe156
+                      name: R1 - Sample
+                      pricingVisibility: Visible
+                    client:
+                      artifactID: 4001
+                      name: Client 1
+                      number: '1234'
+                    matter:
+                      artifactID: 3001
+                      name: Matter 1
+                      number: '1234'
+                    workspace:
+                      id: a2858a40-c24e-42d3-a6c1-28004f8b4c6f
+                      artifactID: 2001
+                      name: Sample workspace 1
+                      activityStatus: Active
+                      workspaceStatus: Active
+                      billableStatus: Billable
+                    usageMetrics:
+                      Relativity_Storage_Review:
+                        reportedValue: 1000
+                        collectionTimeUtc: '2021-09-10T14:12:00'
+                        subMetrics:
+                          Relativity_Storage_Linked:
+                            value: 1000
+                      Relativity_Storage_Repository:
+                        reportedValue: 100
+                        collectionTimeUtc: '2021-09-10T14:12:00'
+                    pricedMetrics:
+                      Relativity_Storage_Review:
+                        billableValue: 1000
+                        amount:
+                          value: 100000
+                          currency: USD
+                        collectionTimeUtc: '2021-09-10T14:12:00'
+                        subMetrics:
+                          Relativity_Storage_Linked:
+                            value: 1000
+                      Relativity_Storage_Repository:
+                        billableValue: 100
+                        amount:
+                          value: 2500
+                          currency: USD
+                        collectionTimeUtc: '2021-09-10T14:12:00'
+                    pricedMetricsSubMetricsSummary:
+                      Relativity_Storage_TextOnlyDocuments:
+                        value: 4000
+                        comment: ''
+                      Relativity_Storage_Linked:
+                        value: 1000
+                        comment: ''
+                    usageMetricsSubMetricsSummary:
+                      Relativity_Storage_TextOnlyDocuments:
+                        value: 4000
+                        comment: ''
+                      Relativity_Storage_Linked:
+                        value: 1000
+                        comment: ''
+                  - contract:
+                      id: 10060000003IO9HXXX
+                      name: Sample contract
+                    instance:
+                      id: f53c069b-9706-4570-8f97-be6e8fdbe156
+                      name: R1 - Sample
+                      pricingVisibility: Visible
+                    client:
+                      artifactID: 8001
+                      name: Client 2
+                      number: '1234'
+                    matter:
+                      artifactID: 7001
+                      name: Matter 2
+                      number: '1234'
+                    workspace:
+                      id: 87f653b8-eb1f-4281-a6d8-17f8632123c6
+                      artifactID: 6001
+                      name: Sample workspace 2
+                      activityStatus: Active
+                      workspaceStatus: Active
+                      billableStatus: Billable
+                    usageMetrics:
+                      Relativity_Storage_Review:
+                        reportedValue: 200
+                        collectionTimeUtc: '2021-09-10T14:12:00'
+                    pricedMetrics:
+                      Relativity_Storage_Review:
+                        billableValue: 200
+                        amount:
+                          value: 20000
+                          currency: USD
+                        collectionTimeUtc: '2021-09-10T14:12:00'
+                    pricedMetricsSubMetricsSummary:
+                      Relativity_Storage_TextOnlyDocuments:
+                        value: 8000
+                        comment: ''
+                      Relativity_Storage_Linked:
+                        value: 0
+                        comment: ''
+                    usageMetricsSubMetricsSummary:
+                      Relativity_Storage_TextOnlyDocuments:
+                        value: 8000
+                        comment: ''
+                      Relativity_Storage_Linked:
+                        value: 0
+                        comment: ''
+                pagingResponse:
+                  totalRecordCount: 2
+                status: OK
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GetMonthDetailsResponse'
+              example:
+                results:
+                  - contract:
+                      id: 10060000003IO9HXXX
+                      name: Sample contract
+                    instance:
+                      id: f53c069b-9706-4570-8f97-be6e8fdbe156
+                      name: R1 - Sample
+                      pricingVisibility: Visible
+                    client:
+                      artifactID: 4001
+                      name: Client 1
+                      number: '1234'
+                    matter:
+                      artifactID: 3001
+                      name: Matter 1
+                      number: '1234'
+                    workspace:
+                      id: a2858a40-c24e-42d3-a6c1-28004f8b4c6f
+                      artifactID: 2001
+                      name: Sample workspace 1
+                      activityStatus: Active
+                      workspaceStatus: Active
+                      billableStatus: Billable
+                    usageMetrics:
+                      Relativity_Storage_Review:
+                        reportedValue: 1000
+                        collectionTimeUtc: '2021-09-10T14:12:00'
+                        subMetrics:
+                          Relativity_Storage_Linked:
+                            value: 1000
+                      Relativity_Storage_Repository:
+                        reportedValue: 100
+                        collectionTimeUtc: '2021-09-10T14:12:00'
+                    pricedMetrics:
+                      Relativity_Storage_Review:
+                        billableValue: 1000
+                        amount:
+                          value: 100000
+                          currency: USD
+                        collectionTimeUtc: '2021-09-10T14:12:00'
+                        subMetrics:
+                          Relativity_Storage_Linked:
+                            value: 1000
+                      Relativity_Storage_Repository:
+                        billableValue: 100
+                        amount:
+                          value: 2500
+                          currency: USD
+                        collectionTimeUtc: '2021-09-10T14:12:00'
+                    pricedMetricsSubMetricsSummary:
+                      Relativity_Storage_TextOnlyDocuments:
+                        value: 4000
+                        comment: ''
+                      Relativity_Storage_Linked:
+                        value: 1000
+                        comment: ''
+                    usageMetricsSubMetricsSummary:
+                      Relativity_Storage_TextOnlyDocuments:
+                        value: 4000
+                        comment: ''
+                      Relativity_Storage_Linked:
+                        value: 1000
+                        comment: ''
+                  - contract:
+                      id: 10060000003IO9HXXX
+                      name: Sample contract
+                    instance:
+                      id: f53c069b-9706-4570-8f97-be6e8fdbe156
+                      name: R1 - Sample
+                      pricingVisibility: Visible
+                    client:
+                      artifactID: 8001
+                      name: Client 2
+                      number: '1234'
+                    matter:
+                      artifactID: 7001
+                      name: Matter 2
+                      number: '1234'
+                    workspace:
+                      id: 87f653b8-eb1f-4281-a6d8-17f8632123c6
+                      artifactID: 6001
+                      name: Sample workspace 2
+                      activityStatus: Active
+                      workspaceStatus: Active
+                      billableStatus: Billable
+                    usageMetrics:
+                      Relativity_Storage_Review:
+                        reportedValue: 200
+                        collectionTimeUtc: '2021-09-10T14:12:00'
+                    pricedMetrics:
+                      Relativity_Storage_Review:
+                        billableValue: 200
+                        amount:
+                          value: 20000
+                          currency: USD
+                        collectionTimeUtc: '2021-09-10T14:12:00'
+                    pricedMetricsSubMetricsSummary:
+                      Relativity_Storage_TextOnlyDocuments:
+                        value: 8000
+                        comment: ''
+                      Relativity_Storage_Linked:
+                        value: 0
+                        comment: ''
+                    usageMetricsSubMetricsSummary:
+                      Relativity_Storage_TextOnlyDocuments:
+                        value: 8000
+                        comment: ''
+                      Relativity_Storage_Linked:
+                        value: 0
+                        comment: ''
+                pagingResponse:
+                  totalRecordCount: 2
+                status: OK
+  /api/v2/billing-insights/users-details:
+    post:
+      tags:
+        - BillingInsights
+      summary: Get a user list
+      description: Get a user list with billing attributes for a given date
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetUsersDetailsRequest'
+            examples:
+              All users:
+                summary: Get all users for a given instance and date
+                value:
+                  dateKey: '202105'
+                  selectorLevel: Instance
+                  itemSelectors:
+                    - instanceID: f53c069b-9706-4570-8f97-be6e8fdbe156
+                  includeWorkspaceInfo: false
+                  shouldUnhashData: false
+              Filter by:
+                summary: Filtering
+                value:
+                  dateKey: '202105'
+                  selectorLevel: Instance
+                  itemSelectors:
+                    - instanceID: f53c069b-9706-4570-8f97-be6e8fdbe156
+                  filters:
+                    - fieldName: BillableStatus
+                      operator: =
+                      value: Billable RelativityOne
+                  includeWorkspaceInfo: false
+                  shouldUnhashData: false
+              Order by email:
+                summary: Order by
+                value:
+                  dateKey: '202105'
+                  selectorLevel: Instance
+                  itemSelectors:
+                    - instanceID: f53c069b-9706-4570-8f97-be6e8fdbe156
+                  order:
+                    fieldName: Email
+                    direction: Desc
+                  includeWorkspaceInfo: false
+                  shouldUnhashData: false
+              Workspace users:
+                summary: Users with access to a workspace
+                value:
+                  dateKey: '202105'
+                  selectorLevel: Workspace
+                  itemSelectors:
+                    - instanceID: f53c069b-9706-4570-8f97-be6e8fdbe156
+                      workspaceArtifactID: 2315123
+                  includeWorkspaceInfo: false
+                  shouldUnhashData: false
+              All users with workspace artifactId info:
+                summary: Get all users for a given instance and date with list of workspace artifactIds to which user has access to
+                value:
+                  dateKey: '202105'
+                  selectorLevel: Instance
+                  itemSelectors:
+                    - instanceID: f53c069b-9706-4570-8f97-be6e8fdbe156
+                  includeWorkspaceInfo: true
+                  shouldUnhashData: false
+          text/json:
+            schema:
+              $ref: '#/components/schemas/GetUsersDetailsRequest'
+            examples:
+              All users:
+                summary: Get all users for a given instance and date
+                value:
+                  dateKey: '202105'
+                  selectorLevel: Instance
+                  itemSelectors:
+                    - instanceID: f53c069b-9706-4570-8f97-be6e8fdbe156
+                  includeWorkspaceInfo: false
+                  shouldUnhashData: false
+              Filter by:
+                summary: Filtering
+                value:
+                  dateKey: '202105'
+                  selectorLevel: Instance
+                  itemSelectors:
+                    - instanceID: f53c069b-9706-4570-8f97-be6e8fdbe156
+                  filters:
+                    - fieldName: BillableStatus
+                      operator: =
+                      value: Billable RelativityOne
+                  includeWorkspaceInfo: false
+                  shouldUnhashData: false
+              Order by email:
+                summary: Order by
+                value:
+                  dateKey: '202105'
+                  selectorLevel: Instance
+                  itemSelectors:
+                    - instanceID: f53c069b-9706-4570-8f97-be6e8fdbe156
+                  order:
+                    fieldName: Email
+                    direction: Desc
+                  includeWorkspaceInfo: false
+                  shouldUnhashData: false
+              Workspace users:
+                summary: Users with access to a workspace
+                value:
+                  dateKey: '202105'
+                  selectorLevel: Workspace
+                  itemSelectors:
+                    - instanceID: f53c069b-9706-4570-8f97-be6e8fdbe156
+                      workspaceArtifactID: 2315123
+                  includeWorkspaceInfo: false
+                  shouldUnhashData: false
+              All users with workspace artifactId info:
+                summary: Get all users for a given instance and date with list of workspace artifactIds to which user has access to
+                value:
+                  dateKey: '202105'
+                  selectorLevel: Instance
+                  itemSelectors:
+                    - instanceID: f53c069b-9706-4570-8f97-be6e8fdbe156
+                  includeWorkspaceInfo: true
+                  shouldUnhashData: false
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/GetUsersDetailsRequest'
+            examples:
+              All users:
+                summary: Get all users for a given instance and date
+                value:
+                  dateKey: '202105'
+                  selectorLevel: Instance
+                  itemSelectors:
+                    - instanceID: f53c069b-9706-4570-8f97-be6e8fdbe156
+                  includeWorkspaceInfo: false
+                  shouldUnhashData: false
+              Filter by:
+                summary: Filtering
+                value:
+                  dateKey: '202105'
+                  selectorLevel: Instance
+                  itemSelectors:
+                    - instanceID: f53c069b-9706-4570-8f97-be6e8fdbe156
+                  filters:
+                    - fieldName: BillableStatus
+                      operator: =
+                      value: Billable RelativityOne
+                  includeWorkspaceInfo: false
+                  shouldUnhashData: false
+              Order by email:
+                summary: Order by
+                value:
+                  dateKey: '202105'
+                  selectorLevel: Instance
+                  itemSelectors:
+                    - instanceID: f53c069b-9706-4570-8f97-be6e8fdbe156
+                  order:
+                    fieldName: Email
+                    direction: Desc
+                  includeWorkspaceInfo: false
+                  shouldUnhashData: false
+              Workspace users:
+                summary: Users with access to a workspace
+                value:
+                  dateKey: '202105'
+                  selectorLevel: Workspace
+                  itemSelectors:
+                    - instanceID: f53c069b-9706-4570-8f97-be6e8fdbe156
+                      workspaceArtifactID: 2315123
+                  includeWorkspaceInfo: false
+                  shouldUnhashData: false
+              All users with workspace artifactId info:
+                summary: Get all users for a given instance and date with list of workspace artifactIds to which user has access to
+                value:
+                  dateKey: '202105'
+                  selectorLevel: Instance
+                  itemSelectors:
+                    - instanceID: f53c069b-9706-4570-8f97-be6e8fdbe156
+                  includeWorkspaceInfo: true
+                  shouldUnhashData: false
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GetUsersDetailsResponse'
+              example:
+                results:
+                  - email: jane.doe@relativity.com
+                    userRole: Regular
+                    billableStatus: Billable RelativityOne
+                    lastLoginUtc: '2021-05-28T12:15:00'
+                    userActivity: Active
+                    userType: Internal
+                    instanceSpecificData:
+                      f53c069b-9706-4570-8f97-be6e8fdbe156:
+                        instance:
+                          id: f53c069b-9706-4570-8f97-be6e8fdbe156
+                          name: R1 - Sample
+                          pricingVisibility: Visible
+                        artifactID: 12345
+                    workspaces:
+                      '12345':
+                        clientArtifactId: 12345
+                        matterArtifactId: 54321
+                    collectionTimeUtc: '2021-05-29T12:15:00'
+                  - email: john.doe@relativity.com
+                    userRole: Administrator
+                    billableStatus: Non-billable
+                    lastLoginUtc: '2021-05-27T16:10:00'
+                    userActivity: Active
+                    userType: External
+                    comment: Justice for Change
+                    instanceSpecificData:
+                      f53c069b-9706-4570-8f97-be6e8fdbe156:
+                        instance:
+                          id: f53c069b-9706-4570-8f97-be6e8fdbe156
+                          name: R1 - Sample
+                          pricingVisibility: Visible
+                        artifactID: 34215
+                    workspaces:
+                      '12345':
+                        clientArtifactId: 12345
+                        matterArtifactId: 54321
+                      '54321':
+                        clientArtifactId: 54321
+                        matterArtifactId: 12345
+                    collectionTimeUtc: '2021-05-29T12:15:00'
+                pagingResponse:
+                  totalRecordCount: 2
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetUsersDetailsResponse'
+              example:
+                results:
+                  - email: jane.doe@relativity.com
+                    userRole: Regular
+                    billableStatus: Billable RelativityOne
+                    lastLoginUtc: '2021-05-28T12:15:00'
+                    userActivity: Active
+                    userType: Internal
+                    instanceSpecificData:
+                      f53c069b-9706-4570-8f97-be6e8fdbe156:
+                        instance:
+                          id: f53c069b-9706-4570-8f97-be6e8fdbe156
+                          name: R1 - Sample
+                          pricingVisibility: Visible
+                        artifactID: 12345
+                    workspaces:
+                      '12345':
+                        clientArtifactId: 12345
+                        matterArtifactId: 54321
+                    collectionTimeUtc: '2021-05-29T12:15:00'
+                  - email: john.doe@relativity.com
+                    userRole: Administrator
+                    billableStatus: Non-billable
+                    lastLoginUtc: '2021-05-27T16:10:00'
+                    userActivity: Active
+                    userType: External
+                    comment: Justice for Change
+                    instanceSpecificData:
+                      f53c069b-9706-4570-8f97-be6e8fdbe156:
+                        instance:
+                          id: f53c069b-9706-4570-8f97-be6e8fdbe156
+                          name: R1 - Sample
+                          pricingVisibility: Visible
+                        artifactID: 34215
+                    workspaces:
+                      '12345':
+                        clientArtifactId: 12345
+                        matterArtifactId: 54321
+                      '54321':
+                        clientArtifactId: 54321
+                        matterArtifactId: 12345
+                    collectionTimeUtc: '2021-05-29T12:15:00'
+                pagingResponse:
+                  totalRecordCount: 2
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GetUsersDetailsResponse'
+              example:
+                results:
+                  - email: jane.doe@relativity.com
+                    userRole: Regular
+                    billableStatus: Billable RelativityOne
+                    lastLoginUtc: '2021-05-28T12:15:00'
+                    userActivity: Active
+                    userType: Internal
+                    instanceSpecificData:
+                      f53c069b-9706-4570-8f97-be6e8fdbe156:
+                        instance:
+                          id: f53c069b-9706-4570-8f97-be6e8fdbe156
+                          name: R1 - Sample
+                          pricingVisibility: Visible
+                        artifactID: 12345
+                    workspaces:
+                      '12345':
+                        clientArtifactId: 12345
+                        matterArtifactId: 54321
+                    collectionTimeUtc: '2021-05-29T12:15:00'
+                  - email: john.doe@relativity.com
+                    userRole: Administrator
+                    billableStatus: Non-billable
+                    lastLoginUtc: '2021-05-27T16:10:00'
+                    userActivity: Active
+                    userType: External
+                    comment: Justice for Change
+                    instanceSpecificData:
+                      f53c069b-9706-4570-8f97-be6e8fdbe156:
+                        instance:
+                          id: f53c069b-9706-4570-8f97-be6e8fdbe156
+                          name: R1 - Sample
+                          pricingVisibility: Visible
+                        artifactID: 34215
+                    workspaces:
+                      '12345':
+                        clientArtifactId: 12345
+                        matterArtifactId: 54321
+                      '54321':
+                        clientArtifactId: 54321
+                        matterArtifactId: 12345
+                    collectionTimeUtc: '2021-05-29T12:15:00'
+                pagingResponse:
+                  totalRecordCount: 2
+components:
+  schemas:
+    Client:
+      type: object
+      properties:
+        artifactID:
+          type: integer
+          description: Artifact ID of the client
+          format: int32
+        name:
+          type: string
+          description: Name of the client
+          nullable: true
+        status:
+          type: string
+          description: Status of the client
+          nullable: true
+        anonymization:
+          type: string
+          description: "Flag that identifies if client data is hashed.\r\nIf the value is _Hashed_ then value of a _Name_ field is replaced with hash\r\nList of possible values:\r\n- Hashed\r\n- None"
+          nullable: true
+        anonymizedFields:
+          type: object
+          additionalProperties:
+            type: string
+            nullable: true
+          description: Dictionary that holds what type of client data is hashed.
+          nullable: true
+        number:
+          type: string
+          description: Number of the client
+          nullable: true
+      additionalProperties: false
+      description: Client information.
+    ClientMatterData:
+      type: object
+      properties:
+        clientArtifactId:
+          type: integer
+          format: int32
+        matterArtifactId:
+          type: integer
+          format: int32
+      additionalProperties: false
+    Contract:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID of the contract
+          nullable: true
+        name:
+          type: string
+          description: Name of the contract
+          nullable: true
+      additionalProperties: false
+      description: Contract information
+    FieldFilter:
+      type: object
+      properties:
+        fieldName:
+          type: string
+          description: Name of a field to which filtering will be applied
+          nullable: true
+        operator:
+          type: string
+          description: "Specifies a filtering operator\r\nList of possible values:\r\n- \"=\"\r\n- \"<\"\r\n- \">\"\r\n- \"<=\"\r\n- \">=\""
+          nullable: true
+        value:
+          type: string
+          description: Specifies a filter value
+          nullable: true
+      additionalProperties: false
+      description: Field filter information
+    FieldOrder:
+      type: object
+      properties:
+        fieldName:
+          type: string
+          description: "Specifies the field name which should be used for sorting the results.\r\nThe field matches the structure of the response payload, with the exception that all the property names should be upper case instead of lower case."
+          nullable: true
+        direction:
+          enum:
+            - Asc
+            - Desc
+          type: string
+          description: Specifies the sort direction
+      additionalProperties: false
+      description: Allows to specify order that should be applied to the query result
+    GetAvailablePackagesResponse:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/PackageDetails'
+          description: List of available packages
+          nullable: true
+      additionalProperties: false
+    GetAvailableProductsResponse:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductDetails'
+          description: List of available products
+          nullable: true
+      additionalProperties: false
+    GetHierarchyLookupResponse:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/GetHierarchyLookupResponseItem'
+          nullable: true
+      additionalProperties: false
+    GetHierarchyLookupResponseItem:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the item
+          nullable: true
+        anonymization:
+          type: string
+          description: "Flag that identifies if the name is hashed.\r\nIf the value is _Hashed_ then value of a _Name_ field is replaced with hash\r\nList of possible values:\r\n- Hashed\r\n- None"
+          nullable: true
+        anonymizedFields:
+          type: object
+          additionalProperties:
+            type: string
+            nullable: true
+          description: Collection that holds what type of data is hashed.
+          nullable: true
+        selector:
+          $ref: '#/components/schemas/HierarchyItemSelector'
+      additionalProperties: false
+    GetMonthDetailsRequest:
+      type: object
+      properties:
+        dateKey:
+          type: string
+          description: 'Specifies the year and the month for which details should be returned. Format: YYYYMM.'
+          nullable: true
+          example: 202209
+        metricKeys:
+          type: array
+          items:
+            type: string
+          description: "An array of metric keys for which the data should be returned. If no metric keys are provided, no metrics will be returned.\r\nList of possible values:\r\n- Relativity_Storage_Review\r\n- Relativity_Storage_Repository\r\n- Relativity_Storage_ColdStorage\r\n- Relativity_Users_RelOne\r\n- Relativity_Users_Server\r\n- Relativity_Users_NonBillable\r\n- Relativity_Storage_Staging\r\n- Relativity_Translate\r\n- Relativity_PI_Detect\r\n- Relativity_DB_Response\r\n- Relativity_Contracts_Document\r\n- aiR_for_Review\r\n- aiR_for_Privilege\r\n- aiR_for_CaseStrategy.AppInstallation\r\n- aiR_for_CaseStrategy.WorkspaceOneTimeFee\r\n- aiR_for_CaseStrategy.Document"
+          nullable: true
+        subMetricsSummaryKeys:
+          type: array
+          items:
+            type: string
+          description: "An array of submetric keys for subMetricsSummary fields for which the data should be returned.\r\nIf no submetric keys are provided, no submetrics will be returned under subMetricsSummary fields. Keep in mind that all submetrics under main metric keys (Review, Repo etc.) will be returned despite this parameter.\r\nList of possible values:\r\n- Relativity_Storage_TextOnlyDocuments\r\n- Relativity_Storage_Linked"
+          nullable: true
+        selectorLevel:
+          enum:
+            - Workspace
+            - Matter
+            - Client
+            - Instance
+            - Contract
+          type: string
+          description: "Specifies the hierarchy level for which _itemSelectors_ should apply. \r\nThe _itemSelectors_ contract level is not supported."
+        itemSelectors:
+          type: array
+          items:
+            $ref: '#/components/schemas/HierarchyItemSelector'
+          description: "Allows to filter the results.\r\nAn item selector uniquely identifies element in hierarchy. The following list specifies what property / properties should be set for each level:\r\n- Contract: _contractId_ [string]\r\n- Instance: _instanceId_[string]\r\n- Client: _instanceId_[string], _clientArtifactID_[int]\r\n- Matter: _instanceId_[string], _matterArtifactID_[int]\r\n- Workspace: _instanceId_[string], _workspaceArtifactID_[int]"
+          nullable: true
+        level:
+          enum:
+            - Workspace
+            - Matter
+            - Client
+            - Instance
+            - Contract
+          type: string
+          description: Specifies the hierarchy level for which the data should be returned
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/FieldFilter'
+          description: Allows to specify filters that should be applied to the query.
+          nullable: true
+        order:
+          $ref: '#/components/schemas/FieldOrder'
+        pagingRequest:
+          $ref: '#/components/schemas/PagingRequest'
+        shouldUnhashData:
+          type: boolean
+          description: Specifies if the response should include unhashed data. Default value is false.
+      additionalProperties: false
+      description: Request body used in month-details API
+    GetMonthDetailsResponse:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/GetMonthDetailsResponseItem'
+          nullable: true
+        pagingResponse:
+          $ref: '#/components/schemas/PagingResponse'
+        status:
+          enum:
+            - OK
+            - ContractExpired
+            - ContractNotAvailable
+            - ContractInPreparation
+            - MissingDataForContract
+            - FunctionalityDisabled
+            - MissingMetricsGuid
+          type: string
+      additionalProperties: false
+    GetMonthDetailsResponseItem:
+      type: object
+      properties:
+        contract:
+          $ref: '#/components/schemas/Contract'
+        instance:
+          $ref: '#/components/schemas/Instance'
+        client:
+          $ref: '#/components/schemas/Client'
+        matter:
+          $ref: '#/components/schemas/Matter'
+        workspace:
+          $ref: '#/components/schemas/Workspace'
+        usageMetrics:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/SingleUsageMetric'
+          description: "Usage metric represents current usage of the data or in case if previous month is requested it will represent state from the last day of monthly report.\r\nEach property in this object is one of the _metricKeys_ specified in the request. If the usage metric does not exist for given item, it will be missing in the object."
+          nullable: true
+        pricedMetrics:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/SinglePricedMetric'
+          description: "Priced metric represents billable data on the date when peak of the usage occurred. \r\nEach property in this object is one of the _metricKeys_ specified in the request. If the priced metric does not exist for given item, it will be missing in the object."
+          nullable: true
+        pricedMetricsSubMetricsSummary:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/SingleSubMetric'
+          description: "Submetrics related to the priced metric.\r\nEach property in this object is one of the _subMetricsSummaryKeys_ specified in the request. If the submetric does not exist for priced item, it will have zero Value in the object."
+          nullable: true
+        usageMetricsSubMetricsSummary:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/SingleSubMetric'
+          description: "Submetrics related to the usage metric.\r\nEach property in this object is one of the _subMetricsSummaryKeys_ specified in the request. If the submetric does not exist for usage item, it will have zero Value in the object."
+          nullable: true
+      additionalProperties: false
+    GetPackageConsumptionRequest:
+      type: object
+      properties:
+        instanceID:
+          type: string
+          description: Specifies the instanceId for which the data should be returned
+          nullable: true
+        metricKey:
+          type: string
+          description: 'Specifies the metric key for which the data should be returned. If no metric key is provided, no metric will be returned.'
+          nullable: true
+      additionalProperties: false
+    GetPackageConsumptionResponse:
+      type: object
+      properties:
+        metricKey:
+          type: string
+          description: MetricKey
+          nullable: true
+        aggregationDateUtc:
+          type: string
+          description: Date when the recalculation of consumed packages was done
+          format: date-time
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/PackageConsumptionItem'
+          description: List of package consumptions
+          nullable: true
+      additionalProperties: false
+    GetProductConfigurationRequest:
+      type: object
+      properties:
+        instanceID:
+          type: string
+          description: Specifies the instanceId for which the data should be returned
+          nullable: true
+        dateKeys:
+          type: array
+          items:
+            type: string
+          description: 'An array of years with months for which data should be returned. Format: ["YYYYMM"].'
+          nullable: true
+          example:
+            - '202208,202209'
+        metricKey:
+          type: string
+          description: "Specifies the metric key for which the data should be returned. If no metric key is provided, no metric will be returned.\r\nList of possible values:\r\n- Relativity_Translate\r\n- aiR_for_Review\r\n- aiR_for_Privilege\r\n- aiR_for_CaseStrategy.AppInstallation\r\n- aiR_for_CaseStrategy.WorkspaceOneTimeFee\r\n- aiR_for_CaseStrategy.Document"
+          nullable: true
+      additionalProperties: false
+      description: Request body used in product-configuration API
+    GetProductConfigurationResponse:
+      type: object
+      properties:
+        results:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/ProductConfigurationDetails'
+            nullable: true
+          description: "Product configuration.\r\nEach property in this object is the _metricKey_ specified in the request."
+          nullable: true
+      additionalProperties: false
+    GetProductsAndPackagesAvailabilityRequest:
+      type: object
+      properties:
+        instanceID:
+          type: string
+          description: Specifies the instanceId for which the data should be returned
+          nullable: true
+        dateKey:
+          type: string
+          description: 'Specifies the year and the month for which details should be returned. Format: YYYYMM.'
+          nullable: true
+          example: 202209
+      additionalProperties: false
+    GetProductsAndPackagesAvailabilityResponse:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductsAndPackagesAvailability'
+          description: Configuration of available extended products
+          nullable: true
+      additionalProperties: false
+    GetUsersDetailsRequest:
+      type: object
+      properties:
+        dateKey:
+          type: string
+          description: 'Specifies the year and the month for which details should be returned. Format: YYYYMM.'
+          nullable: true
+          example: 202209
+        selectorLevel:
+          enum:
+            - Workspace
+            - Matter
+            - Client
+            - Instance
+            - Contract
+          type: string
+        itemSelectors:
+          type: array
+          items:
+            $ref: '#/components/schemas/HierarchyItemSelector'
+          description: Limits the results just to Users who have access to particular element in the hierarchy
+          nullable: true
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/FieldFilter'
+          nullable: true
+        order:
+          $ref: '#/components/schemas/FieldOrder'
+        pagingRequest:
+          $ref: '#/components/schemas/PagingRequest'
+        includeWorkspaceInfo:
+          type: boolean
+          description: Specifies if the response should include workspace artifact IDs with matter and client structure to which user has access to. Default value is false.
+        shouldUnhashData:
+          type: boolean
+          description: Specifies if the response should include unhashed data. Default value is false.
+      additionalProperties: false
+      description: Request body used in users-details API
+    GetUsersDetailsResponse:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/GetUsersDetailsResponseItem'
+          nullable: true
+        pagingResponse:
+          $ref: '#/components/schemas/PagingResponse'
+      additionalProperties: false
+    GetUsersDetailsResponseItem:
+      type: object
+      properties:
+        email:
+          type: string
+          description: Email address of the User. Uniquely identifies the User.
+          nullable: true
+        userRole:
+          type: string
+          description: " Role of the User in Relativity. Possible values:\r\n- _Regular_\r\n- _Administrator_"
+          nullable: true
+        billableStatus:
+          type: string
+          description: "Specifies Billable status of the User. Possible values:\r\n- _Billable RelativityOne_\r\n- _Billable Server_\r\n- _Non-billable_"
+          nullable: true
+        lastLoginUtc:
+          type: string
+          description: Specifies the last login date for the given datekey.
+          format: date-time
+          nullable: true
+        userActivity:
+          type: string
+          description: "Specifies if the User was active (has logged in) in the month identified by datekey. Possible values:\r\n- _Active_\r\n- _Inactive_"
+          nullable: true
+        userType:
+          type: string
+          description: "Specifies the type of the User. Possible values:\r\n- _Internal_\r\n- _External_"
+          nullable: true
+        anonymization:
+          type: string
+          description: "If the value is _Hashed_ then value of a _Email_ field is replaced with hash\r\nList of possible values:\r\n- Hashed\r\n- None"
+          nullable: true
+        anonymizedFields:
+          type: object
+          additionalProperties:
+            type: string
+            nullable: true
+          description: Collection that holds what type of user data is hashed.
+          nullable: true
+        comment:
+          type: string
+          description: Provides additional information about Billing data for the User
+          nullable: true
+        instanceSpecificData:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/UserInstanceSpecificData'
+          description: Describes instance-specific data of the User. Keys in the dictionary are lowercase Instance ids.
+          nullable: true
+        workspaces:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/ClientMatterData'
+          description: Collection that holds artifactIds of workspaces to which user has access and information about its' client and matter artifactId.
+          nullable: true
+        collectionTimeUtc:
+          type: string
+          description: Date when the value was collected
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    HierarchyItemSelector:
+      type: object
+      properties:
+        contractID:
+          type: string
+          nullable: true
+        instanceID:
+          type: string
+          nullable: true
+        clientArtifactID:
+          type: integer
+          format: int32
+          nullable: true
+        matterArtifactID:
+          type: integer
+          format: int32
+          nullable: true
+        workspaceArtifactID:
+          type: integer
+          format: int32
+          nullable: true
+      additionalProperties: false
+      description: "Specifies item to select.\r\ninstanceID_ must be provided, additionally depending on the chosen level must be provided _clientArtifactID_, _matterArtifactID_ or _workspaceArtifactID"
+    Instance:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Instance ID (GUID)
+          nullable: true
+        name:
+          type: string
+          description: Instance name
+          nullable: true
+        pricingVisibility:
+          enum:
+            - Visible
+            - HiddenResoldInstance
+            - HiddenFixedContract
+          type: string
+          description: "Instance pricing visibility:\r\n- Visible : pricing details are visible\r\n- HiddenResoldInstance : pricing details are hidden due to resold of the instance\r\n- HiddenFixedContract : pricing details are hidden because of fixed contracts with zero rates"
+      additionalProperties: false
+      description: Instance information
+    Matter:
+      type: object
+      properties:
+        artifactID:
+          type: integer
+          description: Artifact ID of the matter
+          format: int32
+        name:
+          type: string
+          description: Name of the matter
+          nullable: true
+        anonymization:
+          type: string
+          description: "Flag that identifies if matter data is hashed.\r\nIf the value is _Hashed_ then value of a _Name_ field is replaced with hash\r\nList of possible values:\r\n- Hashed\r\n- None"
+          nullable: true
+        anonymizedFields:
+          type: object
+          additionalProperties:
+            type: string
+            nullable: true
+          description: Object that holds what type of matter data is hashed.
+          nullable: true
+        number:
+          type: string
+          description: Number of the matter
+          nullable: true
+      additionalProperties: false
+      description: Matter information
+    MetricMetadata:
+      type: object
+      properties:
+        metadataKey:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        data:
+          type: object
+          additionalProperties:
+            type: string
+            nullable: true
+          nullable: true
+      additionalProperties: false
+    Money:
+      type: object
+      properties:
+        value:
+          type: number
+          description: Monetary value
+          format: double
+        currency:
+          type: string
+          description: ISO 4217 currency code
+          nullable: true
+      additionalProperties: false
+    PackageConsumptionItem:
+      type: object
+      properties:
+        type:
+          enum:
+            - Free
+            - Purchased
+          type: string
+          description: "Type of the package\r\nList of possible values:\r\n- Free\r\n- Purchased"
+        total:
+          type: number
+          description: Total units of the package
+          format: double
+        consumed:
+          type: number
+          description: Consumed units of the package
+          format: double
+        expirationDateUtc:
+          type: string
+          description: Expiration date of the package
+          format: date-time
+      additionalProperties: false
+    PackageDetails:
+      type: object
+      properties:
+        packageType:
+          type: string
+          nullable: true
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+        quantity:
+          type: number
+          format: double
+        unitOfMeasure:
+          type: string
+          nullable: true
+        overageRate:
+          type: number
+          format: double
+        metricKeys:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: false
+    PagingRequest:
+      type: object
+      properties:
+        top:
+          type: integer
+          description: Return top N records
+          format: int32
+          nullable: true
+        skip:
+          type: integer
+          description: Exclude first N records
+          format: int32
+          nullable: true
+        maxItemCount:
+          type: integer
+          description: "Specifies maximum number of records that should be returned from the API\r\n- If there are more records to fetch, the _continuationToken_ is returned in the _pagingResponse_"
+          format: int32
+          nullable: true
+        includeCount:
+          type: boolean
+          description: Specifies that _totalRecordCount_ should be included in the _pagingResponse_
+          nullable: true
+        continuationToken:
+          type: string
+          nullable: true
+      additionalProperties: false
+      description: "Specifies paging options\r\n- _top_ and _skip_ values need to be either empty or populated. Specifying just a single value is considered a bad request.\r\n- if _top_ and _skip_ are specified and _maxItemCount_ is not specified, _continuationToken_ will not be returned.The API guarantees that all the records were populated, and there is no need to fetch additional records.\r\n- In all other cases, _continuationToken_ might be returned, indicating there are more records to fetch."
+    PagingResponse:
+      type: object
+      properties:
+        totalRecordCount:
+          type: integer
+          description: 'If _PagingRequest.includeCount_ was set to true, total number of records will be returned'
+          format: int32
+          nullable: true
+        continuationToken:
+          type: string
+          description: If the field is present it means that not the whole result set was included in the response and there are additional results to be retrieved
+          nullable: true
+      additionalProperties: false
+      description: "Paging information about the response. \r\nIf the caller wants to obtain the rest of the result set there should be subsequent request made with same parameters and _continuationToken_ included in the _PagingRequest.continuationToken_"
+    ProductConfigurationDetails:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the product
+          nullable: true
+        dateKey:
+          type: string
+          description: The Year and the month for which configuration details is returned
+          nullable: true
+        value:
+          description: Value reported for given product configuration
+          nullable: true
+      additionalProperties: false
+    ProductDetails:
+      type: object
+      properties:
+        metricKey:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ProductsAndPackagesAvailability:
+      type: object
+      properties:
+        areProductsAvailable:
+          type: boolean
+        arePackagesAvailable:
+          type: boolean
+      additionalProperties: false
+    SinglePricedMetric:
+      type: object
+      properties:
+        collectionTimeUtc:
+          type: string
+          description: Date when the value was collected
+          format: date-time
+          nullable: true
+        metadata:
+          type: array
+          items:
+            $ref: '#/components/schemas/MetricMetadata'
+          nullable: true
+        comment:
+          type: string
+          description: Additional information related to the current metric
+          nullable: true
+        subMetrics:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/SingleSubMetric'
+          nullable: true
+        billableValue:
+          type: number
+          description: Value reported for the metric (billable usage)
+          format: double
+        amount:
+          $ref: '#/components/schemas/Money'
+        missingCostReason:
+          type: string
+          description: Reason for the missing cost if applicable.
+          nullable: true
+          example: "\r\n            Cost breakdown not available at this level of the hierarchy\r\n            "
+      additionalProperties: false
+    SingleSubMetric:
+      type: object
+      properties:
+        value:
+          type: number
+          description: Value reported for the submetric
+          format: double
+        comment:
+          type: string
+          description: Comment associated with submetric
+          nullable: true
+      additionalProperties: false
+    SingleUsageMetric:
+      type: object
+      properties:
+        collectionTimeUtc:
+          type: string
+          description: Date when the value was collected
+          format: date-time
+          nullable: true
+        metadata:
+          type: array
+          items:
+            $ref: '#/components/schemas/MetricMetadata'
+          nullable: true
+        comment:
+          type: string
+          description: Additional information related to the current metric
+          nullable: true
+        subMetrics:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/SingleSubMetric'
+          nullable: true
+        reportedValue:
+          type: number
+          description: Value reported for the metric (current usage)
+          format: double
+      additionalProperties: false
+    UserInstanceSpecificData:
+      type: object
+      properties:
+        instance:
+          $ref: '#/components/schemas/Instance'
+        artifactID:
+          type: integer
+          description: ArtifactID of the User in particular instance.
+          format: int32
+        userRole:
+          type: string
+          description: Role of the User in this particular instance.
+          nullable: true
+        lastLoginUtc:
+          type: string
+          description: Specifies the last login date for this particular instance.
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    Workspace:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID of the workspace (GUID)
+          nullable: true
+        artifactID:
+          type: integer
+          description: Artifact ID of the workspace
+          format: int32
+        name:
+          type: string
+          description: Name of the workspace
+          nullable: true
+        activityStatus:
+          type: string
+          description: Activity status
+          nullable: true
+        workspaceStatus:
+          type: string
+          description: "Workspace status. Could be one of the following:\r\n- Active\r\n- Inactive\r\n- Archived\r\n- Deleted"
+          nullable: true
+        billableStatus:
+          type: string
+          description: "Specifies billable status of the workspace\r\nList of possible values:\r\n- Billable\r\n- Non-billable\r\n- Billable Plaintiff"
+          nullable: true
+        billableComment:
+          type: string
+          description: 'Additional information about billable status, populated when _billableStatus_ is _Non-billable_'
+          nullable: true
+        anonymization:
+          type: string
+          description: "Flag that identifies if workspace data is hashed.\r\nIf the value is _Hashed_ then value of a _Name_ field is replaced with _ArtifactID_ value.\r\nList of possible values:\r\n- Hashed\r\n- None"
+          nullable: true
+        billableType:
+          type: string
+          description: "Specifies billable type of the workspace\r\nList of possible values:\r\n- Repository\r\n- Review\r\n- Cold Storage"
+          nullable: true
+        anonymizedFields:
+          type: object
+          additionalProperties:
+            type: string
+            nullable: true
+          description: Object that holds what type of workspace data is hashed.
+          nullable: true
+        projectType:
+          type: string
+          description: Object that holds what type of use case the workspace has.
+          nullable: true
+      additionalProperties: false
+      description: Workspace information
+  securitySchemes:
+    bearerAuth:
+      type: http
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      bearerFormat: JWT
+security:
+  - { }
+tags:
+  - name: BillingConfiguration
+  - name: BillingInsights

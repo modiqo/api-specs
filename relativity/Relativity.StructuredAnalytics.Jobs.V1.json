@@ -1,0 +1,926 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Relativity.StructuredAnalytics.Jobs.V1",
+    "description": "Relativity.StructuredAnalytics.Jobs",
+    "version": "V1"
+  },
+  "servers": [
+    {
+      "url": "/Relativity.REST/api",
+      "description": "The URL prefix for all Kepler services"
+    }
+  ],
+  "paths": {
+    "/relativity-structured-analytics/v1/workspaces/{workspaceID}/sets/{sasArtifactID}/jobs": {
+      "post": {
+        "tags": [
+          "Relativity Structured Analytics v1"
+        ],
+        "description": "[Public] IJobManager - ",
+        "operationId": "Relativity.StructuredAnalytics.V1.Jobs.IJobManager.RunAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/sasArtifactID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AnalysisSettings"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationResult"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Relativity Structured Analytics v1"
+        ],
+        "description": "[Public] IJobManager - ",
+        "operationId": "Relativity.StructuredAnalytics.V1.Jobs.IJobManager.GetStatusAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/sasArtifactID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-structured-analytics/v1/workspaces/{workspaceID}/sets/{sasArtifactID}/jobs/prep": {
+      "post": {
+        "tags": [
+          "Relativity Structured Analytics v1"
+        ],
+        "description": "[Public] IJobManager - ",
+        "operationId": "Relativity.StructuredAnalytics.V1.Jobs.IJobManager.RunAnalysisPreparationAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/sasArtifactID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-structured-analytics/v1/workspaces/{workspaceID}/sets/{sasArtifactID}/jobs/copy-to-legacy": {
+      "post": {
+        "tags": [
+          "Relativity Structured Analytics v1"
+        ],
+        "description": "[Public] IJobManager - ",
+        "operationId": "Relativity.StructuredAnalytics.V1.Jobs.IJobManager.RunCopyToLegacyAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/sasArtifactID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationResult"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Relativity Structured Analytics v1"
+        ],
+        "description": "[Public] IJobManager - ",
+        "operationId": "Relativity.StructuredAnalytics.V1.Jobs.IJobManager.CancelCopyToLegacyAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/sasArtifactID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-structured-analytics/v1/workspaces/{workspaceID}/sets/{sasArtifactID}/jobs/": {
+      "delete": {
+        "tags": [
+          "Relativity Structured Analytics v1"
+        ],
+        "description": "[Public] IJobManager - ",
+        "operationId": "Relativity.StructuredAnalytics.V1.Jobs.IJobManager.CancelAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/sasArtifactID"
+          },
+          {
+            "$ref": "#/components/parameters/wait"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-structured-analytics/v1/workspaces/{workspaceID}/sets/{sasArtifactID}/jobs/retry": {
+      "post": {
+        "tags": [
+          "Relativity Structured Analytics v1"
+        ],
+        "description": "[Public] IJobManager - ",
+        "operationId": "Relativity.StructuredAnalytics.V1.Jobs.IJobManager.RetryErrorsAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/sasArtifactID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-structured-analytics/v1/workspaces/{workspaceID}/sets/{sasArtifactID}/jobs/tmq": {
+      "get": {
+        "tags": [
+          "Relativity Structured Analytics v1"
+        ],
+        "description": "[Public] IJobManager - ",
+        "operationId": "Relativity.StructuredAnalytics.V1.Jobs.IJobManager.GetTMQEntryAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/sasArtifactID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MasterJob"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-structured-analytics/v1/workspaces/{workspaceID}/sets/{sasArtifactID}/jobs/errors": {
+      "get": {
+        "tags": [
+          "Relativity Structured Analytics v1"
+        ],
+        "description": "[Public] IJobManager - ",
+        "operationId": "Relativity.StructuredAnalytics.V1.Jobs.IJobManager.GetErrorsAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/sasArtifactID"
+          },
+          {
+            "$ref": "#/components/parameters/start"
+          },
+          {
+            "$ref": "#/components/parameters/length"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StructuredAnalyticsSetError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-structured-analytics/v1/workspaces/{workspaceID}/sets/{sasArtifactID}/jobs/doc-errors": {
+      "get": {
+        "tags": [
+          "Relativity Structured Analytics v1"
+        ],
+        "description": "[Public] IJobManager - ",
+        "operationId": "Relativity.StructuredAnalytics.V1.Jobs.IJobManager.GetDocumentErrorsAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/sasArtifactID"
+          },
+          {
+            "$ref": "#/components/parameters/start"
+          },
+          {
+            "$ref": "#/components/parameters/length"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DocumentError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Relativity Structured Analytics v1"
+        ],
+        "description": "[Public] IJobManager - ",
+        "operationId": "Relativity.StructuredAnalytics.V1.Jobs.IJobManager.GetDocumentErrorsAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/sasArtifactID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SASDocumentErrorsRequestObject"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SASDocumentErrorsResponseObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-structured-analytics/v1/workspaces/{workspaceID}/sets/{sasArtifactID}/jobs/valid-tasks": {
+      "get": {
+        "tags": [
+          "Relativity Structured Analytics v1"
+        ],
+        "description": "[Public] IJobManager - ",
+        "operationId": "Relativity.StructuredAnalytics.V1.Jobs.IJobManager.GetValidTasksAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/sasArtifactID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidTaskResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-structured-analytics/v1/workspaces/{workspaceID}/choices": {
+      "delete": {
+        "tags": [
+          "Relativity Structured Analytics v1"
+        ],
+        "description": "[Public] IJobManager - ",
+        "operationId": "Relativity.StructuredAnalytics.V1.Jobs.IJobManager.RemoveAllChoicesAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AnalysisSettings": {
+        "title": "AnalysisSettings",
+        "type": "object",
+        "properties": {
+          "PopulateAll": {
+            "type": "boolean"
+          },
+          "AnalyzeAll": {
+            "type": "boolean"
+          }
+        }
+      },
+      "OperationResult": {
+        "title": "OperationResult",
+        "type": "object",
+        "properties": {
+          "IsSuccess": {
+            "type": "boolean"
+          },
+          "Message": {
+            "type": "string"
+          }
+        }
+      },
+      "Status": {
+        "title": "Status",
+        "type": "object",
+        "properties": {
+          "JobName": {
+            "type": "string"
+          },
+          "JobState": {
+            "$ref": "#/components/schemas/JobState"
+          },
+          "OperationState": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OperationState"
+            }
+          },
+          "JobResults": {
+            "$ref": "#/components/schemas/JobResults"
+          }
+        }
+      },
+      "JobState": {
+        "title": "JobState",
+        "type": "object",
+        "properties": {
+          "Status": {
+            "type": "string"
+          },
+          "Phase": {
+            "enum": [
+              "Not_Started",
+              "Setup",
+              "SyncingData",
+              "CalculatingFileSizes",
+              "QueuedForExport",
+              "Exporting",
+              "CompletedExporting",
+              "QueuedForAnalysis",
+              "RunningOperations",
+              "CompletedOperations",
+              "QueuedForImport",
+              "ImportingEntityAndAliases",
+              "Importing",
+              "Finalizing",
+              "Completed",
+              "CompletedWithErrors",
+              "Error",
+              "RetryErrors",
+              "Canceling",
+              "Canceled",
+              "MissingFields",
+              "CopyToLegacyInProgress",
+              "CopyToLegacyCancelling",
+              "PreparingAnalysisInProgress",
+              "PreparingAnalysisCompleted",
+              "PreparingAnalysisError",
+              "Unknown"
+            ],
+            "type": "string"
+          },
+          "IsRunning": {
+            "type": "boolean"
+          },
+          "IsRunningOperations": {
+            "type": "boolean"
+          },
+          "IsCompleted": {
+            "type": "boolean"
+          },
+          "IsCanceled": {
+            "type": "boolean"
+          },
+          "IsCanceling": {
+            "type": "boolean"
+          },
+          "IsQueued": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "IsUnknown": {
+            "type": "boolean"
+          },
+          "PhaseProgressPercentage": {
+            "type": "number"
+          },
+          "JobTimeElapsed": {
+            "type": "integer"
+          },
+          "OperationTimeElapsed": {
+            "type": "integer"
+          }
+        }
+      },
+      "OperationState": {
+        "title": "OperationState",
+        "type": "object",
+        "properties": {
+          "Operation": {
+            "enum": [
+              "EmailThreading",
+              "TextualNearDuplicateID",
+              "LanguageID",
+              "RepeatedContentID",
+              "NameNormalizationID"
+            ],
+            "type": "string"
+          },
+          "Phase": {
+            "enum": [
+              "Not_Started",
+              "Setup",
+              "SyncingData",
+              "CalculatingFileSizes",
+              "QueuedForExport",
+              "Exporting",
+              "CompletedExporting",
+              "QueuedForAnalysis",
+              "RunningOperations",
+              "CompletedOperations",
+              "QueuedForImport",
+              "ImportingEntityAndAliases",
+              "Importing",
+              "Finalizing",
+              "Completed",
+              "CompletedWithErrors",
+              "Error",
+              "RetryErrors",
+              "Canceling",
+              "Canceled",
+              "MissingFields",
+              "CopyToLegacyInProgress",
+              "CopyToLegacyCancelling",
+              "PreparingAnalysisInProgress",
+              "PreparingAnalysisCompleted",
+              "PreparingAnalysisError",
+              "Unknown"
+            ],
+            "type": "string"
+          },
+          "LastActivity": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        }
+      },
+      "JobResults": {
+        "title": "JobResults",
+        "type": "object",
+        "properties": {
+          "DocumentsAnalyzed": {
+            "type": "integer"
+          },
+          "EmailThreadingStats": {
+            "$ref": "#/components/schemas/EmailThreadingStatistics"
+          },
+          "NameNormalizationStats": {
+            "$ref": "#/components/schemas/NameNormalizationStatistics"
+          },
+          "TextualNearDupeStats": {
+            "$ref": "#/components/schemas/TextualNearDuplicatesStatistics"
+          }
+        }
+      },
+      "EmailThreadingStatistics": {
+        "title": "EmailThreadingStatistics",
+        "type": "object",
+        "properties": {
+          "EmailsAnalyzed": {
+            "type": "integer"
+          },
+          "InclusiveEmails": {
+            "type": "integer"
+          },
+          "DocumentsAnalyzed": {
+            "type": "integer"
+          }
+        }
+      },
+      "NameNormalizationStatistics": {
+        "title": "NameNormalizationStatistics",
+        "type": "object",
+        "properties": {
+          "AliasesIdentified": {
+            "type": "integer"
+          },
+          "NewAliasesImported": {
+            "type": "integer"
+          }
+        }
+      },
+      "TextualNearDuplicatesStatistics": {
+        "title": "TextualNearDuplicatesStatistics",
+        "type": "object",
+        "properties": {
+          "AverageSimilarityPercentage": {
+            "type": "number"
+          },
+          "GroupsCount": {
+            "type": "integer"
+          },
+          "DocumentsAnalyzed": {
+            "type": "integer"
+          }
+        }
+      },
+      "MasterJob": {
+        "title": "MasterJob",
+        "type": "object",
+        "properties": {
+          "TaskID": {
+            "type": "integer"
+          },
+          "WorkspaceID": {
+            "type": "integer"
+          },
+          "ResourceGroupID": {
+            "type": "integer"
+          },
+          "Status": {
+            "type": "integer"
+          },
+          "JobArtifactID": {
+            "type": "integer"
+          },
+          "Handled": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "DBLocation": {
+            "type": "string"
+          },
+          "Retries": {
+            "type": "integer"
+          },
+          "PopulateAll": {
+            "type": "boolean"
+          },
+          "AnalyzeAll": {
+            "type": "boolean"
+          },
+          "StatusAtCancel": {
+            "type": "integer"
+          },
+          "UpgradeStatusComplete": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "InitiatorGuid": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "StructuredAnalyticsSetError": {
+        "title": "StructuredAnalyticsSetError",
+        "type": "object",
+        "properties": {
+          "FullText": {
+            "type": "string"
+          },
+          "Message": {
+            "type": "string"
+          },
+          "Server": {
+            "type": "string"
+          },
+          "Source": {
+            "type": "string"
+          }
+        }
+      },
+      "DocumentError": {
+        "title": "DocumentError",
+        "type": "object",
+        "properties": {
+          "DocumentArtifactID": {
+            "type": "integer"
+          },
+          "DocumentIdentifier": {
+            "type": "string"
+          },
+          "Message": {
+            "type": "string"
+          },
+          "Operations": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "EmailThreading",
+                "TextualNearDuplicateID",
+                "LanguageID",
+                "RepeatedContentID",
+                "NameNormalizationID"
+              ],
+              "type": "string"
+            }
+          },
+          "Status": {
+            "enum": [
+              "IncludedInSet",
+              "RemovedFromSet",
+              "DataWarning"
+            ],
+            "type": "string"
+          },
+          "DateErrored": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "SASDocumentErrorsRequestObject": {
+        "title": "SASDocumentErrorsRequestObject",
+        "type": "object",
+        "properties": {
+          "Sorts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "Filters": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "Start": {
+            "type": "integer"
+          },
+          "Length": {
+            "type": "integer"
+          }
+        }
+      },
+      "SASDocumentErrorsResponseObject": {
+        "title": "SASDocumentErrorsResponseObject",
+        "type": "object",
+        "properties": {
+          "DocumentErrors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DocumentError"
+            }
+          },
+          "TotalCount": {
+            "type": "integer"
+          }
+        }
+      },
+      "ValidTaskResult": {
+        "title": "ValidTaskResult",
+        "type": "object",
+        "properties": {
+          "ValidTasks": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "CANCEL_ANALYSIS",
+                "RETRY_ERRORS",
+                "GET_SET_ERRORS",
+                "GET_DOCUMENT_ERRORS",
+                "COPY_TO_LEGACY",
+                "COPY_TO_LEGACY_CANCEL",
+                "PREPARE_ANALYSIS",
+                "RUN_ANALYSIS"
+              ],
+              "type": "string"
+            }
+          },
+          "CopyToLegacyQualified": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "parameters": {
+      "workspaceID": {
+        "name": "workspaceID",
+        "in": "path",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "sasArtifactID": {
+        "name": "sasArtifactID",
+        "in": "path",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "x-csrf-header": {
+        "name": "x-csrf-header",
+        "in": "header",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "default": "-"
+        }
+      },
+      "wait": {
+        "name": "wait",
+        "in": "query",
+        "description": "",
+        "schema": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "start": {
+        "name": "start",
+        "in": "query",
+        "description": "",
+        "schema": {
+          "type": "integer",
+          "default": 0
+        }
+      },
+      "length": {
+        "name": "length",
+        "in": "query",
+        "description": "",
+        "schema": {
+          "type": "integer",
+          "default": 0
+        }
+      }
+    }
+  }
+}

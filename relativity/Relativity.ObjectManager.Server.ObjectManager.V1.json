@@ -1,0 +1,1643 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Relativity.ObjectManager.Server.ObjectManager.V1",
+    "description": "Relativity.ObjectManager.Server.ObjectManager",
+    "version": "V1"
+  },
+  "servers": [
+    {
+      "url": "/Relativity.REST/api",
+      "description": "The URL prefix for all Kepler services"
+    }
+  ],
+  "paths": {
+    "/Relativity.ObjectManager/v1/workspace/{workspaceID}/object/query": {
+      "post": {
+        "tags": [
+          "Object Manager v1"
+        ],
+        "description": "[Public] IObjectManager - ",
+        "operationId": "Relativity.ObjectManager.Server.ObjectManager.V1.Manager.IObjectManager.QueryAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/start"
+          },
+          {
+            "$ref": "#/components/parameters/length"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QueryResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Relativity.ObjectManager/v1/workspace/{workspaceID}/object/update": {
+      "post": {
+        "tags": [
+          "Object Manager v1"
+        ],
+        "description": "[Public] IObjectManager - ",
+        "operationId": "Relativity.ObjectManager.Server.ObjectManager.V1.Manager.IObjectManager.UpdateAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Relativity.ObjectManager/v1/workspace/{workspaceID}/object/read": {
+      "post": {
+        "tags": [
+          "Object Manager v1"
+        ],
+        "description": "[Public] IObjectManager - ",
+        "operationId": "Relativity.ObjectManager.Server.ObjectManager.V1.Manager.IObjectManager.ReadAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReadAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReadResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Relativity.ObjectManager/v1/workspace/{workspaceID}/object/delete": {
+      "post": {
+        "tags": [
+          "Object Manager v1"
+        ],
+        "description": "[Public] IObjectManager - ",
+        "operationId": "Relativity.ObjectManager.Server.ObjectManager.V1.Manager.IObjectManager.DeleteAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Relativity.ObjectManager/v1/workspace/{workspaceID}/object/create": {
+      "post": {
+        "tags": [
+          "Object Manager v1"
+        ],
+        "description": "[Public] IObjectManager - ",
+        "operationId": "Relativity.ObjectManager.Server.ObjectManager.V1.Manager.IObjectManager.CreateAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Relativity.ObjectManager/v1/workspace/{workspaceID}/object/queryslim": {
+      "post": {
+        "tags": [
+          "Object Manager v1"
+        ],
+        "description": "[Public] IObjectManager - ",
+        "operationId": "Relativity.ObjectManager.Server.ObjectManager.V1.Manager.IObjectManager.QuerySlimAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/start"
+          },
+          {
+            "$ref": "#/components/parameters/length"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QuerySlimAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QueryResultSlim"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Relativity.ObjectManager/v1/workspace/{workspaceID}/object/streamlongtext": {
+      "post": {
+        "tags": [
+          "Object Manager v1"
+        ],
+        "description": "[Public] IObjectManager - ",
+        "operationId": "Relativity.ObjectManager.Server.ObjectManager.V1.Manager.IObjectManager.StreamLongTextAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StreamLongTextAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IKeplerStream"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Relativity.ObjectManager/v1/workspace/{workspaceID}/object/initializeexport": {
+      "post": {
+        "tags": [
+          "Object Manager v1"
+        ],
+        "description": "[Public] IObjectManager - ",
+        "operationId": "Relativity.ObjectManager.Server.ObjectManager.V1.Manager.IObjectManager.InitializeExportAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/start"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InitializeExportAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExportInitializationResults"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Relativity.ObjectManager/v1/workspace/{workspaceID}/object/retrievenextresultsblockfromexport": {
+      "post": {
+        "tags": [
+          "Object Manager v1"
+        ],
+        "description": "[Public] IObjectManager - ",
+        "operationId": "Relativity.ObjectManager.Server.ObjectManager.V1.Manager.IObjectManager.RetrieveNextResultsBlockFromExportAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/runID"
+          },
+          {
+            "$ref": "#/components/parameters/batchSize"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RelativityObjectSlim"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Relativity.ObjectManager/v1/workspace/{workspaceID}/object/retrieveresultsblockfromexport": {
+      "post": {
+        "tags": [
+          "Object Manager v1"
+        ],
+        "description": "[Public] IObjectManager - ",
+        "operationId": "Relativity.ObjectManager.Server.ObjectManager.V1.Manager.IObjectManager.RetrieveResultsBlockFromExportAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/runID"
+          },
+          {
+            "$ref": "#/components/parameters/resultsBlockSize"
+          },
+          {
+            "$ref": "#/components/parameters/exportIndexID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RelativityObjectSlim"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Relativity.ObjectManager/v1/workspace/{workspaceID}/object/updatelongtextfromstream": {
+      "post": {
+        "tags": [
+          "Object Manager v1"
+        ],
+        "description": "[Public] IObjectManager - ",
+        "operationId": "Relativity.ObjectManager.Server.ObjectManager.V1.Manager.IObjectManager.UpdateLongTextFromStreamAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateLongTextFromStreamAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      }
+    },
+    "/Relativity.ObjectManager/v1/workspace/{workspaceID}/object/dependencylist": {
+      "post": {
+        "tags": [
+          "Object Manager v1"
+        ],
+        "description": "[Public] IObjectManager - ",
+        "operationId": "Relativity.ObjectManager.Server.ObjectManager.V1.Manager.IObjectManager.GetDependencyListAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetDependencyListAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Dependency"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "QueryAsync_RequestBody": {
+        "title": "QueryAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "request": {
+            "$ref": "#/components/schemas/QueryRequest"
+          }
+        }
+      },
+      "QueryRequest": {
+        "title": "QueryRequest",
+        "type": "object",
+        "properties": {
+          "ObjectType": {
+            "$ref": "#/components/schemas/ObjectTypeRef"
+          },
+          "Condition": {
+            "type": "string"
+          },
+          "Sorts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Sort"
+            }
+          },
+          "RelationalField": {
+            "$ref": "#/components/schemas/FieldRef"
+          },
+          "RowCondition": {
+            "type": "string"
+          },
+          "SearchProviderCondition": {
+            "$ref": "#/components/schemas/SearchProviderCondition"
+          },
+          "SampleParameters": {
+            "$ref": "#/components/schemas/SampleParameters"
+          },
+          "IncludeIDWindow": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "RankSortOrder": {
+            "enum": [
+              "Ascending",
+              "Descending"
+            ],
+            "type": "string",
+            "nullable": true
+          },
+          "QueryHint": {
+            "type": "string"
+          },
+          "Fields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FieldRef"
+            }
+          },
+          "IsAdhocQuery": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "ConvertNumberFieldValuesToString": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "IncludeNameInQueryResult": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "ExecutingSavedSearchID": {
+            "type": "integer",
+            "nullable": true
+          },
+          "ExecutingViewID": {
+            "type": "integer",
+            "nullable": true
+          },
+          "ActiveArtifactID": {
+            "type": "integer",
+            "nullable": true
+          },
+          "MaxCharactersForLongTextValues": {
+            "type": "integer",
+            "nullable": true
+          },
+          "LongTextBehavior": {
+            "enum": [
+              "Default",
+              "Tokenized",
+              "DefaultWithErrors",
+              "TokenizedWithErrors"
+            ],
+            "type": "string"
+          }
+        }
+      },
+      "ObjectTypeRef": {
+        "title": "ObjectTypeRef",
+        "type": "object",
+        "properties": {
+          "ArtifactID": {
+            "type": "integer"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "Guid": {
+            "type": "string",
+            "nullable": true
+          },
+          "ArtifactTypeID": {
+            "type": "integer"
+          }
+        }
+      },
+      "Sort": {
+        "title": "Sort",
+        "type": "object",
+        "properties": {
+          "FieldIdentifier": {
+            "$ref": "#/components/schemas/FieldRef"
+          },
+          "Order": {
+            "type": "integer"
+          },
+          "Direction": {
+            "enum": [
+              "Ascending",
+              "Descending"
+            ],
+            "type": "string"
+          }
+        }
+      },
+      "FieldRef": {
+        "title": "FieldRef",
+        "type": "object",
+        "properties": {
+          "ViewFieldID": {
+            "type": "integer"
+          },
+          "ArtifactID": {
+            "type": "integer"
+          },
+          "Guid": {
+            "type": "string",
+            "nullable": true
+          },
+          "Name": {
+            "type": "string"
+          }
+        }
+      },
+      "SearchProviderCondition": {
+        "title": "SearchProviderCondition",
+        "type": "object",
+        "properties": {
+          "SearchIndex": {
+            "$ref": "#/components/schemas/SearchIndexRef"
+          },
+          "Input": {
+            "type": "string"
+          }
+        }
+      },
+      "SearchIndexRef": {
+        "title": "SearchIndexRef",
+        "type": "object",
+        "properties": {
+          "ArtifactID": {
+            "type": "integer"
+          },
+          "Name": {
+            "type": "string"
+          }
+        }
+      },
+      "SampleParameters": {
+        "title": "SampleParameters",
+        "type": "object",
+        "properties": {
+          "ExistingToken": {
+            "type": "string",
+            "nullable": true
+          },
+          "MarginOfError": {
+            "type": "number"
+          },
+          "ConfidenceLevel": {
+            "type": "number"
+          },
+          "FixedSampleSize": {
+            "type": "integer"
+          },
+          "SamplingPercentage": {
+            "type": "number"
+          }
+        }
+      },
+      "QueryResult": {
+        "title": "QueryResult",
+        "type": "object",
+        "properties": {
+          "TotalCount": {
+            "type": "integer"
+          },
+          "Objects": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RelativityObject"
+            }
+          },
+          "IDWindow": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "CurrentStartIndex": {
+            "type": "integer"
+          },
+          "ResultCount": {
+            "type": "integer"
+          },
+          "ObjectType": {
+            "$ref": "#/components/schemas/ObjectType"
+          },
+          "SampleDetails": {
+            "$ref": "#/components/schemas/SampleDetails"
+          },
+          "RankWindow": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
+          },
+          "RelationalField": {
+            "$ref": "#/components/schemas/Field"
+          }
+        }
+      },
+      "RelativityObject": {
+        "title": "RelativityObject",
+        "type": "object",
+        "properties": {
+          "ParentObject": {
+            "$ref": "#/components/schemas/RelativityObjectRef"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "FieldValues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FieldValuePair"
+            }
+          },
+          "ArtifactID": {
+            "type": "integer"
+          },
+          "Guids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "Item": {
+            "$ref": "#/components/schemas/FieldValuePair"
+          }
+        }
+      },
+      "RelativityObjectRef": {
+        "title": "RelativityObjectRef",
+        "type": "object",
+        "properties": {
+          "ArtifactID": {
+            "type": "integer"
+          },
+          "Guid": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "FieldValuePair": {
+        "title": "FieldValuePair",
+        "type": "object",
+        "properties": {
+          "Value": {
+            "$ref": "#/components/schemas/Object"
+          },
+          "Field": {
+            "$ref": "#/components/schemas/Field"
+          }
+        }
+      },
+      "Object": {
+        "title": "Object",
+        "type": "object"
+      },
+      "Field": {
+        "title": "Field",
+        "type": "object",
+        "properties": {
+          "FieldCategory": {
+            "enum": [
+              "Generic",
+              "FullText",
+              "Identifier",
+              "Reflected",
+              "Comments",
+              "Relational",
+              "ProductionMarker",
+              "AutoCreate",
+              "FileSize",
+              "FolderName",
+              "FileInfo",
+              "ParentArtifact",
+              "MarkupSetMarker",
+              "GenericSystem",
+              "MultiReflected",
+              "Batch"
+            ],
+            "type": "string"
+          },
+          "FieldType": {
+            "enum": [
+              "FixedLengthText",
+              "WholeNumber",
+              "Date",
+              "YesNo",
+              "LongText",
+              "SingleChoice",
+              "Decimal",
+              "Currency",
+              "MultipleChoice",
+              "File",
+              "SingleObject",
+              "User",
+              "MultipleObject",
+              "Empty"
+            ],
+            "type": "string"
+          },
+          "ViewFieldID": {
+            "type": "integer"
+          },
+          "ArtifactID": {
+            "type": "integer"
+          },
+          "Guids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "Name": {
+            "type": "string"
+          }
+        }
+      },
+      "ObjectType": {
+        "title": "ObjectType",
+        "type": "object",
+        "properties": {
+          "ArtifactID": {
+            "type": "integer"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "Guids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "ArtifactTypeID": {
+            "type": "integer"
+          }
+        }
+      },
+      "SampleDetails": {
+        "title": "SampleDetails",
+        "type": "object",
+        "properties": {
+          "SampleSize": {
+            "type": "integer",
+            "nullable": true
+          },
+          "UniverseSize": {
+            "type": "integer",
+            "nullable": true
+          },
+          "Token": {
+            "type": "string"
+          }
+        }
+      },
+      "UpdateAsync_RequestBody": {
+        "title": "UpdateAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "request": {
+            "$ref": "#/components/schemas/UpdateRequest"
+          },
+          "operationOptions": {
+            "$ref": "#/components/schemas/UpdateOptions"
+          }
+        }
+      },
+      "UpdateRequest": {
+        "title": "UpdateRequest",
+        "type": "object",
+        "properties": {
+          "Object": {
+            "$ref": "#/components/schemas/RelativityObjectRef"
+          },
+          "FieldValues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FieldRefValuePair"
+            }
+          },
+          "ObjectVersionToken": {
+            "type": "string"
+          }
+        }
+      },
+      "FieldRefValuePair": {
+        "title": "FieldRefValuePair",
+        "type": "object",
+        "properties": {
+          "Value": {
+            "$ref": "#/components/schemas/Object"
+          },
+          "Field": {
+            "$ref": "#/components/schemas/FieldRef"
+          }
+        }
+      },
+      "UpdateOptions": {
+        "title": "UpdateOptions",
+        "type": "object",
+        "properties": {
+          "UpdateBehavior": {
+            "enum": [
+              "Replace",
+              "Merge",
+              "Remove"
+            ],
+            "type": "string"
+          },
+          "CallingContext": {
+            "$ref": "#/components/schemas/CallingContext"
+          }
+        }
+      },
+      "CallingContext": {
+        "title": "CallingContext",
+        "type": "object",
+        "properties": {
+          "Layout": {
+            "$ref": "#/components/schemas/LayoutRef"
+          },
+          "Referrer": {
+            "type": "string"
+          },
+          "PageMode": {
+            "enum": [
+              "Unknown",
+              "View",
+              "Edit",
+              "List"
+            ],
+            "type": "string"
+          }
+        }
+      },
+      "LayoutRef": {
+        "title": "LayoutRef",
+        "type": "object",
+        "properties": {
+          "ArtifactID": {
+            "type": "integer"
+          },
+          "Guid": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "UpdateResult": {
+        "title": "UpdateResult",
+        "type": "object",
+        "properties": {
+          "EventHandlerStatuses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EventHandlerStatus"
+            }
+          }
+        }
+      },
+      "EventHandlerStatus": {
+        "title": "EventHandlerStatus",
+        "type": "object",
+        "properties": {
+          "Success": {
+            "type": "boolean"
+          },
+          "Message": {
+            "type": "string"
+          },
+          "FailingEventHandler": {
+            "$ref": "#/components/schemas/EventHandlerRef"
+          }
+        }
+      },
+      "EventHandlerRef": {
+        "title": "EventHandlerRef",
+        "type": "object",
+        "properties": {
+          "ClassName": {
+            "type": "string"
+          },
+          "EventHandlerType": {
+            "enum": [
+              "PostSave",
+              "PreCascadeDelete",
+              "PreDelete",
+              "PreLoad",
+              "PreMassDelete",
+              "PreSave"
+            ],
+            "type": "string"
+          },
+          "Application": {
+            "$ref": "#/components/schemas/DisplayableObjectIdentifier"
+          }
+        }
+      },
+      "DisplayableObjectIdentifier": {
+        "title": "DisplayableObjectIdentifier",
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string"
+          },
+          "ArtifactID": {
+            "type": "integer"
+          },
+          "Guids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "ReadAsync_RequestBody": {
+        "title": "ReadAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "request": {
+            "$ref": "#/components/schemas/ReadRequest"
+          },
+          "readOptions": {
+            "$ref": "#/components/schemas/ReadOptions"
+          }
+        }
+      },
+      "ReadRequest": {
+        "title": "ReadRequest",
+        "type": "object",
+        "properties": {
+          "Object": {
+            "$ref": "#/components/schemas/RelativityObjectRef"
+          },
+          "Fields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FieldRef"
+            }
+          }
+        }
+      },
+      "ReadOptions": {
+        "title": "ReadOptions",
+        "type": "object",
+        "properties": {
+          "MaxCharactersForLongTextValues": {
+            "type": "integer",
+            "nullable": true
+          },
+          "LongTextBehavior": {
+            "enum": [
+              "Default",
+              "Tokenized",
+              "DefaultWithErrors",
+              "TokenizedWithErrors"
+            ],
+            "type": "string"
+          },
+          "FieldTypesToReturnAsString": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "FixedLengthText",
+                "WholeNumber",
+                "Date",
+                "YesNo",
+                "LongText",
+                "SingleChoice",
+                "Decimal",
+                "Currency",
+                "MultipleChoice",
+                "File",
+                "SingleObject",
+                "User",
+                "MultipleObject",
+                "Empty"
+              ],
+              "type": "string"
+            }
+          },
+          "CallingContext": {
+            "$ref": "#/components/schemas/CallingContext"
+          }
+        }
+      },
+      "ReadResult": {
+        "title": "ReadResult",
+        "type": "object",
+        "properties": {
+          "Message": {
+            "type": "string"
+          },
+          "FailingEventHandler": {
+            "$ref": "#/components/schemas/EventHandlerRef"
+          },
+          "Object": {
+            "$ref": "#/components/schemas/RelativityObject"
+          },
+          "ObjectType": {
+            "$ref": "#/components/schemas/ObjectType"
+          },
+          "ObjectVersionToken": {
+            "type": "string"
+          }
+        }
+      },
+      "DeleteAsync_RequestBody": {
+        "title": "DeleteAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "request": {
+            "$ref": "#/components/schemas/DeleteRequest"
+          }
+        }
+      },
+      "DeleteRequest": {
+        "title": "DeleteRequest",
+        "type": "object",
+        "properties": {
+          "Object": {
+            "$ref": "#/components/schemas/RelativityObjectRef"
+          }
+        }
+      },
+      "DeleteResult": {
+        "title": "DeleteResult",
+        "type": "object",
+        "properties": {
+          "Report": {
+            "$ref": "#/components/schemas/DeleteReport"
+          }
+        }
+      },
+      "DeleteReport": {
+        "title": "DeleteReport",
+        "type": "object",
+        "properties": {
+          "DeletedItems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DeleteItem"
+            }
+          }
+        }
+      },
+      "DeleteItem": {
+        "title": "DeleteItem",
+        "type": "object",
+        "properties": {
+          "ObjectTypeName": {
+            "type": "string"
+          },
+          "Action": {
+            "type": "string"
+          },
+          "Count": {
+            "type": "integer"
+          },
+          "Connection": {
+            "type": "string"
+          }
+        }
+      },
+      "CreateAsync_RequestBody": {
+        "title": "CreateAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "request": {
+            "$ref": "#/components/schemas/CreateRequest"
+          },
+          "operationOptions": {
+            "$ref": "#/components/schemas/OperationOptions"
+          }
+        }
+      },
+      "CreateRequest": {
+        "title": "CreateRequest",
+        "type": "object",
+        "properties": {
+          "ParentObject": {
+            "$ref": "#/components/schemas/RelativityObjectRef"
+          },
+          "ObjectType": {
+            "$ref": "#/components/schemas/ObjectTypeRef"
+          },
+          "FieldValues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FieldRefValuePair"
+            }
+          }
+        }
+      },
+      "OperationOptions": {
+        "title": "OperationOptions",
+        "type": "object",
+        "properties": {
+          "CallingContext": {
+            "$ref": "#/components/schemas/CallingContext"
+          }
+        }
+      },
+      "CreateResult": {
+        "title": "CreateResult",
+        "type": "object",
+        "properties": {
+          "Object": {
+            "$ref": "#/components/schemas/RelativityObject"
+          },
+          "EventHandlerStatuses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EventHandlerStatus"
+            }
+          }
+        }
+      },
+      "QuerySlimAsync_RequestBody": {
+        "title": "QuerySlimAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "request": {
+            "$ref": "#/components/schemas/QueryRequest"
+          }
+        }
+      },
+      "QueryResultSlim": {
+        "title": "QueryResultSlim",
+        "type": "object",
+        "properties": {
+          "TotalCount": {
+            "type": "integer"
+          },
+          "Objects": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RelativityObjectSlim"
+            }
+          },
+          "IDWindow": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "CurrentStartIndex": {
+            "type": "integer"
+          },
+          "ResultCount": {
+            "type": "integer"
+          },
+          "ObjectType": {
+            "$ref": "#/components/schemas/ObjectType"
+          },
+          "SampleDetails": {
+            "$ref": "#/components/schemas/SampleDetails"
+          },
+          "RankWindow": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
+          },
+          "RelationalField": {
+            "$ref": "#/components/schemas/Field"
+          },
+          "Fields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Field"
+            }
+          }
+        }
+      },
+      "RelativityObjectSlim": {
+        "title": "RelativityObjectSlim",
+        "type": "object",
+        "properties": {
+          "ArtifactID": {
+            "type": "integer"
+          },
+          "Values": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Object"
+            }
+          }
+        }
+      },
+      "StreamLongTextAsync_RequestBody": {
+        "title": "StreamLongTextAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "exportObject": {
+            "$ref": "#/components/schemas/RelativityObjectRef"
+          },
+          "longTextField": {
+            "$ref": "#/components/schemas/FieldRef"
+          }
+        }
+      },
+      "IKeplerStream": {
+        "title": "IKeplerStream",
+        "type": "object",
+        "properties": {
+          "ContentType": {
+            "type": "string"
+          },
+          "ContentDisposition": {
+            "type": "string"
+          },
+          "CacheControl": {
+            "type": "string"
+          },
+          "StatusCode": {
+            "enum": [
+              "Continue",
+              "SwitchingProtocols",
+              "OK",
+              "Created",
+              "Accepted",
+              "NonAuthoritativeInformation",
+              "NoContent",
+              "ResetContent",
+              "PartialContent",
+              "MultipleChoices",
+              "Ambiguous",
+              "MovedPermanently",
+              "Moved",
+              "Found",
+              "Redirect",
+              "SeeOther",
+              "RedirectMethod",
+              "NotModified",
+              "UseProxy",
+              "Unused",
+              "TemporaryRedirect",
+              "RedirectKeepVerb",
+              "BadRequest",
+              "Unauthorized",
+              "PaymentRequired",
+              "Forbidden",
+              "NotFound",
+              "MethodNotAllowed",
+              "NotAcceptable",
+              "ProxyAuthenticationRequired",
+              "RequestTimeout",
+              "Conflict",
+              "Gone",
+              "LengthRequired",
+              "PreconditionFailed",
+              "RequestEntityTooLarge",
+              "RequestUriTooLong",
+              "UnsupportedMediaType",
+              "RequestedRangeNotSatisfiable",
+              "ExpectationFailed",
+              "UpgradeRequired",
+              "InternalServerError",
+              "NotImplemented",
+              "BadGateway",
+              "ServiceUnavailable",
+              "GatewayTimeout",
+              "HttpVersionNotSupported"
+            ],
+            "type": "string",
+            "nullable": true
+          },
+          "Headers": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "NameValueCollection"
+            }
+          }
+        }
+      },
+      "InitializeExportAsync_RequestBody": {
+        "title": "InitializeExportAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "queryRequest": {
+            "$ref": "#/components/schemas/QueryRequest"
+          }
+        }
+      },
+      "ExportInitializationResults": {
+        "title": "ExportInitializationResults",
+        "type": "object",
+        "properties": {
+          "RunID": {
+            "type": "string"
+          },
+          "RecordCount": {
+            "type": "integer"
+          },
+          "FieldData": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FieldMetadata"
+            }
+          }
+        }
+      },
+      "FieldMetadata": {
+        "title": "FieldMetadata",
+        "type": "object",
+        "properties": {
+          "FieldType": {
+            "enum": [
+              "FixedLengthText",
+              "WholeNumber",
+              "Date",
+              "YesNo",
+              "LongText",
+              "SingleChoice",
+              "Decimal",
+              "Currency",
+              "MultipleChoice",
+              "File",
+              "SingleObject",
+              "User",
+              "MultipleObject",
+              "Empty"
+            ],
+            "type": "string"
+          },
+          "ArtifactID": {
+            "type": "integer"
+          },
+          "ViewFieldID": {
+            "type": "integer"
+          },
+          "Guids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "Name": {
+            "type": "string"
+          }
+        }
+      },
+      "UpdateLongTextFromStreamAsync_RequestBody": {
+        "title": "UpdateLongTextFromStreamAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "updateLongTextFromStreamRequest": {
+            "$ref": "#/components/schemas/UpdateLongTextFromStreamRequest"
+          },
+          "keplerStream": {
+            "$ref": "#/components/schemas/IKeplerStream"
+          }
+        }
+      },
+      "UpdateLongTextFromStreamRequest": {
+        "title": "UpdateLongTextFromStreamRequest",
+        "type": "object",
+        "properties": {
+          "Object": {
+            "$ref": "#/components/schemas/RelativityObjectRef"
+          },
+          "Field": {
+            "$ref": "#/components/schemas/FieldRef"
+          }
+        }
+      },
+      "GetDependencyListAsync_RequestBody": {
+        "title": "GetDependencyListAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "request": {
+            "$ref": "#/components/schemas/DependencyListByObjectIdentifiersRequest"
+          }
+        }
+      },
+      "DependencyListByObjectIdentifiersRequest": {
+        "title": "DependencyListByObjectIdentifiersRequest",
+        "type": "object",
+        "properties": {
+          "Objects": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RelativityObjectRef"
+            }
+          }
+        }
+      },
+      "Dependency": {
+        "title": "Dependency",
+        "type": "object",
+        "properties": {
+          "ObjectType": {
+            "$ref": "#/components/schemas/Securable1"
+          },
+          "Action": {
+            "type": "string"
+          },
+          "Count": {
+            "$ref": "#/components/schemas/Securable1"
+          },
+          "Connection": {
+            "$ref": "#/components/schemas/Securable1"
+          },
+          "HierarchicLevel": {
+            "type": "integer"
+          }
+        }
+      },
+      "Securable1": {
+        "title": "Securable`1",
+        "type": "object",
+        "properties": {
+          "Secured": {
+            "type": "boolean"
+          },
+          "Value": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "parameters": {
+      "workspaceID": {
+        "name": "workspaceID",
+        "in": "path",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "start": {
+        "name": "start",
+        "in": "query",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "length": {
+        "name": "length",
+        "in": "query",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "x-csrf-header": {
+        "name": "x-csrf-header",
+        "in": "header",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "default": "-"
+        }
+      },
+      "runID": {
+        "name": "runID",
+        "in": "query",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "batchSize": {
+        "name": "batchSize",
+        "in": "query",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "resultsBlockSize": {
+        "name": "resultsBlockSize",
+        "in": "query",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "exportIndexID": {
+        "name": "exportIndexID",
+        "in": "query",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Relativity.RIE.Contracts.Interfaces.V1",
+    "description": "Relativity.RIE.Contracts.Interfaces",
+    "version": "V1"
+  },
+  "servers": [
+    {
+      "url": "/Relativity.REST/api",
+      "description": "The URL prefix for all Kepler services"
+    }
+  ],
+  "paths": {
+    "/Relativity.WebImportExport/v1/HealthCheck/RunHealthCheck": {
+      "get": {
+        "tags": [
+          "Web Import Export v1"
+        ],
+        "description": "[Public] IHealthCheckController - ",
+        "operationId": "Relativity.RIE.Contracts.Interfaces.V1.HealthCheck.IHealthCheckController.RunHealthCheckAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      }
+    },
+    "/Relativity.WebImportExport/v1/HealthCheck/RunS2HealthCheck": {
+      "get": {
+        "tags": [
+          "Web Import Export v1"
+        ],
+        "description": "[Public] IHealthCheckController - ",
+        "operationId": "Relativity.RIE.Contracts.Interfaces.V1.HealthCheck.IHealthCheckController.RunS2HealthCheckAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "parameters": {
+      "x-csrf-header": {
+        "name": "x-csrf-header",
+        "in": "header",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "default": "-"
+        }
+      }
+    }
+  }
+}

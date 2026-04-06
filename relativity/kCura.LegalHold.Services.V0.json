@@ -1,0 +1,1222 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "kCura.LegalHold.Services.V0",
+    "description": "kCura.LegalHold.Services",
+    "version": "V0"
+  },
+  "servers": [
+    {
+      "url": "/Relativity.REST/api",
+      "description": "The URL prefix for all Kepler services"
+    }
+  ],
+  "paths": {
+    "/CustodianPortalAuthUrl/GetPortalRedirectUrl": {
+      "get": {
+        "tags": [
+          "Legal Hold Module"
+        ],
+        "description": "[Private] ICustodianPortalAuthUrlManager - ",
+        "operationId": "kCura.LegalHold.Services.ICustodianPortalAuthUrlManager.GetPortalRedirectUrl",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceId"
+          },
+          {
+            "$ref": "#/components/parameters/emailAddress"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/custodian-request-manager/ActiveCustodianSummary": {
+      "get": {
+        "tags": [
+          "Legal Hold Module"
+        ],
+        "description": "[Public] ICustodianRequestManager - ",
+        "operationId": "kCura.LegalHold.Services.ICustodianRequestManager.ActiveCustodianSummary",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceId"
+          },
+          {
+            "$ref": "#/components/parameters/startingIndex"
+          },
+          {
+            "$ref": "#/components/parameters/length"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ActiveCustodianSummary"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workspace/{workspaceId}/GetRedirectUriAsync": {
+      "get": {
+        "tags": [
+          "Legal Hold Module"
+        ],
+        "description": "[Private] IGoogleAuthorizationManager - ",
+        "operationId": "kCura.LegalHold.Services.IGoogleAuthorizationManager.GetRedirectUriAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceId_Path"
+          },
+          {
+            "$ref": "#/components/parameters/authenticationType"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UrlRedirectModel"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workspace/{workspaceId}/GoogleMail/HandleAuthenticationRedirect": {
+      "get": {
+        "tags": [
+          "Legal Hold Module"
+        ],
+        "description": "[Private] IGoogleAuthorizationManager - ",
+        "operationId": "kCura.LegalHold.Services.IGoogleAuthorizationManager.ProcessGSuiteAuthRedirectAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceId_Path"
+          },
+          {
+            "$ref": "#/components/parameters/state"
+          },
+          {
+            "$ref": "#/components/parameters/code"
+          },
+          {
+            "$ref": "#/components/parameters/scope"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericMessageResponseModel"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/graph-auth-response": {
+      "get": {
+        "tags": [
+          "Legal Hold Module"
+        ],
+        "description": "[Private] IGraphAuthorizationManager - ",
+        "operationId": "kCura.LegalHold.Services.IGraphAuthorizationManager.AuthorizeMicrosoftGraph",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/code"
+          },
+          {
+            "$ref": "#/components/parameters/state"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/authorized-user/{workspaceId}": {
+      "get": {
+        "tags": [
+          "Legal Hold Module"
+        ],
+        "description": "[Private] IGraphAuthorizationManager - ",
+        "operationId": "kCura.LegalHold.Services.IGraphAuthorizationManager.GetAuthorizedUser",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceId_Path"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/preservation/{projectArtifactId}/getCustodians": {
+      "get": {
+        "tags": [
+          "Legal Hold Module"
+        ],
+        "description": "[Private] IPreservationManager - ",
+        "operationId": "kCura.LegalHold.Services.IPreservationManager.GetCustodiansAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/projectArtifactId"
+          },
+          {
+            "$ref": "#/components/parameters/workspaceId"
+          },
+          {
+            "$ref": "#/components/parameters/startingIndex"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ArtifactIDCollection"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/preservation/IsInstalled/{workspaceId}": {
+      "get": {
+        "tags": [
+          "Legal Hold Module"
+        ],
+        "description": "[Private] IPreservationManager - ",
+        "operationId": "kCura.LegalHold.Services.IPreservationManager.InstalledAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceId_Path"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LegalHoldApplicationInstallResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health-check": {
+      "get": {
+        "tags": [
+          "Legal Hold Module"
+        ],
+        "description": "[Internal] IPostDeployHealthCheckManager - ",
+        "operationId": "kCura.LegalHold.Services.IPostDeployHealthCheckManager.HealthCheckAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/toggles/{toggleName}/is-enabled": {
+      "get": {
+        "tags": [
+          "Legal Hold Module"
+        ],
+        "description": "[Internal] IToggleManager - ",
+        "operationId": "kCura.LegalHold.Services.IToggleManager.IsEnabled",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/toggleName"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/SettingsManagement/workspace/{workspaceId}/ValidateEmailSettings": {
+      "get": {
+        "tags": [
+          "Legal Hold Module"
+        ],
+        "description": "[Internal] ISettingsProcessor - ",
+        "operationId": "kCura.LegalHold.Services.ISettingsProcessor.ValidateEmailSettings",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceId_Path"
+          },
+          {
+            "$ref": "#/components/parameters/settingsType"
+          },
+          {
+            "$ref": "#/components/parameters/sendTestEmail"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationSettings"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workload-discovery/{guid}/workload": {
+      "get": {
+        "tags": [
+          "Legal Hold Module"
+        ],
+        "description": "[Internal] IWorkloadDiscoveryManager - ",
+        "operationId": "kCura.LegalHold.Services.IWorkloadDiscoveryManager.GetAgentWorkloadAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/guid"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Workload"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workspace/{workspaceArtifactId}/communication/{communicationArtifactId}/layout-state": {
+      "get": {
+        "tags": [
+          "Legal Hold Module"
+        ],
+        "description": "[Private] ICommunicationManager - ",
+        "operationId": "kCura.LegalHold.Services.ICommunicationManager.GetCommunicationLayoutState",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceArtifactId"
+          },
+          {
+            "$ref": "#/components/parameters/communicationArtifactId"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommunicationLayoutStateModel"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workspace/{workspaceArtifactId}/communication/{communicationArtifactId}/acknowledge-on-behalf": {
+      "post": {
+        "tags": [
+          "Legal Hold Module"
+        ],
+        "description": "[Private] ICommunicationManager - ",
+        "operationId": "kCura.LegalHold.Services.ICommunicationManager.AcknowledgeOnBehalf",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceArtifactId"
+          },
+          {
+            "$ref": "#/components/parameters/communicationArtifactId"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AcknowledgeOnBehalfModel"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ActiveCustodianSummary": {
+        "title": "ActiveCustodianSummary",
+        "type": "object",
+        "properties": {
+          "ProjectID": {
+            "type": "integer"
+          },
+          "FullName": {
+            "type": "string"
+          },
+          "FirstName": {
+            "type": "string"
+          },
+          "LastName": {
+            "type": "string"
+          },
+          "EmailAddress": {
+            "type": "string"
+          },
+          "EmployeeNumber": {
+            "type": "string"
+          },
+          "UniqueID": {
+            "type": "string"
+          },
+          "ErrorMessage": {
+            "type": "string"
+          },
+          "CustodianRole": {
+            "type": "string"
+          }
+        }
+      },
+      "UrlRedirectModel": {
+        "title": "UrlRedirectModel",
+        "type": "object",
+        "properties": {
+          "Url": {
+            "type": "string"
+          }
+        }
+      },
+      "GenericMessageResponseModel": {
+        "title": "GenericMessageResponseModel",
+        "type": "object",
+        "properties": {
+          "Message": {
+            "type": "string"
+          },
+          "Success": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ArtifactIDCollection": {
+        "title": "ArtifactIDCollection",
+        "type": "object",
+        "properties": {
+          "Error": {
+            "type": "string"
+          },
+          "TotalCount": {
+            "type": "integer"
+          },
+          "ArtifactIDs": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        }
+      },
+      "LegalHoldApplicationInstallResponse": {
+        "title": "LegalHoldApplicationInstallResponse",
+        "type": "object",
+        "properties": {
+          "Error": {
+            "type": "string"
+          },
+          "Results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApplicationInstallSearchItem"
+            }
+          },
+          "Summary": {
+            "$ref": "#/components/schemas/InstallStatusSummary"
+          },
+          "CurrentStartIndex": {
+            "type": "integer"
+          },
+          "ResultCount": {
+            "type": "integer"
+          },
+          "TotalCount": {
+            "type": "integer"
+          },
+          "FirstPage": {
+            "$ref": "#/components/schemas/Action"
+          },
+          "PreviousPage": {
+            "$ref": "#/components/schemas/Action"
+          },
+          "NextPage": {
+            "$ref": "#/components/schemas/Action"
+          },
+          "LastPage": {
+            "$ref": "#/components/schemas/Action"
+          }
+        }
+      },
+      "ApplicationInstallSearchItem": {
+        "title": "ApplicationInstallSearchItem",
+        "type": "object",
+        "properties": {
+          "ApplicationInstallID": {
+            "type": "integer"
+          },
+          "ApplicationIdentifier": {
+            "$ref": "#/components/schemas/DisplayableObjectIdentifier"
+          },
+          "WorkspaceIdentifier": {
+            "$ref": "#/components/schemas/DisplayableObjectIdentifier"
+          },
+          "ClientIdentifier": {
+            "$ref": "#/components/schemas/DisplayableObjectIdentifier"
+          },
+          "MatterIdentifier": {
+            "$ref": "#/components/schemas/DisplayableObjectIdentifier"
+          },
+          "Message": {
+            "type": "string"
+          },
+          "RootFolderID": {
+            "type": "integer"
+          },
+          "InstallStatus": {
+            "$ref": "#/components/schemas/InstallStatus"
+          },
+          "Version": {
+            "type": "string"
+          },
+          "IsOutOfDate": {
+            "type": "boolean"
+          },
+          "InstalledBy": {
+            "$ref": "#/components/schemas/DisplayableObjectIdentifier"
+          },
+          "StartedOn": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "CompletedOn": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        }
+      },
+      "DisplayableObjectIdentifier": {
+        "title": "DisplayableObjectIdentifier",
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string"
+          },
+          "ArtifactID": {
+            "type": "integer"
+          },
+          "Guids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "InstallStatus": {
+        "title": "InstallStatus",
+        "type": "object",
+        "properties": {
+          "Code": {
+            "enum": [
+              "Unknown",
+              "Pending",
+              "InProgress",
+              "Failed",
+              "Completed",
+              "Canceled"
+            ],
+            "type": "string"
+          },
+          "Message": {
+            "type": "string"
+          },
+          "Details": {
+            "type": "string"
+          },
+          "GetDetailsAction": {
+            "$ref": "#/components/schemas/Action"
+          },
+          "RetryInstallAction": {
+            "$ref": "#/components/schemas/Action"
+          },
+          "CancelInstallAction": {
+            "$ref": "#/components/schemas/Action"
+          }
+        }
+      },
+      "Action": {
+        "title": "Action",
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string"
+          },
+          "Href": {
+            "type": "string"
+          },
+          "Verb": {
+            "type": "string"
+          },
+          "IsAvailable": {
+            "type": "boolean"
+          },
+          "Reason": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "InstallStatusSummary": {
+        "title": "InstallStatusSummary",
+        "type": "object",
+        "properties": {
+          "Other": {
+            "type": "integer"
+          },
+          "Pending": {
+            "type": "integer"
+          },
+          "InProgress": {
+            "type": "integer"
+          },
+          "Failed": {
+            "type": "integer"
+          },
+          "Completed": {
+            "type": "integer"
+          },
+          "Canceled": {
+            "type": "integer"
+          },
+          "TotalActiveInstalls": {
+            "type": "integer"
+          },
+          "Total": {
+            "type": "integer"
+          }
+        }
+      },
+      "HttpResponseMessage": {
+        "title": "HttpResponseMessage",
+        "type": "object",
+        "properties": {
+          "Version": {
+            "$ref": "#/components/schemas/Version"
+          },
+          "Content": {
+            "$ref": "#/components/schemas/HttpContent"
+          },
+          "StatusCode": {
+            "enum": [
+              "Continue",
+              "SwitchingProtocols",
+              "OK",
+              "Created",
+              "Accepted",
+              "NonAuthoritativeInformation",
+              "NoContent",
+              "ResetContent",
+              "PartialContent",
+              "MultipleChoices",
+              "Ambiguous",
+              "MovedPermanently",
+              "Moved",
+              "Found",
+              "Redirect",
+              "SeeOther",
+              "RedirectMethod",
+              "NotModified",
+              "UseProxy",
+              "Unused",
+              "TemporaryRedirect",
+              "RedirectKeepVerb",
+              "BadRequest",
+              "Unauthorized",
+              "PaymentRequired",
+              "Forbidden",
+              "NotFound",
+              "MethodNotAllowed",
+              "NotAcceptable",
+              "ProxyAuthenticationRequired",
+              "RequestTimeout",
+              "Conflict",
+              "Gone",
+              "LengthRequired",
+              "PreconditionFailed",
+              "RequestEntityTooLarge",
+              "RequestUriTooLong",
+              "UnsupportedMediaType",
+              "RequestedRangeNotSatisfiable",
+              "ExpectationFailed",
+              "UpgradeRequired",
+              "InternalServerError",
+              "NotImplemented",
+              "BadGateway",
+              "ServiceUnavailable",
+              "GatewayTimeout",
+              "HttpVersionNotSupported"
+            ],
+            "type": "string"
+          },
+          "ReasonPhrase": {
+            "type": "string"
+          },
+          "Headers": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "HttpResponseHeaders"
+            }
+          },
+          "RequestMessage": {
+            "$ref": "#/components/schemas/HttpRequestMessage"
+          },
+          "IsSuccessStatusCode": {
+            "type": "boolean"
+          }
+        }
+      },
+      "Version": {
+        "title": "Version",
+        "type": "object",
+        "properties": {
+          "Major": {
+            "type": "integer"
+          },
+          "Minor": {
+            "type": "integer"
+          },
+          "Build": {
+            "type": "integer"
+          },
+          "Revision": {
+            "type": "integer"
+          },
+          "MajorRevision": {
+            "$ref": "#/components/schemas/Int16"
+          },
+          "MinorRevision": {
+            "$ref": "#/components/schemas/Int16"
+          }
+        }
+      },
+      "Int16": {
+        "title": "Int16",
+        "type": "object"
+      },
+      "HttpContent": {
+        "title": "HttpContent",
+        "type": "object",
+        "properties": {
+          "Headers": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "HttpContentHeaders"
+            }
+          }
+        }
+      },
+      "HttpRequestMessage": {
+        "title": "HttpRequestMessage",
+        "type": "object",
+        "properties": {
+          "Version": {
+            "$ref": "#/components/schemas/Version"
+          },
+          "Content": {
+            "$ref": "#/components/schemas/HttpContent"
+          },
+          "Method": {
+            "$ref": "#/components/schemas/HttpMethod"
+          },
+          "RequestUri": {
+            "$ref": "#/components/schemas/Uri"
+          },
+          "Headers": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "HttpRequestHeaders"
+            }
+          },
+          "Properties": {
+            "type": "object",
+            "additionalProperties": {
+              "title": "Object",
+              "type": "object"
+            }
+          }
+        }
+      },
+      "HttpMethod": {
+        "title": "HttpMethod",
+        "type": "object",
+        "properties": {
+          "Get": {
+            "$ref": "#/components/schemas/HttpMethod"
+          },
+          "Put": {
+            "$ref": "#/components/schemas/HttpMethod"
+          },
+          "Post": {
+            "$ref": "#/components/schemas/HttpMethod"
+          },
+          "Delete": {
+            "$ref": "#/components/schemas/HttpMethod"
+          },
+          "Head": {
+            "$ref": "#/components/schemas/HttpMethod"
+          },
+          "Options": {
+            "$ref": "#/components/schemas/HttpMethod"
+          },
+          "Trace": {
+            "$ref": "#/components/schemas/HttpMethod"
+          },
+          "Method": {
+            "type": "string"
+          }
+        }
+      },
+      "Uri": {
+        "title": "Uri",
+        "type": "object",
+        "properties": {
+          "AbsolutePath": {
+            "type": "string"
+          },
+          "AbsoluteUri": {
+            "type": "string"
+          },
+          "LocalPath": {
+            "type": "string"
+          },
+          "Authority": {
+            "type": "string"
+          },
+          "HostNameType": {
+            "enum": [
+              "Unknown",
+              "Basic",
+              "Dns",
+              "IPv4",
+              "IPv6"
+            ],
+            "type": "string"
+          },
+          "IsDefaultPort": {
+            "type": "boolean"
+          },
+          "IsFile": {
+            "type": "boolean"
+          },
+          "IsLoopback": {
+            "type": "boolean"
+          },
+          "PathAndQuery": {
+            "type": "string"
+          },
+          "Segments": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "IsUnc": {
+            "type": "boolean"
+          },
+          "Host": {
+            "type": "string"
+          },
+          "Port": {
+            "type": "integer"
+          },
+          "Query": {
+            "type": "string"
+          },
+          "Fragment": {
+            "type": "string"
+          },
+          "Scheme": {
+            "type": "string"
+          },
+          "OriginalString": {
+            "type": "string"
+          },
+          "DnsSafeHost": {
+            "type": "string"
+          },
+          "IdnHost": {
+            "type": "string"
+          },
+          "IsAbsoluteUri": {
+            "type": "boolean"
+          },
+          "UserEscaped": {
+            "type": "boolean"
+          },
+          "UserInfo": {
+            "type": "string"
+          }
+        }
+      },
+      "ValidationSettings": {
+        "title": "ValidationSettings",
+        "type": "object",
+        "properties": {
+          "Message": {
+            "type": "string"
+          },
+          "Status": {
+            "enum": [
+              "Success",
+              "Failure",
+              "NotApplicable"
+            ],
+            "type": "string"
+          }
+        }
+      },
+      "Workload": {
+        "title": "Workload",
+        "type": "object",
+        "properties": {
+          "Size": {
+            "enum": [
+              "None",
+              "One",
+              "S",
+              "M",
+              "L",
+              "XL",
+              "XXL"
+            ],
+            "type": "string"
+          }
+        }
+      },
+      "CommunicationLayoutStateModel": {
+        "title": "CommunicationLayoutStateModel",
+        "type": "object"
+      },
+      "AcknowledgeOnBehalfModel": {
+        "title": "AcknowledgeOnBehalfModel",
+        "type": "object",
+        "properties": {
+          "ArtifactIds": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "Reason": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "parameters": {
+      "workspaceId": {
+        "name": "workspaceId",
+        "in": "query",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "emailAddress": {
+        "name": "emailAddress",
+        "in": "query",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "x-csrf-header": {
+        "name": "x-csrf-header",
+        "in": "header",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "default": "-"
+        }
+      },
+      "startingIndex": {
+        "name": "startingIndex",
+        "in": "query",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "length": {
+        "name": "length",
+        "in": "query",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "workspaceId_Path": {
+        "name": "workspaceId",
+        "in": "path",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "authenticationType": {
+        "name": "authenticationType",
+        "in": "query",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "state": {
+        "name": "state",
+        "in": "query",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "code": {
+        "name": "code",
+        "in": "query",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "scope": {
+        "name": "scope",
+        "in": "query",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "projectArtifactId": {
+        "name": "projectArtifactId",
+        "in": "path",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "pageSize": {
+        "name": "pageSize",
+        "in": "query",
+        "description": "",
+        "schema": {
+          "type": "integer",
+          "default": 100
+        }
+      },
+      "toggleName": {
+        "name": "toggleName",
+        "in": "path",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "settingsType": {
+        "name": "settingsType",
+        "in": "query",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "sendTestEmail": {
+        "name": "sendTestEmail",
+        "in": "query",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "boolean"
+        }
+      },
+      "guid": {
+        "name": "guid",
+        "in": "path",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "workspaceArtifactId": {
+        "name": "workspaceArtifactId",
+        "in": "path",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "communicationArtifactId": {
+        "name": "communicationArtifactId",
+        "in": "path",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}

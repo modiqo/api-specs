@@ -1,0 +1,402 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Relativity.Telemetry.Services.Metrics.V0",
+    "description": "Relativity.Telemetry.Services.Metrics",
+    "version": "V0"
+  },
+  "servers": [
+    {
+      "url": "/Relativity.REST/api",
+      "description": "The URL prefix for all Kepler services"
+    }
+  ],
+  "paths": {
+    "/LogCountAsync": {
+      "post": {
+        "tags": [
+          "Metrics Module"
+        ],
+        "description": "[Private] IAPMManager - ",
+        "operationId": "Relativity.Telemetry.Services.Metrics.IAPMManager.LogCountAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LogCountAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      }
+    },
+    "/LogTimerAsync": {
+      "post": {
+        "tags": [
+          "Metrics Module"
+        ],
+        "description": "[Private] IAPMManager - ",
+        "operationId": "Relativity.Telemetry.Services.Metrics.IAPMManager.LogTimerAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/milliseconds"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LogTimerAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      }
+    },
+    "/LogTimerAsLongAsync": {
+      "post": {
+        "tags": [
+          "Metrics Module"
+        ],
+        "description": "[Private] IMetricsManager - ",
+        "operationId": "Relativity.Telemetry.Services.Metrics.IMetricsManager.LogTimerAsLongAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/bucket"
+          },
+          {
+            "$ref": "#/components/parameters/workspaceGuid"
+          },
+          {
+            "$ref": "#/components/parameters/milliseconds"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      }
+    },
+    "/LogTimerAsDoubleAsync": {
+      "post": {
+        "tags": [
+          "Metrics Module"
+        ],
+        "description": "[Private] IMetricsManager - ",
+        "operationId": "Relativity.Telemetry.Services.Metrics.IMetricsManager.LogTimerAsDoubleAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/bucket"
+          },
+          {
+            "$ref": "#/components/parameters/workspaceGuid"
+          },
+          {
+            "$ref": "#/components/parameters/milliseconds"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      }
+    },
+    "/LogPointInTimeStringAsync": {
+      "post": {
+        "tags": [
+          "Metrics Module"
+        ],
+        "description": "[Private] IMetricsManager - ",
+        "operationId": "Relativity.Telemetry.Services.Metrics.IMetricsManager.LogPointInTimeStringAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/bucket"
+          },
+          {
+            "$ref": "#/components/parameters/workspaceGuid"
+          },
+          {
+            "$ref": "#/components/parameters/value"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      }
+    },
+    "/LogPointInTimeLongAsync": {
+      "post": {
+        "tags": [
+          "Metrics Module"
+        ],
+        "description": "[Private] IMetricsManager - ",
+        "operationId": "Relativity.Telemetry.Services.Metrics.IMetricsManager.LogPointInTimeLongAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/bucket"
+          },
+          {
+            "$ref": "#/components/parameters/workspaceGuid"
+          },
+          {
+            "$ref": "#/components/parameters/value"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      }
+    },
+    "/LogPointInTimeDoubleAsync": {
+      "post": {
+        "tags": [
+          "Metrics Module"
+        ],
+        "description": "[Private] IMetricsManager - ",
+        "operationId": "Relativity.Telemetry.Services.Metrics.IMetricsManager.LogPointInTimeDoubleAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/bucket"
+          },
+          {
+            "$ref": "#/components/parameters/workspaceGuid"
+          },
+          {
+            "$ref": "#/components/parameters/value"
+          },
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      }
+    },
+    "/LogMetricsAsync": {
+      "post": {
+        "tags": [
+          "Metrics Module"
+        ],
+        "description": "[Private] IMetricsManager - ",
+        "operationId": "Relativity.Telemetry.Services.Metrics.IMetricsManager.LogMetricsAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/x-csrf-header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LogMetricsAsync_RequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "LogCountAsync_RequestBody": {
+        "title": "LogCountAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "metric": {
+            "$ref": "#/components/schemas/APMMetric"
+          }
+        }
+      },
+      "APMMetric": {
+        "title": "APMMetric",
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string"
+          },
+          "CustomData": {
+            "type": "object",
+            "additionalProperties": {
+              "title": "Object",
+              "type": "object"
+            }
+          }
+        }
+      },
+      "LogTimerAsync_RequestBody": {
+        "title": "LogTimerAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "metric": {
+            "$ref": "#/components/schemas/APMMetric"
+          }
+        }
+      },
+      "LogMetricsAsync_RequestBody": {
+        "title": "LogMetricsAsync_RequestBody",
+        "type": "object",
+        "properties": {
+          "metrics": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MetricRef"
+            }
+          }
+        }
+      },
+      "MetricRef": {
+        "title": "MetricRef",
+        "type": "object",
+        "properties": {
+          "Bucket": {
+            "type": "string"
+          },
+          "WorkspaceGuid": {
+            "type": "string",
+            "nullable": true
+          },
+          "ClientDomainGuid": {
+            "type": "string",
+            "nullable": true
+          },
+          "WorkflowID": {
+            "type": "string"
+          },
+          "MetricTarget": {
+            "enum": [
+              "APM",
+              "SUM",
+              "APMandSUM"
+            ],
+            "type": "string"
+          },
+          "MetricType": {
+            "enum": [
+              "Counter",
+              "Gauge",
+              "Timer",
+              "PointInTimeLong",
+              "PointInTimeString",
+              "PointInTimeDouble"
+            ],
+            "type": "string"
+          },
+          "Value": {
+            "$ref": "#/components/schemas/Object"
+          }
+        }
+      },
+      "Object": {
+        "title": "Object",
+        "type": "object"
+      }
+    },
+    "parameters": {
+      "count": {
+        "name": "count",
+        "in": "query",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "x-csrf-header": {
+        "name": "x-csrf-header",
+        "in": "header",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "default": "-"
+        }
+      },
+      "milliseconds": {
+        "name": "milliseconds",
+        "in": "query",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "number"
+        }
+      },
+      "bucket": {
+        "name": "bucket",
+        "in": "query",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "workspaceGuid": {
+        "name": "workspaceGuid",
+        "in": "query",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "value": {
+        "name": "value",
+        "in": "query",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

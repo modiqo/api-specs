@@ -1,0 +1,770 @@
+openapi: 3.0.3
+info:
+  title: Automated Workflows Public API
+  description: APIs to Allow Consumers to Extend Automated Workflows
+  license:
+    name: ''
+    url: ''
+  termsOfService: ''
+  version: '1'
+  contact:
+    name: ''
+    url: ''
+components:
+  requestBodies:
+    ActionRequestModel:
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - model
+            properties:
+              model:
+                anyOf:
+                  - $ref: '#/components/schemas/ActionModel'
+    TriggerRequestModel:
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - model
+            properties:
+              model:
+                anyOf:
+                  - $ref: '#/components/schemas/TriggerModel'
+    RunExpressionRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - Expression
+              - Context
+            properties:
+              Expression:
+                type: string
+                description: The expression to compile and run
+              Context:
+                type: object
+                description: The context to run the expression against. Here you limit what you allow the expression to see or what inputs you wants to use to run the expression against. If you don't know what this means, check the Language documentation
+  responses: {}
+  schemas:
+    GenericResponse:
+      type: object
+      title: Generic Response Wrapper
+      default:
+        Success: false
+      required:
+        - Success
+        - Messages
+      properties:
+        Success:
+          type: boolean
+          title: Indication of Successful Result
+          default: false
+        Messages:
+          type: array
+          title: Array of String Messages useful for Diagnostics
+          default: []
+          items:
+            anyOf:
+              - type: string
+        Error:
+          title: Error Object, Array or Primitive
+          default: null
+        Result:
+          title: Any Result Object, Array or Primitive
+          default: {}
+          items:
+            anyOf:
+              - $ref: '#/components/schemas/TriggerModel'
+              - $ref: '#/components/schemas/ActionModel'
+    TriggerModel:
+      type: object
+      title: The root schema
+      description: The root schema comprises the entire JSON document.
+      default: {}
+      required:
+        - Label
+        - ID
+        - Version
+        - Inputs
+        - States
+        - SelectableAsInitialTrigger
+      properties:
+        Label:
+          type: string
+          title: The Label schema
+          description: An explanation about the purpose of this instance.
+        ID:
+          type: string
+          title: The ID schema
+          description: An explanation about the purpose of this instance.
+        Version:
+          type: integer
+          title: The Version schema
+          description: An explanation about the purpose of this instance.
+          default: 1
+          minimum: 1
+        Inputs:
+          type: array
+          title: The Inputs schema
+          description: An explanation about the purpose of this instance.
+          default: []
+          items:
+            anyOf:
+              - type: object
+                title: The first anyOf schema
+                description: An explanation about the purpose of this instance.
+                default: {}
+                required:
+                  - Label
+                  - ID
+                  - UIElementType
+                  - InputSources
+                  - Properties
+                properties:
+                  Label:
+                    type: string
+                    title: The Label schema
+                    description: An explanation about the purpose of this instance.
+                    default: ''
+                  ID:
+                    type: string
+                    title: The ID schema
+                    description: An explanation about the purpose of this instance.
+                    default: ''
+                  UIElementType:
+                    type: string
+                    title: The UIElementType schema
+                    description: An explanation about the purpose of this instance.
+                    default: ''
+                  InputSources:
+                    type: array
+                    title: The InputSources schema
+                    description: An explanation about the purpose of this instance.
+                    default: []
+                    items:
+                      anyOf:
+                        - type: object
+                          title: The first anyOf schema
+                          description: An explanation about the purpose of this instance.
+                          default: {}
+                          required:
+                            - Label
+                            - Value
+                          properties:
+                            Label:
+                              type: string
+                              title: The Label schema
+                              description: An explanation about the purpose of this instance.
+                              default: ''
+                            Value:
+                              type: string
+                              title: The Value schema
+                              description: An explanation about the purpose of this instance.
+                              default: ''
+                          additionalProperties: true
+                        - type: object
+                          title: The second anyOf schema
+                          description: An explanation about the purpose of this instance.
+                          default: {}
+                          required:
+                            - Label
+                            - Value
+                            - Children
+                          properties:
+                            Label:
+                              type: string
+                              title: The Label schema
+                              description: An explanation about the purpose of this instance.
+                              default: ''
+                            Value:
+                              type: string
+                              title: The Value schema
+                              description: An explanation about the purpose of this instance.
+                              default: ''
+                            Children:
+                              type: array
+                              title: The Children schema
+                              description: An explanation about the purpose of this instance.
+                              default: []
+                              items:
+                                anyOf:
+                                  - type: object
+                                    title: The first anyOf schema
+                                    description: An explanation about the purpose of this instance.
+                                    default: {}
+                                    required:
+                                      - ID
+                                      - UIElementType
+                                      - InputSources
+                                      - Properties
+                                    properties:
+                                      ID:
+                                        type: string
+                                        title: The ID schema
+                                        description: An explanation about the purpose of this instance.
+                                        default: ''
+                                      UIElementType:
+                                        type: string
+                                        title: The UIElementType schema
+                                        description: An explanation about the purpose of this instance.
+                                        default: ''
+                                      InputSources:
+                                        type: array
+                                        title: The InputSources schema
+                                        description: An explanation about the purpose of this instance.
+                                        default: []
+                                        items:
+                                          anyOf:
+                                            - type: object
+                                              title: The first anyOf schema
+                                              description: An explanation about the purpose of this instance.
+                                              default: {}
+                                              required:
+                                                - Label
+                                                - Value
+                                              properties:
+                                                Label:
+                                                  type: string
+                                                  title: The Label schema
+                                                  description: An explanation about the purpose of this instance.
+                                                  default: ''
+                                                Value:
+                                                  type: string
+                                                  title: The Value schema
+                                                  description: An explanation about the purpose of this instance.
+                                                  default: ''
+                                              additionalProperties: true
+                                      Properties:
+                                        type: object
+                                        title: The Properties schema
+                                        description: An explanation about the purpose of this instance.
+                                        default: {}
+                                        additionalProperties: true
+                                    additionalProperties: true
+                          additionalProperties: true
+                  Properties:
+                    type: object
+                    title: The Properties schema
+                    description: An explanation about the purpose of this instance.
+                    default: {}
+                    additionalProperties: true
+                additionalProperties: true
+        States:
+          type: array
+          title: The States schema
+          description: An explanation about the purpose of this instance.
+          default: []
+          items:
+            anyOf:
+              - type: string
+                title: The first anyOf schema
+                description: An explanation about the purpose of this instance.
+                default: ''
+        SelectableAsInitialTrigger:
+          type: boolean
+          title: The SelectableAsInitialTrigger schema
+          description: An explanation about the purpose of this instance.
+          default: false
+      additionalProperties: true
+    ActionModel:
+      type: object
+      title: The root schema
+      description: The root schema comprises the entire JSON document.
+      default: {}
+      required:
+        - Label
+        - ID
+        - Group
+        - Version
+        - Inputs
+        - Steps
+        - ErrorPolicy
+      properties:
+        Label:
+          type: string
+          title: The Label schema
+          description: An explanation about the purpose of this instance.
+          default: ''
+        ID:
+          type: string
+          title: The ID schema
+          description: An explanation about the purpose of this instance.
+          default: ''
+        Group:
+          type: string
+          title: The Group schema
+          description: An explanation about the purpose of this instance.
+          default: ''
+        Version:
+          type: integer
+          title: The Version schema
+          description: An explanation about the purpose of this instance.
+          default: 0
+        Inputs:
+          type: array
+          title: The Inputs schema
+          description: An explanation about the purpose of this instance.
+          default: []
+          items:
+            anyOf:
+              - type: object
+                title: The first anyOf schema
+                description: An explanation about the purpose of this instance.
+                default: {}
+                required:
+                  - Label
+                  - ID
+                  - UIElementType
+                  - ObjectManagerQueryInputSource
+                properties:
+                  Label:
+                    type: string
+                    title: The Label schema
+                    description: An explanation about the purpose of this instance.
+                    default: ''
+                  ID:
+                    type: string
+                    title: The ID schema
+                    description: An explanation about the purpose of this instance.
+                    default: ''
+                  UIElementType:
+                    type: string
+                    title: The UIElementType schema
+                    description: An explanation about the purpose of this instance.
+                    default: ''
+                  ObjectManagerQueryInputSource:
+                    type: object
+                    title: The ObjectManagerQueryInputSource schema
+                    description: An explanation about the purpose of this instance.
+                    default: {}
+                    required:
+                      - LabelFieldName
+                      - ValueFieldName
+                      - Guid
+                      - ArtifactTypeID
+                      - Condition
+                    properties:
+                      LabelFieldName:
+                        type: string
+                        title: The LabelFieldName schema
+                        description: An explanation about the purpose of this instance.
+                        default: ''
+                      ValueFieldName:
+                        type: string
+                        title: The ValueFieldName schema
+                        description: An explanation about the purpose of this instance.
+                        default: ''
+                      Guid:
+                        type: string
+                        title: The Guid schema
+                        description: An explanation about the purpose of this instance.
+                        default: ''
+                      ArtifactTypeID:
+                        type: integer
+                        title: The ArtifactTypeID schema
+                        description: An explanation about the purpose of this instance.
+                        default: 0
+                      Condition:
+                        type: string
+                        title: The Condition schema
+                        description: An explanation about the purpose of this instance.
+                        default: ''
+                    additionalProperties: true
+                additionalProperties: true
+        Steps:
+          type: array
+          title: The Steps schema
+          description: An explanation about the purpose of this instance.
+          default: []
+          items:
+            anyOf:
+              - type: object
+                title: The first anyOf schema
+                description: An explanation about the purpose of this instance.
+                default: {}
+                required:
+                  - Type
+                  - Http
+                  - StatusCheck
+                  - Triggers
+                  - NotifiesCompletion
+                properties:
+                  Type:
+                    type: string
+                    title: The Type schema
+                    description: An explanation about the purpose of this instance.
+                    default: ''
+                  Http:
+                    type: object
+                    title: The Http schema
+                    description: An explanation about the purpose of this instance.
+                    default: {}
+                    required:
+                      - Url
+                      - Headers
+                      - Body
+                      - Method
+                    properties:
+                      Url:
+                        type: string
+                        title: The Url schema
+                        description: An explanation about the purpose of this instance.
+                        default: ''
+                      Headers:
+                        type: object
+                        title: The Headers schema
+                        description: An explanation about the purpose of this instance.
+                        default: {}
+                        required:
+                          - x-csrf-header
+                          - content-type
+                        properties:
+                          x-csrf-header:
+                            type: string
+                            title: The x-csrf-header schema
+                            description: An explanation about the purpose of this instance.
+                            default: ''
+                          content-type:
+                            type: string
+                            title: The content-type schema
+                            description: An explanation about the purpose of this instance.
+                            default: ''
+                        additionalProperties: true
+                      Body:
+                        type: string
+                        title: The Body schema
+                        description: An explanation about the purpose of this instance.
+                        default: ''
+                      Method:
+                        type: string
+                        title: The Method schema
+                        description: An explanation about the purpose of this instance.
+                        default: ''
+                    additionalProperties: true
+                  StatusCheck:
+                    type: object
+                    title: The StatusCheck schema
+                    description: An explanation about the purpose of this instance.
+                    default: {}
+                    required:
+                      - ShortTimeout
+                      - LongTimeout
+                      - RetryLimit
+                      - Http
+                    properties:
+                      ShortTimeout:
+                        type: string
+                        title: The ShortTimeout schema
+                        description: An explanation about the purpose of this instance.
+                        default: ''
+                      LongTimeout:
+                        type: string
+                        title: The LongTimeout schema
+                        description: An explanation about the purpose of this instance.
+                        default: ''
+                      RetryLimit:
+                        type: integer
+                        title: The RetryLimit schema
+                        description: An explanation about the purpose of this instance.
+                        default: 0
+                      Http:
+                        type: object
+                        title: The Http schema
+                        description: An explanation about the purpose of this instance.
+                        default: {}
+                        required:
+                          - Url
+                          - Headers
+                          - Body
+                          - Method
+                        properties:
+                          Url:
+                            type: string
+                            title: The Url schema
+                            description: An explanation about the purpose of this instance.
+                            default: ''
+                          Headers:
+                            type: object
+                            title: The Headers schema
+                            description: An explanation about the purpose of this instance.
+                            default: {}
+                            required:
+                              - x-csrf-header
+                              - content-type
+                            properties:
+                              x-csrf-header:
+                                type: string
+                                title: The x-csrf-header schema
+                                description: An explanation about the purpose of this instance.
+                                default: ''
+                              content-type:
+                                type: string
+                                title: The content-type schema
+                                description: An explanation about the purpose of this instance.
+                                default: ''
+                            additionalProperties: true
+                          Body:
+                            type: string
+                            title: The Body schema
+                            description: An explanation about the purpose of this instance.
+                            default: ''
+                          Method:
+                            type: string
+                            title: The Method schema
+                            description: An explanation about the purpose of this instance.
+                            default: ''
+                        additionalProperties: true
+                    additionalProperties: true
+                  Triggers:
+                    type: array
+                    title: The Triggers schema
+                    description: An explanation about the purpose of this instance.
+                    default: []
+                    items:
+                      anyOf:
+                        - type: object
+                          title: The first anyOf schema
+                          description: An explanation about the purpose of this instance.
+                          default: {}
+                          required:
+                            - Label
+                            - ID
+                            - SelectableAsInitialTrigger
+                            - TriggerInputs
+                            - States
+                          properties:
+                            Label:
+                              type: string
+                              title: The Label schema
+                              description: An explanation about the purpose of this instance.
+                              default: ''
+                            ID:
+                              type: string
+                              title: The ID schema
+                              description: An explanation about the purpose of this instance.
+                              default: ''
+                            SelectableAsInitialTrigger:
+                              type: boolean
+                              title: The SelectableAsInitialTrigger schema
+                              description: An explanation about the purpose of this instance.
+                              default: false
+                            TriggerInputs:
+                              type: array
+                              title: The TriggerInputs schema
+                              description: An explanation about the purpose of this instance.
+                              default: []
+                              items:
+                                anyOf:
+                                  - type: object
+                                    title: The first anyOf schema
+                                    description: An explanation about the purpose of this instance.
+                                    default: {}
+                                    required:
+                                      - ActionInputID
+                                    properties:
+                                      ActionInputID:
+                                        type: string
+                                        title: The ActionInputID schema
+                                        description: An explanation about the purpose of this instance.
+                                        default: ''
+                                    additionalProperties: true
+                            States:
+                              type: array
+                              title: The States schema
+                              description: An explanation about the purpose of this instance.
+                              default: []
+                              items:
+                                anyOf:
+                                  - type: string
+                                    title: The first anyOf schema
+                                    description: An explanation about the purpose of this instance.
+                                    default: ''
+                          additionalProperties: true
+                  NotifiesCompletion:
+                    type: boolean
+                    title: The NotifiesCompletion schema
+                    description: An explanation about the purpose of this instance.
+                    default: false
+                additionalProperties: true
+        ErrorPolicy:
+          type: object
+          title: The ErrorPolicy schema
+          description: An explanation about the purpose of this instance.
+          default: {}
+          required:
+            - Error
+            - CompleteWithError
+          properties:
+            Error:
+              type: object
+              title: The Error schema
+              description: An explanation about the purpose of this instance.
+              default: {}
+              required:
+                - ShowPause
+                - ShowEmail
+              properties:
+                ShowPause:
+                  type: boolean
+                  title: The ShowPause schema
+                  description: An explanation about the purpose of this instance.
+                  default: false
+                ShowEmail:
+                  type: boolean
+                  title: The ShowEmail schema
+                  description: An explanation about the purpose of this instance.
+                  default: false
+              additionalProperties: true
+            CompleteWithError:
+              type: object
+              title: The CompleteWithError schema
+              description: An explanation about the purpose of this instance.
+              default: {}
+              required:
+                - ShowPause
+                - ShowEmail
+              properties:
+                ShowPause:
+                  type: boolean
+                  title: The ShowPause schema
+                  description: An explanation about the purpose of this instance.
+                  default: false
+                ShowEmail:
+                  type: boolean
+                  title: The ShowEmail schema
+                  description: An explanation about the purpose of this instance.
+                  default: false
+              additionalProperties: true
+          additionalProperties: true
+      additionalProperties: true
+    ExpressionRunResult:
+      type: object
+      required:
+        - Success
+      properties:
+        Success:
+          type: boolean
+          description: Indicates the Expression Compiled and Ran Successfully
+        Expression:
+          type: string
+          description: A normalized based on the expression given in the Request
+        ExpressionResult:
+          description: The result value the expression returns
+        Error:
+          type: object
+          description: Error occurred while compiling or running the expression
+  parameters:
+    workspaceID:
+      schema:
+        type: integer
+        minimum: -1
+      name: WorkspaceID
+      in: path
+      required: true
+paths:
+  /relativity-automated-workflows/v2/workspaces/{workspaceID}/notifiers/trigger:
+    parameters:
+      - in: path
+        name: workspaceID
+        required: true
+        schema:
+          type: integer
+    summary: Send Trigger Service
+    description: Endpoint to provide notifications to Automated Workflows
+    post:
+      summary: Notifies the given workspace a trigger has happened
+      description: The trigger will match any workflows expecting that trigger and queue a workflow run too all matching workflows
+      responses:
+        '200':
+          description: Response Object Containing list of actions in the Result property
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+  /relativity-automated-workflows/v2/workspaces/{workspaceID}/actions:
+    parameters:
+      - in: path
+        name: workspaceID
+        required: true
+        schema:
+          type: integer
+    summary: Actions Service
+    get:
+      summary: List Triggers in a Workspace
+      description: Lists all available workflow actions with any version on the workspace
+      responses:
+        '200':
+          description: Response Object Containing list of actions in the Result property
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+    put:
+      summary: Creates or Updates an Action
+      description: This Operation is Idempotent
+      requestBody:
+        $ref: '#/components/requestBodies/ActionRequestModel'
+      responses:
+        '200':
+          description: Response Object Containing list of actions in the Result property
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+        '400':
+          description: You may have missing or invalid values in your Request. Or the changes proposed on the request are breaking changes
+        default:
+          description: Unexpected Error
+  /relativity-automated-workflows/v2/workspaces/{workspaceID}/triggers:
+    parameters:
+      - in: path
+        name: workspaceID
+        required: true
+        schema:
+          type: integer
+    summary: Triggers Service
+    get:
+      summary: List Triggers in a Workspace
+      description: Lists all available workflow triggers with any version on the workspace
+      responses:
+        '200':
+          description: Response Object Containing list of triggers in the Result property
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+    put:
+      summary: Creates or Updates a Trigger
+      description: This Operation is Idempotent
+      requestBody:
+        $ref: '#/components/requestBodies/TriggerRequestModel'
+      responses:
+        '200':
+          description: Response Object Containing list of triggers in the Result property
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+        '400':
+          description: You may have missing or invalid values in your Request. Or the changes proposed on the request are breaking changes
+        default:
+          description: Unexpected Error
+  /relativity-automated-workflows/v2/language/expressions/run:
+    summary: Language Expression Service
+    description: Compiles and Runs AW Language Dynamic Code
+    post:
+      summary: Run/Debug Language Expression
+      requestBody:
+        $ref: '#/components/requestBodies/RunExpressionRequest'
+      responses:
+        '200':
+          description: The result of the expression run against the provided context
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExpressionRunResult'

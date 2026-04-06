@@ -1,0 +1,2300 @@
+openapi: 3.0.1
+info:
+  title: Relativity.Infrastructure.V1
+  description: Relativity.Infrastructure
+  version: V1
+servers:
+  - url: /Relativity.REST/api
+    description: The URL prefix for all Kepler services
+paths:
+  '/relativity-infrastructure/v1/workspaces/-1/worker-servers/{serverID}':
+    get:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IWorkerServerManager - '
+      operationId: Relativity.Infrastructure.V1.WorkerServer.IWorkerServerManager.ReadAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+        - $ref: '#/components/parameters/includeMetadata'
+        - $ref: '#/components/parameters/includeActions'
+      responses:
+        '200':
+          description: Successful Operation
+    put:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IWorkerServerManager - '
+      operationId: Relativity.Infrastructure.V1.WorkerServer.IWorkerServerManager.UpdateAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkerServerRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+    delete:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IWorkerServerManager - '
+      operationId: Relativity.Infrastructure.V1.WorkerServer.IWorkerServerManager.DeleteAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+      responses:
+        '200':
+          description: Successful Operation
+  '/relativity-infrastructure/v1/workspaces/-1/worker-servers/{serverID}/eligible-designated-work':
+    get:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IWorkerServerManager - '
+      operationId: Relativity.Infrastructure.V1.WorkerServer.IWorkerServerManager.GetEligibleWorkerDesignatedWorkAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: none
+  '/relativity-infrastructure/v1/workspaces/-1/worker-servers/{serverID}/start-worker':
+    post:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IWorkerServerManager - '
+      operationId: Relativity.Infrastructure.V1.WorkerServer.IWorkerServerManager.StartWorkerAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+      responses:
+        '200':
+          description: Successful Operation
+  '/relativity-infrastructure/v1/workspaces/-1/worker-servers/{serverID}/stop-worker':
+    post:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IWorkerServerManager - '
+      operationId: Relativity.Infrastructure.V1.WorkerServer.IWorkerServerManager.StopWorkerAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+      responses:
+        '200':
+          description: Successful Operation
+  '/relativity-infrastructure/v1/workspaces/-1/worker-servers/{serverID}/enable-processing-license':
+    post:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IWorkerServerManager - '
+      operationId: Relativity.Infrastructure.V1.WorkerServer.IWorkerServerManager.EnableProcessingLicenseAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+      responses:
+        '200':
+          description: Successful Operation
+  '/relativity-infrastructure/v1/workspaces/-1/worker-servers/{serverID}/disable-processing-license':
+    post:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IWorkerServerManager - '
+      operationId: Relativity.Infrastructure.V1.WorkerServer.IWorkerServerManager.DisableProcessingLicenseAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+      responses:
+        '200':
+          description: Successful Operation
+  /relativity-infrastructure/v1/workspaces/-1/worker-manager-servers:
+    post:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IWorkerManagerServerManager - '
+      operationId: Relativity.Infrastructure.V1.WorkerManagerServer.IWorkerManagerServerManager.CreateAsync
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkerManagerServerRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+  '/relativity-infrastructure/v1/workspaces/-1/worker-manager-servers/{serverID}':
+    get:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IWorkerManagerServerManager - '
+      operationId: Relativity.Infrastructure.V1.WorkerManagerServer.IWorkerManagerServerManager.ReadAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+        - $ref: '#/components/parameters/includeMetadata'
+        - $ref: '#/components/parameters/includeActions'
+      responses:
+        '200':
+          description: Successful Operation
+    put:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IWorkerManagerServerManager - '
+      operationId: Relativity.Infrastructure.V1.WorkerManagerServer.IWorkerManagerServerManager.UpdateAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkerManagerServerRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+    delete:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IWorkerManagerServerManager - '
+      operationId: Relativity.Infrastructure.V1.WorkerManagerServer.IWorkerManagerServerManager.DeleteAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+      responses:
+        '200':
+          description: Successful Operation
+  /relativity-infrastructure/v1/workspaces/-1/worker-manager-servers/default-field-values:
+    get:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IWorkerManagerServerManager - '
+      operationId: Relativity.Infrastructure.V1.WorkerManagerServer.IWorkerManagerServerManager.GetDefaultFieldValuesAsync
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkerManagerServerDefaultValuesResponse'
+  '/relativity-infrastructure/v1/workspaces/-1/web-windows-auth-servers/{serverID}':
+    get:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IWebWindowsAuthServerManager - '
+      operationId: Relativity.Infrastructure.V1.WebWindowsAuthServer.IWebWindowsAuthServerManager.ReadAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+        - $ref: '#/components/parameters/includeMetadata'
+        - $ref: '#/components/parameters/includeActions'
+      responses:
+        '200':
+          description: Successful Operation
+    put:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IWebWindowsAuthServerManager - '
+      operationId: Relativity.Infrastructure.V1.WebWindowsAuthServer.IWebWindowsAuthServerManager.UpdateAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebWindowsAuthServerRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+  '/relativity-infrastructure/v1/workspaces/-1/web-servers/{serverID}':
+    get:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IWebServerManager - '
+      operationId: Relativity.Infrastructure.V1.WebServerManager.IWebServerManager.ReadAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+        - $ref: '#/components/parameters/includeMetadata'
+        - $ref: '#/components/parameters/includeActions'
+      responses:
+        '200':
+          description: Successful Operation
+    put:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IWebServerManager - '
+      operationId: Relativity.Infrastructure.V1.WebServerManager.IWebServerManager.UpdateAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebServerRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+  '/relativity-infrastructure/v1/workspaces/-1/web-forms-auth-servers/{serverID}':
+    get:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IWebFormsAuthServerManager - '
+      operationId: Relativity.Infrastructure.V1.WebFormsAuthServer.IWebFormsAuthServerManager.ReadAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+        - $ref: '#/components/parameters/includeMetadata'
+        - $ref: '#/components/parameters/includeActions'
+      responses:
+        '200':
+          description: Successful Operation
+    put:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IWebFormsAuthServerManager - '
+      operationId: Relativity.Infrastructure.V1.WebFormsAuthServer.IWebFormsAuthServerManager.UpdateAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebFormsAuthServerRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+  '/relativity-infrastructure/v1/workspaces/-1/web-distributed-windows-auth-servers/{serverID}':
+    get:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IWebDistributedWindowsAuthServerManager - '
+      operationId: Relativity.Infrastructure.V1.WebDistributedWindowsAuthServer.IWebDistributedWindowsAuthServerManager.ReadAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+        - $ref: '#/components/parameters/includeMetadata'
+        - $ref: '#/components/parameters/includeActions'
+      responses:
+        '200':
+          description: Successful Operation
+    put:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IWebDistributedWindowsAuthServerManager - '
+      operationId: Relativity.Infrastructure.V1.WebDistributedWindowsAuthServer.IWebDistributedWindowsAuthServerManager.UpdateAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebDistributedWindowsAuthServerRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+  '/relativity-infrastructure/v1/workspaces/-1/web-distributed-servers/{serverID}':
+    get:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IWebDistributedServerManager - '
+      operationId: Relativity.Infrastructure.V1.WebDistributedServer.IWebDistributedServerManager.ReadAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+        - $ref: '#/components/parameters/includeMetadata'
+        - $ref: '#/components/parameters/includeActions'
+      responses:
+        '200':
+          description: Successful Operation
+    put:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IWebDistributedServerManager - '
+      operationId: Relativity.Infrastructure.V1.WebDistributedServer.IWebDistributedServerManager.UpdateAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebDistributedServerRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+  '/relativity-infrastructure/v1/workspaces/-1/web-distributed-forms-auth-servers/{serverID}':
+    get:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IWebDistributedFormsAuthServerManager - '
+      operationId: Relativity.Infrastructure.V1.WebDistributedFormsAuthServer.IWebDistributedFormsAuthServerManager.ReadAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+        - $ref: '#/components/parameters/includeMetadata'
+        - $ref: '#/components/parameters/includeActions'
+      responses:
+        '200':
+          description: Successful Operation
+    put:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IWebDistributedFormsAuthServerManager - '
+      operationId: Relativity.Infrastructure.V1.WebDistributedFormsAuthServer.IWebDistributedFormsAuthServerManager.UpdateAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebDistributedFormsAuthServerRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+  '/relativity-infrastructure/v1/workspaces/-1/web-background-processing-servers/{serverID}':
+    get:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IWebBackgroundProcessingServerManager - '
+      operationId: Relativity.Infrastructure.V1.WebBackgroundProcessingServer.IWebBackgroundProcessingServerManager.ReadAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+        - $ref: '#/components/parameters/includeMetadata'
+        - $ref: '#/components/parameters/includeActions'
+      responses:
+        '200':
+          description: Successful Operation
+    put:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IWebBackgroundProcessingServerManager - '
+      operationId: Relativity.Infrastructure.V1.WebBackgroundProcessingServer.IWebBackgroundProcessingServerManager.UpdateAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebBackgroundProcessingServerRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+  '/relativity-infrastructure/v1/workspaces/-1/web-background-processing-servers/{serverID}/restart-windows-service':
+    post:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IWebBackgroundProcessingServerManager - '
+      operationId: Relativity.Infrastructure.V1.WebBackgroundProcessingServer.IWebBackgroundProcessingServerManager.RestartWindowsServiceAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+      responses:
+        '200':
+          description: Successful Operation
+  '/relativity-infrastructure/v1/workspaces/-1/web-api-windows-auth-servers/{serverID}':
+    get:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IWebApiWindowsAuthServerManager - '
+      operationId: Relativity.Infrastructure.V1.WebApiWindowsAuthServer.IWebApiWindowsAuthServerManager.ReadAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+        - $ref: '#/components/parameters/includeMetadata'
+        - $ref: '#/components/parameters/includeActions'
+      responses:
+        '200':
+          description: Successful Operation
+    put:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IWebApiWindowsAuthServerManager - '
+      operationId: Relativity.Infrastructure.V1.WebApiWindowsAuthServer.IWebApiWindowsAuthServerManager.UpdateAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebApiWindowsAuthServerRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+  '/relativity-infrastructure/v1/workspaces/-1/web-api-servers/{serverID}':
+    get:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IWebApiServerManager - '
+      operationId: Relativity.Infrastructure.V1.WebApiServer.IWebApiServerManager.ReadAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+        - $ref: '#/components/parameters/includeMetadata'
+        - $ref: '#/components/parameters/includeActions'
+      responses:
+        '200':
+          description: Successful Operation
+    put:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IWebApiServerManager - '
+      operationId: Relativity.Infrastructure.V1.WebApiServer.IWebApiServerManager.UpdateAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebApiServerRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+  '/relativity-infrastructure/v1/workspaces/-1/web-api-forms-auth-servers/{serverID}':
+    get:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IWebApiFormsAuthServerManager - '
+      operationId: Relativity.Infrastructure.V1.WebApiFormsAuthServerManager.IWebApiFormsAuthServerManager.ReadAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+        - $ref: '#/components/parameters/includeMetadata'
+        - $ref: '#/components/parameters/includeActions'
+      responses:
+        '200':
+          description: Successful Operation
+    put:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IWebApiFormsAuthServerManager - '
+      operationId: Relativity.Infrastructure.V1.WebApiFormsAuthServerManager.IWebApiFormsAuthServerManager.UpdateAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebApiFormsAuthServerRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+  '/relativity-infrastructure/v1/workspaces/-1/sql-primary-servers/{serverID}':
+    get:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] ISqlPrimaryServerManager - '
+      operationId: Relativity.Infrastructure.V1.SQLPrimary.ISqlPrimaryServerManager.ReadAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+        - $ref: '#/components/parameters/includeMetadata'
+        - $ref: '#/components/parameters/includeActions'
+      responses:
+        '200':
+          description: Successful Operation
+    put:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] ISqlPrimaryServerManager - '
+      operationId: Relativity.Infrastructure.V1.SQLPrimary.ISqlPrimaryServerManager.UpdateAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SqlPrimaryServerRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+  '/relativity-infrastructure/v1/workspaces/-1/sql-primary-servers/{serverID}/is-last-visible-server':
+    get:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] ISqlPrimaryServerManager - '
+      operationId: Relativity.Infrastructure.V1.SQLPrimary.ISqlPrimaryServerManager.IsLastVisibleServerAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                type: boolean
+  '/relativity-infrastructure/v1/workspaces/-1/sql-distributed-servers/{serverID}':
+    get:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] ISqlDistributedServerManager - '
+      operationId: Relativity.Infrastructure.V1.SQLDistributed.ISqlDistributedServerManager.ReadAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+        - $ref: '#/components/parameters/includeMetadata'
+        - $ref: '#/components/parameters/includeActions'
+      responses:
+        '200':
+          description: Successful Operation
+    put:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] ISqlDistributedServerManager - '
+      operationId: Relativity.Infrastructure.V1.SQLDistributed.ISqlDistributedServerManager.UpdateAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SqlDistributedServerRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+  '/relativity-infrastructure/v1/workspaces/-1/sql-distributed-servers/{serverID}/is-last-visible-server':
+    get:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] ISqlDistributedServerManager - '
+      operationId: Relativity.Infrastructure.V1.SQLDistributed.ISqlDistributedServerManager.IsLastVisibleServerAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                type: boolean
+  '/relativity-infrastructure/v1/workspaces/-1/services-servers/{serverID}':
+    get:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IServicesServerManager - '
+      operationId: Relativity.Infrastructure.V1.ServicesServer.IServicesServerManager.ReadAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+        - $ref: '#/components/parameters/includeMetadata'
+        - $ref: '#/components/parameters/includeActions'
+      responses:
+        '200':
+          description: Successful Operation
+    put:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IServicesServerManager - '
+      operationId: Relativity.Infrastructure.V1.ServicesServer.IServicesServerManager.UpdateAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServicesServerRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+  '/relativity-infrastructure/v1/workspaces/-1/resource-servers/{serverID}':
+    get:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IResourceServerManager - '
+      operationId: Relativity.Infrastructure.V1.ResourceServer.IResourceServerManager.ReadAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+      responses:
+        '200':
+          description: Successful Operation
+  /relativity-infrastructure/v1/workspaces/-1/resource-servers/types:
+    get:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IResourceServerManager - '
+      operationId: Relativity.Infrastructure.V1.ResourceServer.IResourceServerManager.ReadServerTypesAsync
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServerTypeResponse'
+  /relativity-infrastructure/v1/workspaces/-1/resource-servers/eligible-statuses:
+    get:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IResourceServerManager - '
+      operationId: Relativity.Infrastructure.V1.ResourceServer.IResourceServerManager.GetEligibleStatusesAsync
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DisplayableObjectIdentifier'
+  /relativity-infrastructure/v1/workspaces/-1/resource-pools:
+    post:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IResourcePoolManager - '
+      operationId: Relativity.Infrastructure.V1.ResourcePool.IResourcePoolManager.CreateAsync
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResourcePoolRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+  '/relativity-infrastructure/v1/workspaces/-1/resource-pools/{resourcePoolID}':
+    get:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IResourcePoolManager - '
+      operationId: Relativity.Infrastructure.V1.ResourcePool.IResourcePoolManager.ReadAsync
+      parameters:
+        - $ref: '#/components/parameters/resourcePoolID'
+        - $ref: '#/components/parameters/includeMetadata'
+        - $ref: '#/components/parameters/includeActions'
+      responses:
+        '200':
+          description: Successful Operation
+    put:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IResourcePoolManager - '
+      operationId: Relativity.Infrastructure.V1.ResourcePool.IResourcePoolManager.UpdateAsync
+      parameters:
+        - $ref: '#/components/parameters/resourcePoolID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResourcePoolRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+    delete:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IResourcePoolManager - '
+      operationId: Relativity.Infrastructure.V1.ResourcePool.IResourcePoolManager.DeleteAsync
+      parameters:
+        - $ref: '#/components/parameters/resourcePoolID'
+      responses:
+        '200':
+          description: Successful Operation
+  '/relativity-infrastructure/v1/workspaces/-1/resource-pools/{resourcePoolID}/query-associated':
+    post:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IResourcePoolManager - '
+      operationId: Relativity.Infrastructure.V1.ResourcePool.IResourcePoolManager.QueryResourcesAsync
+      parameters:
+        - $ref: '#/components/parameters/resourcePoolID'
+        - $ref: '#/components/parameters/resourceType'
+        - $ref: '#/components/parameters/start'
+        - $ref: '#/components/parameters/length'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryResultSlim'
+  '/relativity-infrastructure/v1/workspaces/-1/resource-pools/{resourcePoolID}-to-add':
+    post:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IResourcePoolManager - '
+      operationId: Relativity.Infrastructure.V1.ResourcePool.IResourcePoolManager.QueryEligibleToAddResourcesAsync
+      parameters:
+        - $ref: '#/components/parameters/resourcePoolID'
+        - $ref: '#/components/parameters/resourceType'
+        - $ref: '#/components/parameters/start'
+        - $ref: '#/components/parameters/length'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryResultSlim'
+  /relativity-infrastructure/v1/workspaces/-1/resource-pools/query-eligible-clients:
+    post:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IResourcePoolManager - '
+      operationId: Relativity.Infrastructure.V1.ResourcePool.IResourcePoolManager.QueryClientsAsync
+      parameters:
+        - $ref: '#/components/parameters/start'
+        - $ref: '#/components/parameters/length'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryResultSlim'
+  '/relativity-infrastructure/v1/workspaces/-1/resource-pools/{resourcePoolID}/add':
+    post:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IResourcePoolManager - '
+      operationId: Relativity.Infrastructure.V1.ResourcePool.IResourcePoolManager.AddResourcesAsync
+      parameters:
+        - $ref: '#/components/parameters/resourcePoolID'
+        - $ref: '#/components/parameters/resourceType'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ObjectIdentifier'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+  '/relativity-infrastructure/v1/workspaces/-1/resource-pools/{resourcePoolID}/remove':
+    post:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IResourcePoolManager - '
+      operationId: Relativity.Infrastructure.V1.ResourcePool.IResourcePoolManager.RemoveResourcesAsync
+      parameters:
+        - $ref: '#/components/parameters/resourcePoolID'
+        - $ref: '#/components/parameters/resourceType'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ObjectIdentifier'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+  /relativity-infrastructure/v1/workspaces/-1/resource-pools/mass-ops/add-servers:
+    post:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IResourcePoolManager - '
+      operationId: Relativity.Infrastructure.V1.ResourcePool.IResourcePoolManager.MassAddResourceServersAsync
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ObjectIdentifier'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: none
+  /relativity-infrastructure/v1/workspaces/-1/resource-pools/mass-ops/remove-servers:
+    post:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IResourcePoolManager - '
+      operationId: Relativity.Infrastructure.V1.ResourcePool.IResourcePoolManager.MassRemoveResourceServersAsync
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ObjectIdentifier'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: none
+  '/relativity-infrastructure/v1/workspaces/-1/resource-pools/query-by-resource-server/{resourceServerID}':
+    post:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IResourcePoolManager - '
+      operationId: Relativity.Infrastructure.V1.ResourcePool.IResourcePoolManager.QueryByResourceServerAsync
+      parameters:
+        - $ref: '#/components/parameters/resourceServerID'
+        - $ref: '#/components/parameters/start'
+        - $ref: '#/components/parameters/length'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryResultSlim'
+  '/relativity-infrastructure/v1/workspaces/-1/resource-pools/query-eligible-by-resource-server/{resourceServerID}':
+    post:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IResourcePoolManager - '
+      operationId: Relativity.Infrastructure.V1.ResourcePool.IResourcePoolManager.QueryEligibleByResourceServerAsync
+      parameters:
+        - $ref: '#/components/parameters/resourceServerID'
+        - $ref: '#/components/parameters/start'
+        - $ref: '#/components/parameters/length'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryResultSlim'
+  /relativity-infrastructure/v1/workspaces/-1/notifications:
+    get:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] INotificationsManager - '
+      operationId: Relativity.Infrastructure.V1.Notifications.INotificationsManager.ReadMotdAsync
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MotdResponse'
+    put:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] INotificationsManager - '
+      operationId: Relativity.Infrastructure.V1.Notifications.INotificationsManager.UpdateMotdAsync
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MotdRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MotdResponse'
+  '/relativity-infrastructure/v1/workspaces/-1/notifications/dismiss/{userID}':
+    post:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] INotificationsManager - '
+      operationId: Relativity.Infrastructure.V1.Notifications.INotificationsManager.DismissMotdAsync
+      parameters:
+        - $ref: '#/components/parameters/userID'
+      responses:
+        '200':
+          description: Successful Operation
+  '/relativity-infrastructure/v1/workspaces/-1/notifications/has-dismissed/{userID}':
+    get:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] INotificationsManager - '
+      operationId: Relativity.Infrastructure.V1.Notifications.INotificationsManager.HasDismissedMotdAsync
+      parameters:
+        - $ref: '#/components/parameters/userID'
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                type: boolean
+  /relativity-infrastructure/v1/workspaces/-1/notifications/is-text-only:
+    get:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] INotificationsManager - '
+      operationId: Relativity.Infrastructure.V1.Notifications.INotificationsManager.IsTextOnlyMotdAsync
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                type: boolean
+  /relativity-infrastructure/v1/workspaces/-1/file-repository-servers:
+    post:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IFileRepositoryServerManager - '
+      operationId: Relativity.Infrastructure.V1.FileRepositoryServer.IFileRepositoryServerManager.CreateAsync
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FileRepositoryServerRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+  '/relativity-infrastructure/v1/workspaces/-1/file-repository-servers/{serverID}':
+    get:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IFileRepositoryServerManager - '
+      operationId: Relativity.Infrastructure.V1.FileRepositoryServer.IFileRepositoryServerManager.ReadAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+        - $ref: '#/components/parameters/includeMetadata'
+        - $ref: '#/components/parameters/includeActions'
+      responses:
+        '200':
+          description: Successful Operation
+    put:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IFileRepositoryServerManager - '
+      operationId: Relativity.Infrastructure.V1.FileRepositoryServer.IFileRepositoryServerManager.UpdateAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FileRepositoryServerRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+    delete:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IFileRepositoryServerManager - '
+      operationId: Relativity.Infrastructure.V1.FileRepositoryServer.IFileRepositoryServerManager.DeleteAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+      responses:
+        '200':
+          description: Successful Operation
+  /relativity-infrastructure/v1/workspaces/-1/file-repository-servers/query-eligible-file-access-credentials:
+    post:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IFileRepositoryServerManager - '
+      operationId: Relativity.Infrastructure.V1.FileRepositoryServer.IFileRepositoryServerManager.QueryEligibleFileAccessCredentialsAsync
+      parameters:
+        - $ref: '#/components/parameters/start'
+        - $ref: '#/components/parameters/length'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryResultSlim'
+  /relativity-infrastructure/v1/workspaces/-1/file-repository-servers/metadata:
+    get:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IFileRepositoryServerManager - '
+      operationId: Relativity.Infrastructure.V1.FileRepositoryServer.IFileRepositoryServerManager.GetMetadataAsync
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Meta'
+  '/relativity-infrastructure/v1/workspaces/-1/file-repository-servers/{serverID}/is-last-visible-server':
+    get:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IFileRepositoryServerManager - '
+      operationId: Relativity.Infrastructure.V1.FileRepositoryServer.IFileRepositoryServerManager.IsLastVisibleServerAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                type: boolean
+  /relativity-infrastructure/v1/workspaces/-1/cache-location-servers:
+    post:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] ICacheLocationServerManager - '
+      operationId: Relativity.Infrastructure.V1.CacheLocationServer.ICacheLocationServerManager.CreateAsync
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CacheLocationServerRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+  '/relativity-infrastructure/v1/workspaces/-1/cache-location-servers/{serverID}':
+    get:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] ICacheLocationServerManager - '
+      operationId: Relativity.Infrastructure.V1.CacheLocationServer.ICacheLocationServerManager.ReadAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+        - $ref: '#/components/parameters/includeMetadata'
+        - $ref: '#/components/parameters/includeActions'
+      responses:
+        '200':
+          description: Successful Operation
+    put:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] ICacheLocationServerManager - '
+      operationId: Relativity.Infrastructure.V1.CacheLocationServer.ICacheLocationServerManager.UpdateAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CacheLocationServerRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+    delete:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] ICacheLocationServerManager - '
+      operationId: Relativity.Infrastructure.V1.CacheLocationServer.ICacheLocationServerManager.DeleteAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+      responses:
+        '200':
+          description: Successful Operation
+  /relativity-infrastructure/v1/workspaces/-1/cache-location-servers/query-eligible-file-access-credentials:
+    post:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] ICacheLocationServerManager - '
+      operationId: Relativity.Infrastructure.V1.CacheLocationServer.ICacheLocationServerManager.QueryEligibleFileAccessCredentialsAsync
+      parameters:
+        - $ref: '#/components/parameters/start'
+        - $ref: '#/components/parameters/length'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryResultSlim'
+  /relativity-infrastructure/v1/workspaces/-1/cache-location-servers/metadata:
+    get:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] ICacheLocationServerManager - '
+      operationId: Relativity.Infrastructure.V1.CacheLocationServer.ICacheLocationServerManager.GetMetadataAsync
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Meta'
+  '/relativity-infrastructure/v1/workspaces/-1/cache-location-servers/{serverID}/is-last-visible-server':
+    get:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] ICacheLocationServerManager - '
+      operationId: Relativity.Infrastructure.V1.CacheLocationServer.ICacheLocationServerManager.IsLastVisibleServerAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                type: boolean
+  /relativity-infrastructure/v1/workspaces/-1/analytics-servers:
+    post:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IAnalyticsServerManager - '
+      operationId: Relativity.Infrastructure.V1.AnalyticsServer.IAnalyticsServerManager.CreateAsync
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnalyticsServerRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+  '/relativity-infrastructure/v1/workspaces/-1/analytics-servers/{serverID}':
+    get:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IAnalyticsServerManager - '
+      operationId: Relativity.Infrastructure.V1.AnalyticsServer.IAnalyticsServerManager.ReadAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+        - $ref: '#/components/parameters/includeMetadata'
+        - $ref: '#/components/parameters/includeActions'
+      responses:
+        '200':
+          description: Successful Operation
+    put:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IAnalyticsServerManager - '
+      operationId: Relativity.Infrastructure.V1.AnalyticsServer.IAnalyticsServerManager.UpdateAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnalyticsServerRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+    delete:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IAnalyticsServerManager - '
+      operationId: Relativity.Infrastructure.V1.AnalyticsServer.IAnalyticsServerManager.DeleteAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+      responses:
+        '200':
+          description: Successful Operation
+  /relativity-infrastructure/v1/workspaces/-1/analytics-servers/default-field-values:
+    get:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IAnalyticsServerManager - '
+      operationId: Relativity.Infrastructure.V1.AnalyticsServer.IAnalyticsServerManager.GetDefaultFieldValuesAsync
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyticsServerDefaultValuesResponse'
+  /relativity-infrastructure/v1/workspaces/-1/analytics-servers/eligible-analytics-operations:
+    get:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IAnalyticsServerManager - '
+      operationId: Relativity.Infrastructure.V1.AnalyticsServer.IAnalyticsServerManager.GetEligibleAnalyticsOperationsAsync
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DisplayableObjectIdentifier'
+  '/relativity-infrastructure/v1/workspaces/-1/analytics-servers/{serverID}/restart-windows-service':
+    post:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IAnalyticsServerManager - '
+      operationId: Relativity.Infrastructure.V1.AnalyticsServer.IAnalyticsServerManager.RestartWindowsServiceAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+      responses:
+        '200':
+          description: Successful Operation
+  /relativity-infrastructure/v1/workspaces/-1/analytics-servers/metadata:
+    get:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IAnalyticsServerManager - '
+      operationId: Relativity.Infrastructure.V1.AnalyticsServer.IAnalyticsServerManager.GetMetadataAsync
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Meta'
+  '/relativity-infrastructure/v1/workspace/{workspaceID}/agents':
+    post:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IAgentManager - '
+      operationId: Relativity.Infrastructure.V1.Agent.IAgentManager.CreateAsync
+      parameters:
+        - $ref: '#/components/parameters/workspaceID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                type: integer
+  '/relativity-infrastructure/v1/workspace/{workspaceID}/agents/{agentID}':
+    get:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IAgentManager - '
+      operationId: Relativity.Infrastructure.V1.Agent.IAgentManager.ReadAsync
+      parameters:
+        - $ref: '#/components/parameters/workspaceID'
+        - $ref: '#/components/parameters/agentID'
+      responses:
+        '200':
+          description: Successful Operation
+    put:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IAgentManager - '
+      operationId: Relativity.Infrastructure.V1.Agent.IAgentManager.UpdateAsync
+      parameters:
+        - $ref: '#/components/parameters/workspaceID'
+        - $ref: '#/components/parameters/agentID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+    delete:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IAgentManager - '
+      operationId: Relativity.Infrastructure.V1.Agent.IAgentManager.DeleteAsync
+      parameters:
+        - $ref: '#/components/parameters/workspaceID'
+        - $ref: '#/components/parameters/agentID'
+      responses:
+        '200':
+          description: Successful Operation
+  '/relativity-infrastructure/v1/workspace/{workspaceID}/agents/{agentID}/{includeMetadata}/{includeActions}':
+    get:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IAgentManager - '
+      operationId: Relativity.Infrastructure.V1.Agent.IAgentManager.ReadAsync
+      parameters:
+        - $ref: '#/components/parameters/workspaceID'
+        - $ref: '#/components/parameters/agentID'
+        - $ref: '#/components/parameters/includeMetadata'
+        - $ref: '#/components/parameters/includeActions'
+      responses:
+        '200':
+          description: Successful Operation
+  '/relativity-infrastructure/v1/workspace/{workspaceID}/agents/validateinstancelimits':
+    post:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IAgentManager - '
+      operationId: Relativity.Infrastructure.V1.Agent.IAgentManager.ValidateCreateInstanceLimitAsync
+      parameters:
+        - $ref: '#/components/parameters/workspaceID'
+        - $ref: '#/components/parameters/count'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AgentInstanceLimitResult'
+  '/relativity-infrastructure/v1/workspace/{workspaceID}/agents/{agentID}/validateinstancelimits':
+    post:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IAgentManager - '
+      operationId: Relativity.Infrastructure.V1.Agent.IAgentManager.ValidateUpdateInstanceLimitAsync
+      parameters:
+        - $ref: '#/components/parameters/workspaceID'
+        - $ref: '#/components/parameters/agentID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AgentInstanceLimitResult'
+    delete:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IAgentManager - '
+      operationId: Relativity.Infrastructure.V1.Agent.IAgentManager.ValidateDeleteInstanceLimitAsync
+      parameters:
+        - $ref: '#/components/parameters/workspaceID'
+        - $ref: '#/components/parameters/agentID'
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AgentInstanceLimitResult'
+  '/relativity-infrastructure/v1/workspace/{workspaceID}/agentservers':
+    get:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IAgentManager - '
+      operationId: Relativity.Infrastructure.V1.Agent.IAgentManager.GetAgentServersAsync
+      parameters:
+        - $ref: '#/components/parameters/workspaceID'
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: none
+  '/relativity-infrastructure/v1/workspace/{workspaceID}/agenttypes/{agentTypeID}/availableagentservers':
+    get:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IAgentManager - '
+      operationId: Relativity.Infrastructure.V1.Agent.IAgentManager.GetAvailableAgentServersAsync
+      parameters:
+        - $ref: '#/components/parameters/workspaceID'
+        - $ref: '#/components/parameters/agentTypeID'
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: none
+  '/relativity-infrastructure/v1/workspace/{workspaceID}/agenttypes/{agentTypeGuid}/availableagentservers':
+    get:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IAgentManager - '
+      operationId: Relativity.Infrastructure.V1.Agent.IAgentManager.GetAvailableAgentServersAsync
+      parameters:
+        - $ref: '#/components/parameters/workspaceID'
+        - $ref: '#/components/parameters/agentTypeGuid'
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: none
+  '/relativity-infrastructure/v1/workspace/{workspaceID}/agenttypes':
+    get:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IAgentManager - '
+      operationId: Relativity.Infrastructure.V1.Agent.IAgentManager.GetAgentTypesAsync
+      parameters:
+        - $ref: '#/components/parameters/workspaceID'
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: none
+  '/relativity-infrastructure/v1/workspaces/-1/agent-servers/{serverID}':
+    get:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IAgentServerManager - '
+      operationId: Relativity.Infrastructure.V1.AgentServerManager.IAgentServerManager.ReadAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+        - $ref: '#/components/parameters/includeMetadata'
+        - $ref: '#/components/parameters/includeActions'
+      responses:
+        '200':
+          description: Successful Operation
+    put:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IAgentServerManager - '
+      operationId: Relativity.Infrastructure.V1.AgentServerManager.IAgentServerManager.UpdateAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentServerRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+  '/relativity-infrastructure/v1/workspaces/-1/agent-servers/{serverID}/restart-windows-service':
+    post:
+      tags:
+        - Relativity Infrastructure Module v1
+      description: '[Public] IAgentServerManager - '
+      operationId: Relativity.Infrastructure.V1.AgentServerManager.IAgentServerManager.RestartWindowsServiceAsync
+      parameters:
+        - $ref: '#/components/parameters/serverID'
+      responses:
+        '200':
+          description: Successful Operation
+components:
+  schemas:
+    WorkerServerRequest:
+      title: WorkerServerRequest
+      type: object
+      properties:
+        WorkerDesignatedWork:
+          type: array
+          items:
+            $ref: '#/components/schemas/ObjectIdentifier'
+        Keywords:
+          type: string
+        Notes:
+          type: string
+    ObjectIdentifier:
+      title: ObjectIdentifier
+      type: object
+      properties:
+        ArtifactID:
+          type: integer
+        Guids:
+          type: array
+          items:
+            type: string
+    WorkerManagerServerRequest:
+      title: WorkerManagerServerRequest
+      type: object
+      properties:
+        Name:
+          type: string
+        ServerName:
+          type: string
+        IsDefault:
+          type: boolean
+        TemporaryDirectory:
+          type: string
+        InventoryPriority:
+          type: integer
+        DiscoveryPriority:
+          type: integer
+        PublishPriority:
+          type: integer
+        MassImagingPriority:
+          type: integer
+        ImageOnTheFlyPriority:
+          type: integer
+        SingleSaveAsPdfPriority:
+          type: integer
+        MassSaveAsPdfPriority:
+          type: integer
+        Keywords:
+          type: string
+        Notes:
+          type: string
+    WorkerManagerServerDefaultValuesResponse:
+      title: WorkerManagerServerDefaultValuesResponse
+      type: object
+      properties:
+        InventoryPriority:
+          type: integer
+        DiscoveryPriority:
+          type: integer
+        PublishPriority:
+          type: integer
+        MassImagingPriority:
+          type: integer
+        ImageOnTheFlyPriority:
+          type: integer
+        SingleSaveAsPdfPriority:
+          type: integer
+        MassSaveAsPdfPriority:
+          type: integer
+    WebWindowsAuthServerRequest:
+      title: WebWindowsAuthServerRequest
+      type: object
+      properties:
+        Status:
+          $ref: '#/components/schemas/ObjectIdentifier'
+        Url:
+          type: string
+        IsUserLoadBalancingEnabled:
+          type: boolean
+        Keywords:
+          type: string
+        Notes:
+          type: string
+    WebServerRequest:
+      title: WebServerRequest
+      type: object
+      properties:
+        Status:
+          $ref: '#/components/schemas/ObjectIdentifier'
+        Url:
+          type: string
+        IsUserLoadBalancingEnabled:
+          type: boolean
+        Keywords:
+          type: string
+        Notes:
+          type: string
+    WebFormsAuthServerRequest:
+      title: WebFormsAuthServerRequest
+      type: object
+      properties:
+        Status:
+          $ref: '#/components/schemas/ObjectIdentifier'
+        Url:
+          type: string
+        IsUserLoadBalancingEnabled:
+          type: boolean
+        Keywords:
+          type: string
+        Notes:
+          type: string
+    WebDistributedWindowsAuthServerRequest:
+      title: WebDistributedWindowsAuthServerRequest
+      type: object
+      properties:
+        Status:
+          $ref: '#/components/schemas/ObjectIdentifier'
+        Keywords:
+          type: string
+        Notes:
+          type: string
+    WebDistributedServerRequest:
+      title: WebDistributedServerRequest
+      type: object
+      properties:
+        Status:
+          $ref: '#/components/schemas/ObjectIdentifier'
+        Keywords:
+          type: string
+        Notes:
+          type: string
+    WebDistributedFormsAuthServerRequest:
+      title: WebDistributedFormsAuthServerRequest
+      type: object
+      properties:
+        Status:
+          $ref: '#/components/schemas/ObjectIdentifier'
+        Keywords:
+          type: string
+        Notes:
+          type: string
+    WebBackgroundProcessingServerRequest:
+      title: WebBackgroundProcessingServerRequest
+      type: object
+      properties:
+        Status:
+          $ref: '#/components/schemas/ObjectIdentifier'
+        Keywords:
+          type: string
+        Notes:
+          type: string
+    WebApiWindowsAuthServerRequest:
+      title: WebApiWindowsAuthServerRequest
+      type: object
+      properties:
+        Status:
+          $ref: '#/components/schemas/ObjectIdentifier'
+        Keywords:
+          type: string
+        Notes:
+          type: string
+    WebApiServerRequest:
+      title: WebApiServerRequest
+      type: object
+      properties:
+        Status:
+          $ref: '#/components/schemas/ObjectIdentifier'
+        Keywords:
+          type: string
+        Notes:
+          type: string
+    WebApiFormsAuthServerRequest:
+      title: WebApiFormsAuthServerRequest
+      type: object
+      properties:
+        Status:
+          $ref: '#/components/schemas/ObjectIdentifier'
+        Keywords:
+          type: string
+        Notes:
+          type: string
+    SqlPrimaryServerRequest:
+      title: SqlPrimaryServerRequest
+      type: object
+      properties:
+        FriendlyName:
+          type: string
+        IsVisible:
+          type: boolean
+        Status:
+          $ref: '#/components/schemas/ObjectIdentifier'
+        BcpPath:
+          type: string
+        WorkspaceUpgradeLimit:
+          type: integer
+        Keywords:
+          type: string
+        Notes:
+          type: string
+    SqlDistributedServerRequest:
+      title: SqlDistributedServerRequest
+      type: object
+      properties:
+        FriendlyName:
+          type: string
+        IsVisible:
+          type: boolean
+        Status:
+          $ref: '#/components/schemas/ObjectIdentifier'
+        BcpPath:
+          type: string
+        WorkspaceUpgradeLimit:
+          type: integer
+        Keywords:
+          type: string
+        Notes:
+          type: string
+    ServicesServerRequest:
+      title: ServicesServerRequest
+      type: object
+      properties:
+        Status:
+          $ref: '#/components/schemas/ObjectIdentifier'
+        Keywords:
+          type: string
+        Notes:
+          type: string
+    ServerTypeResponse:
+      title: ServerTypeResponse
+      type: object
+      properties:
+        ArtifactID:
+          type: integer
+        Name:
+          type: string
+        Url:
+          type: string
+    DisplayableObjectIdentifier:
+      title: DisplayableObjectIdentifier
+      type: object
+      properties:
+        Name:
+          type: string
+        ArtifactID:
+          type: integer
+        Guids:
+          type: array
+          items:
+            type: string
+    ResourcePoolRequest:
+      title: ResourcePoolRequest
+      type: object
+      properties:
+        Name:
+          type: string
+        Client:
+          $ref: '#/components/schemas/Securable`1'
+        IsVisible:
+          type: boolean
+        Keywords:
+          type: string
+        Notes:
+          type: string
+    Securable`1:
+      title: Securable`1
+      type: object
+      properties:
+        Secured:
+          type: boolean
+        Value:
+          $ref: '#/components/schemas/ObjectIdentifier'
+    QueryRequest:
+      title: QueryRequest
+      type: object
+      properties:
+        ObjectType:
+          $ref: '#/components/schemas/ObjectTypeRef'
+        Condition:
+          type: string
+        Sorts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Sort'
+        RelationalField:
+          $ref: '#/components/schemas/FieldRef'
+        RowCondition:
+          type: string
+        SearchProviderCondition:
+          $ref: '#/components/schemas/SearchProviderCondition'
+        SampleParameters:
+          $ref: '#/components/schemas/SampleParameters'
+        IncludeIDWindow:
+          type: boolean
+          nullable: true
+        RankSortOrder:
+          enum:
+            - Ascending
+            - Descending
+          type: string
+          nullable: true
+        QueryHint:
+          type: string
+        Fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/FieldRef'
+        IsAdhocQuery:
+          type: boolean
+          nullable: true
+        ConvertNumberFieldValuesToString:
+          type: boolean
+          nullable: true
+        IncludeNameInQueryResult:
+          type: boolean
+          nullable: true
+        ExecutingSavedSearchID:
+          type: integer
+          nullable: true
+        ExecutingViewID:
+          type: integer
+          nullable: true
+        ActiveArtifactID:
+          type: integer
+          nullable: true
+        MaxCharactersForLongTextValues:
+          type: integer
+          nullable: true
+        LongTextBehavior:
+          enum:
+            - Default
+            - Tokenized
+            - DefaultWithErrors
+            - TokenizedWithErrors
+          type: string
+    ObjectTypeRef:
+      title: ObjectTypeRef
+      type: object
+      properties:
+        ArtifactID:
+          type: integer
+        Name:
+          type: string
+        Guid:
+          type: string
+          nullable: true
+        ArtifactTypeID:
+          type: integer
+    Sort:
+      title: Sort
+      type: object
+      properties:
+        FieldIdentifier:
+          $ref: '#/components/schemas/FieldRef'
+        Order:
+          type: integer
+        Direction:
+          enum:
+            - Ascending
+            - Descending
+          type: string
+    FieldRef:
+      title: FieldRef
+      type: object
+      properties:
+        ArtifactID:
+          type: integer
+        ViewFieldID:
+          type: integer
+        Guids:
+          type: array
+          items:
+            type: string
+        Name:
+          type: string
+    SearchProviderCondition:
+      title: SearchProviderCondition
+      type: object
+      properties:
+        SearchIndex:
+          $ref: '#/components/schemas/SearchIndexRef'
+        Input:
+          type: string
+    SearchIndexRef:
+      title: SearchIndexRef
+      type: object
+      properties:
+        ArtifactID:
+          type: integer
+        Name:
+          type: string
+    SampleParameters:
+      title: SampleParameters
+      type: object
+      properties:
+        ExistingToken:
+          type: string
+          nullable: true
+        MarginOfError:
+          type: number
+        ConfidenceLevel:
+          type: number
+        FixedSampleSize:
+          type: integer
+        SamplingPercentage:
+          type: number
+    QueryResultSlim:
+      title: QueryResultSlim
+      type: object
+      properties:
+        TotalCount:
+          type: integer
+        Objects:
+          type: array
+          items:
+            $ref: '#/components/schemas/RelativityObjectSlim'
+        IDWindow:
+          type: array
+          items:
+            type: integer
+        CurrentStartIndex:
+          type: integer
+        ResultCount:
+          type: integer
+        ObjectType:
+          $ref: '#/components/schemas/ObjectType'
+        SampleDetails:
+          $ref: '#/components/schemas/SampleDetails'
+        RankWindow:
+          type: array
+          items:
+            type: number
+        RelationalField:
+          $ref: '#/components/schemas/Field'
+        Fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/Field'
+    RelativityObjectSlim:
+      title: RelativityObjectSlim
+      type: object
+      properties:
+        ArtifactID:
+          type: integer
+        Values:
+          type: array
+          items:
+            $ref: '#/components/schemas/Object'
+    Object:
+      title: Object
+      type: object
+    ObjectType:
+      title: ObjectType
+      type: object
+      properties:
+        ArtifactID:
+          type: integer
+        Name:
+          type: string
+        Guids:
+          type: array
+          items:
+            type: string
+        ArtifactTypeID:
+          type: integer
+    SampleDetails:
+      title: SampleDetails
+      type: object
+      properties:
+        SampleSize:
+          type: integer
+          nullable: true
+        UniverseSize:
+          type: integer
+          nullable: true
+        Token:
+          type: string
+    Field:
+      title: Field
+      type: object
+      properties:
+        FieldCategory:
+          enum:
+            - Generic
+            - FullText
+            - Identifier
+            - Reflected
+            - Comments
+            - Relational
+            - ProductionMarker
+            - AutoCreate
+            - FileSize
+            - FolderName
+            - FileInfo
+            - ParentArtifact
+            - MarkupSetMarker
+            - GenericSystem
+            - MultiReflected
+            - Batch
+          type: string
+        FieldType:
+          enum:
+            - FixedLengthText
+            - WholeNumber
+            - Date
+            - YesNo
+            - LongText
+            - SingleChoice
+            - Decimal
+            - Currency
+            - MultipleChoice
+            - File
+            - SingleObject
+            - User
+            - MultipleObject
+            - Empty
+          type: string
+        ViewFieldID:
+          type: integer
+        ArtifactID:
+          type: integer
+        Guids:
+          type: array
+          items:
+            type: string
+        Name:
+          type: string
+    MotdResponse:
+      title: MotdResponse
+      type: object
+      properties:
+        Message:
+          type: string
+        Enabled:
+          type: boolean
+        AllowDismiss:
+          type: boolean
+    MotdRequest:
+      title: MotdRequest
+      type: object
+      properties:
+        Message:
+          type: string
+        Enabled:
+          type: boolean
+        AllowDismiss:
+          type: boolean
+    FileRepositoryServerRequest:
+      title: FileRepositoryServerRequest
+      type: object
+      properties:
+        Name:
+          type: string
+        IsVisible:
+          type: boolean
+        UncPath:
+          type: string
+        FileAccessCredentials:
+          $ref: '#/components/schemas/Securable`1'
+        Keywords:
+          type: string
+        Notes:
+          type: string
+    Meta:
+      title: Meta
+      type: object
+      properties:
+        Unsupported:
+          type: array
+          items:
+            type: string
+        ReadOnly:
+          type: array
+          items:
+            type: string
+    CacheLocationServerRequest:
+      title: CacheLocationServerRequest
+      type: object
+      properties:
+        Name:
+          type: string
+        IsVisible:
+          type: boolean
+        UncPath:
+          type: string
+        FileAccessCredentials:
+          $ref: '#/components/schemas/Securable`1'
+        Keywords:
+          type: string
+        Notes:
+          type: string
+    AnalyticsServerRequest:
+      title: AnalyticsServerRequest
+      type: object
+      properties:
+        Name:
+          type: string
+        AnalyticsOperations:
+          type: array
+          items:
+            $ref: '#/components/schemas/ObjectIdentifier'
+        Url:
+          type: string
+        RestApiUsername:
+          type: string
+        RestApiPassword:
+          type: string
+        Status:
+          $ref: '#/components/schemas/ObjectIdentifier'
+        MaximumConnectors:
+          type: integer
+        MaximumTotalConnectors:
+          type: integer
+        Keywords:
+          type: string
+        Notes:
+          type: string
+    AnalyticsServerDefaultValuesResponse:
+      title: AnalyticsServerDefaultValuesResponse
+      type: object
+      properties:
+        Status:
+          $ref: '#/components/schemas/DisplayableObjectIdentifier'
+        MaximumConnectors:
+          type: integer
+        MaximumTotalConnectors:
+          type: integer
+    AgentRequest:
+      title: AgentRequest
+      type: object
+      properties:
+        AgentType:
+          $ref: '#/components/schemas/Securable`1'
+        AgentServer:
+          $ref: '#/components/schemas/Securable`1'
+        Enabled:
+          type: boolean
+        Interval:
+          type: number
+        LoggingLevel:
+          type: integer
+        Keywords:
+          type: string
+        Notes:
+          type: string
+    AgentInstanceLimitResult:
+      title: AgentInstanceLimitResult
+      type: object
+      properties:
+        Limit:
+          enum:
+            - MinPerEnvironment
+            - MaxPerEnvironment
+            - MinPerResourcePool
+            - MinPerServer
+            - MaxPerServer
+            - LastPerEnvironment
+          type: string
+        ResourcePool:
+          $ref: '#/components/schemas/Securable`1'
+        AgentServer:
+          $ref: '#/components/schemas/Securable`1'
+    AgentServerRequest:
+      title: AgentServerRequest
+      type: object
+      properties:
+        Status:
+          $ref: '#/components/schemas/ObjectIdentifier'
+        TemporaryDirectory:
+          type: string
+        Keywords:
+          type: string
+        Notes:
+          type: string
+  parameters:
+    serverID:
+      name: serverID
+      in: path
+      description: ''
+      required: true
+      schema:
+        type: integer
+    includeMetadata:
+      name: includeMetadata
+      in: query
+      description: ''
+      schema:
+        type: boolean
+        default: false
+    includeActions:
+      name: includeActions
+      in: query
+      description: ''
+      schema:
+        type: boolean
+        default: false
+    resourcePoolID:
+      name: resourcePoolID
+      in: path
+      description: ''
+      required: true
+      schema:
+        type: integer
+    resourceType:
+      name: resourceType
+      in: query
+      description: ''
+      required: true
+      schema:
+        type: string
+    start:
+      name: start
+      in: query
+      description: ''
+      required: true
+      schema:
+        type: integer
+    length:
+      name: length
+      in: query
+      description: ''
+      required: true
+      schema:
+        type: integer
+    resourceServerID:
+      name: resourceServerID
+      in: path
+      description: ''
+      required: true
+      schema:
+        type: integer
+    userID:
+      name: userID
+      in: path
+      description: ''
+      required: true
+      schema:
+        type: integer
+    workspaceID:
+      name: workspaceID
+      in: path
+      description: ''
+      required: true
+      schema:
+        type: integer
+    agentID:
+      name: agentID
+      in: path
+      description: ''
+      required: true
+      schema:
+        type: integer
+    count:
+      name: count
+      in: query
+      description: ''
+      required: true
+      schema:
+        type: integer
+    agentTypeID:
+      name: agentTypeID
+      in: path
+      description: ''
+      required: true
+      schema:
+        type: integer
+    agentTypeGuid:
+      name: agentTypeGuid
+      in: path
+      description: ''
+      required: true
+      schema:
+        type: string

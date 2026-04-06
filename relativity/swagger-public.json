@@ -1,0 +1,332 @@
+{
+  "openapi": "3.0.4",
+  "info": {
+    "title": "Permissions-access-control-API",
+    "description": "External API for managing role assignments in the Relativity Permissions service.\r\n\r\nThis API allows you to:\r\n- **List** current role assignments on a fileshare or instance (tenant) node.\r\n- **Assign** roles to groups on a fileshare or instance node.\r\n- **Revoke** roles from groups on a fileshare or instance node.\r\n\r\n**Authentication**: End user bearer tokens only.\r\n\r\n**Authorization**: The authenticated user must hold the `secure` permission on the target node and have view access to referenced groups.\r\n\r\n**Role keys** follow the `r1_{product}_{role_name}` convention (e.g. `r1_staging_viewer`).",
+    "version": "v1.0"
+  },
+  "servers": [
+    {
+      "url": "/Relativity.REST/api",
+      "description": "The URL prefix"
+    }
+  ],
+  "paths": {
+    "/access-control/public/v1/role-assignments/{nodeType}/{nodeKey}": {
+      "get": {
+        "tags": [
+          "Permissions Access Control"
+        ],
+        "summary": "List role assignments on a node.",
+        "parameters": [
+          {
+            "name": "nodeType",
+            "in": "path",
+            "description": "The type of the node. Only 'fileshare' is supported.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "nodeKey",
+            "in": "path",
+            "description": "The key of the node.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RoleAssignment"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RoleAssignment"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RoleAssignment"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Permissions Access Control"
+        ],
+        "summary": "Batch assign and/or revoke roles on a node.",
+        "parameters": [
+          {
+            "name": "nodeType",
+            "in": "path",
+            "description": "The type of the node. Only 'fileshare' is supported.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "nodeKey",
+            "in": "path",
+            "description": "The key of the node.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The role assignment/revocation request.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExternalBulkRoleAssignmentRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExternalBulkRoleAssignmentRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExternalBulkRoleAssignmentRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/access-control/public/v1/role-assignments/instance": {
+      "get": {
+        "tags": [
+          "Permissions Access Control"
+        ],
+        "summary": "List role assignments on the instance (tenant) node.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RoleAssignment"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RoleAssignment"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RoleAssignment"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Permissions Access Control"
+        ],
+        "summary": "Batch assign and/or revoke roles on the instance (tenant) node.",
+        "requestBody": {
+          "description": "The role assignment/revocation request.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExternalBulkRoleAssignmentRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExternalBulkRoleAssignmentRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExternalBulkRoleAssignmentRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ExternalBulkRoleAssignmentRequest": {
+        "type": "object",
+        "properties": {
+          "assign": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExternalRoleAssignmentPair"
+            },
+            "description": "Role assignments to apply. Role keys must use the r1_ prefix.",
+            "nullable": true
+          },
+          "revoke": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExternalRoleAssignmentPair"
+            },
+            "description": "Role assignments to revoke. Role keys must use the r1_ prefix.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Request to batch assign and/or revoke roles via the external API.\r\nRole keys must use the r1_ prefix (e.g. r1_staging_viewer)."
+      },
+      "ExternalRoleAssignmentPair": {
+        "required": [
+          "groupId",
+          "roleKey"
+        ],
+        "type": "object",
+        "properties": {
+          "roleKey": {
+            "minLength": 1,
+            "type": "string",
+            "description": "The role key with r1_ prefix (e.g. r1_staging_viewer)."
+          },
+          "groupId": {
+            "minLength": 1,
+            "type": "string",
+            "description": "The group identifier."
+          }
+        },
+        "additionalProperties": false,
+        "description": "A role and group pair used in external bulk operations."
+      },
+      "RoleAssignment": {
+        "required": [
+          "groupId",
+          "roleKey"
+        ],
+        "type": "object",
+        "properties": {
+          "roleKey": {
+            "minLength": 1,
+            "type": "string",
+            "description": "The role key with r1_ prefix (e.g. r1_staging_viewer)."
+          },
+          "groupId": {
+            "minLength": 1,
+            "type": "string",
+            "description": "The group identifier."
+          }
+        },
+        "additionalProperties": false,
+        "description": "A single role assignment entry in the external API."
+      }
+    },
+    "securitySchemes": {
+      "OAuth": {
+        "type": "http",
+        "description": "Standard Authorization header using the OAuth scheme. Paste in token without Bearer prefix.",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "OAuth": [ ]
+    }
+  ],
+  "tags": [
+    {
+      "name": "Permissions Access Control",
+      "description": "External public API for managing role assignments.\r\nRole keys must use the r1_ prefix (e.g. r1_staging_viewer).\r\nEnd user token is required"
+    }
+  ]
+}

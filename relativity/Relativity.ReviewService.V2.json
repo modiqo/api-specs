@@ -1,0 +1,1769 @@
+{
+  "openapi": "3.0.4",
+  "info": {
+    "title": "reviewservice (public)"
+  },
+  "paths": {
+    "/v{version}/workspaces/{workspaceID}/Annotations/save": {
+      "post": {
+        "tags": [
+          "AnnotationService"
+        ],
+        "summary": "Creates or updates redactions and highlights for a document in a workspace.",
+        "description": "This endpoint accepts a collection of annotations. New annotations are created and existing annotations are updated\r\nwhen their identifiers are provided.",
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "description": "Workspace's Artifact ID.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Request body containing one or more annotations to create or update.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Reviewservice.Api.V2.Models.SaveAnnotationsRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Reviewservice.Api.V2.Models.SaveAnnotationsRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Reviewservice.Api.V2.Models.SaveAnnotationsRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Relativity.DocumentViewer.Services.Interfaces.V2.DTOs.SaveAnnotationsReturnObject"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Relativity.DocumentViewer.Services.Interfaces.V2.DTOs.SaveAnnotationsReturnObject"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Relativity.DocumentViewer.Services.Interfaces.V2.DTOs.SaveAnnotationsReturnObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v{version}/workspaces/{workspaceID}/Annotations/{documentID}/{markUpSetID}": {
+      "get": {
+        "tags": [
+          "AnnotationService"
+        ],
+        "summary": "Retrieves annotations for a document and markup set in a workspace.",
+        "description": "Returns the current annotation payload associated with the document image and markup set.",
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "description": "Workspace's Artifact ID.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "documentID",
+            "in": "path",
+            "description": "Document's Artifact ID.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "markUpSetID",
+            "in": "path",
+            "description": "MarkupSet's Artifact ID.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/Relativity.DocumentViewer.Services.Interfaces.V2.DTOs.AnnotationList"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/Relativity.DocumentViewer.Services.Interfaces.V2.DTOs.AnnotationList"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/Relativity.DocumentViewer.Services.Interfaces.V2.DTOs.AnnotationList"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "AnnotationService"
+        ],
+        "summary": "Deletes annotations for a document and markup set in a workspace.",
+        "description": "Removes one or more annotations specified in the request body from the target document and markup set.",
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "description": "Workspace's Artifact ID.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "documentID",
+            "in": "path",
+            "description": "Document's Artifact ID.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "markUpSetID",
+            "in": "path",
+            "description": "MarkupSet's Artifact ID.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Request body containing annotation identifiers to remove.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Reviewservice.Api.V2.Models.DeleteAnnotationsRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Reviewservice.Api.V2.Models.DeleteAnnotationsRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Reviewservice.Api.V2.Models.DeleteAnnotationsRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/v{version}/DocumentViewerServiceManager/GetViewerContentKeyAsync": {
+      "post": {
+        "tags": [
+          "DocumentViewerService"
+        ],
+        "summary": "Submits a conversion request and returns a viewer content key for document viewer rendering.",
+        "description": "Supports document, production, image, and file-field conversion scenarios used by the Document Viewer REST API.\r\nThe returned value includes keys used to track conversion and retrieve converted content.",
+        "parameters": [
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Request payload containing workspace, document identifiers, conversion type, and conversion options.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Reviewservice.Api.V2.Models.ViewerContentKeyRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Reviewservice.Api.V2.Models.ViewerContentKeyRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Reviewservice.Api.V2.Models.ViewerContentKeyRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Relativity.DocumentViewer.Domain.DTOs.ViewerContentKey"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Relativity.DocumentViewer.Domain.DTOs.ViewerContentKey"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Relativity.DocumentViewer.Domain.DTOs.ViewerContentKey"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v{version}/workspaces/{workspaceID}/documents/{documentID}/highlight-sets": {
+      "get": {
+        "tags": [
+          "PersistentHighlightService"
+        ],
+        "summary": "Retrieves persistent highlight sets and terms applied to a specific document.",
+        "description": "Returns highlight set metadata and term definitions scoped to the specified document in the workspace.",
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "description": "Workspace's Artifact ID.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "documentID",
+            "in": "path",
+            "description": "Document ID.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Relativity.DocumentViewer.Services.V2.PersistentHighlightSetDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Relativity.DocumentViewer.Services.V2.PersistentHighlightSetDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Relativity.DocumentViewer.Services.V2.PersistentHighlightSetDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v{version}/workspaces/{workspaceID}/highlights/{persistentHighlightSetID}/state": {
+      "post": {
+        "tags": [
+          "PersistentHighlightService"
+        ],
+        "summary": "Changes the active state of a persistent highlight set or selected terms.",
+        "description": "Use this endpoint to activate or deactivate an entire set, or to change state for specific term identifiers.",
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "description": "Workspace's Artifact ID.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "persistentHighlightSetID",
+            "in": "path",
+            "description": "Persistent Highlight Set's ID.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Request body describing the state action and optional term identifiers.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Reviewservice.Api.V2.Models.SavePersistentHighlightSetStateRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Reviewservice.Api.V2.Models.SavePersistentHighlightSetStateRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Reviewservice.Api.V2.Models.SavePersistentHighlightSetStateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/v{version}/workspaces/{workspaceID}/highlight-sets": {
+      "get": {
+        "tags": [
+          "PersistentHighlightService"
+        ],
+        "summary": "Retrieves all persistent highlight sets and terms available in a workspace.",
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "description": "Workspace's Artifact ID.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Relativity.DocumentViewer.Services.V2.PersistentHighlightSetDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Relativity.DocumentViewer.Services.V2.PersistentHighlightSetDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Relativity.DocumentViewer.Services.V2.PersistentHighlightSetDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v{version}/workspaces/{workspaceID}/highlights/{persistentHighlightSetID}/add-terms": {
+      "post": {
+        "tags": [
+          "PersistentHighlightService"
+        ],
+        "summary": "Adds one or more new terms to an existing persistent highlight set.",
+        "description": "Each term can include foreground and background colors that define how it appears in the viewer.",
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "description": "Workspace's Artifact ID.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "persistentHighlightSetID",
+            "in": "path",
+            "description": "Persistent Highlight Set's ID.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Request body containing terms to append to the highlight set.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Reviewservice.Api.V2.Models.AddPersistentHighlightTermsRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Reviewservice.Api.V2.Models.AddPersistentHighlightTermsRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Reviewservice.Api.V2.Models.AddPersistentHighlightTermsRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v{version}/workspaces/{workspaceID}/short-messages/{documentID}/attachment-info": {
+      "post": {
+        "tags": [
+          "ShortMessageViewerService"
+        ],
+        "summary": "Retrieves attachment metadata for a short message document.",
+        "description": "Returns attachment records for the attachment identifiers supplied in the request body.",
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "description": "The Artifact ID of the workspace containing the documents for short message viewer.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "documentID",
+            "in": "path",
+            "description": "The Artifact ID of the short message document.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The attachment IDs to return information about.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Reviewservice.Api.V2.Models.GetAttachmentInfoRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Reviewservice.Api.V2.Models.GetAttachmentInfoRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Reviewservice.Api.V2.Models.GetAttachmentInfoRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Relativity.DocumentViewer.Services.V2.AttachmentInfo"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Relativity.DocumentViewer.Services.V2.AttachmentInfo"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Relativity.DocumentViewer.Services.V2.AttachmentInfo"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v{version}/workspaces/{workspaceID}/short-messages/participant-info": {
+      "post": {
+        "tags": [
+          "ShortMessageViewerService"
+        ],
+        "summary": "Retrieves entity information for one or more short message participants.",
+        "description": "Participant lookups use participant identity details from the request body and return mapped entity details.",
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "description": "The Artifact ID of the workspace containing the documents for short message viewer.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The ParticipantRequest object of the workspace containing the name, email address and id of a participant for short message viewer.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Reviewservice.Api.V2.Models.GetParticipantInfoRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Reviewservice.Api.V2.Models.GetParticipantInfoRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Reviewservice.Api.V2.Models.GetParticipantInfoRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Relativity.DocumentViewer.Services.V2.ParticipantResponseInfo"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Relativity.DocumentViewer.Services.V2.ParticipantResponseInfo"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Relativity.DocumentViewer.Services.V2.ParticipantResponseInfo"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v{version}/workspaces/{workspaceID}/short-messages/{documentID}/message-json": {
+      "get": {
+        "tags": [
+          "ShortMessageViewerService"
+        ],
+        "summary": "Retrieves the JSON representation of a short message conversation document.",
+        "description": "The JSON structure aligns with RSMF manifest-style payloads used by the short message viewer.",
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "description": "The Artifact ID of the workspace containing the documents for short message viewer.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "documentID",
+            "in": "path",
+            "description": "The Artifact ID of the document for short message viewer.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v{version}/workspaces/{workspaceID}/short-messages/{documentID}/slice": {
+      "post": {
+        "tags": [
+          "ShortMessageViewerService"
+        ],
+        "summary": "Requests creation of a new short message document from a subset of events.",
+        "description": "This operation queues slicing work and supports options such as attachment creation and participant preservation.",
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "description": "The Artifact ID of the workspace containing the document to be sliced.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "documentID",
+            "in": "path",
+            "description": "The Artifact ID of the document to be sliced.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "A SliceRequest object containing details about the request.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Reviewservice.Api.V2.Models.SliceRSMFRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Reviewservice.Api.V2.Models.SliceRSMFRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Reviewservice.Api.V2.Models.SliceRSMFRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/v{version}/workspaces/{workspaceID}/short-messages/{documentID}/validate": {
+      "get": {
+        "tags": [
+          "ShortMessageViewerService"
+        ],
+        "summary": "Validates whether the specified short message document contains a valid RSMF payload.",
+        "description": "Returns validation status and diagnostic details for document-level RSMF validation.",
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "description": "The Artifact ID of the workspace containing the documents for short message viewer.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "documentID",
+            "in": "path",
+            "description": "The Artifact ID of the short message document.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Relativity.DocumentViewer.Domain.DTOs.RSMFValidationResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Relativity.DocumentViewer.Domain.DTOs.RSMFValidationResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Relativity.DocumentViewer.Domain.DTOs.RSMFValidationResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Relativity.DocumentViewer.Domain.ConversionType": {
+        "enum": [
+          "None",
+          "Native",
+          "Image",
+          "Production",
+          "Transcript",
+          "HTMLImage",
+          "HTMLProduction",
+          "Text",
+          "ProducedNative",
+          "PDF"
+        ],
+        "type": "string"
+      },
+      "Relativity.DocumentViewer.Domain.DTOs.AddHighlightTermsToSetRequest": {
+        "type": "object",
+        "properties": {
+          "Term": {
+            "type": "string",
+            "nullable": true
+          },
+          "BackgroundColor": {
+            "type": "string",
+            "nullable": true
+          },
+          "ForegroundColor": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Relativity.DocumentViewer.Domain.DTOs.PersistentHighlightStateAction": {
+        "enum": [
+          "None",
+          "Enabled",
+          "Disabled",
+          "Expanded",
+          "Collapsed"
+        ],
+        "type": "string"
+      },
+      "Relativity.DocumentViewer.Domain.DTOs.PersistentHighlightTerm": {
+        "type": "object",
+        "properties": {
+          "Id": {
+            "type": "string",
+            "nullable": true
+          },
+          "Term": {
+            "type": "string",
+            "nullable": true
+          },
+          "Syntax": {
+            "type": "string",
+            "nullable": true
+          },
+          "BackgroundColor": {
+            "type": "string",
+            "nullable": true
+          },
+          "ForegroundColor": {
+            "type": "string",
+            "nullable": true
+          },
+          "PersistentHighlightTermId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "PersistentHighlightSetId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "Selected": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Relativity.DocumentViewer.Domain.DTOs.RSMFValidationDetails": {
+        "type": "object",
+        "properties": {
+          "LineNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "LinePosition": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Message": {
+            "type": "string",
+            "nullable": true
+          },
+          "Submessages": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "ErrorCode": {
+            "$ref": "#/components/schemas/Relativity.RSMFU.Validator.RSMFValidatorErrorCode"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Relativity.DocumentViewer.Domain.DTOs.RSMFValidationResponse": {
+        "type": "object",
+        "properties": {
+          "Status": {
+            "$ref": "#/components/schemas/Relativity.DocumentViewer.Domain.Enums.RSMFValidationStatusType"
+          },
+          "Errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Relativity.DocumentViewer.Domain.DTOs.RSMFValidationDetails"
+            },
+            "nullable": true
+          },
+          "Warnings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Relativity.DocumentViewer.Domain.DTOs.RSMFValidationDetails"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Relativity.DocumentViewer.Domain.DTOs.V2.GetViewerContentKeyRequest": {
+        "type": "object",
+        "properties": {
+          "WorkspaceId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "DocumentIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "nullable": true
+          },
+          "ConversionType": {
+            "$ref": "#/components/schemas/Relativity.DocumentViewer.Domain.ConversionType"
+          },
+          "Priority": {
+            "$ref": "#/components/schemas/Review.Shared.PriorityLevel"
+          },
+          "Options": {
+            "$ref": "#/components/schemas/Relativity.DocumentViewer.Domain.GetViewerContentKeyOptions"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Relativity.DocumentViewer.Domain.DTOs.ViewerContentKey": {
+        "type": "object",
+        "properties": {
+          "RequestKey": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "CacheEntryId": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "DocumentArtifactId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ConversionVersion": {
+            "type": "string",
+            "nullable": true
+          },
+          "Priority": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "WorkspaceArtifactId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ViewerType": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Priority2ViewerContentKeys": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Relativity.DocumentViewer.Domain.DTOs.ViewerContentKey"
+            },
+            "nullable": true
+          },
+          "MinimalFilesManifest": {
+            "type": "string",
+            "nullable": true
+          },
+          "ErrorId": {
+            "type": "integer",
+            "format": "int64",
+            "readOnly": true
+          },
+          "ErrorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "IsPartialConversion": {
+            "type": "boolean"
+          },
+          "VersionKey": {
+            "type": "string",
+            "nullable": true
+          },
+          "SemanticCacheKey": {
+            "type": "string",
+            "nullable": true
+          },
+          "LimitedOutput": {
+            "type": "boolean"
+          },
+          "PasswordRequested": {
+            "type": "boolean"
+          },
+          "DocumentPassword": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Relativity.DocumentViewer.Domain.Enums.RSMFValidationStatusType": {
+        "enum": [
+          "Passed",
+          "Failed",
+          "PassedWithWarnings"
+        ],
+        "type": "string"
+      },
+      "Relativity.DocumentViewer.Domain.GetViewerContentKeyOptions": {
+        "type": "object",
+        "properties": {
+          "ProductionId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "ForceConversion": {
+            "type": "boolean"
+          },
+          "FileId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "DocumentSetId": {
+            "type": "string",
+            "nullable": true
+          },
+          "ClientId": {
+            "type": "string",
+            "nullable": true
+          },
+          "CorrelationId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Relativity.DocumentViewer.Services.Interfaces.V2.DTOs.Annotation": {
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "X": {
+            "type": "number",
+            "format": "double"
+          },
+          "Y": {
+            "type": "number",
+            "format": "double"
+          },
+          "PageNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Height": {
+            "type": "number",
+            "format": "double"
+          },
+          "Width": {
+            "type": "number",
+            "format": "double"
+          },
+          "MarkupType": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "MarkupSubType": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "DrawCrossLines": {
+            "type": "boolean"
+          },
+          "FillA": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "FillR": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "FillG": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "FillB": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "BorderStyle": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "BorderSize": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "BorderA": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "BorderR": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "BorderG": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "BorderB": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "FontA": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "FontR": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "FontG": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "FontB": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "FontName": {
+            "type": "string",
+            "nullable": true
+          },
+          "FontStyle": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "ZOrder": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Text": {
+            "type": "string",
+            "nullable": true
+          },
+          "FontSize": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "ImageWidth": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ImageHeight": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Guid": {
+            "type": "string",
+            "nullable": true
+          },
+          "WorkspaceID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "PageHeight": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "PageWidth": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ValuesAreScaledToDB": {
+            "type": "boolean"
+          },
+          "DocumentArtifactID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "MarkupSetArtifactID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ModifiedBy": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "CreatedOn": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Relativity.DocumentViewer.Services.Interfaces.V2.DTOs.AnnotationList": {
+        "type": "object",
+        "properties": {
+          "Annotations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Relativity.DocumentViewer.Services.Interfaces.V2.DTOs.Annotation"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Relativity.DocumentViewer.Services.Interfaces.V2.DTOs.SaveAnnotationsReturnObject": {
+        "type": "object",
+        "properties": {
+          "Success": {
+            "type": "boolean"
+          },
+          "ErrorCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "CustomErrorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "AnnotationIDs": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Relativity.DocumentViewer.Services.V2.AttachmentInfo": {
+        "type": "object",
+        "properties": {
+          "AttachmentId": {
+            "type": "string",
+            "nullable": true
+          },
+          "DocumentArtifactId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "FileGuid": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Relativity.DocumentViewer.Services.V2.ParticipantRequestInfo": {
+        "type": "object",
+        "properties": {
+          "Id": {
+            "type": "string",
+            "nullable": true
+          },
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "Email": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Relativity.DocumentViewer.Services.V2.ParticipantResponseInfo": {
+        "type": "object",
+        "properties": {
+          "Id": {
+            "type": "string",
+            "nullable": true
+          },
+          "EntityName": {
+            "type": "string",
+            "nullable": true
+          },
+          "Aliases": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "Url": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Relativity.DocumentViewer.Services.V2.PersistentHighlightSetDTO": {
+        "type": "object",
+        "properties": {
+          "SetID": {
+            "type": "string",
+            "nullable": true
+          },
+          "SetName": {
+            "type": "string",
+            "nullable": true
+          },
+          "Expanded": {
+            "type": "boolean"
+          },
+          "Selected": {
+            "type": "boolean"
+          },
+          "PersistentHighlightSetID": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "PersistentHighlightTerms": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Relativity.DocumentViewer.Domain.DTOs.PersistentHighlightTerm"
+            },
+            "nullable": true
+          },
+          "Order": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "HasEditPermission": {
+            "type": "boolean"
+          },
+          "Syntax": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Relativity.DocumentViewer.Services.V2.SliceRequest": {
+        "type": "object",
+        "properties": {
+          "EventIndexes": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "nullable": true
+          },
+          "Options": {
+            "$ref": "#/components/schemas/Relativity.DocumentViewer.Services.V2.SliceRequestOptions"
+          },
+          "CorrelationId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Relativity.DocumentViewer.Services.V2.SliceRequestOptions": {
+        "type": "object",
+        "properties": {
+          "CreateAttachments": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "SourceLayoutID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "PreserveAllParticipants": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "EmailConfirmation": {
+            "type": "boolean",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Relativity.RSMFU.Validator.RSMFValidatorErrorCode": {
+        "enum": [
+          "RSMFValidatorError",
+          "RSMFValidity",
+          "RSMFHeadersMissing",
+          "RSMFHeaderVersion",
+          "RSMFAccessZip",
+          "ZipIntegrity",
+          "ZipMissingManifest",
+          "ManifestValidity",
+          "ManifestSchemaViolation",
+          "ManifestVersion",
+          "ManifestDuplicateId",
+          "JSONTrailingCommas",
+          "MissingTimeZoneOffset",
+          "RSMFMissingBody",
+          "ZipAttachmentMissing",
+          "ZipAvatarMissing",
+          "ManifestParticipantArrayEmpty",
+          "ManifestConversationArrayEmpty",
+          "ManifestEventArrayEmpty",
+          "ManifestOrphanedDirectConversation",
+          "ManifestParticipantCount",
+          "ManifestConversationCount",
+          "ManifestEventCount",
+          "ManifestUndefinedProperty",
+          "RSMFHeaderVersionMismatch",
+          "RSMFHeaderDateFormat",
+          "RSMFHeaderDateMismatch",
+          "RSMFHeaderEventCountFormat",
+          "RSMFHeaderEventCountMismatch",
+          "ZipUnreferencedFiles",
+          "ManifestParentIdInvalid",
+          "ManifestOrphanedEvent",
+          "ManifestUndefinedParticipantId",
+          "ManifestInvalidConversationParticipant",
+          "ManifestInvalidConversationCustodian",
+          "ManifestJoinLeaveInDirectConversation",
+          "ManifestInvalidEventEditTimestamp",
+          "ManifestInvalidEventEditParticipant",
+          "ManifestInvalidEventParticipant",
+          "ManifestInvalidEventReactionParticipants",
+          "ManifestInvalidEventReceiptParticipant",
+          "ManifestEmptyEventReceipt",
+          "RSMFHeaderAttachmentCountFormat",
+          "RSMFHeaderParticipantsMismatch",
+          "RSMFInvalidHeaderValue",
+          "RSMFInvalidToAddress",
+          "ManifestEventMissingTimeZone",
+          "ManifestEventEditMissingTimeZone",
+          "ManifestEventReadReceiptMissingTimeZone",
+          "ManifestUnknownObjectMissingTimeZone"
+        ],
+        "type": "string"
+      },
+      "Review.Shared.PriorityLevel": {
+        "enum": [
+          "None",
+          "OnTheFly",
+          "ConvertAhead",
+          "MassConvert"
+        ],
+        "type": "string"
+      },
+      "Reviewservice.Api.V2.Models.AddPersistentHighlightTermsRequest": {
+        "type": "object",
+        "properties": {
+          "workspaceId": {
+            "type": "integer",
+            "description": "Gets or sets workspaceId.",
+            "format": "int32"
+          },
+          "persistentHighlightSetId": {
+            "type": "integer",
+            "description": "Gets or sets persistentHighlightSetId.",
+            "format": "int32"
+          },
+          "terms": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Relativity.DocumentViewer.Domain.DTOs.AddHighlightTermsToSetRequest"
+            },
+            "description": "Gets or sets terms.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Reviewservice.Api.V2.Models.DeleteAnnotationsRequest": {
+        "type": "object",
+        "properties": {
+          "annotationIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Reviewservice.Api.V2.Models.GetAttachmentInfoRequest": {
+        "type": "object",
+        "properties": {
+          "attachmentIDs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Reviewservice.Api.V2.Models.GetParticipantInfoRequest": {
+        "type": "object",
+        "properties": {
+          "participantRequests": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Relativity.DocumentViewer.Services.V2.ParticipantRequestInfo"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Reviewservice.Api.V2.Models.SaveAnnotationsRequest": {
+        "type": "object",
+        "properties": {
+          "annotations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Relativity.DocumentViewer.Services.Interfaces.V2.DTOs.Annotation"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Reviewservice.Api.V2.Models.SavePersistentHighlightSetStateRequest": {
+        "type": "object",
+        "properties": {
+          "workspaceId": {
+            "type": "integer",
+            "description": "Gets or sets workspaceId.",
+            "format": "int32"
+          },
+          "persistentHighlightSetId": {
+            "type": "integer",
+            "description": "Gets or sets persistentHighlightSetId.",
+            "format": "int32"
+          },
+          "termIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "description": "Gets or sets termIds.",
+            "nullable": true
+          },
+          "action": {
+            "$ref": "#/components/schemas/Relativity.DocumentViewer.Domain.DTOs.PersistentHighlightStateAction"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Reviewservice.Api.V2.Models.SliceRSMFRequest": {
+        "type": "object",
+        "properties": {
+          "sliceRequest": {
+            "$ref": "#/components/schemas/Relativity.DocumentViewer.Services.V2.SliceRequest"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Reviewservice.Api.V2.Models.ViewerContentKeyRequest": {
+        "type": "object",
+        "properties": {
+          "request": {
+            "$ref": "#/components/schemas/Relativity.DocumentViewer.Domain.DTOs.V2.GetViewerContentKeyRequest"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "http",
+        "description": "Standard Authorization header using the Bearer scheme. Example: \"bearer {token}\"",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
+}

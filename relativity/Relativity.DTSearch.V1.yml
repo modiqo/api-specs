@@ -1,0 +1,1426 @@
+openapi: 3.0.1
+info:
+  title: Relativity.DTSearch.V1
+  description: Relativity.DTSearch
+  version: V1
+servers:
+  - url: /Relativity.REST/api
+    description: The URL prefix for all Kepler services
+paths:
+  '/relativity-dtsearch/v1/workload-discovery/{agentGuid}/workload':
+    get:
+      tags:
+        - DtSearchIndex Module v1
+      description: '[Private] IWorkloadDiscoveryManager - '
+      operationId: Relativity.DTSearch.V1.WorkloadDiscoveryManager.IWorkloadDiscoveryManager.GetWorkloadAsync
+      parameters:
+        - $ref: '#/components/parameters/agentGuid'
+        - $ref: '#/components/parameters/x-csrf-header'
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Workload'
+  '/relativity-dtsearch/v1/workspaces/{workspaceID}/dtsearch-indexes/{dtSearchArtifactID}/consistency-check-is-affected':
+    get:
+      tags:
+        - DtSearchIndex Module v1
+      description: '[Private] IConsistencyCheckManager - '
+      operationId: Relativity.DTSearch.V1.ConsistencyCheckManager.IConsistencyCheckManager.GetIsAffectedAsync
+      parameters:
+        - $ref: '#/components/parameters/workspaceID'
+        - $ref: '#/components/parameters/dtSearchArtifactID'
+        - $ref: '#/components/parameters/x-csrf-header'
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                type: boolean
+  /relativity-dtsearch/v1/GetArchiveLocationAsync:
+    get:
+      tags:
+        - DtSearchIndex Module v1
+      description: '[Testing] IArmTestService - '
+      operationId: Relativity.DTSearch.V1.ArmTestService.IArmTestService.GetArchiveLocationAsync
+      parameters:
+        - $ref: '#/components/parameters/x-csrf-header'
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                type: string
+  /relativity-dtsearch/v1/SetDtSearchIndexLocationToNullAsync:
+    post:
+      tags:
+        - DtSearchIndex Module v1
+      description: '[Testing] IArmTestService - '
+      operationId: Relativity.DTSearch.V1.ArmTestService.IArmTestService.SetDtSearchIndexLocationToNullAsync
+      parameters:
+        - $ref: '#/components/parameters/x-csrf-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetDtSearchIndexLocationToNullAsync_RequestBody'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                type: integer
+  /relativity-dtsearch/v1/SetDtSearchIndexLocationToEmptyStringAsync:
+    post:
+      tags:
+        - DtSearchIndex Module v1
+      description: '[Testing] IArmTestService - '
+      operationId: Relativity.DTSearch.V1.ArmTestService.IArmTestService.SetDtSearchIndexLocationToEmptyStringAsync
+      parameters:
+        - $ref: '#/components/parameters/x-csrf-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetDtSearchIndexLocationToEmptyStringAsync_RequestBody'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                type: integer
+  '/relativity-dtsearch/v1/workspaces/{workspaceID}/saved-searches':
+    get:
+      tags:
+        - DtSearchIndex Module v1
+      description: '[Public] IDtSearchIndexManager - '
+      operationId: Relativity.DTSearch.V1.DTSearchIndexManager.IDtSearchIndexManager.GetSearchableSetAsync
+      parameters:
+        - $ref: '#/components/parameters/workspaceID'
+        - $ref: '#/components/parameters/x-csrf-header'
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/NameIDPair'
+  '/relativity-dtsearch/v1/workspaces/{workspaceID}/{searchableSetID}/saved-search-contains-long-text-field':
+    get:
+      tags:
+        - DtSearchIndex Module v1
+      description: '[Public] IDtSearchIndexManager - '
+      operationId: Relativity.DTSearch.V1.DTSearchIndexManager.IDtSearchIndexManager.SearchableSetContainsLongTextField
+      parameters:
+        - $ref: '#/components/parameters/workspaceID'
+        - $ref: '#/components/parameters/searchableSetID'
+        - $ref: '#/components/parameters/x-csrf-header'
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                type: boolean
+  '/relativity-dtsearch/v1/workspaces/{workspaceID}/index-shares':
+    get:
+      tags:
+        - DtSearchIndex Module v1
+      description: '[Public] IDtSearchIndexManager - '
+      operationId: Relativity.DTSearch.V1.DTSearchIndexManager.IDtSearchIndexManager.GetIndexShareLocationAsync
+      parameters:
+        - $ref: '#/components/parameters/workspaceID'
+        - $ref: '#/components/parameters/x-csrf-header'
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/NameIDPair'
+  '/relativity-dtsearch/v1/workspaces/{workspaceID}/{resourcePoolID}/index-shares':
+    get:
+      tags:
+        - DtSearchIndex Module v1
+      description: '[Public] IDtSearchIndexManager - '
+      operationId: Relativity.DTSearch.V1.DTSearchIndexManager.IDtSearchIndexManager.GetIndexShareLocationAsync
+      parameters:
+        - $ref: '#/components/parameters/workspaceID'
+        - $ref: '#/components/parameters/resourcePoolID'
+        - $ref: '#/components/parameters/x-csrf-header'
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/NameIDPair'
+  '/relativity-dtsearch/v1/workspaces/{workspaceID}/dtsearch-indexes/all':
+    get:
+      tags:
+        - DtSearchIndex Module v1
+      description: '[Public] IDtSearchIndexManager - '
+      operationId: Relativity.DTSearch.V1.DTSearchIndexManager.IDtSearchIndexManager.GetAllIndexesInWorkspaceAsync
+      parameters:
+        - $ref: '#/components/parameters/workspaceID'
+        - $ref: '#/components/parameters/x-csrf-header'
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DtSearchIndexServiceResponse'
+    post:
+      tags:
+        - DtSearchIndex Module v1
+      description: '[Public] IDtSearchIndexManager - '
+      operationId: Relativity.DTSearch.V1.DTSearchIndexManager.IDtSearchIndexManager.GetAllIndexesInWorkspaceFilteredAsync
+      parameters:
+        - $ref: '#/components/parameters/workspaceID'
+        - $ref: '#/components/parameters/x-csrf-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetAllIndexesInWorkspaceFilteredAsync_RequestBody'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DtSearchIndexServiceResponse'
+  '/relativity-dtsearch/v1/workspaces/{workspaceID}/default-alphabet-file':
+    get:
+      tags:
+        - DtSearchIndex Module v1
+      description: '[Public] IDtSearchIndexManager - '
+      operationId: Relativity.DTSearch.V1.DTSearchIndexManager.IDtSearchIndexManager.GetDefaultAlphabetFileForWorkspace
+      parameters:
+        - $ref: '#/components/parameters/workspaceID'
+        - $ref: '#/components/parameters/x-csrf-header'
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                type: string
+  '/relativity-dtsearch/v1/workspaces/{workspaceID}/default-noise-words-file':
+    get:
+      tags:
+        - DtSearchIndex Module v1
+      description: '[Public] IDtSearchIndexManager - '
+      operationId: Relativity.DTSearch.V1.DTSearchIndexManager.IDtSearchIndexManager.GetDefaultNoiseWordsFileForWorkspace
+      parameters:
+        - $ref: '#/components/parameters/workspaceID'
+        - $ref: '#/components/parameters/x-csrf-header'
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                type: string
+  '/relativity-dtsearch/v1/workspaces/{workspaceID}/dtsearch-indexes/{dtSearchArtifactID}/index-option-details':
+    get:
+      tags:
+        - DtSearchIndex Module v1
+      description: '[Public] IDtSearchIndexManager - '
+      operationId: Relativity.DTSearch.V1.DTSearchIndexManager.IDtSearchIndexManager.GetIndexOptionDetailsAsync
+      parameters:
+        - $ref: '#/components/parameters/workspaceID'
+        - $ref: '#/components/parameters/dtSearchArtifactID'
+        - $ref: '#/components/parameters/x-csrf-header'
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DtSearchIndexOptionDetailsResponse'
+  '/relativity-dtsearch/v1/workspaces/{workspaceID}/dtsearch-indexes/{dtSearchArtifactID}/current-index-details-table':
+    get:
+      tags:
+        - DtSearchIndex Module v1
+      description: '[Public] IDtSearchIndexManager - '
+      operationId: Relativity.DTSearch.V1.DTSearchIndexManager.IDtSearchIndexManager.GetCurrentIndexDetailsAsync
+      parameters:
+        - $ref: '#/components/parameters/workspaceID'
+        - $ref: '#/components/parameters/dtSearchArtifactID'
+        - $ref: '#/components/parameters/x-csrf-header'
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DtSearchSubIndexTableResponse'
+    post:
+      tags:
+        - DtSearchIndex Module v1
+      description: '[Public] IDtSearchIndexManager - '
+      operationId: Relativity.DTSearch.V1.DTSearchIndexManager.IDtSearchIndexManager.CurrentIndexDetailsAsync
+      parameters:
+        - $ref: '#/components/parameters/workspaceID'
+        - $ref: '#/components/parameters/dtSearchArtifactID'
+        - $ref: '#/components/parameters/x-csrf-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CurrentIndexDetailsAsync_RequestBody'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DtSearchSubIndexTableResponse'
+  '/relativity-dtsearch/v1/workspaces/{workspaceID}/dtsearch-indexes/{dtSearchArtifactID}/sub-index-details':
+    get:
+      tags:
+        - DtSearchIndex Module v1
+      description: '[Public] IDtSearchIndexManager - '
+      operationId: Relativity.DTSearch.V1.DTSearchIndexManager.IDtSearchIndexManager.GetSubIndexDetailsAsync
+      parameters:
+        - $ref: '#/components/parameters/workspaceID'
+        - $ref: '#/components/parameters/dtSearchArtifactID'
+        - $ref: '#/components/parameters/x-csrf-header'
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DtSearchSubIndexResponse'
+  '/relativity-dtsearch/v1/workspaces/{workspaceID}/dtsearch-indexes/{dtSearchArtifactID}/index-job-progress':
+    get:
+      tags:
+        - DtSearchIndex Module v1
+      description: '[Public] IDtSearchIndexManager - '
+      operationId: Relativity.DTSearch.V1.DTSearchIndexManager.IDtSearchIndexManager.GetIndexJobProgressAsync
+      parameters:
+        - $ref: '#/components/parameters/workspaceID'
+        - $ref: '#/components/parameters/dtSearchArtifactID'
+        - $ref: '#/components/parameters/x-csrf-header'
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DtSearchIndexJobProgressResponse'
+  '/relativity-dtsearch/v1/workspaces/{workspaceID}/dtsearch-indexes/{dtSearchArtifactID}/index-status':
+    get:
+      tags:
+        - DtSearchIndex Module v1
+      description: '[Public] IDtSearchIndexManager - '
+      operationId: Relativity.DTSearch.V1.DTSearchIndexManager.IDtSearchIndexManager.GetIndexIDAndStatusAsync
+      parameters:
+        - $ref: '#/components/parameters/workspaceID'
+        - $ref: '#/components/parameters/dtSearchArtifactID'
+        - $ref: '#/components/parameters/x-csrf-header'
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DtSearchIndexStatus'
+  '/relativity-dtsearch/v1/workspaces/{workspaceID}/dtsearch-indexes/{dtSearchArtifactID}/index-statistics':
+    get:
+      tags:
+        - DtSearchIndex Module v1
+      description: '[Public] IDtSearchIndexManager - '
+      operationId: Relativity.DTSearch.V1.DTSearchIndexManager.IDtSearchIndexManager.GetIndexStatisticsAsync
+      parameters:
+        - $ref: '#/components/parameters/workspaceID'
+        - $ref: '#/components/parameters/dtSearchArtifactID'
+        - $ref: '#/components/parameters/x-csrf-header'
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DtSearchIndexStatisticsResponse'
+  '/relativity-dtsearch/v1/workspaces/{workspaceID}/dtsearch-indexes/{dtSearchArtifactID}/document-errors':
+    get:
+      tags:
+        - DtSearchIndex Module v1
+      description: '[Public] IDtSearchIndexManager - '
+      operationId: Relativity.DTSearch.V1.DTSearchIndexManager.IDtSearchIndexManager.GetDocumentErrorsAsync
+      parameters:
+        - $ref: '#/components/parameters/workspaceID'
+        - $ref: '#/components/parameters/dtSearchArtifactID'
+        - $ref: '#/components/parameters/x-csrf-header'
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DtSearchIndexDocumentErrorResponse'
+    post:
+      tags:
+        - DtSearchIndex Module v1
+      description: '[Public] IDtSearchIndexManager - '
+      operationId: Relativity.DTSearch.V1.DTSearchIndexManager.IDtSearchIndexManager.GetFilteredDocumentErrorsAsync
+      parameters:
+        - $ref: '#/components/parameters/workspaceID'
+        - $ref: '#/components/parameters/dtSearchArtifactID'
+        - $ref: '#/components/parameters/x-csrf-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetFilteredDocumentErrorsAsync_RequestBody'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DtSearchIndexDocumentErrorFilteredResponse'
+  '/relativity-dtsearch/v1/workspaces/{workspaceID}/resource-pool-worker-count':
+    get:
+      tags:
+        - DtSearchIndex Module v1
+      description: '[Public] IDtSearchIndexManager - '
+      operationId: Relativity.DTSearch.V1.DTSearchIndexManager.IDtSearchIndexManager.GetWorkspaceResourcePoolWorkerCount
+      parameters:
+        - $ref: '#/components/parameters/workspaceID'
+        - $ref: '#/components/parameters/x-csrf-header'
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DtSearchResourceWorkerCount'
+  '/relativity-dtsearch/v1/workspaces/{workspaceID}/dtsearch-indexes/{dtSearchArtifactID}/delete-sub-index':
+    post:
+      tags:
+        - DtSearchIndex Module v1
+      description: '[Public] IDtSearchIndexManager - '
+      operationId: Relativity.DTSearch.V1.DTSearchIndexManager.IDtSearchIndexManager.DeleteSubIndex
+      parameters:
+        - $ref: '#/components/parameters/workspaceID'
+        - $ref: '#/components/parameters/dtSearchArtifactID'
+        - $ref: '#/components/parameters/x-csrf-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteSubIndex_RequestBody'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+  '/relativity-dtsearch/v1/workspaces/{workspaceID}/dtsearch-indexes/{dtSearchArtifactID}/build-index':
+    post:
+      tags:
+        - DtSearchIndex Module v1
+      description: '[Public] IDtSearchIndexManager - '
+      operationId: Relativity.DTSearch.V1.DTSearchIndexManager.IDtSearchIndexManager.BuildIndexAsync
+      parameters:
+        - $ref: '#/components/parameters/workspaceID'
+        - $ref: '#/components/parameters/dtSearchArtifactID'
+        - $ref: '#/components/parameters/x-csrf-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BuildIndexAsync_RequestBody'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+  '/relativity-dtsearch/v1/workspaces/{workspaceID}/dtsearch-indexes/{dtSearchArtifactID}/full-build-index':
+    post:
+      tags:
+        - DtSearchIndex Module v1
+      description: '[Public] IDtSearchIndexManager - '
+      operationId: Relativity.DTSearch.V1.DTSearchIndexManager.IDtSearchIndexManager.FullBuildIndexAsync
+      parameters:
+        - $ref: '#/components/parameters/workspaceID'
+        - $ref: '#/components/parameters/dtSearchArtifactID'
+        - $ref: '#/components/parameters/x-csrf-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FullBuildIndexAsync_RequestBody'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+  '/relativity-dtsearch/v1/workspaces/{workspaceID}/dtsearch-indexes/{dtSearchArtifactID}/incremental-build-index':
+    post:
+      tags:
+        - DtSearchIndex Module v1
+      description: '[Public] IDtSearchIndexManager - '
+      operationId: Relativity.DTSearch.V1.DTSearchIndexManager.IDtSearchIndexManager.IncrementalBuildIndexAsync
+      parameters:
+        - $ref: '#/components/parameters/workspaceID'
+        - $ref: '#/components/parameters/dtSearchArtifactID'
+        - $ref: '#/components/parameters/x-csrf-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IncrementalBuildIndexAsync_RequestBody'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+  '/relativity-dtsearch/v1/workspaces/{workspaceID}/swap-index':
+    post:
+      tags:
+        - DtSearchIndex Module v1
+      description: '[Public] IDtSearchIndexManager - '
+      operationId: Relativity.DTSearch.V1.DTSearchIndexManager.IDtSearchIndexManager.SwapIndexAsync
+      parameters:
+        - $ref: '#/components/parameters/workspaceID'
+        - $ref: '#/components/parameters/x-csrf-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SwapIndexAsync_RequestBody'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+  '/relativity-dtsearch/v1/workspaces/{workspaceID}/dtsearch-indexes/{dtSearchArtifactID}/move-index':
+    post:
+      tags:
+        - DtSearchIndex Module v1
+      description: '[Public] IDtSearchIndexManager - '
+      operationId: Relativity.DTSearch.V1.DTSearchIndexManager.IDtSearchIndexManager.MoveIndexAsync
+      parameters:
+        - $ref: '#/components/parameters/workspaceID'
+        - $ref: '#/components/parameters/dtSearchArtifactID'
+        - $ref: '#/components/parameters/x-csrf-header'
+      responses:
+        '200':
+          description: Successful Operation
+  '/relativity-dtsearch/v1/workspaces/{workspaceID}/dtsearch-indexes/{dtSearchArtifactID}/compress-index':
+    post:
+      tags:
+        - DtSearchIndex Module v1
+      description: '[Public] IDtSearchIndexManager - '
+      operationId: Relativity.DTSearch.V1.DTSearchIndexManager.IDtSearchIndexManager.CompressIndexAsync
+      parameters:
+        - $ref: '#/components/parameters/workspaceID'
+        - $ref: '#/components/parameters/dtSearchArtifactID'
+        - $ref: '#/components/parameters/x-csrf-header'
+      responses:
+        '200':
+          description: Successful Operation
+  '/relativity-dtsearch/v1/workspaces/{workspaceID}/dtsearch-indexes/{dtSearchArtifactID}/threshold-compress-index':
+    post:
+      tags:
+        - DtSearchIndex Module v1
+      description: '[Public] IDtSearchIndexManager - '
+      operationId: Relativity.DTSearch.V1.DTSearchIndexManager.IDtSearchIndexManager.ThresholdCompressIndexAsync
+      parameters:
+        - $ref: '#/components/parameters/workspaceID'
+        - $ref: '#/components/parameters/dtSearchArtifactID'
+        - $ref: '#/components/parameters/x-csrf-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ThresholdCompressIndexAsync_RequestBody'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+  '/relativity-dtsearch/v1/workspaces/{workspaceID}/dtsearch-indexes/{dtSearchArtifactID}/activate-index':
+    post:
+      tags:
+        - DtSearchIndex Module v1
+      description: '[Public] IDtSearchIndexManager - '
+      operationId: Relativity.DTSearch.V1.DTSearchIndexManager.IDtSearchIndexManager.ActivateIndexAsync
+      parameters:
+        - $ref: '#/components/parameters/workspaceID'
+        - $ref: '#/components/parameters/dtSearchArtifactID'
+        - $ref: '#/components/parameters/x-csrf-header'
+      responses:
+        '200':
+          description: Successful Operation
+  '/relativity-dtsearch/v1/workspaces/{workspaceID}/dtsearch-indexes/{dtSearchArtifactID}/deactivate-index':
+    post:
+      tags:
+        - DtSearchIndex Module v1
+      description: '[Public] IDtSearchIndexManager - '
+      operationId: Relativity.DTSearch.V1.DTSearchIndexManager.IDtSearchIndexManager.DeactivateIndexAsync
+      parameters:
+        - $ref: '#/components/parameters/workspaceID'
+        - $ref: '#/components/parameters/dtSearchArtifactID'
+        - $ref: '#/components/parameters/x-csrf-header'
+      responses:
+        '200':
+          description: Successful Operation
+  '/relativity-dtsearch/v1/workspaces/{workspaceID}/dtsearch-indexes/{dtSearchArtifactID}/cancel-build':
+    post:
+      tags:
+        - DtSearchIndex Module v1
+      description: '[Public] IDtSearchIndexManager - '
+      operationId: Relativity.DTSearch.V1.DTSearchIndexManager.IDtSearchIndexManager.CancelBuildIndexAsync
+      parameters:
+        - $ref: '#/components/parameters/workspaceID'
+        - $ref: '#/components/parameters/dtSearchArtifactID'
+        - $ref: '#/components/parameters/x-csrf-header'
+      responses:
+        '200':
+          description: Successful Operation
+  '/relativity-dtsearch/v1/workspaces/{workspaceID}/dtsearch-indexes/{dtSearchArtifactID}/retry-errors':
+    post:
+      tags:
+        - DtSearchIndex Module v1
+      description: '[Public] IDtSearchIndexManager - '
+      operationId: Relativity.DTSearch.V1.DTSearchIndexManager.IDtSearchIndexManager.RetryErrorsAsync
+      parameters:
+        - $ref: '#/components/parameters/workspaceID'
+        - $ref: '#/components/parameters/dtSearchArtifactID'
+        - $ref: '#/components/parameters/x-csrf-header'
+      responses:
+        '200':
+          description: Successful Operation
+  '/relativity-dtsearch/v1/workspaces/{workspaceID}/dtsearch-indexes':
+    post:
+      tags:
+        - DtSearchIndex Module v1
+      description: '[Public] IDtSearchIndexManager - '
+      operationId: Relativity.DTSearch.V1.DTSearchIndexManager.IDtSearchIndexManager.CreateAsync
+      parameters:
+        - $ref: '#/components/parameters/workspaceID'
+        - $ref: '#/components/parameters/x-csrf-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAsync_RequestBody'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                type: integer
+  '/relativity-dtsearch/v1/workspaces/{workspaceID}/dtsearch-indexes/{dtSearchArtifactID}':
+    put:
+      tags:
+        - DtSearchIndex Module v1
+      description: '[Public] IDtSearchIndexManager - '
+      operationId: Relativity.DTSearch.V1.DTSearchIndexManager.IDtSearchIndexManager.UpdateAsync
+      parameters:
+        - $ref: '#/components/parameters/workspaceID'
+        - $ref: '#/components/parameters/dtSearchArtifactID'
+        - $ref: '#/components/parameters/x-csrf-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAsync_RequestBody'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+    get:
+      tags:
+        - DtSearchIndex Module v1
+      description: '[Public] IDtSearchIndexManager - '
+      operationId: Relativity.DTSearch.V1.DTSearchIndexManager.IDtSearchIndexManager.ReadAsync
+      parameters:
+        - $ref: '#/components/parameters/workspaceID'
+        - $ref: '#/components/parameters/dtSearchArtifactID'
+        - $ref: '#/components/parameters/x-csrf-header'
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DtSearchIndexResponse'
+  '/relativity-dtsearch/v1/workspaces/{workspaceID}/dtsearch-indexes/{dtSearchArtifactID}/{includeMetaData}/{includeActions}':
+    get:
+      tags:
+        - DtSearchIndex Module v1
+      description: '[Public] IDtSearchIndexManager - '
+      operationId: Relativity.DTSearch.V1.DTSearchIndexManager.IDtSearchIndexManager.ReadAsync
+      parameters:
+        - $ref: '#/components/parameters/workspaceID'
+        - $ref: '#/components/parameters/dtSearchArtifactID'
+        - $ref: '#/components/parameters/includeMetaData'
+        - $ref: '#/components/parameters/includeActions'
+        - $ref: '#/components/parameters/x-csrf-header'
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DtSearchIndexResponse'
+  '/relativity-dtsearch/v1/workspaces/{workspaceID}/dtsearch-indexes/{dtSearchArtifactID}/delete-index':
+    delete:
+      tags:
+        - DtSearchIndex Module v1
+      description: '[Public] IDtSearchIndexManager - '
+      operationId: Relativity.DTSearch.V1.DTSearchIndexManager.IDtSearchIndexManager.DeleteAsync
+      parameters:
+        - $ref: '#/components/parameters/workspaceID'
+        - $ref: '#/components/parameters/dtSearchArtifactID'
+        - $ref: '#/components/parameters/x-csrf-header'
+      responses:
+        '200':
+          description: Successful Operation
+  '/relativity-dtsearch/v1/workspaces/{workspaceID}/dtsearch-indexes/{dtSearchArtifactID}/copy-index':
+    post:
+      tags:
+        - DtSearchIndex Module v1
+      description: '[Public] IDtSearchIndexManager - '
+      operationId: Relativity.DTSearch.V1.DTSearchIndexManager.IDtSearchIndexManager.CopyAsync
+      parameters:
+        - $ref: '#/components/parameters/workspaceID'
+        - $ref: '#/components/parameters/dtSearchArtifactID'
+        - $ref: '#/components/parameters/x-csrf-header'
+      responses:
+        '200':
+          description: Successful Operation
+  '/relativity-dtsearch/v1/workspaces/{workspaceID}/health-check':
+    get:
+      tags:
+        - DtSearchIndex Module v1
+      description: '[Public] IDtSearchIndexManager - '
+      operationId: Relativity.DTSearch.V1.DTSearchIndexManager.IDtSearchIndexManager.GetHealthCheck
+      parameters:
+        - $ref: '#/components/parameters/workspaceID'
+        - $ref: '#/components/parameters/x-csrf-header'
+      responses:
+        '200':
+          description: Successful Operation
+  /relativity-dtsearch/v1/dtsearch-queue-admin/jobs:
+    get:
+      tags:
+        - DtSearchIndex Module v1
+      description: '[Internal] IDtSearchQueueAdminManager - '
+      operationId: Relativity.DTSearch.V1.DTSearchQueueAdminManager.IDtSearchQueueAdminManager.GetAllJobsAsync
+      parameters:
+        - $ref: '#/components/parameters/x-csrf-header'
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DtSearchQueueAdminServiceResponse'
+    post:
+      tags:
+        - DtSearchIndex Module v1
+      description: '[Internal] IDtSearchQueueAdminManager - '
+      operationId: Relativity.DTSearch.V1.DTSearchQueueAdminManager.IDtSearchQueueAdminManager.GetAllJobsFilteredAsync
+      parameters:
+        - $ref: '#/components/parameters/x-csrf-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetAllJobsFilteredAsync_RequestBody'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DtSearchQueueAdminServiceResponse'
+    put:
+      tags:
+        - DtSearchIndex Module v1
+      description: '[Internal] IDtSearchQueueAdminManager - '
+      operationId: Relativity.DTSearch.V1.DTSearchQueueAdminManager.IDtSearchQueueAdminManager.UpdateJobPriorityAsync
+      parameters:
+        - $ref: '#/components/parameters/x-csrf-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateJobPriorityAsync_RequestBody'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                type: integer
+components:
+  schemas:
+    Workload:
+      title: Workload
+      type: object
+      properties:
+        Size:
+          enum:
+            - None
+            - One
+            - S
+            - M
+            - L
+            - XL
+            - XXL
+          type: string
+    SetDtSearchIndexLocationToNullAsync_RequestBody:
+      title: SetDtSearchIndexLocationToNullAsync_RequestBody
+      type: object
+      properties:
+        workspaceArtifactID:
+          type: integer
+    SetDtSearchIndexLocationToEmptyStringAsync_RequestBody:
+      title: SetDtSearchIndexLocationToEmptyStringAsync_RequestBody
+      type: object
+      properties:
+        workspaceArtifactID:
+          type: integer
+    NameIDPair:
+      title: NameIDPair
+      type: object
+      properties:
+        Name:
+          type: string
+        ID:
+          type: integer
+    DtSearchIndexServiceResponse:
+      title: DtSearchIndexServiceResponse
+      type: object
+      properties:
+        DtSearchIndexRows:
+          type: array
+          items:
+            $ref: '#/components/schemas/DtSearchIndex'
+        Total:
+          type: integer
+    DtSearchIndex:
+      title: DtSearchIndex
+      type: object
+      properties:
+        RelativitySearchProviderID:
+          type: integer
+        IndexName:
+          type: string
+        Active:
+          type: boolean
+        LastModifiedOn:
+          type: string
+          format: date-time
+        SearchableSetName:
+          type: string
+    GetAllIndexesInWorkspaceFilteredAsync_RequestBody:
+      title: GetAllIndexesInWorkspaceFilteredAsync_RequestBody
+      type: object
+      properties:
+        filterRequest:
+          $ref: '#/components/schemas/DtSearchIndexFilterRequest'
+    DtSearchIndexFilterRequest:
+      title: DtSearchIndexFilterRequest
+      type: object
+      properties:
+        Start:
+          type: integer
+        Length:
+          type: integer
+        Sort:
+          $ref: '#/components/schemas/DtSearchIndexSort'
+        Filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/DtSearchIndexFilter'
+    DtSearchIndexSort:
+      title: DtSearchIndexSort
+      type: object
+      properties:
+        Field:
+          type: string
+        Order:
+          type: integer
+        Direction:
+          type: string
+    DtSearchIndexFilter:
+      title: DtSearchIndexFilter
+      type: object
+      properties:
+        Condition:
+          type: array
+          items:
+            $ref: '#/components/schemas/DtSearchIndexFilterCondition'
+        Field:
+          type: string
+        isAdvanced:
+          type: boolean
+    DtSearchIndexFilterCondition:
+      title: DtSearchIndexFilterCondition
+      type: object
+      properties:
+        DisplayValue:
+          type: array
+          items:
+            type: string
+        Operator:
+          type: string
+        Value:
+          type: array
+          items:
+            type: string
+    DtSearchIndexOptionDetailsResponse:
+      title: DtSearchIndexOptionDetailsResponse
+      type: object
+      properties:
+        AlphabetInSql:
+          type: boolean
+        AlphabetOnDisk:
+          type: boolean
+        AlphabetMatchesDefault:
+          type: boolean
+        AlphabetIsDirty:
+          type: boolean
+        NoiseWordsInSql:
+          type: boolean
+        NoiseWordsOnDisk:
+          type: boolean
+        NoiseWordsMatchDefault:
+          type: boolean
+        NoiseWordsAreDirty:
+          type: boolean
+        IndexIsCorrupted:
+          type: boolean
+    DtSearchSubIndexTableResponse:
+      title: DtSearchSubIndexTableResponse
+      type: object
+      properties:
+        TotalCount:
+          type: integer
+    CurrentIndexDetailsAsync_RequestBody:
+      title: CurrentIndexDetailsAsync_RequestBody
+      type: object
+      properties:
+        filterRequest:
+          $ref: '#/components/schemas/DtSearchIndexFilterRequest'
+    DtSearchSubIndexResponse:
+      title: DtSearchSubIndexResponse
+      type: object
+      properties:
+        DtSearchIndexId:
+          type: integer
+        DtSearchSubIndexId:
+          type: integer
+        BuildStatus:
+          type: string
+        WorkerAgent:
+          type: string
+        IsWorkerAgentEnabled:
+          type: string
+        RepositoryName:
+          type: string
+        IndexLocation:
+          type: string
+        SubIndexLocation:
+          type: string
+        IndexedDocumentCount:
+          type: integer
+        TotalDocumentCount:
+          type: integer
+        ErroredDocumentCount:
+          type: integer
+        FragmentationLevel:
+          type: integer
+        ErrorMessage:
+          type: string
+    DtSearchIndexJobProgressResponse:
+      title: DtSearchIndexJobProgressResponse
+      type: object
+      properties:
+        IndexName:
+          type: string
+        JobType:
+          type: string
+        JobStatus:
+          type: string
+        JobStage:
+          type: integer
+        IsStageInError:
+          type: boolean
+        TotalIndexed:
+          type: integer
+        TotalErrored:
+          type: integer
+        TotalSkipped:
+          type: integer
+        ProgressPercentage:
+          type: number
+        JobDurationString:
+          type: string
+        IndexBuildDurationString:
+          type: string
+        ErrorMessage:
+          type: string
+        CanActivate:
+          type: boolean
+        RetriesExist:
+          type: boolean
+        DocProgress:
+          type: array
+          items:
+            $ref: '#/components/schemas/DtSearchDocumentProgressResponse'
+        SubIndexEngineJobStates:
+          type: array
+          items:
+            $ref: '#/components/schemas/SubIndexEngineJobStateResponse'
+        QueuePosition:
+          type: integer
+    DtSearchDocumentProgressResponse:
+      title: DtSearchDocumentProgressResponse
+      type: object
+      properties:
+        IndexID:
+          type: integer
+        ArtifactID:
+          type: integer
+        SubIndexID:
+          type: integer
+        StartTimeUTC:
+          type: string
+          format: date-time
+        SizeInBytes:
+          type: integer
+    SubIndexEngineJobStateResponse:
+      title: SubIndexEngineJobStateResponse
+      type: object
+      properties:
+        IndexID:
+          type: integer
+        SubIndexID:
+          type: integer
+        JobID:
+          type: string
+        JobState:
+          $ref: '#/components/schemas/SubIndexJobStateDetailsResponse'
+        UpdatedDate:
+          $ref: '#/components/schemas/DateTimeOffset'
+    SubIndexJobStateDetailsResponse:
+      title: SubIndexJobStateDetailsResponse
+      type: object
+      properties:
+        IndexingStepName:
+          type: string
+        MergeProgressPercent:
+          type: integer
+    DateTimeOffset:
+      title: DateTimeOffset
+      type: object
+      properties:
+        Now:
+          $ref: '#/components/schemas/DateTimeOffset'
+        UtcNow:
+          $ref: '#/components/schemas/DateTimeOffset'
+        DateTime:
+          type: string
+          format: date-time
+        UtcDateTime:
+          type: string
+          format: date-time
+        LocalDateTime:
+          type: string
+          format: date-time
+        Date:
+          type: string
+          format: date-time
+        Day:
+          type: integer
+        DayOfWeek:
+          enum:
+            - Sunday
+            - Monday
+            - Tuesday
+            - Wednesday
+            - Thursday
+            - Friday
+            - Saturday
+          type: string
+        DayOfYear:
+          type: integer
+        Hour:
+          type: integer
+        Millisecond:
+          type: integer
+        Minute:
+          type: integer
+        Month:
+          type: integer
+        Offset:
+          $ref: '#/components/schemas/TimeSpan'
+        Second:
+          type: integer
+        Ticks:
+          type: integer
+        UtcTicks:
+          type: integer
+        TimeOfDay:
+          $ref: '#/components/schemas/TimeSpan'
+        Year:
+          type: integer
+    TimeSpan:
+      title: TimeSpan
+      type: object
+      properties:
+        Ticks:
+          type: integer
+        Days:
+          type: integer
+        Hours:
+          type: integer
+        Milliseconds:
+          type: integer
+        Minutes:
+          type: integer
+        Seconds:
+          type: integer
+        TotalDays:
+          type: number
+        TotalHours:
+          type: number
+        TotalMilliseconds:
+          type: number
+        TotalMinutes:
+          type: number
+        TotalSeconds:
+          type: number
+    DtSearchIndexStatus:
+      title: DtSearchIndexStatus
+      type: object
+      properties:
+        ID:
+          type: integer
+        Status:
+          type: string
+        DetailedStatus:
+          type: string
+    DtSearchIndexStatisticsResponse:
+      title: DtSearchIndexStatisticsResponse
+      type: object
+      properties:
+        Name:
+          type: string
+        DocumentCount:
+          type: integer
+        IndexSize:
+          type: integer
+        LastBuiltOn:
+          type: string
+        LastModifiedOn:
+          type: string
+        BuildTime:
+          type: string
+    DtSearchIndexDocumentErrorResponse:
+      title: DtSearchIndexDocumentErrorResponse
+      type: object
+      properties:
+        ArtifactID:
+          type: integer
+        DocumentFriendlyName:
+          type: string
+        ErrorMessage:
+          type: string
+    GetFilteredDocumentErrorsAsync_RequestBody:
+      title: GetFilteredDocumentErrorsAsync_RequestBody
+      type: object
+      properties:
+        filterRequest:
+          $ref: '#/components/schemas/DtSearchIndexFilterRequest'
+    DtSearchIndexDocumentErrorFilteredResponse:
+      title: DtSearchIndexDocumentErrorFilteredResponse
+      type: object
+    DtSearchResourceWorkerCount:
+      title: DtSearchResourceWorkerCount
+      type: object
+      properties:
+        DisabledWorkersInResourcePoolCount:
+          type: integer
+        DisabledWorkersInInstance:
+          type: integer
+        EnabledWorkersInResourcePoolCount:
+          type: integer
+        EnabledWorkersInInstance:
+          type: integer
+    DeleteSubIndex_RequestBody:
+      title: DeleteSubIndex_RequestBody
+      type: object
+      properties:
+        dtSearchSubIndexIDs:
+          type: array
+          items:
+            type: integer
+    BuildIndexAsync_RequestBody:
+      title: BuildIndexAsync_RequestBody
+      type: object
+      properties:
+        isActive:
+          type: boolean
+    FullBuildIndexAsync_RequestBody:
+      title: FullBuildIndexAsync_RequestBody
+      type: object
+      properties:
+        isActive:
+          type: boolean
+    IncrementalBuildIndexAsync_RequestBody:
+      title: IncrementalBuildIndexAsync_RequestBody
+      type: object
+      properties:
+        isActive:
+          type: boolean
+    SwapIndexAsync_RequestBody:
+      title: SwapIndexAsync_RequestBody
+      type: object
+      properties:
+        oldSearchProviderID:
+          type: integer
+        newSearchProviderID:
+          type: integer
+    ThresholdCompressIndexAsync_RequestBody:
+      title: ThresholdCompressIndexAsync_RequestBody
+      type: object
+      properties:
+        isActive:
+          type: boolean
+    CreateAsync_RequestBody:
+      title: CreateAsync_RequestBody
+      type: object
+      properties:
+        dtSearchIndexRequest:
+          $ref: '#/components/schemas/DtSearchIndexRequest'
+    DtSearchIndexRequest:
+      title: DtSearchIndexRequest
+      type: object
+      properties:
+        Name:
+          type: string
+        Order:
+          type: integer
+        SearchSearchID:
+          type: integer
+        RecognizeDates:
+          type: boolean
+        SkipNumericValues:
+          type: boolean
+        AccentSensitive:
+          type: boolean
+        IndexShareCodeArtifactID:
+          type: integer
+        EmailAddress:
+          type: string
+        NoiseWords:
+          type: string
+        AlphabetText:
+          type: string
+        DirtySettings:
+          type: string
+        SubIndexSize:
+          type: integer
+        FragmentationThreshold:
+          type: integer
+        Priority:
+          type: integer
+        SkipMaliciousFiles:
+          type: boolean
+        Notes:
+          type: string
+        UseDefaultSubIndexSize:
+          type: boolean
+        SubIndexSizeGB:
+          type: integer
+          nullable: true
+    UpdateAsync_RequestBody:
+      title: UpdateAsync_RequestBody
+      type: object
+      properties:
+        dtSearchIndexRequest:
+          $ref: '#/components/schemas/DtSearchIndexRequest'
+    DtSearchIndexResponse:
+      title: DtSearchIndexResponse
+      type: object
+    DtSearchQueueAdminServiceResponse:
+      title: DtSearchQueueAdminServiceResponse
+      type: object
+      properties:
+        DtSearchQueueAdminRows:
+          type: array
+          items:
+            $ref: '#/components/schemas/DtSearchQueueAdmin'
+        Total:
+          type: integer
+    DtSearchQueueAdmin:
+      title: DtSearchQueueAdmin
+      type: object
+      properties:
+        WorkspaceId:
+          type: integer
+        Status:
+          type: string
+        JobType:
+          type: string
+        Priority:
+          type: integer
+        SubmittedDate:
+          type: string
+          format: date-time
+        DtSearchIndexArtifactId:
+          type: integer
+        JobID:
+          type: string
+    GetAllJobsFilteredAsync_RequestBody:
+      title: GetAllJobsFilteredAsync_RequestBody
+      type: object
+      properties:
+        filterRequest:
+          $ref: '#/components/schemas/DtSearchQueueAdminFilterRequest'
+    DtSearchQueueAdminFilterRequest:
+      title: DtSearchQueueAdminFilterRequest
+      type: object
+      properties:
+        Filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/DtSearchQueueAdminFilter'
+        Sort:
+          $ref: '#/components/schemas/DtSearchQueueAdminFilterSort'
+        Start:
+          type: integer
+        Length:
+          type: integer
+    DtSearchQueueAdminFilter:
+      title: DtSearchQueueAdminFilter
+      type: object
+      properties:
+        Conditions:
+          type: array
+          items:
+            $ref: '#/components/schemas/DtSearchQueueAdminFilterCondition'
+        Field:
+          type: string
+        isAdvanced:
+          type: boolean
+    DtSearchQueueAdminFilterCondition:
+      title: DtSearchQueueAdminFilterCondition
+      type: object
+      properties:
+        DisplayValue:
+          type: array
+          items:
+            type: string
+        Operator:
+          type: string
+        Value:
+          type: array
+          items:
+            type: string
+    DtSearchQueueAdminFilterSort:
+      title: DtSearchQueueAdminFilterSort
+      type: object
+      properties:
+        Field:
+          type: string
+        Direction:
+          type: string
+    UpdateJobPriorityAsync_RequestBody:
+      title: UpdateJobPriorityAsync_RequestBody
+      type: object
+      properties:
+        updateRequest:
+          $ref: '#/components/schemas/DtSearchQueueAdminUpdateRequest'
+    DtSearchQueueAdminUpdateRequest:
+      title: DtSearchQueueAdminUpdateRequest
+      type: object
+  parameters:
+    agentGuid:
+      name: agentGuid
+      in: path
+      description: ''
+      required: true
+      schema:
+        type: string
+    x-csrf-header:
+      name: x-csrf-header
+      in: header
+      description: ''
+      required: true
+      schema:
+        type: string
+        default: '-'
+    workspaceID:
+      name: workspaceID
+      in: path
+      description: ''
+      required: true
+      schema:
+        type: integer
+    dtSearchArtifactID:
+      name: dtSearchArtifactID
+      in: path
+      description: ''
+      required: true
+      schema:
+        type: integer
+    searchableSetID:
+      name: searchableSetID
+      in: path
+      description: ''
+      required: true
+      schema:
+        type: integer
+    resourcePoolID:
+      name: resourcePoolID
+      in: path
+      description: ''
+      required: true
+      schema:
+        type: integer
+    includeMetaData:
+      name: includeMetaData
+      in: path
+      description: ''
+      required: true
+      schema:
+        type: boolean
+    includeActions:
+      name: includeActions
+      in: path
+      description: ''
+      required: true
+      schema:
+        type: boolean

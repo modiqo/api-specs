@@ -1,0 +1,5718 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Relativity.Environment.Services.Interfaces.Environment.V1",
+    "description": "Relativity.Environment.Services.Interfaces.Environment",
+    "version": "V1"
+  },
+  "servers": [
+    {
+      "url": "/Relativity.REST/api",
+      "description": "The URL prefix for all Kepler services"
+    }
+  ],
+  "paths": {
+    "/relativity-environment/v1/workspace": {
+      "post": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IWorkspaceManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.Workspace.IWorkspaceManager.CreateAsync",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkspaceRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}": {
+      "get": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IWorkspaceManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.Workspace.IWorkspaceManager.ReadAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IWorkspaceManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.Workspace.IWorkspaceManager.UpdateAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkspaceRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IWorkspaceManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.Workspace.IWorkspaceManager.DeleteAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/{includeMetadata}/{includeActions}": {
+      "get": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IWorkspaceManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.Workspace.IWorkspaceManager.ReadAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/includeMetadata"
+          },
+          {
+            "$ref": "#/components/parameters/includeActions"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/meta": {
+      "get": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IWorkspaceManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.Workspace.IWorkspaceManager.GetMetaAsync",
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Meta"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/default-download-handler-url": {
+      "get": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IWorkspaceManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.Workspace.IWorkspaceManager.GetDefaultDownloadHandlerURLAsync",
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/query-by-group/{groupID}": {
+      "post": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IWorkspaceManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.Workspace.IWorkspaceManager.QueryWorkspaceByGroupAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/start"
+          },
+          {
+            "$ref": "#/components/parameters/length"
+          },
+          {
+            "$ref": "#/components/parameters/groupID"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QueryResultSlim"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/eligible-resource-pools": {
+      "get": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IWorkspaceManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.Workspace.IWorkspaceManager.GetEligibleResourcePoolsAsync",
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DisplayableObjectIdentifier"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/eligible-resource-pools/{resourcePoolID}/eligible-file-repositories": {
+      "get": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IWorkspaceManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.Workspace.IWorkspaceManager.GetEligibleFileRepositoriesAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/resourcePoolID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DisplayableObjectIdentifier"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/eligible-resource-pools/{resourcePoolID}/eligible-cache-locations": {
+      "get": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IWorkspaceManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.Workspace.IWorkspaceManager.GetEligibleCacheLocationsAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/resourcePoolID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DisplayableObjectIdentifier"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/eligible-resource-pools/{resourcePoolID}/eligible-sql-servers": {
+      "get": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IWorkspaceManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.Workspace.IWorkspaceManager.GetEligibleSqlServersAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/resourcePoolID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DisplayableObjectIdentifier"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/eligible-resource-pools/{resourcePoolID}/eligible-azure-credentials": {
+      "get": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IWorkspaceManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.Workspace.IWorkspaceManager.GetEligibleAzureCredentialsAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/resourcePoolID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DisplayableObjectIdentifier"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/eligible-resource-pools/{resourcePoolID}/eligible-azure-file-system-credentials": {
+      "get": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IWorkspaceManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.Workspace.IWorkspaceManager.GetEligibleAzureFileSystemCredentialsAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/resourcePoolID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DisplayableObjectIdentifier"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/query-eligible-clients": {
+      "post": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IWorkspaceManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.Workspace.IWorkspaceManager.QueryEligibleClientsAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/start"
+          },
+          {
+            "$ref": "#/components/parameters/length"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QueryResultSlim"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/query-eligible-groups": {
+      "post": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IWorkspaceManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.Workspace.IWorkspaceManager.QueryEligibleGroupsAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/start"
+          },
+          {
+            "$ref": "#/components/parameters/length"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QueryResultSlim"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/query-eligible-matters": {
+      "post": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IWorkspaceManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.Workspace.IWorkspaceManager.QueryEligibleMattersAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/start"
+          },
+          {
+            "$ref": "#/components/parameters/length"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QueryResultSlim"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/query-eligible-saved-searches": {
+      "post": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IWorkspaceManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.Workspace.IWorkspaceManager.QueryEligibleSavedSearchesAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/start"
+          },
+          {
+            "$ref": "#/components/parameters/length"
+          },
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QueryResultSlim"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/query-eligible-templates": {
+      "post": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IWorkspaceManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.Workspace.IWorkspaceManager.QueryEligibleTemplatesAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/start"
+          },
+          {
+            "$ref": "#/components/parameters/length"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QueryResultSlim"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/eligible-sql-full-text-languages": {
+      "get": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IWorkspaceManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.Workspace.IWorkspaceManager.GetEligibleSqlFullTextLanguagesAsync",
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SqlFullTextLanguageOptions"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/eligible-statuses": {
+      "get": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IWorkspaceManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.Workspace.IWorkspaceManager.GetEligibleStatusesAsync",
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DisplayableObjectIdentifier"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/retry-failed-create-event-handlers": {
+      "post": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IWorkspaceManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.Workspace.IWorkspaceManager.RetryFailedCreateEventHandlersAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/summary": {
+      "get": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IWorkspaceManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.Workspace.IWorkspaceManager.GetWorkspaceSummaryAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkspaceSummary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/move-to-cold-storage": {
+      "post": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IWorkspaceManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.Workspace.IWorkspaceManager.MoveToColdStorageAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspaces/-1/resource-files": {
+      "post": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IResourceFileManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.ResourceFile.IResourceFileManager.CreateAsync",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResourceFileRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceFileResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IResourceFileManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.ResourceFile.IResourceFileManager.UpsertAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/fileName"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ObjectIdentifier"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceFileResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspaces/-1/resource-files/{resourceFileID}": {
+      "get": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IResourceFileManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.ResourceFile.IResourceFileManager.ReadAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/resourceFileID"
+          },
+          {
+            "$ref": "#/components/parameters/includeMetadata"
+          },
+          {
+            "$ref": "#/components/parameters/includeActions"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceFileResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IResourceFileManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.ResourceFile.IResourceFileManager.UpdateAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/resourceFileID"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResourceFileRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceFileResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IResourceFileManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.ResourceFile.IResourceFileManager.DeleteAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/resourceFileID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspaces/-1/resource-files/{resourceFileID}/contents/{contentsKey}": {
+      "put": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IResourceFileManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.ResourceFile.IResourceFileManager.UpdateAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/resourceFileID"
+          },
+          {
+            "$ref": "#/components/parameters/contentsKey"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResourceFileRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceFileResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspaces/-1/resource-files/{resourceFileID}/contents": {
+      "get": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IResourceFileManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.ResourceFile.IResourceFileManager.DownloadContentsAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/resourceFileID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IKeplerStream"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspaces/-1/resource-files/contents": {
+      "post": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IResourceFileManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.ResourceFile.IResourceFileManager.UploadContentsAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/fileName"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IKeplerStream"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContentsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspaces/-1/resource-files/resources/{workspaceId}": {
+      "get": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IResourceFileManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.ResourceFile.IResourceFileManager.GetAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ResourceFileResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspaces/-1/resource-files/eligible-applications": {
+      "get": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IResourceFileManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.ResourceFile.IResourceFileManager.GetEligibleApplicationsAsync",
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SecurableList`1"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspaces/-1/matters": {
+      "post": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IMatterManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.Matter.IMatterManager.CreateAsync",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MatterRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspaces/-1/matters/{matterID}": {
+      "get": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IMatterManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.Matter.IMatterManager.ReadAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/matterID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IMatterManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.Matter.IMatterManager.UpdateAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/matterID"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MatterRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IMatterManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.Matter.IMatterManager.DeleteAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/matterID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspaces/-1/matters/{matterID}/{includeMetadata}/{includeActions}": {
+      "get": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IMatterManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.Matter.IMatterManager.ReadAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/matterID"
+          },
+          {
+            "$ref": "#/components/parameters/includeMetadata"
+          },
+          {
+            "$ref": "#/components/parameters/includeActions"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspaces/-1/eligible-clients": {
+      "get": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IMatterManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.Matter.IMatterManager.GetEligibleClientsAsync",
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DisplayableObjectIdentifier"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspaces/-1/matters/eligible-statuses": {
+      "get": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IMatterManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.Matter.IMatterManager.GetEligibleStatusesAsync",
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DisplayableObjectIdentifier"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications": {
+      "post": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] ILibraryApplicationManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.LibraryApplication.ILibraryApplicationManager.CreateAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IKeplerStream"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateLibraryApplicationResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] ILibraryApplicationManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.LibraryApplication.ILibraryApplicationManager.UpdateAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IKeplerStream"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateLibraryApplicationResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] ILibraryApplicationManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.LibraryApplication.ILibraryApplicationManager.ReadAllAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "none"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/{includeActions}": {
+      "post": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] ILibraryApplicationManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.LibraryApplication.ILibraryApplicationManager.CreateAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/includeActions"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IKeplerStream"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateLibraryApplicationResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] ILibraryApplicationManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.LibraryApplication.ILibraryApplicationManager.UpdateAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/includeActions"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IKeplerStream"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateLibraryApplicationResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/{packageGuid}": {
+      "post": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] ILibraryApplicationManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.LibraryApplication.ILibraryApplicationManager.CreateAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/packageGuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateLibraryApplicationResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] ILibraryApplicationManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.LibraryApplication.ILibraryApplicationManager.UpdateAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/packageGuid"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateLibraryApplicationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateLibraryApplicationResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/{packageGuid}/{includeActions}": {
+      "post": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] ILibraryApplicationManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.LibraryApplication.ILibraryApplicationManager.CreateAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/packageGuid"
+          },
+          {
+            "$ref": "#/components/parameters/includeActions"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateLibraryApplicationResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] ILibraryApplicationManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.LibraryApplication.ILibraryApplicationManager.UpdateAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/packageGuid"
+          },
+          {
+            "$ref": "#/components/parameters/includeActions"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateLibraryApplicationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateLibraryApplicationResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/{applicationID}": {
+      "get": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] ILibraryApplicationManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.LibraryApplication.ILibraryApplicationManager.ReadAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] ILibraryApplicationManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.LibraryApplication.ILibraryApplicationManager.DeleteAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/{applicationID}/{includeMetadata}/{includeActions}": {
+      "get": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] ILibraryApplicationManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.LibraryApplication.ILibraryApplicationManager.ReadAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationID"
+          },
+          {
+            "$ref": "#/components/parameters/includeMetadata"
+          },
+          {
+            "$ref": "#/components/parameters/includeActions"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/{applicationGUID}": {
+      "get": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] ILibraryApplicationManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.LibraryApplication.ILibraryApplicationManager.ReadAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationGUID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/{applicationGUID}/{includeMetadata}/{includeActions}": {
+      "get": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] ILibraryApplicationManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.LibraryApplication.ILibraryApplicationManager.ReadAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationGUID"
+          },
+          {
+            "$ref": "#/components/parameters/includeMetadata"
+          },
+          {
+            "$ref": "#/components/parameters/includeActions"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/{includeMetadata}/{includeActions}": {
+      "get": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] ILibraryApplicationManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.LibraryApplication.ILibraryApplicationManager.ReadAllAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/includeMetadata"
+          },
+          {
+            "$ref": "#/components/parameters/includeActions"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "none"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/{applicationID}/contents": {
+      "get": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] ILibraryApplicationManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.LibraryApplication.ILibraryApplicationManager.ReadApplicationContentsAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IKeplerStream"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/{applicationGUID}/contents": {
+      "get": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] ILibraryApplicationManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.LibraryApplication.ILibraryApplicationManager.ReadApplicationContentsAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationGUID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IKeplerStream"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/{applicationGuid}": {
+      "delete": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] ILibraryApplicationManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.LibraryApplication.ILibraryApplicationManager.DeleteAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationGuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/{applicationID}/libraryinstall": {
+      "put": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] ILibraryApplicationManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.LibraryApplication.ILibraryApplicationManager.RetryLibraryInstallAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetryLibraryInstallResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] ILibraryApplicationManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.LibraryApplication.ILibraryApplicationManager.GetLibraryInstallStatusAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetInstallStatusResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] ILibraryApplicationManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.LibraryApplication.ILibraryApplicationManager.CancelLibraryInstallAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CancelLibraryInstallResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/{applicationGUID}/libraryinstall": {
+      "put": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] ILibraryApplicationManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.LibraryApplication.ILibraryApplicationManager.RetryLibraryInstallAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationGUID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetryLibraryInstallResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/{applicationGuid}/libraryinstall": {
+      "get": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] ILibraryApplicationManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.LibraryApplication.ILibraryApplicationManager.GetLibraryInstallStatusAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationGuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetInstallStatusResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] ILibraryApplicationManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.LibraryApplication.ILibraryApplicationManager.CancelLibraryInstallAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationGuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CancelLibraryInstallResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/{applicationID}/libraryinstall/{includeActions}": {
+      "get": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] ILibraryApplicationManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.LibraryApplication.ILibraryApplicationManager.GetLibraryInstallStatusAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationID"
+          },
+          {
+            "$ref": "#/components/parameters/includeActions"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetInstallStatusResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/{applicationGuid}/libraryinstall/{includeActions}": {
+      "get": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] ILibraryApplicationManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.LibraryApplication.ILibraryApplicationManager.GetLibraryInstallStatusAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationGuid"
+          },
+          {
+            "$ref": "#/components/parameters/includeActions"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetInstallStatusResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/package": {
+      "post": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] ILibraryApplicationManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.LibraryApplication.ILibraryApplicationManager.UploadPackageAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IKeplerStream"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PackageDetailsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/package/{packageGuid}": {
+      "delete": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] ILibraryApplicationManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.LibraryApplication.ILibraryApplicationManager.DeletePackageAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/packageGuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/package/{packageGuid}/contents": {
+      "get": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] ILibraryApplicationManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.LibraryApplication.ILibraryApplicationManager.DownloadPackageAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/packageGuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IKeplerStream"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/{applicationGUID}/hostingStatus": {
+      "get": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] ILibraryApplicationManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.LibraryApplication.ILibraryApplicationManager.GetApplicationHostingStatusAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationGUID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationHostingStatusResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/{applicationID}/hostingStatus": {
+      "get": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] ILibraryApplicationManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.LibraryApplication.ILibraryApplicationManager.GetApplicationHostingStatusAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationHostingStatusResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspaces/-1/instance-settings": {
+      "post": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IInstanceSettingManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.InstanceSetting.IInstanceSettingManager.CreateAsync",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstanceSettingRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IInstanceSettingManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.InstanceSetting.IInstanceSettingManager.UpdateAsync",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstanceSettingRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspaces/-1/instance-settings/{instanceSettingID}": {
+      "get": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IInstanceSettingManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.InstanceSetting.IInstanceSettingManager.ReadAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/instanceSettingID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IInstanceSettingManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.InstanceSetting.IInstanceSettingManager.DeleteAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/instanceSettingID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation"
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspaces/-1/errors": {
+      "post": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IErrorManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.Error.IErrorManager.CreateAsync",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateErrorRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/{applicationID}/install": {
+      "post": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IApplicationInstallManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.ApplicationInstall.IApplicationInstallManager.InstallApplicationAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationID"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstallApplicationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstallApplicationResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IApplicationInstallManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.ApplicationInstall.IApplicationInstallManager.GetStatusAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationID"
+          },
+          {
+            "$ref": "#/components/parameters/includeActions"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetInstallStatusResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IApplicationInstallManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.ApplicationInstall.IApplicationInstallManager.CancelAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationInstallIDs"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CancelApplicationInstallResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/{applicationGUID}/install": {
+      "post": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IApplicationInstallManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.ApplicationInstall.IApplicationInstallManager.InstallApplicationAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationGUID"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstallApplicationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstallApplicationResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/{applicationID}/install/{includeActions}": {
+      "post": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IApplicationInstallManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.ApplicationInstall.IApplicationInstallManager.InstallApplicationAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationID"
+          },
+          {
+            "$ref": "#/components/parameters/includeActions"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstallApplicationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstallApplicationResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/{applicationGUID}/install/{includeActions}": {
+      "post": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IApplicationInstallManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.ApplicationInstall.IApplicationInstallManager.InstallApplicationAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationGUID"
+          },
+          {
+            "$ref": "#/components/parameters/includeActions"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstallApplicationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstallApplicationResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/{applicationID}/install/all": {
+      "post": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IApplicationInstallManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.ApplicationInstall.IApplicationInstallManager.InstallApplicationAllAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationID"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstallApplicationAllRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstallApplicationResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IApplicationInstallManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.ApplicationInstall.IApplicationInstallManager.CancelAllAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CancelApplicationInstallResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/{applicationGUID}/install/all": {
+      "post": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IApplicationInstallManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.ApplicationInstall.IApplicationInstallManager.InstallApplicationAllAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationGUID"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstallApplicationAllRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstallApplicationResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/{applicationID}/install/all/{includeActions}": {
+      "post": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IApplicationInstallManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.ApplicationInstall.IApplicationInstallManager.InstallApplicationAllAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationID"
+          },
+          {
+            "$ref": "#/components/parameters/includeActions"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstallApplicationAllRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstallApplicationResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/{applicationGUID}/install/all/{includeActions}": {
+      "post": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IApplicationInstallManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.ApplicationInstall.IApplicationInstallManager.InstallApplicationAllAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationGUID"
+          },
+          {
+            "$ref": "#/components/parameters/includeActions"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstallApplicationAllRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstallApplicationResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/{applicationID}/install/{applicationInstallID}": {
+      "get": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IApplicationInstallManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.ApplicationInstall.IApplicationInstallManager.GetStatusAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationInstallID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetInstallStatusResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IApplicationInstallManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.ApplicationInstall.IApplicationInstallManager.CancelAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationInstallID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CancelApplicationInstallResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/{applicationGuid}/install/{applicationInstallID}": {
+      "get": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IApplicationInstallManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.ApplicationInstall.IApplicationInstallManager.GetStatusAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationGuid"
+          },
+          {
+            "$ref": "#/components/parameters/applicationInstallID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetInstallStatusResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IApplicationInstallManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.ApplicationInstall.IApplicationInstallManager.CancelAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationGuid"
+          },
+          {
+            "$ref": "#/components/parameters/applicationInstallID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CancelApplicationInstallResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/{applicationID}/install/{applicationInstallID}/{includeActions}": {
+      "get": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IApplicationInstallManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.ApplicationInstall.IApplicationInstallManager.GetStatusAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationInstallID"
+          },
+          {
+            "$ref": "#/components/parameters/includeActions"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetInstallStatusResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/{applicationGuid}/install/{applicationInstallID}/{includeActions}": {
+      "get": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IApplicationInstallManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.ApplicationInstall.IApplicationInstallManager.GetStatusAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationGuid"
+          },
+          {
+            "$ref": "#/components/parameters/applicationInstallID"
+          },
+          {
+            "$ref": "#/components/parameters/includeActions"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetInstallStatusResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/{applicationGuid}/install": {
+      "get": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IApplicationInstallManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.ApplicationInstall.IApplicationInstallManager.GetStatusAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationGuid"
+          },
+          {
+            "$ref": "#/components/parameters/includeActions"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetInstallStatusResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IApplicationInstallManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.ApplicationInstall.IApplicationInstallManager.CancelAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationGuid"
+          },
+          {
+            "$ref": "#/components/parameters/applicationInstallIDs"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CancelApplicationInstallResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/{applicationID}/install/{applicationInstallID}/details/{start}/{length}": {
+      "get": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IApplicationInstallManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.ApplicationInstall.IApplicationInstallManager.GetApplicationInstallDetailsAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationInstallID"
+          },
+          {
+            "$ref": "#/components/parameters/start"
+          },
+          {
+            "$ref": "#/components/parameters/length"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetApplicationInstallDetailsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/{applicationGuid}/install/{applicationInstallID}/details/{start}/{length}": {
+      "get": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IApplicationInstallManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.ApplicationInstall.IApplicationInstallManager.GetApplicationInstallDetailsAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationGuid"
+          },
+          {
+            "$ref": "#/components/parameters/applicationInstallID"
+          },
+          {
+            "$ref": "#/components/parameters/start"
+          },
+          {
+            "$ref": "#/components/parameters/length"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetApplicationInstallDetailsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/{applicationID}/install/{applicationInstallID}/details/{start}/{length}/{includeActions}": {
+      "get": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IApplicationInstallManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.ApplicationInstall.IApplicationInstallManager.GetApplicationInstallDetailsAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationInstallID"
+          },
+          {
+            "$ref": "#/components/parameters/start"
+          },
+          {
+            "$ref": "#/components/parameters/length"
+          },
+          {
+            "$ref": "#/components/parameters/includeActions"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetApplicationInstallDetailsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/{applicationGuid}/install/{applicationInstallID}/details/{start}/{length}/{includeActions}": {
+      "get": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IApplicationInstallManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.ApplicationInstall.IApplicationInstallManager.GetApplicationInstallDetailsAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationGuid"
+          },
+          {
+            "$ref": "#/components/parameters/applicationInstallID"
+          },
+          {
+            "$ref": "#/components/parameters/start"
+          },
+          {
+            "$ref": "#/components/parameters/length"
+          },
+          {
+            "$ref": "#/components/parameters/includeActions"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetApplicationInstallDetailsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/{applicationID}/install/{applicationInstallID}/details/report": {
+      "get": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IApplicationInstallManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.ApplicationInstall.IApplicationInstallManager.GetApplicationInstallDetailsReportAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationInstallID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IKeplerStream"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/{applicationGuid}/install/{applicationInstallID}/details/report": {
+      "get": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IApplicationInstallManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.ApplicationInstall.IApplicationInstallManager.GetApplicationInstallDetailsReportAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationGuid"
+          },
+          {
+            "$ref": "#/components/parameters/applicationInstallID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IKeplerStream"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/{applicationID}/install/outdated-workspaces-count": {
+      "get": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IApplicationInstallManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.ApplicationInstall.IApplicationInstallManager.GetOutdatedWorkspacesCount",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOutdatedWorkspacesResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/{applicationGuid}/install/outdated-workspaces-count": {
+      "get": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IApplicationInstallManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.ApplicationInstall.IApplicationInstallManager.GetOutdatedWorkspacesCount",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationGuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOutdatedWorkspacesResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/{applicationID}/install/available-workspaces": {
+      "post": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IApplicationInstallManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.ApplicationInstall.IApplicationInstallManager.GetAvailableWorkspacesAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationID"
+          },
+          {
+            "$ref": "#/components/parameters/start"
+          },
+          {
+            "$ref": "#/components/parameters/length"
+          },
+          {
+            "$ref": "#/components/parameters/includeActions"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryOptions"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationInstallSearchResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/{applicationGuid}/install/available-workspaces": {
+      "post": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IApplicationInstallManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.ApplicationInstall.IApplicationInstallManager.GetAvailableWorkspacesAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationGuid"
+          },
+          {
+            "$ref": "#/components/parameters/start"
+          },
+          {
+            "$ref": "#/components/parameters/length"
+          },
+          {
+            "$ref": "#/components/parameters/includeActions"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryOptions"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationInstallSearchResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/install/search": {
+      "post": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IApplicationInstallManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.ApplicationInstall.IApplicationInstallManager.SearchAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/start"
+          },
+          {
+            "$ref": "#/components/parameters/length"
+          },
+          {
+            "$ref": "#/components/parameters/includeActions"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryOptions"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationInstallSearchResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/{applicationID}/install/search": {
+      "post": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IApplicationInstallManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.ApplicationInstall.IApplicationInstallManager.SearchApplicationAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationID"
+          },
+          {
+            "$ref": "#/components/parameters/start"
+          },
+          {
+            "$ref": "#/components/parameters/length"
+          },
+          {
+            "$ref": "#/components/parameters/includeActions"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryOptions"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationInstallSearchResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/{applicationGuid}/install/search": {
+      "post": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IApplicationInstallManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.ApplicationInstall.IApplicationInstallManager.SearchApplicationAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationGuid"
+          },
+          {
+            "$ref": "#/components/parameters/start"
+          },
+          {
+            "$ref": "#/components/parameters/length"
+          },
+          {
+            "$ref": "#/components/parameters/includeActions"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryOptions"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationInstallSearchResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/{applicationGuid}/install/all": {
+      "delete": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IApplicationInstallManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.ApplicationInstall.IApplicationInstallManager.CancelAllAsync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationGuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CancelApplicationInstallResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/{applicationID}/install/validate": {
+      "post": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IApplicationInstallManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.ApplicationInstall.IApplicationInstallManager.ValidateApplicationInstallation",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationID"
+          },
+          {
+            "$ref": "#/components/parameters/workspaceIDs"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ValidationResult"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/{applicationGuid}/install/validate": {
+      "post": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IApplicationInstallManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.ApplicationInstall.IApplicationInstallManager.ValidateApplicationInstallation",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationGuid"
+          },
+          {
+            "$ref": "#/components/parameters/workspaceIDs"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ValidationResult"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/{applicationID}/install/validate/all": {
+      "post": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IApplicationInstallManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.ApplicationInstall.IApplicationInstallManager.ValidateApplicationInstallation",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationID"
+          },
+          {
+            "$ref": "#/components/parameters/targetWorkspaces"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ValidationResult"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/{applicationGuid}/install/validate/all": {
+      "post": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IApplicationInstallManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.ApplicationInstall.IApplicationInstallManager.ValidateApplicationInstallation",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/applicationGuid"
+          },
+          {
+            "$ref": "#/components/parameters/targetWorkspaces"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ValidationResult"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/install/validate": {
+      "post": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IApplicationInstallManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.ApplicationInstall.IApplicationInstallManager.ValidateApplicationInstallation",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/workspaceIDs"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IKeplerStream"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ValidationResult"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/install/validate/all": {
+      "post": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IApplicationInstallManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.ApplicationInstall.IApplicationInstallManager.ValidateApplicationInstallation",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          },
+          {
+            "$ref": "#/components/parameters/targetWorkspaces"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IKeplerStream"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ValidationResult"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relativity-environment/v1/workspace/{workspaceID}/libraryapplications/install/conflict/validate-names": {
+      "post": {
+        "tags": [
+          "Relativity Environment Module v1"
+        ],
+        "description": "[Public] IApplicationInstallManager - ",
+        "operationId": "Relativity.Environment.Services.Interfaces.Environment.V1.ApplicationInstall.IApplicationInstallManager.IsNameAvailable",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceID"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/NameValidationRequest"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NameValidationResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "WorkspaceRequest": {
+        "title": "WorkspaceRequest",
+        "type": "object",
+        "properties": {
+          "DownloadHandlerUrl": {
+            "type": "string"
+          },
+          "EnableDataGrid": {
+            "type": "boolean"
+          },
+          "Matter": {
+            "$ref": "#/components/schemas/Securable`1"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "ProductionRestrictions": {
+            "$ref": "#/components/schemas/Securable`1"
+          },
+          "ResourcePool": {
+            "$ref": "#/components/schemas/Securable`1"
+          },
+          "DefaultFileRepository": {
+            "$ref": "#/components/schemas/Securable`1"
+          },
+          "DataGridFileRepository": {
+            "$ref": "#/components/schemas/Securable`1"
+          },
+          "DefaultCacheLocation": {
+            "$ref": "#/components/schemas/Securable`1"
+          },
+          "SqlServer": {
+            "$ref": "#/components/schemas/Securable`1"
+          },
+          "AzureCredentials": {
+            "$ref": "#/components/schemas/Securable`1"
+          },
+          "AzureFileSystemCredentials": {
+            "$ref": "#/components/schemas/Securable`1"
+          },
+          "SqlFullTextLanguage": {
+            "type": "integer"
+          },
+          "Status": {
+            "$ref": "#/components/schemas/ObjectIdentifier"
+          },
+          "Template": {
+            "$ref": "#/components/schemas/Securable`1"
+          },
+          "WorkspaceAdminGroup": {
+            "$ref": "#/components/schemas/Securable`1"
+          },
+          "Keywords": {
+            "type": "string"
+          },
+          "Notes": {
+            "type": "string"
+          }
+        }
+      },
+      "Securable`1": {
+        "title": "Securable`1",
+        "type": "object",
+        "properties": {
+          "Secured": {
+            "type": "boolean"
+          },
+          "Value": {
+            "$ref": "#/components/schemas/ObjectIdentifier"
+          }
+        }
+      },
+      "ObjectIdentifier": {
+        "title": "ObjectIdentifier",
+        "type": "object",
+        "properties": {
+          "ArtifactID": {
+            "type": "integer"
+          },
+          "Guids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "Meta": {
+        "title": "Meta",
+        "type": "object",
+        "properties": {
+          "Unsupported": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "ReadOnly": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "QueryRequest": {
+        "title": "QueryRequest",
+        "type": "object",
+        "properties": {
+          "ObjectType": {
+            "$ref": "#/components/schemas/ObjectTypeRef"
+          },
+          "Condition": {
+            "type": "string"
+          },
+          "Sorts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Sort"
+            }
+          },
+          "RelationalField": {
+            "$ref": "#/components/schemas/FieldRef"
+          },
+          "RowCondition": {
+            "type": "string"
+          },
+          "SearchProviderCondition": {
+            "$ref": "#/components/schemas/SearchProviderCondition"
+          },
+          "SampleParameters": {
+            "$ref": "#/components/schemas/SampleParameters"
+          },
+          "IncludeIDWindow": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "RankSortOrder": {
+            "enum": [
+              "Ascending",
+              "Descending"
+            ],
+            "type": "string",
+            "nullable": true
+          },
+          "QueryHint": {
+            "type": "string"
+          },
+          "Fields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FieldRef"
+            }
+          },
+          "IsAdhocQuery": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "ConvertNumberFieldValuesToString": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "IncludeNameInQueryResult": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "ExecutingSavedSearchID": {
+            "type": "integer",
+            "nullable": true
+          },
+          "ExecutingViewID": {
+            "type": "integer",
+            "nullable": true
+          },
+          "ActiveArtifactID": {
+            "type": "integer",
+            "nullable": true
+          },
+          "MaxCharactersForLongTextValues": {
+            "type": "integer",
+            "nullable": true
+          },
+          "LongTextBehavior": {
+            "enum": [
+              "Default",
+              "Tokenized",
+              "DefaultWithErrors",
+              "TokenizedWithErrors"
+            ],
+            "type": "string"
+          }
+        }
+      },
+      "ObjectTypeRef": {
+        "title": "ObjectTypeRef",
+        "type": "object",
+        "properties": {
+          "ArtifactID": {
+            "type": "integer"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "Guid": {
+            "type": "string",
+            "nullable": true
+          },
+          "ArtifactTypeID": {
+            "type": "integer"
+          }
+        }
+      },
+      "Sort": {
+        "title": "Sort",
+        "type": "object",
+        "properties": {
+          "FieldIdentifier": {
+            "$ref": "#/components/schemas/FieldRef"
+          },
+          "Order": {
+            "type": "integer"
+          },
+          "Direction": {
+            "enum": [
+              "Ascending",
+              "Descending"
+            ],
+            "type": "string"
+          }
+        }
+      },
+      "FieldRef": {
+        "title": "FieldRef",
+        "type": "object",
+        "properties": {
+          "ArtifactID": {
+            "type": "integer"
+          },
+          "ViewFieldID": {
+            "type": "integer"
+          },
+          "Guids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "Name": {
+            "type": "string"
+          }
+        }
+      },
+      "SearchProviderCondition": {
+        "title": "SearchProviderCondition",
+        "type": "object",
+        "properties": {
+          "SearchIndex": {
+            "$ref": "#/components/schemas/SearchIndexRef"
+          },
+          "Input": {
+            "type": "string"
+          }
+        }
+      },
+      "SearchIndexRef": {
+        "title": "SearchIndexRef",
+        "type": "object",
+        "properties": {
+          "ArtifactID": {
+            "type": "integer"
+          },
+          "Name": {
+            "type": "string"
+          }
+        }
+      },
+      "SampleParameters": {
+        "title": "SampleParameters",
+        "type": "object",
+        "properties": {
+          "ExistingToken": {
+            "type": "string",
+            "nullable": true
+          },
+          "MarginOfError": {
+            "type": "number"
+          },
+          "ConfidenceLevel": {
+            "type": "number"
+          },
+          "FixedSampleSize": {
+            "type": "integer"
+          },
+          "SamplingPercentage": {
+            "type": "number"
+          }
+        }
+      },
+      "QueryResultSlim": {
+        "title": "QueryResultSlim",
+        "type": "object",
+        "properties": {
+          "TotalCount": {
+            "type": "integer"
+          },
+          "Objects": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RelativityObjectSlim"
+            }
+          },
+          "IDWindow": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "CurrentStartIndex": {
+            "type": "integer"
+          },
+          "ResultCount": {
+            "type": "integer"
+          },
+          "ObjectType": {
+            "$ref": "#/components/schemas/ObjectType"
+          },
+          "SampleDetails": {
+            "$ref": "#/components/schemas/SampleDetails"
+          },
+          "RankWindow": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
+          },
+          "RelationalField": {
+            "$ref": "#/components/schemas/Field"
+          },
+          "Fields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Field"
+            }
+          }
+        }
+      },
+      "RelativityObjectSlim": {
+        "title": "RelativityObjectSlim",
+        "type": "object",
+        "properties": {
+          "ArtifactID": {
+            "type": "integer"
+          },
+          "Values": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Object"
+            }
+          }
+        }
+      },
+      "Object": {
+        "title": "Object",
+        "type": "object"
+      },
+      "ObjectType": {
+        "title": "ObjectType",
+        "type": "object",
+        "properties": {
+          "ArtifactID": {
+            "type": "integer"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "Guids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "ArtifactTypeID": {
+            "type": "integer"
+          }
+        }
+      },
+      "SampleDetails": {
+        "title": "SampleDetails",
+        "type": "object",
+        "properties": {
+          "SampleSize": {
+            "type": "integer",
+            "nullable": true
+          },
+          "UniverseSize": {
+            "type": "integer",
+            "nullable": true
+          },
+          "Token": {
+            "type": "string"
+          }
+        }
+      },
+      "Field": {
+        "title": "Field",
+        "type": "object",
+        "properties": {
+          "FieldCategory": {
+            "enum": [
+              "Generic",
+              "FullText",
+              "Identifier",
+              "Reflected",
+              "Comments",
+              "Relational",
+              "ProductionMarker",
+              "AutoCreate",
+              "FileSize",
+              "FolderName",
+              "FileInfo",
+              "ParentArtifact",
+              "MarkupSetMarker",
+              "GenericSystem",
+              "MultiReflected",
+              "Batch"
+            ],
+            "type": "string"
+          },
+          "FieldType": {
+            "enum": [
+              "FixedLengthText",
+              "WholeNumber",
+              "Date",
+              "YesNo",
+              "LongText",
+              "SingleChoice",
+              "Decimal",
+              "Currency",
+              "MultipleChoice",
+              "File",
+              "SingleObject",
+              "User",
+              "MultipleObject",
+              "Empty"
+            ],
+            "type": "string"
+          },
+          "ViewFieldID": {
+            "type": "integer"
+          },
+          "ArtifactID": {
+            "type": "integer"
+          },
+          "Guids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "Name": {
+            "type": "string"
+          }
+        }
+      },
+      "DisplayableObjectIdentifier": {
+        "title": "DisplayableObjectIdentifier",
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string"
+          },
+          "ArtifactID": {
+            "type": "integer"
+          },
+          "Guids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "SqlFullTextLanguageOptions": {
+        "title": "SqlFullTextLanguageOptions",
+        "type": "object",
+        "properties": {
+          "DefaultLanguageLcid": {
+            "type": "integer"
+          },
+          "Languages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NameIDPair"
+            }
+          }
+        }
+      },
+      "NameIDPair": {
+        "title": "NameIDPair",
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string"
+          },
+          "ID": {
+            "type": "integer"
+          }
+        }
+      },
+      "WorkspaceSummary": {
+        "title": "WorkspaceSummary",
+        "type": "object",
+        "properties": {
+          "DocumentCount": {
+            "type": "integer"
+          },
+          "FileSize": {
+            "type": "integer"
+          }
+        }
+      },
+      "ResourceFileRequest": {
+        "title": "ResourceFileRequest",
+        "type": "object",
+        "properties": {
+          "Application": {
+            "$ref": "#/components/schemas/ObjectIdentifier"
+          },
+          "FileName": {
+            "type": "string"
+          },
+          "Keywords": {
+            "type": "string"
+          },
+          "Notes": {
+            "type": "string"
+          }
+        }
+      },
+      "ResourceFileResponse": {
+        "title": "ResourceFileResponse",
+        "type": "object",
+        "properties": {
+          "ObjectIdentifier": {
+            "$ref": "#/components/schemas/ObjectIdentifier"
+          },
+          "Application": {
+            "$ref": "#/components/schemas/Securable`1"
+          },
+          "FileName": {
+            "type": "string"
+          },
+          "CompanyName": {
+            "type": "string"
+          },
+          "Copyright": {
+            "type": "string"
+          },
+          "AgentTypes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResourceFileAgentType"
+            }
+          },
+          "EventHandlers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResourceFileEventHandler"
+            }
+          },
+          "MassOperations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResourceFileMassOperation"
+            }
+          },
+          "Services": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResourceFileService"
+            }
+          },
+          "Keywords": {
+            "type": "string"
+          },
+          "Notes": {
+            "type": "string"
+          },
+          "CreatedOn": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "CreatedBy": {
+            "$ref": "#/components/schemas/DisplayableObjectIdentifier"
+          },
+          "LastModifiedBy": {
+            "$ref": "#/components/schemas/DisplayableObjectIdentifier"
+          },
+          "LastModifiedOn": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "Meta": {
+            "$ref": "#/components/schemas/Meta"
+          },
+          "Actions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Action"
+            }
+          }
+        }
+      },
+      "ResourceFileAgentType": {
+        "title": "ResourceFileAgentType",
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string"
+          },
+          "FullNamespace": {
+            "type": "string"
+          }
+        }
+      },
+      "ResourceFileEventHandler": {
+        "title": "ResourceFileEventHandler",
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string"
+          },
+          "Description": {
+            "type": "string"
+          },
+          "Type": {
+            "type": "string"
+          }
+        }
+      },
+      "ResourceFileMassOperation": {
+        "title": "ResourceFileMassOperation",
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string"
+          },
+          "Description": {
+            "type": "string"
+          }
+        }
+      },
+      "ResourceFileService": {
+        "title": "ResourceFileService",
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string"
+          },
+          "ServiceRoute": {
+            "type": "string"
+          },
+          "Version": {
+            "type": "string"
+          }
+        }
+      },
+      "Action": {
+        "title": "Action",
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string"
+          },
+          "Href": {
+            "type": "string"
+          },
+          "Verb": {
+            "type": "string"
+          },
+          "IsAvailable": {
+            "type": "boolean"
+          },
+          "Reason": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "IKeplerStream": {
+        "title": "IKeplerStream",
+        "type": "object",
+        "properties": {
+          "ContentType": {
+            "type": "string"
+          },
+          "ContentDisposition": {
+            "type": "string"
+          },
+          "CacheControl": {
+            "type": "string"
+          },
+          "StatusCode": {
+            "enum": [
+              "Continue",
+              "SwitchingProtocols",
+              "OK",
+              "Created",
+              "Accepted",
+              "NonAuthoritativeInformation",
+              "NoContent",
+              "ResetContent",
+              "PartialContent",
+              "MultipleChoices",
+              "Ambiguous",
+              "MovedPermanently",
+              "Moved",
+              "Found",
+              "Redirect",
+              "SeeOther",
+              "RedirectMethod",
+              "NotModified",
+              "UseProxy",
+              "Unused",
+              "TemporaryRedirect",
+              "RedirectKeepVerb",
+              "BadRequest",
+              "Unauthorized",
+              "PaymentRequired",
+              "Forbidden",
+              "NotFound",
+              "MethodNotAllowed",
+              "NotAcceptable",
+              "ProxyAuthenticationRequired",
+              "RequestTimeout",
+              "Conflict",
+              "Gone",
+              "LengthRequired",
+              "PreconditionFailed",
+              "RequestEntityTooLarge",
+              "RequestUriTooLong",
+              "UnsupportedMediaType",
+              "RequestedRangeNotSatisfiable",
+              "ExpectationFailed",
+              "UpgradeRequired",
+              "InternalServerError",
+              "NotImplemented",
+              "BadGateway",
+              "ServiceUnavailable",
+              "GatewayTimeout",
+              "HttpVersionNotSupported"
+            ],
+            "type": "string",
+            "nullable": true
+          },
+          "Headers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "ContentsResponse": {
+        "title": "ContentsResponse",
+        "type": "object",
+        "properties": {
+          "ContentsKey": {
+            "type": "string"
+          }
+        }
+      },
+      "SecurableList`1": {
+        "title": "SecurableList`1",
+        "type": "object",
+        "properties": {
+          "HasSecuredItems": {
+            "type": "boolean"
+          },
+          "ViewableItems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EligibleApplication"
+            }
+          }
+        }
+      },
+      "EligibleApplication": {
+        "title": "EligibleApplication",
+        "type": "object",
+        "properties": {
+          "ObjectIdentifier": {
+            "$ref": "#/components/schemas/DisplayableObjectIdentifier"
+          },
+          "IsGlobalApplication": {
+            "type": "boolean"
+          },
+          "Version": {
+            "type": "string"
+          },
+          "SchemaVersion": {
+            "type": "string"
+          },
+          "FileName": {
+            "type": "string"
+          },
+          "UserFriendlyURL": {
+            "type": "string"
+          },
+          "Required": {
+            "enum": [
+              "Optional",
+              "Required",
+              "RequiredIfPresent",
+              "Unknown"
+            ],
+            "type": "string"
+          }
+        }
+      },
+      "MatterRequest": {
+        "title": "MatterRequest",
+        "type": "object",
+        "properties": {
+          "Client": {
+            "$ref": "#/components/schemas/Securable`1"
+          },
+          "Status": {
+            "$ref": "#/components/schemas/Securable`1"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "Number": {
+            "type": "string"
+          },
+          "Keywords": {
+            "type": "string"
+          },
+          "Notes": {
+            "type": "string"
+          }
+        }
+      },
+      "CreateLibraryApplicationResponse": {
+        "title": "CreateLibraryApplicationResponse",
+        "type": "object",
+        "properties": {
+          "ApplicationIdentifier": {
+            "$ref": "#/components/schemas/ObjectIdentifier"
+          },
+          "Actions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Action"
+            }
+          },
+          "ApplicationInstallID": {
+            "type": "integer"
+          },
+          "InstallStatus": {
+            "$ref": "#/components/schemas/InstallStatus"
+          }
+        }
+      },
+      "InstallStatus": {
+        "title": "InstallStatus",
+        "type": "object",
+        "properties": {
+          "Code": {
+            "enum": [
+              "Unknown",
+              "Pending",
+              "InProgress",
+              "Failed",
+              "Completed",
+              "Canceled"
+            ],
+            "type": "string"
+          },
+          "Message": {
+            "type": "string"
+          },
+          "Details": {
+            "type": "string"
+          },
+          "GetDetailsAction": {
+            "$ref": "#/components/schemas/Action"
+          },
+          "RetryInstallAction": {
+            "$ref": "#/components/schemas/Action"
+          },
+          "CancelInstallAction": {
+            "$ref": "#/components/schemas/Action"
+          }
+        }
+      },
+      "UpdateLibraryApplicationResponse": {
+        "title": "UpdateLibraryApplicationResponse",
+        "type": "object",
+        "properties": {
+          "ApplicationIdentifier": {
+            "$ref": "#/components/schemas/ObjectIdentifier"
+          },
+          "Actions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Action"
+            }
+          },
+          "ApplicationInstallID": {
+            "type": "integer"
+          },
+          "InstallStatus": {
+            "$ref": "#/components/schemas/InstallStatus"
+          },
+          "Messages": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "UpdateLibraryApplicationRequest": {
+        "title": "UpdateLibraryApplicationRequest",
+        "type": "object",
+        "properties": {
+          "IgnoreVersion": {
+            "type": "boolean"
+          },
+          "CreateIfMissing": {
+            "type": "boolean"
+          },
+          "RefreshCustomPages": {
+            "type": "boolean"
+          },
+          "FileName": {
+            "type": "string"
+          }
+        }
+      },
+      "RetryLibraryInstallResponse": {
+        "title": "RetryLibraryInstallResponse",
+        "type": "object",
+        "properties": {
+          "ApplicationIdentifier": {
+            "$ref": "#/components/schemas/ObjectIdentifier"
+          },
+          "ApplicationInstallID": {
+            "type": "integer"
+          },
+          "InstallStatus": {
+            "$ref": "#/components/schemas/InstallStatus"
+          }
+        }
+      },
+      "GetInstallStatusResponse": {
+        "title": "GetInstallStatusResponse",
+        "type": "object",
+        "properties": {
+          "ApplicationInstallID": {
+            "type": "integer"
+          },
+          "ApplicationIdentifier": {
+            "$ref": "#/components/schemas/ObjectIdentifier"
+          },
+          "WorkspaceIdentifier": {
+            "$ref": "#/components/schemas/ObjectIdentifier"
+          },
+          "WorkspaceName": {
+            "type": "string"
+          },
+          "Client": {
+            "$ref": "#/components/schemas/DisplayableObjectIdentifier"
+          },
+          "Matter": {
+            "$ref": "#/components/schemas/DisplayableObjectIdentifier"
+          },
+          "Message": {
+            "type": "string"
+          },
+          "RootFolderID": {
+            "type": "integer"
+          },
+          "InstallStatus": {
+            "$ref": "#/components/schemas/InstallStatus"
+          },
+          "ValidationResult": {
+            "$ref": "#/components/schemas/InstallValidationResult"
+          },
+          "Version": {
+            "type": "string"
+          },
+          "IsOutOfDate": {
+            "type": "boolean"
+          },
+          "ValidationMessages": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "Errors": {
+            "type": "array",
+            "items": {
+              "type": "none"
+            }
+          },
+          "InstalledBy": {
+            "$ref": "#/components/schemas/DisplayableObjectIdentifier"
+          },
+          "StartedOn": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "CompletedOn": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "ExceptionCategory": {
+            "type": "string"
+          },
+          "FailedTask": {
+            "type": "string"
+          },
+          "GetCurrentInstallStatus": {
+            "$ref": "#/components/schemas/Action"
+          }
+        }
+      },
+      "InstallValidationResult": {
+        "title": "InstallValidationResult",
+        "type": "object",
+        "properties": {
+          "RetryInstallAction": {
+            "$ref": "#/components/schemas/Action"
+          },
+          "RetryInstallRequestTemplate": {
+            "$ref": "#/components/schemas/InstallApplicationRequest"
+          },
+          "InstallConflicts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApplicationInstallConflict"
+            }
+          }
+        }
+      },
+      "InstallApplicationRequest": {
+        "title": "InstallApplicationRequest",
+        "type": "object",
+        "properties": {
+          "WorkspaceIDs": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "UnlockApplications": {
+            "type": "boolean"
+          },
+          "ConflictResolutions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApplicationInstallConflictResolution"
+            }
+          }
+        }
+      },
+      "ApplicationInstallConflictResolution": {
+        "title": "ApplicationInstallConflictResolution",
+        "type": "object",
+        "properties": {
+          "WorkspaceID": {
+            "type": "integer"
+          },
+          "ConflictArtifactID": {
+            "type": "integer"
+          },
+          "ApplicationComponentType": {
+            "enum": [
+              "Unknown",
+              "Choice",
+              "Field",
+              "Layout",
+              "ObjectType",
+              "ObjectRule",
+              "EventHandler",
+              "Tab",
+              "View",
+              "Script",
+              "Instance",
+              "CustomPage",
+              "AgentType",
+              "InstallEventHandler",
+              "ResourceFile",
+              "MassOperation",
+              "MasterAgentType",
+              "SavedSearch",
+              "SearchProvider",
+              "Dashboard"
+            ],
+            "type": "string"
+          },
+          "ResolutionType": {
+            "enum": [
+              "Unknown",
+              "Rename",
+              "RenameRelationalFriendlyName",
+              "MapField",
+              "UnlockAssociatedApplications"
+            ],
+            "type": "string"
+          },
+          "ConflictApplicationID": {
+            "type": "integer",
+            "nullable": true
+          },
+          "FieldIdentifiers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "Value": {
+            "type": "string"
+          }
+        }
+      },
+      "ApplicationInstallConflict": {
+        "title": "ApplicationInstallConflict",
+        "type": "object",
+        "properties": {
+          "ConflictArtifactIdentifier": {
+            "$ref": "#/components/schemas/DisplayableObjectIdentifier"
+          },
+          "Description": {
+            "type": "string"
+          },
+          "ApplicationComponentType": {
+            "enum": [
+              "Unknown",
+              "Choice",
+              "Field",
+              "Layout",
+              "ObjectType",
+              "ObjectRule",
+              "EventHandler",
+              "Tab",
+              "View",
+              "Script",
+              "Instance",
+              "CustomPage",
+              "AgentType",
+              "InstallEventHandler",
+              "ResourceFile",
+              "MassOperation",
+              "MasterAgentType",
+              "SavedSearch",
+              "SearchProvider",
+              "Dashboard"
+            ],
+            "type": "string"
+          },
+          "ConflictType": {
+            "enum": [
+              "Unknown",
+              "LockedApplication",
+              "Name",
+              "FriendlyName"
+            ],
+            "type": "string"
+          },
+          "ConflictApplicationIdentifier": {
+            "$ref": "#/components/schemas/DisplayableObjectIdentifier"
+          },
+          "ResolutionOptions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApplicationInstallConflictResolution"
+            }
+          }
+        }
+      },
+      "CancelLibraryInstallResponse": {
+        "title": "CancelLibraryInstallResponse",
+        "type": "object",
+        "properties": {
+          "ApplicationIdentifier": {
+            "$ref": "#/components/schemas/ObjectIdentifier"
+          },
+          "IsSuccessful": {
+            "type": "boolean"
+          },
+          "ApplicationInstallID": {
+            "type": "integer"
+          },
+          "Message": {
+            "type": "string"
+          }
+        }
+      },
+      "PackageDetailsResponse": {
+        "title": "PackageDetailsResponse",
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string"
+          },
+          "PackageGUID": {
+            "type": "string"
+          },
+          "ApplicationGUID": {
+            "type": "string"
+          },
+          "Version": {
+            "type": "string"
+          },
+          "SchemaVersion": {
+            "type": "string"
+          },
+          "FileName": {
+            "type": "string"
+          },
+          "UserFriendlyURL": {
+            "type": "string"
+          },
+          "TreeView": {
+            "type": "string"
+          },
+          "IsGlobalApplication": {
+            "type": "boolean"
+          },
+          "IsDeprecated": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ApplicationHostingStatusResponse": {
+        "title": "ApplicationHostingStatusResponse",
+        "type": "object",
+        "properties": {
+          "CustomPages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomPageHostingStatusResponse"
+            }
+          },
+          "KeplerServices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/KeplerServiceStatusResponse"
+            }
+          },
+          "State": {
+            "enum": [
+              "Ready",
+              "Pending",
+              "OutOfDate",
+              "Unavailable"
+            ],
+            "type": "string"
+          },
+          "Message": {
+            "type": "string"
+          },
+          "Actions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Action"
+            }
+          }
+        }
+      },
+      "CustomPageHostingStatusResponse": {
+        "title": "CustomPageHostingStatusResponse",
+        "type": "object",
+        "properties": {
+          "CustomPage": {
+            "$ref": "#/components/schemas/Securable`1"
+          },
+          "StatusCode": {
+            "enum": [
+              "Continue",
+              "SwitchingProtocols",
+              "OK",
+              "Created",
+              "Accepted",
+              "NonAuthoritativeInformation",
+              "NoContent",
+              "ResetContent",
+              "PartialContent",
+              "MultipleChoices",
+              "Ambiguous",
+              "MovedPermanently",
+              "Moved",
+              "Found",
+              "Redirect",
+              "SeeOther",
+              "RedirectMethod",
+              "NotModified",
+              "UseProxy",
+              "Unused",
+              "TemporaryRedirect",
+              "RedirectKeepVerb",
+              "BadRequest",
+              "Unauthorized",
+              "PaymentRequired",
+              "Forbidden",
+              "NotFound",
+              "MethodNotAllowed",
+              "NotAcceptable",
+              "ProxyAuthenticationRequired",
+              "RequestTimeout",
+              "Conflict",
+              "Gone",
+              "LengthRequired",
+              "PreconditionFailed",
+              "RequestEntityTooLarge",
+              "RequestUriTooLong",
+              "UnsupportedMediaType",
+              "RequestedRangeNotSatisfiable",
+              "ExpectationFailed",
+              "UpgradeRequired",
+              "InternalServerError",
+              "NotImplemented",
+              "BadGateway",
+              "ServiceUnavailable",
+              "GatewayTimeout",
+              "HttpVersionNotSupported"
+            ],
+            "type": "string"
+          },
+          "State": {
+            "enum": [
+              "Ready",
+              "Pending",
+              "OutOfDate",
+              "Unavailable"
+            ],
+            "type": "string"
+          },
+          "Message": {
+            "type": "string"
+          },
+          "Actions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Action"
+            }
+          }
+        }
+      },
+      "KeplerServiceStatusResponse": {
+        "title": "KeplerServiceStatusResponse",
+        "type": "object",
+        "properties": {
+          "State": {
+            "enum": [
+              "Ready",
+              "Pending",
+              "OutOfDate",
+              "Unavailable"
+            ],
+            "type": "string"
+          },
+          "Message": {
+            "type": "string"
+          },
+          "Actions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Action"
+            }
+          }
+        }
+      },
+      "InstanceSettingRequest": {
+        "title": "InstanceSettingRequest",
+        "type": "object",
+        "properties": {
+          "ArtifactID": {
+            "type": "integer"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "Section": {
+            "type": "string"
+          },
+          "Machine": {
+            "type": "string"
+          },
+          "Value": {
+            "type": "string"
+          },
+          "InitialValue": {
+            "type": "string"
+          },
+          "Description": {
+            "type": "string"
+          },
+          "ValueType": {
+            "enum": [
+              "Text",
+              "Integer32",
+              "Integer64",
+              "NonNegativeInteger32",
+              "NonNegativeInteger64",
+              "PositiveInteger32",
+              "PositiveInteger64",
+              "TrueFalse"
+            ],
+            "type": "string",
+            "nullable": true
+          },
+          "Encrypted": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "Keywords": {
+            "type": "string"
+          },
+          "Notes": {
+            "type": "string"
+          }
+        }
+      },
+      "CreateErrorRequest": {
+        "title": "CreateErrorRequest",
+        "type": "object",
+        "properties": {
+          "FullError": {
+            "type": "string"
+          },
+          "Message": {
+            "type": "string"
+          },
+          "Server": {
+            "type": "string"
+          },
+          "Source": {
+            "type": "string"
+          },
+          "URL": {
+            "type": "string"
+          },
+          "StepsToReproduce": {
+            "type": "string"
+          },
+          "SendNotification": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "Workspace": {
+            "$ref": "#/components/schemas/ObjectIdentifier"
+          }
+        }
+      },
+      "InstallApplicationResponse": {
+        "title": "InstallApplicationResponse",
+        "type": "object",
+        "properties": {
+          "ApplicationIdentifier": {
+            "$ref": "#/components/schemas/ObjectIdentifier"
+          },
+          "Messages": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "Results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InstallApplicationResult"
+            }
+          }
+        }
+      },
+      "InstallApplicationResult": {
+        "title": "InstallApplicationResult",
+        "type": "object",
+        "properties": {
+          "WorkspaceIdentifier": {
+            "$ref": "#/components/schemas/ObjectIdentifier"
+          },
+          "ApplicationInstallID": {
+            "type": "integer"
+          },
+          "Messages": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "InstallStatus": {
+            "$ref": "#/components/schemas/InstallStatus"
+          }
+        }
+      },
+      "CancelApplicationInstallResponse": {
+        "title": "CancelApplicationInstallResponse",
+        "type": "object",
+        "properties": {
+          "Results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CancelApplicationInstallResult"
+            }
+          },
+          "ApplicationIdentifier": {
+            "$ref": "#/components/schemas/ObjectIdentifier"
+          }
+        }
+      },
+      "CancelApplicationInstallResult": {
+        "title": "CancelApplicationInstallResult",
+        "type": "object",
+        "properties": {
+          "IsSuccessful": {
+            "type": "boolean"
+          },
+          "WorkspaceIdentifier": {
+            "$ref": "#/components/schemas/ObjectIdentifier"
+          },
+          "ApplicationInstallID": {
+            "type": "integer"
+          },
+          "Message": {
+            "type": "string"
+          }
+        }
+      },
+      "InstallApplicationAllRequest": {
+        "title": "InstallApplicationAllRequest",
+        "type": "object",
+        "properties": {
+          "Mode": {
+            "enum": [
+              "Unknown",
+              "ForceInstall",
+              "UpgradeOnly"
+            ],
+            "type": "string"
+          },
+          "UnlockApplications": {
+            "type": "boolean"
+          }
+        }
+      },
+      "GetApplicationInstallDetailsResponse": {
+        "title": "GetApplicationInstallDetailsResponse",
+        "type": "object",
+        "properties": {
+          "CurrentStartIndex": {
+            "type": "integer"
+          },
+          "ResultCount": {
+            "type": "integer"
+          },
+          "TotalCount": {
+            "type": "integer"
+          },
+          "ApplicationIdentifier": {
+            "$ref": "#/components/schemas/ObjectIdentifier"
+          },
+          "ApplicationInstallID": {
+            "type": "integer"
+          },
+          "InstallStatus": {
+            "$ref": "#/components/schemas/InstallStatus"
+          },
+          "Messages": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "Details": {
+            "type": "array",
+            "items": {
+              "type": "none"
+            }
+          },
+          "FirstPage": {
+            "$ref": "#/components/schemas/Action"
+          },
+          "PreviousPage": {
+            "$ref": "#/components/schemas/Action"
+          },
+          "NextPage": {
+            "$ref": "#/components/schemas/Action"
+          },
+          "LastPage": {
+            "$ref": "#/components/schemas/Action"
+          }
+        }
+      },
+      "GetOutdatedWorkspacesResponse": {
+        "title": "GetOutdatedWorkspacesResponse",
+        "type": "object",
+        "properties": {
+          "ApplicationIdentifier": {
+            "$ref": "#/components/schemas/ObjectIdentifier"
+          },
+          "IsGlobalApplication": {
+            "type": "boolean"
+          },
+          "OutdatedWorkspacesCount": {
+            "type": "integer"
+          },
+          "UpdateOutdatedApplications": {
+            "$ref": "#/components/schemas/Action"
+          },
+          "UpdateOutdatedApplicationsPayload": {
+            "$ref": "#/components/schemas/InstallApplicationAllRequest"
+          }
+        }
+      },
+      "QueryOptions": {
+        "title": "QueryOptions",
+        "type": "object",
+        "properties": {
+          "Condition": {
+            "type": "string"
+          },
+          "Sorts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Sort"
+            }
+          }
+        }
+      },
+      "ApplicationInstallSearchResponse": {
+        "title": "ApplicationInstallSearchResponse",
+        "type": "object",
+        "properties": {
+          "Results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApplicationInstallSearchItem"
+            }
+          },
+          "Summary": {
+            "$ref": "#/components/schemas/InstallStatusSummary"
+          },
+          "CurrentStartIndex": {
+            "type": "integer"
+          },
+          "ResultCount": {
+            "type": "integer"
+          },
+          "TotalCount": {
+            "type": "integer"
+          },
+          "FirstPage": {
+            "$ref": "#/components/schemas/Action"
+          },
+          "PreviousPage": {
+            "$ref": "#/components/schemas/Action"
+          },
+          "NextPage": {
+            "$ref": "#/components/schemas/Action"
+          },
+          "LastPage": {
+            "$ref": "#/components/schemas/Action"
+          }
+        }
+      },
+      "ApplicationInstallSearchItem": {
+        "title": "ApplicationInstallSearchItem",
+        "type": "object",
+        "properties": {
+          "ApplicationInstallID": {
+            "type": "integer"
+          },
+          "ApplicationIdentifier": {
+            "$ref": "#/components/schemas/DisplayableObjectIdentifier"
+          },
+          "WorkspaceIdentifier": {
+            "$ref": "#/components/schemas/DisplayableObjectIdentifier"
+          },
+          "ClientIdentifier": {
+            "$ref": "#/components/schemas/DisplayableObjectIdentifier"
+          },
+          "MatterIdentifier": {
+            "$ref": "#/components/schemas/DisplayableObjectIdentifier"
+          },
+          "Message": {
+            "type": "string"
+          },
+          "RootFolderID": {
+            "type": "integer"
+          },
+          "InstallStatus": {
+            "$ref": "#/components/schemas/InstallStatus"
+          },
+          "SchemaVersion": {
+            "type": "string"
+          },
+          "IsOutOfDate": {
+            "type": "boolean"
+          },
+          "InstalledBy": {
+            "$ref": "#/components/schemas/DisplayableObjectIdentifier"
+          },
+          "StartedOn": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "CompletedOn": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        }
+      },
+      "InstallStatusSummary": {
+        "title": "InstallStatusSummary",
+        "type": "object",
+        "properties": {
+          "Other": {
+            "type": "integer"
+          },
+          "Pending": {
+            "type": "integer"
+          },
+          "InProgress": {
+            "type": "integer"
+          },
+          "Failed": {
+            "type": "integer"
+          },
+          "Completed": {
+            "type": "integer"
+          },
+          "Canceled": {
+            "type": "integer"
+          },
+          "TotalActiveInstalls": {
+            "type": "integer"
+          },
+          "Total": {
+            "type": "integer"
+          }
+        }
+      },
+      "ValidationResult": {
+        "title": "ValidationResult",
+        "type": "object",
+        "properties": {
+          "ApplicationIdentifier": {
+            "$ref": "#/components/schemas/ObjectIdentifier"
+          },
+          "WorkspaceIdentifier": {
+            "$ref": "#/components/schemas/ObjectIdentifier"
+          },
+          "Success": {
+            "type": "boolean"
+          },
+          "Errors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "Conflicts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApplicationInstallConflict"
+            }
+          }
+        }
+      },
+      "NameValidationRequest": {
+        "title": "NameValidationRequest",
+        "type": "object",
+        "properties": {
+          "WorkspaceID": {
+            "type": "integer"
+          },
+          "ConflictArtifactID": {
+            "type": "integer"
+          },
+          "ConflictType": {
+            "enum": [
+              "Unknown",
+              "LockedApplication",
+              "Name",
+              "FriendlyName"
+            ],
+            "type": "string"
+          },
+          "Value": {
+            "type": "string"
+          }
+        }
+      },
+      "NameValidationResponse": {
+        "title": "NameValidationResponse",
+        "type": "object",
+        "properties": {
+          "WorkspaceID": {
+            "type": "integer"
+          },
+          "ConflictArtifactID": {
+            "type": "integer"
+          },
+          "ConflictType": {
+            "enum": [
+              "Unknown",
+              "LockedApplication",
+              "Name",
+              "FriendlyName"
+            ],
+            "type": "string"
+          },
+          "IsAvailable": {
+            "type": "boolean"
+          },
+          "Messages": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "parameters": {
+      "workspaceID": {
+        "name": "workspaceID",
+        "in": "path",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "includeMetadata": {
+        "name": "includeMetadata",
+        "in": "path",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "boolean"
+        }
+      },
+      "includeActions": {
+        "name": "includeActions",
+        "in": "path",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "boolean"
+        }
+      },
+      "start": {
+        "name": "start",
+        "in": "query",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "length": {
+        "name": "length",
+        "in": "query",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "groupID": {
+        "name": "groupID",
+        "in": "path",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "resourcePoolID": {
+        "name": "resourcePoolID",
+        "in": "path",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "fileName": {
+        "name": "fileName",
+        "in": "query",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "resourceFileID": {
+        "name": "resourceFileID",
+        "in": "path",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "contentsKey": {
+        "name": "contentsKey",
+        "in": "path",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "workspaceId": {
+        "name": "workspaceId",
+        "in": "path",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "matterID": {
+        "name": "matterID",
+        "in": "path",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "packageGuid": {
+        "name": "packageGuid",
+        "in": "path",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "applicationID": {
+        "name": "applicationID",
+        "in": "path",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "applicationGUID": {
+        "name": "applicationGUID",
+        "in": "path",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "applicationGuid": {
+        "name": "applicationGuid",
+        "in": "path",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "instanceSettingID": {
+        "name": "instanceSettingID",
+        "in": "path",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "applicationInstallIDs": {
+        "name": "applicationInstallIDs",
+        "in": "query",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        }
+      },
+      "applicationInstallID": {
+        "name": "applicationInstallID",
+        "in": "path",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "workspaceIDs": {
+        "name": "workspaceIDs",
+        "in": "query",
+        "description": "",
+        "required": true,
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        }
+      },
+      "targetWorkspaces": {
+        "name": "targetWorkspaces",
+        "in": "query",
+        "description": "",
+        "required": true,
+        "schema": {
+          "enum": [
+            "Unknown",
+            "ForceInstall",
+            "UpgradeOnly"
+          ],
+          "type": "string"
+        }
+      }
+    }
+  }
+}
