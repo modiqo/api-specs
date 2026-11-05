@@ -9,7 +9,7 @@ Reverse-engineered OpenAPI specifications for services that do not publish offic
 | File | Description |
 |---|---|
 | `clob-api.openapi.json` | Central Limit Order Book API — orderbook data, pricing, order placement and cancellation |
-| `data-api.openapi.json` | Data API — user positions, trades, activity, leaderboards, builder analytics (no auth required) |
+| `data-api.openapi.json` | Data API v2 — positions, trades, activity, holders, open interest, live volume, price history, leaderboards, builder analytics (no auth required). Derived from Polymarket's official [v2 spec](https://data-api.polymarket.com/v2/openapi.json) with camelCase operationIds. v1 routes are retired and return 410. |
 | `gamma-api.openapi.json` | Gamma API — markets, events, tags, search, public profiles (no auth required) |
 
 ### rippling/
